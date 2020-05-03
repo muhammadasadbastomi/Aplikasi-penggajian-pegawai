@@ -46,13 +46,22 @@ class PegawaiController extends Controller
             'tgl_masuk' => 'required'
         ]);
 
-        $pegawai = new pegawai;
-        $pegawai->nik = $request->nik;
-        $pegawai->nama = $request->nama;
-        $pegawai->tempat_lahir = $request->tempat_lahir;
-        $pegawai->tgl_lahir = $request->tgl_lahir;
-        $pegawai->tgl_masuk = $request->tgl_masuk;
-        $pegawai->save();
+        //insert ke table users
+        $user = new \App\User;
+        $user->role = 'pegawai';
+        $user->name = $request->nama;
+        $user->email = $request->email;
+        $user->password = bcrypt('admin123');
+        $user->save();
+
+        //insert ke table pegawai
+        $request->request->add(['user_id' => $user->id]);
+        $pegawai = pegawai::create($request->all());
+        if ($request->hasfile('photos')) {
+            $request->file('photos')->move('images/pegawai/', $request->file('photos')->getClientOriginalName());
+            $pegawai->photos = $request->file('photos')->getClientOriginalName();
+            $pegawai->save();
+        }
 
         return redirect('/admin/pegawai/index')->with('success', 'Data berhasil disimpan');
     }

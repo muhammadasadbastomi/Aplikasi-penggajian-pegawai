@@ -50,6 +50,11 @@
                                     @error('Nama Lengkap')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" class="form-control @error ('email') is-invalid @enderror" placeholder="Masukkan Nama Depan" value="{{old('email')}}">
+                                    @error('Email')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                </div>
+                                <div class="form-group">
                                     <label for="tempat_lahir">Tempat Lahir</label>
                                     <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control @error ('tempat_lahir') is-invalid @enderror" placeholder="Masukkan Nama Depan" value="{{old('tempat_lahir')}}">
                                     @error('Tempat Lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
