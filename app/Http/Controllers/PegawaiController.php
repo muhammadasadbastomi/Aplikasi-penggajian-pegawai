@@ -37,7 +37,24 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $request->validate([
+            'nik' => 'required',
+            'nama' => 'required',
+            'tempat_lahir' => 'required',
+            'tgl_lahir' => 'required',
+            'tgl_masuk' => 'required'
+        ]);
+
+        $pegawai = new pegawai;
+        $pegawai->nik = $request->nik;
+        $pegawai->nama = $request->nama;
+        $pegawai->tempat_lahir = $request->tempat_lahir;
+        $pegawai->tgl_lahir = $request->tgl_lahir;
+        $pegawai->tgl_masuk = $request->tgl_masuk;
+        $pegawai->save();
+
+        return redirect('/admin/pegawai/index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -57,9 +74,12 @@ class PegawaiController extends Controller
      * @param  \App\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pegawai $pegawai)
+    public function edit(Pegawai $pegawai, $id)
     {
-        //
+        // get jabatan by id
+        $pegawai = pegawai::where('uuid', $id)->first();
+
+        return view('admin.pegawai.edit', compact('pegawai'));
     }
 
     /**
@@ -69,9 +89,18 @@ class PegawaiController extends Controller
      * @param  \App\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pegawai $pegawai)
+    public function update(Request $request, $id)
     {
-        //
+        // get data by id
+        $pegawai = pegawai::where('uuid', $id)->first();
+        $pegawai->nik = $request->nik;
+        $pegawai->nama = $request->nama;
+        $pegawai->tempat_lahir = $request->tempat_lahir;
+        $pegawai->tgl_lahir = $request->tgl_lahir;
+        $pegawai->tgl_masuk = $request->tgl_masuk;
+        $pegawai->update();
+
+        return redirect()->route('pegawaiIndex')->with('success', 'Data Berhasil Diubah');
     }
 
     /**
@@ -80,8 +109,12 @@ class PegawaiController extends Controller
      * @param  \App\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pegawai $pegawai)
+    public function destroy(Pegawai $pegawai, $id)
     {
-        //
+        $pegawai = pegawai::where('uuid', $id)->first();
+
+        $pegawai->delete();
+
+        return redirect()->route('pegawaiIndex');
     }
 }
