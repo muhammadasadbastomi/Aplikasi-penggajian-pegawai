@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-Use Alert;
+use Alert;
 use App\jabatan;
 use Illuminate\Http\Request;
 
@@ -17,8 +17,8 @@ class JabatanController extends Controller
     public function index()
     {
         $jabatan = jabatan::orderBy('id', 'Desc')->get();
-        
-        return view('admin.jabatan.index',compact('jabatan'));
+
+        return view('admin.jabatan.index', compact('jabatan'));
     }
 
     /**
@@ -41,15 +41,15 @@ class JabatanController extends Controller
     {
         // create new object
         $jabatan = new jabatan;
-
-        $jabatan->kode_jabatan     = $request->kode_jabatan;
-        $jabatan->jabatan = $request->jabatan;
-        $jabatan->keterangan  = $request->keterangan;
+        $jabatan->nik = $request->nik;
+        $jabatan->nama = $request->nama;
+        $jabatan->tempat_lahir = $request->tempat_lahir;
+        $jabatan->tgl_lahir = $request->tgl_lahir;
+        $jabatan->tgl_masuk = $request->tgl_masuk;
         $jabatan->save();
-        
-        
+
+
         return redirect('admin/jabatan/index')->with('success', 'Data berhasil disimpan');
-        
     }
 
     /**
@@ -66,7 +66,7 @@ class JabatanController extends Controller
         // $members = Member::where('jabatan_id',$jabatan->id)->get();
         // dd($members);
 
-        return view('admin.jabatan.show',compact('jabatan','total_members','members'));
+        return view('admin.jabatan.show', compact('jabatan', 'total_members', 'members'));
     }
 
     /**
@@ -79,8 +79,8 @@ class JabatanController extends Controller
     {
         // get jabatan by id
         $jabatan = jabatan::where('uuid', $id)->first();
-        
-        return view('admin.jabatan.edit',compact('jabatan'));
+
+        return view('admin.jabatan.edit', compact('jabatan'));
     }
 
     /**
@@ -94,13 +94,14 @@ class JabatanController extends Controller
     {
         // get data by id
         $jabatan = jabatan::where('uuid', $id)->first();
-
-        $jabatan->kode_jabatan     = $request->kode_jabatan;
-        $jabatan->jabatan = $request->jabatan;
-        $jabatan->keterangan  = $request->keterangan;
+        $jabatan->nik = $request->nik;
+        $jabatan->nama = $request->nama;
+        $jabatan->tempat_lahir = $request->tempat_lahir;
+        $jabatan->tgl_lahir = $request->tgl_lahir;
+        $jabatan->tgl_masuk = $request->tgl_masuk;
         $jabatan->update();
-        
-        return redirect()->route('jabatanIndex')->with('success','Data Berhasil Diubah');
+
+        return redirect()->route('jabatanIndex')->with('success', 'Data Berhasil Diubah');
     }
 
     /**
@@ -112,7 +113,7 @@ class JabatanController extends Controller
     public function destroy($id)
     {
         $jabatan = jabatan::where('uuid', $id)->first();
-    
+
         $jabatan->delete();
 
         return redirect()->route('jabatanIndex');

@@ -40,27 +40,31 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label>Kode Jabatan</label>
-                                    <input type="text" name="kode_jabatan" class="form-control"
-                                        placeholder="Masukan Kode Jabatan">
+                                    <label>NIK</label>
+                                    <input type="text" name="nik" class="form-control" placeholder="Masukan Kode Jabatan">
                                 </div>
                                 <div class="form-group">
-                                    <label>Nama Jabatan</label>
-                                    <input type="text" name="jabatan" class="form-control"
-                                        placeholder="Masukan Nama Jabatan">
+                                    <label>Nama Lengkap</label>
+                                    <input type="text" name="nama" class="form-control" placeholder="Masukan Nama Jabatan">
                                 </div>
                                 <div class="form-group">
-                                    <label>Keterangan</label>
-                                    <input type="text" name="keterangan" class="form-control"
-                                        placeholder="Masukan Alamat">
+                                    <label>Tempat Lahir</label>
+                                    <input type="text" name="tempat_lahir" class="form-control" placeholder="Masukan Alamat">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tanggal Lahir</label>
+                                    <input type="date" name="tgl_lahir" class="form-control" placeholder="Masukan Alamat">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tanggal Masuk</label>
+                                    <input type="date" name="tgl_masuk" class="form-control" placeholder="Masukan Alamat">
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="{{route('jabatanIndex')}}" class="btn btn-danger text-white"><i
-                                        class="mdi mdi-back"></i>Batal</a>
+                                <a href="{{route('jabatanIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
                             </div>
                         </form>
                     </div>

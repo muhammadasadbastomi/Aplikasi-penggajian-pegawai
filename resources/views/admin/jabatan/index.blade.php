@@ -32,32 +32,29 @@
 
         <div class="row">
           <div class="col-sm-12 table-responsive">
-            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid"
-              aria-describedby="example1_info">
+            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
               <thead>
                 <tr role="row">
                   <th>No</th>
-                  <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                    aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Kode Jabatan
-                  </th>
-                  <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1"
-                    aria-label="Browser: activate to sort column ascending">Nama Jabatan</th>
-                  <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1"
-                    aria-label="Platform(s): activate to sort column ascending">Keterangan</th>
+                  <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">NIK</th>
+                  <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
+                  <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tempat Lahir</th>
+                  <th class="sorting text-center" tabindex="3" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tanggal Lahir</th>
+                  <th class="sorting text-center" tabindex="4" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tanggal Masuk</th>
                   <th></th>
               </thead>
               <tbody>
                 @foreach ($jabatan as $d)
                 <tr>
                   <td class="text-center">{{$loop->iteration}}</td>
-                  <td class="text-center">{{$d->kode_jabatan}}</td>
-                  <td class="text-center">{{$d->jabatan}}</td>
-                  <td class="text-center">{{$d->keterangan}}</td>
+                  <td class="text-center">{{$d->nik}}</td>
+                  <td class="text-center">{{$d->nama}}</td>
+                  <td class="text-center">{{$d->tempat_lahir}}</td>
+                  <td class="text-center">{{$d->tgl_lahir}}</td>
+                  <td class="text-center">{{$d->tgl_masuk}}</td>
                   <td class="text-center">
-                    <a class="btn btn-xs btn-info text-white" href="{{route('jabatanEdit', ['id' => $d->uuid])}}"><i
-                        class="fas fa-edit"></i> Edit</a>
-                    <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i
-                        class="fas fa-trash"></i> Hapus</a>
+                    <a class="btn btn-xs btn-info text-white" href="{{route('jabatanEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit</a>
+                    <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i class="fas fa-trash"></i> Hapus</a>
                   </td>
                 </tr>
                 @endforeach
@@ -79,51 +76,56 @@
   @section('script')
 
   <script>
-    $(document).on('click', '.delete', function (e) {
-    e.preventDefault();
-    var id = $(this).data('id');
-    swal.fire({
-            title: "Apakah anda yakin?",
-            icon: "warning",
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: "Ya",
-            cancelButtonText: "Tidak",
-            showCancelButton: true,
-          }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    url : "{{ url('/admin/jabatan/delete')}}" + '/' + id,
-                    type : "POST",
-                    data : {'_method' : 'DELETE', "_token": "{{ csrf_token() }}"},
-                    success: function (response) {
-                        Swal.fire({
-                        icon: 'success',
-                        title: 'Data Berhasil Dihapus',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    setTimeout(function () { document.location.reload(true); }, 1000);
+    $(document).on('click', '.delete', function(e) {
+      e.preventDefault();
+      var id = $(this).data('id');
+      swal.fire({
+        title: "Apakah anda yakin?",
+        icon: "warning",
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: "Ya",
+        cancelButtonText: "Tidak",
+        showCancelButton: true,
+      }).then((result) => {
+        if (result.value) {
+          $.ajax({
+            url: "{{ url('/admin/jabatan/delete')}}" + '/' + id,
+            type: "POST",
+            data: {
+              '_method': 'DELETE',
+              "_token": "{{ csrf_token() }}"
             },
-        })
+            success: function(response) {
+              Swal.fire({
+                icon: 'success',
+                title: 'Data Berhasil Dihapus',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              setTimeout(function() {
+                document.location.reload(true);
+              }, 1000);
+            },
+          })
         } else if (result.dismiss === swal.DismissReason.cancel) {
-            Swal.fire(
+          Swal.fire(
             'Dibatalkan',
             'data batal dihapus',
             'error'
-            )
+          )
         }
-    })
-});
+      })
+    });
 
-      $('#example1').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
+    $('#example1').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
   </script>
   @endsection

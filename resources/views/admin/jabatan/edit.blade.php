@@ -41,27 +41,36 @@
               @csrf
               <div class="card-body">
                 <div class="form-group">
-                  <label>Kode Jabatan</label>
-                  <input type="text" name="kode_jabatan" value="{{$jabatan->kode_jabatan}}" class="form-control"
-                    placeholder="Masukan Kode Jabatan">
+                  <label for="nik">NIK</label>
+                  <input type="text" id="nik" name="nik" class="form-control @error ('nik') is-invalid @enderror" placeholder="Masukkan NIK" value="{{$jabatan->nik}}">
+                  @error('nik')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
                 <div class="form-group">
-                  <label>Nama Jabatan</label>
-                  <input type="text" name="jabatan" value="{{$jabatan->jabatan}}" class="form-control"
-                    placeholder="Masukan Nama Jabatan">
+                  <label for="nama">Nama Lengkap</label>
+                  <input type="text" id="nama" name="nama" class="form-control @error ('nama') is-invalid @enderror" placeholder="Masukkan Nama Lengkap" value="{{$jabatan->nama}}">
+                  @error('nama')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
                 <div class="form-group">
-                  <label>Alamat</label>
-                  <input type="text" name="keterangan" value="{{$jabatan->keterangan}}" class="form-control"
-                    placeholder="Masukan Keterangan">
+                  <label for="tempat_lahir">Tempat Lahir</label>
+                  <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-control @error ('tempat_lahir') is-invalid @enderror" placeholder="Masukkan Tempat Lahir" value="{{$jabatan->tempat_lahir}}">
+                  @error('tempat_lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                </div>
+                <div class="form-group">
+                  <label for="tgl_lahir">Tanggal Lahir</label>
+                  <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control @error ('tgl_lahir') is-invalid @enderror" value="{{$jabatan->tgl_lahir}}">
+                  @error('tgl_lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                </div>
+                <div class="form-group">
+                  <label for="tgl_masuk">Tanggal Masuk</label>
+                  <input type="date" id="tgl_masuk" name="tgl_masuk" class="form-control @error ('tgl_masuk') is-invalid @enderror" value="{{$jabatan->tgl_masuk}}">
+                  @error('tgl_masuk')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
               </div>
               <!-- /.card-body -->
 
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Ubah</button>
-                <a href="{{route('jabatanIndex')}}" class="btn btn-danger text-white"><i
-                    class="mdi mdi-back"></i>Batal</a>
+                <a href="{{route('jabatanIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
               </div>
             </form>
           </div>

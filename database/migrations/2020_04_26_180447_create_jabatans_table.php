@@ -14,11 +14,15 @@ class CreateJabatansTable extends Migration
     public function up()
     {
         Schema::create('jabatans', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('uuid')->length(36);
-            $table->string('kode_jabatan')->length(100);
-            $table->string('jabatan');
-            $table->text('keterangan');
+            $table->integer('user_id')->nullable();
+            $table->integer('jabatan_id')->nullable();
+            $table->string('nik');
+            $table->string('nama');
+            $table->text('tempat_lahir');
+            $table->date('tgl_lahir');
+            $table->date('tgl_masuk');
             $table->timestamps();
         });
     }
