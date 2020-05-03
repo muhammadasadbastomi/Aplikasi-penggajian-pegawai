@@ -12,20 +12,19 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Scripts -->
-  {{--  <script src="{{ asset('js/app.js') }}"></script> --}}
+  {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
-  {{--  <!-- SweetAlert2 -->
+  {{-- <!-- SweetAlert2 -->
   <link rel="stylesheet" href="{{asset('admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
   <!-- SweetAlert2 --> --}}
-  {{--  <script src="{{asset('admin/plugins/sweetalert2/sweetalert2.min.js')}}"></script> --}}
+  {{-- <script src="{{asset('admin/plugins/sweetalert2/sweetalert2.min.js')}}"></script> --}}
   {{-- <!-- Toastr -->
   <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css')}}"> --}}
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet"
-    href="{{asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
   <!-- iCheck -->
   <link rel="stylesheet" href="{{asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- JQVMap -->
@@ -42,8 +41,7 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body class="sidebar-mini layout-fixed text-sm accent-danger control-sidebar-slide-open sidebar-closed sidebar-collapse"
-  data-gr-c-s-loaded="true" style="height: auto;">
+<body class="sidebar-mini layout-fixed text-sm accent-danger control-sidebar-slide-open sidebar-closed sidebar-collapse" data-gr-c-s-loaded="true" style="height: auto;">
   <div class="wrapper">
 
     <!-- Navbar -->
@@ -173,14 +171,12 @@
     <aside class="main-sidebar elevation-4 sidebar-dark-danger">
       <!-- Brand Logo -->
       <a href="index3.html" class="brand-link text-sm navbar-secondary">
-        <img src="{{asset('admin/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
-          class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{asset('admin/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">AdminLTE 3</span>
       </a>
 
       <!-- Sidebar -->
-      <div
-        class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition">
+      <div class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition">
         <div class="os-resize-observer-host observed">
           <div class="os-resize-observer" style="left: 0px; right: auto;"></div>
         </div>
@@ -189,14 +185,12 @@
         </div>
         <div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 519px;"></div>
         <div class="os-padding">
-          <div class="os-viewport os-viewport-native-scrollbars-invisible os-viewport-native-scrollbars-overlaid"
-            style="overflow-y: scroll;">
+          <div class="os-viewport os-viewport-native-scrollbars-invisible os-viewport-native-scrollbars-overlaid" style="overflow-y: scroll;">
             <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
               <!-- Sidebar user panel (optional) -->
               <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                  <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
-                    alt="User Image">
+                  <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
                   <a href="#" class="d-block">Alexander Pierce</a>
@@ -205,8 +199,7 @@
 
               <!-- Sidebar Menu -->
               <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column text-sm nav-legacy nav-child-indent"
-                  data-widget="treeview" role="menu" data-accordion="false">
+                <ul class="nav nav-pills nav-sidebar flex-column text-sm nav-legacy nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
                   <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
                   <li class="nav-item has-treeview menu-open">
@@ -218,6 +211,12 @@
                       </p>
                     </a>
                     <ul class="nav nav-treeview" style="display: block;">
+                      <li class="nav-item">
+                        <a href="{{route('pegawaiIndex')}}" class="nav-link active">
+                          <i class="far fa-circle nav-icon"></i>
+                          <p>Data Pegawai</p>
+                        </a>
+                      </li>
                       <li class="nav-item">
                         <a href="{{route('jabatanIndex')}}" class="nav-link active">
                           <i class="far fa-circle nav-icon"></i>
