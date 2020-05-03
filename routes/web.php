@@ -30,6 +30,14 @@ Route::get('/admin/pegawai/edit/{id}', 'PegawaiController@edit')->name('pegawaiE
 Route::put('/admin/pegawai/edit/{id}', 'PegawaiController@update')->name('pegawaiUpdate');
 Route::delete('/admin/pegawai/delete/{id}', 'PegawaiController@destroy')->name('pegawaiDestroy');
 
+Route::get('/admin/absensi/index', 'AbsensiController@index')->name('absensiIndex');
+Route::get('/admin/absensi/detail/{id}', 'AbsensiController@show')->name('absensiShow');
+Route::get('/admin/absensi/create', 'AbsensiController@create')->name('absensiCreate');
+Route::post('/admin/absensi/create', 'AbsensiController@store')->name('absensiStore');
+Route::get('/admin/absensi/edit/{id}', 'AbsensiController@edit')->name('absensiEdit');
+Route::put('/admin/absensi/edit/{id}', 'AbsensiController@update')->name('absensiUpdate');
+Route::delete('/admin/absensi/delete/{id}', 'AbsensiController@destroy')->name('absensiDestroy');
+
 Route::get('/admin/jabatan/index', 'JabatanController@index')->name('jabatanIndex');
 Route::get('/admin/jabatan/detail/{id}', 'JabatanController@show')->name('jabatanShow');
 Route::get('/admin/jabatan/create', 'JabatanController@create')->name('jabatanCreate');
