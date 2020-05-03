@@ -20,16 +20,13 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-    public function username()
-    {
-        return 'username';
-    }
+
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/admin/index';
 
     /**
      * Create a new controller instance.
@@ -40,6 +37,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    
 }
