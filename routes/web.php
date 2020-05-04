@@ -89,4 +89,6 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/admin/golongan/edit/{id}', 'GolonganController@edit')->name('golonganEdit');
     Route::put('/admin/golongan/edit/{id}', 'GolonganController@update')->name('golonganUpdate');
     Route::delete('/admin/golongan/delete/{id}', 'GolonganController@destroy')->name('golonganDestroy');
+
+    Route::get('/admin/admin/index', 'UserController@index')->name('userIndex');
 });
