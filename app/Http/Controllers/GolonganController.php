@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-Use Alert;
+use Alert;
 use App\golongan;
 use Illuminate\Http\Request;
 
@@ -16,9 +16,9 @@ class GolonganController extends Controller
 
     public function index()
     {
-        // $golongan = golongan::orderBy('id', 'Desc')->get();
-        
-        // return view('admin.golongan.index',compact('golongan'));
+        $golongan = golongan::orderBy('id', 'Desc')->get();
+
+        return view('admin.golongan.index', compact('golongan'));
     }
 
     /**
@@ -42,14 +42,12 @@ class GolonganController extends Controller
         // create new object
         $golongan = new golongan;
 
-        $golongan->name     = $request->name;
-        $golongan->date_est = $request->date_est;
-        $golongan->address  = $request->address;
+        $golongan->golongan = $request->golongan;
+        $golongan->keterangan  = $request->keterangan;
         $golongan->save();
-        
-        
+
+
         return redirect('admin/golongan/index')->with('success', 'Data berhasil disimpan');
-        
     }
 
     /**
@@ -63,7 +61,7 @@ class GolonganController extends Controller
         // get golongan by id
         $golongan = golongan::where('uuid', $id)->first();
 
-        return view('admin.golongan.show',compact('golongan'));
+        return view('admin.golongan.show', compact('golongan'));
     }
 
     /**
@@ -76,8 +74,8 @@ class GolonganController extends Controller
     {
         // get golongan by id
         $golongan = golongan::where('uuid', $id)->first();
-        
-        return view('admin.golongan.edit',compact('golongan'));
+
+        return view('admin.golongan.edit', compact('golongan'));
     }
 
     /**
@@ -92,12 +90,11 @@ class GolonganController extends Controller
         // get data by id
         $golongan = golongan::where('uuid', $id)->first();
 
-        $golongan->name     = $request->name;
-        $golongan->date_est = $request->date_est;
-        $golongan->address  = $request->address;
+        $golongan->golongan = $request->golongan;
+        $golongan->keterangan  = $request->keterangan;
         $golongan->update();
-        
-        return redirect()->route('golonganIndex')->with('success','Data Berhasil Diubah');
+
+        return redirect()->route('golonganIndex')->with('success', 'Data Berhasil Diubah');
     }
 
     /**
@@ -109,7 +106,7 @@ class GolonganController extends Controller
     public function destroy($id)
     {
         $golongan = golongan::where('uuid', $id)->first();
-    
+
         $golongan->delete();
 
         return redirect()->route('golonganIndex');
