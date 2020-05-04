@@ -11,9 +11,8 @@ class Jabatan extends Model
     use Notifiable;
     use Uuid;
 
-    // public function members()
-    // {
-    //     return $this->hasMany(Member::class);
-    // }
-
+    public function pegawai()
+    {
+        return $this->hasMany(Pegawai::class);
+    }
 }

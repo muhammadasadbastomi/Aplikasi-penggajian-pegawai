@@ -50,7 +50,7 @@
                   <td class="text-center">{{$loop->iteration}}</td>
                   <td class="text-center">{{$d->nik}}</td>
                   <td class="text-center">{{$d->nama}}</td>
-                  <td class="text-center">{{$d->jabatan_id}}</td>
+                  <td class="text-center"></td>
                   <td class="text-center">{{$d->tempat_lahir}}</td>
                   <td class="text-center">{{$d->tgl_lahir}}</td>
                   <td class="text-center">{{$d->tgl_masuk}}</td>

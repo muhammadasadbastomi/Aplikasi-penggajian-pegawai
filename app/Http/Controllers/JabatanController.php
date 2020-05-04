@@ -49,6 +49,7 @@ class JabatanController extends Controller
         // create new object
         $jabatan = new jabatan;
         $jabatan->jabatan = $request->jabatan;
+        $request->request->add(['jabatan_id' => $jabatan->id]);
         $jabatan->gaji_pokok = $request->gaji_pokok;
         $jabatan->tunjangan = $request->tunjangan;
         $jabatan->save();

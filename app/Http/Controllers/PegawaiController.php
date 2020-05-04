@@ -16,7 +16,7 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::orderBy('id', 'Desc')->get();
 
-        return view('admin.pegawai.index', compact('pegawai'));
+        return view('admin.pegawai.index', ['pegawai' => $pegawai]);
     }
 
     /**
@@ -53,6 +53,7 @@ class PegawaiController extends Controller
         $user->email = $request->email;
         $user->password = bcrypt('admin123');
         $user->save();
+
 
         //insert ke table pegawai
         $request->request->add(['user_id' => $user->id]);
