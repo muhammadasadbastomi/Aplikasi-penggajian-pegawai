@@ -37,7 +37,25 @@ class AbsensiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $request->validate([
+            'izin' => 'required',
+            'sakit' => 'required',
+            'alfa' => 'required',
+            'hadir' => 'required',
+            'periode' => 'required'
+        ]);
+
+        // create new object
+        $absensi = new absensi;
+        $absensi->izin = $request->izin;
+        $absensi->sakit = $request->sakit;
+        $absensi->alfa = $request->alfa;
+        $absensi->hadir = $request->hadir;
+        $absensi->periode = $request->periode;
+        $absensi->save();
+
+        return redirect('admin/absensi/index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -71,9 +89,26 @@ class AbsensiController extends Controller
      * @param  \App\Absensi  $absensi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Absensi $absensi)
+    public function update(Request $request, Absensi $absensi, $id)
     {
-        //
+        $request->validate([
+            'izin' => 'required',
+            'sakit' => 'required',
+            'alfa' => 'required',
+            'hadir' => 'required',
+            'periode' => 'required'
+        ]);
+
+        // get data by id
+        $absensi = absensi::where('uuid', $id)->first();
+        $absensi->izin = $request->izin;
+        $absensi->sakit = $request->sakit;
+        $absensi->alfa = $request->alfa;
+        $absensi->hadir = $request->hadir;
+        $absensi->periode = $request->periode;
+        $absensi->update();
+
+        return redirect()->route('absensiIndex')->with('success', 'Data Berhasil Diubah');
     }
 
     /**
@@ -82,8 +117,12 @@ class AbsensiController extends Controller
      * @param  \App\Absensi  $absensi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Absensi $absensi)
+    public function destroy(Absensi $absensi, $id)
     {
-        //
+        $absensi = absensi::where('uuid', $id)->first();
+
+        $absensi->delete();
+
+        return redirect()->route('absensiIndex');
     }
 }

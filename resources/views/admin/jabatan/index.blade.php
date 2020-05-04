@@ -36,22 +36,18 @@
               <thead>
                 <tr role="row">
                   <th>No</th>
-                  <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">NIK</th>
-                  <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
-                  <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tempat Lahir</th>
-                  <th class="sorting text-center" tabindex="3" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tanggal Lahir</th>
-                  <th class="sorting text-center" tabindex="4" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tanggal Masuk</th>
+                  <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jabatan</th>
+                  <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Gaji Pokok</th>
+                  <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tunjangan</th>
                   <th></th>
               </thead>
               <tbody>
                 @foreach ($jabatan as $d)
                 <tr>
                   <td class="text-center">{{$loop->iteration}}</td>
-                  <td class="text-center">{{$d->nik}}</td>
-                  <td class="text-center">{{$d->nama}}</td>
-                  <td class="text-center">{{$d->tempat_lahir}}</td>
-                  <td class="text-center">{{$d->tgl_lahir}}</td>
-                  <td class="text-center">{{$d->tgl_masuk}}</td>
+                  <td class="text-center">{{$d->jabatan}}</td>
+                  <td class="text-center">{{$d->gaji_pokok}}</td>
+                  <td class="text-center">{{$d->tunjangan}}</td>
                   <td class="text-center">
                     <a class="btn btn-xs btn-info text-white" href="{{route('jabatanEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit</a>
                     <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i class="fas fa-trash"></i> Hapus</a>

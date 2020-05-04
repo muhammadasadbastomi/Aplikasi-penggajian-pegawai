@@ -106,6 +106,6 @@ class GajiController extends Controller
 
         $gaji->delete();
 
-        return redirect()->route('gajiIndex'); //
+        return redirect()->route('gajiIndex');
     }
 }

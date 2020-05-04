@@ -16,13 +16,10 @@ class CreateJabatansTable extends Migration
         Schema::create('jabatans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid')->length(36);
-            $table->integer('user_id')->nullable();
-            $table->integer('jabatan_id')->nullable();
-            $table->string('nik');
-            $table->string('nama');
-            $table->text('tempat_lahir');
-            $table->date('tgl_lahir');
-            $table->date('tgl_masuk');
+            $table->string('kode_jabatan')->nullable();
+            $table->string('jabatan');
+            $table->string('gaji_pokok');
+            $table->string('tunjangan');
             $table->timestamps();
         });
     }

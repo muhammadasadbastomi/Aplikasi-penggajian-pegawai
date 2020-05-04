@@ -9,7 +9,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-          <li class="breadcrumb-item active"><a href="{{route('pegawaiIndex')}}">Data Pegawai</a></li>
+          <li class="breadcrumb-item active"><a href="{{route('absensiIndex')}}">Data Absensi Pegawai</a></li>
           <li class="breadcrumb-item active">Edit Data</li>
         </ol>
       </div>
@@ -21,7 +21,7 @@
 
   <div class="card">
     <div class="card-header">
-      <h5 class="card-title">Edit Data Pegawai - {{$pegawai->pegawai}}</h5>
+      <h5 class="card-title">Edit Data Absensi Pegawai {{$absensi->absensi}}</h5>
       <div class="text-right">
 
       </div>
@@ -40,37 +40,48 @@
               {{method_field('PUT')}}
               @csrf
               <div class="card-body">
+                <fieldset disabled>
+                  <div class="form-group">
+                    <label for="disabledTextInput">NIK</label>
+                    <input type="text" id="disabledTextInput" class="form-control" placeholder="NIK">
+                  </div>
+                  <div class="form-group">
+                    <label for="disabledTextInput">Nama Lengkap</label>
+                    <input type="text" id="disabledTextInput" class="form-control" placeholder="Nama Lengkap">
+                  </div>
+                </fieldset>
+
                 <div class="form-group">
-                  <label for="nik">NIK</label>
-                  <input type="text" id="nik" name="nik" class="form-control @error ('nik') is-invalid @enderror" placeholder="Masukkan NIK" value="{{$pegawai->nik}}">
-                  @error('nik')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                  <label for="izin">Izin</label>
+                  <input type="text" id="izin" name="izin" class="form-control @error ('izin') is-invalid @enderror" placeholder="Masukkan Izin" value="{{$absensi->izin}}">
+                  @error('Izin')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
                 <div class="form-group">
-                  <label for="nama">Nama Lengkap</label>
-                  <input type="text" id="nama" name="nama" class="form-control @error ('nama') is-invalid @enderror" placeholder="Masukkan Nama Lengkap" value="{{$pegawai->nama}}">
-                  @error('nama')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                  <label for="sakit">Sakit</label>
+                  <input type="text" id="sakit" name="sakit" class="form-control @error ('sakit') is-invalid @enderror" placeholder="Masukkan Sakit" value="{{$absensi->sakit}}">
+                  @error('Sakit')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
                 <div class="form-group">
-                  <label for="tempat_lahir">Tempat Lahir</label>
-                  <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-control @error ('tempat_lahir') is-invalid @enderror" placeholder="Masukkan Tempat Lahir" value="{{$pegawai->tempat_lahir}}">
-                  @error('tempat_lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                  <label for="alfa">Alfa</label>
+                  <input type="text" id="alfa" name="alfa" class="form-control @error ('alfa') is-invalid @enderror" placeholder="Masukkan Alfa" value="{{$absensi->alfa}}">
+                  @error('Alfa')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
                 <div class="form-group">
-                  <label for="tgl_lahir">Tanggal Lahir</label>
-                  <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control @error ('tgl_lahir') is-invalid @enderror" value="{{$pegawai->tgl_lahir}}">
-                  @error('tgl_lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                  <label for="hadir">Hadir</label>
+                  <input type="text" id="hadir" name="hadir" class="form-control @error ('hadir') is-invalid @enderror" placeholder="Masukkan Hadir" value="{{$absensi->hadir}}">
+                  @error('Hadir')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
                 <div class="form-group">
-                  <label for="tgl_masuk">Tanggal Masuk</label>
-                  <input type="date" id="tgl_masuk" name="tgl_masuk" class="form-control @error ('tgl_masuk') is-invalid @enderror" value="{{$pegawai->tgl_masuk}}">
-                  @error('tgl_masuk')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                  <label for="periode">Periode</label>
+                  <input type="date" id="periode" name="periode" class="form-control @error ('periode') is-invalid @enderror" value="{{$absensi->periode}}">
+                  @error('Periode')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
               </div>
               <!-- /.card-body -->
 
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Ubah</button>
-                <a href="{{route('pegawaiIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
+                <a href="{{route('absensiIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
               </div>
             </form>
           </div>

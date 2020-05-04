@@ -41,29 +41,19 @@
               @csrf
               <div class="card-body">
                 <div class="form-group">
-                  <label for="nik">NIK</label>
-                  <input type="text" id="nik" name="nik" class="form-control @error ('nik') is-invalid @enderror" placeholder="Masukkan NIK" value="{{$jabatan->nik}}">
-                  @error('nik')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                  <label for="jabatan">Jabatan</label>
+                  <input type="text" id="jabatan" name="jabatan" class="form-control @error ('jabatan') is-invalid @enderror" placeholder="Masukkan Jabatan" value="{{$jabatan->jabatan}}">
+                  @error('Jabatan')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
                 <div class="form-group">
-                  <label for="nama">Nama Lengkap</label>
-                  <input type="text" id="nama" name="nama" class="form-control @error ('nama') is-invalid @enderror" placeholder="Masukkan Nama Lengkap" value="{{$jabatan->nama}}">
-                  @error('nama')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                  <label for="gaji_pokok">Gaji Pokok</label>
+                  <input type="text" id="gaji_pokok" name="gaji_pokok" class="form-control @error ('gaji_pokok') is-invalid @enderror" placeholder="Masukkan Gaji Pokok" value="{{$jabatan->gaji_pokok}}">
+                  @error('Gaji Pokok')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
                 <div class="form-group">
-                  <label for="tempat_lahir">Tempat Lahir</label>
-                  <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-control @error ('tempat_lahir') is-invalid @enderror" placeholder="Masukkan Tempat Lahir" value="{{$jabatan->tempat_lahir}}">
-                  @error('tempat_lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
-                </div>
-                <div class="form-group">
-                  <label for="tgl_lahir">Tanggal Lahir</label>
-                  <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control @error ('tgl_lahir') is-invalid @enderror" value="{{$jabatan->tgl_lahir}}">
-                  @error('tgl_lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
-                </div>
-                <div class="form-group">
-                  <label for="tgl_masuk">Tanggal Masuk</label>
-                  <input type="date" id="tgl_masuk" name="tgl_masuk" class="form-control @error ('tgl_masuk') is-invalid @enderror" value="{{$jabatan->tgl_masuk}}">
-                  @error('tgl_masuk')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                  <label for="tunjangan">Tunjangan</label>
+                  <input type="text" id="tunjangan" name="tunjangan" class="form-control @error ('tunjangan') is-invalid @enderror" placeholder="Masukkan Tunjangan" value="{{$jabatan->tunjangan}}">
+                  @error('Tunjangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
               </div>
               <!-- /.card-body -->

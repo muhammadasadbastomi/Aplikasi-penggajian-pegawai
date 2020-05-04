@@ -39,15 +39,19 @@ class JabatanController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
+        $request->validate([
+            'jabatan' => 'required',
+            'gaji_pokok' => 'required',
+            'tunjangan' => 'required'
+        ]);
+
         // create new object
         $jabatan = new jabatan;
-        $jabatan->nik = $request->nik;
-        $jabatan->nama = $request->nama;
-        $jabatan->tempat_lahir = $request->tempat_lahir;
-        $jabatan->tgl_lahir = $request->tgl_lahir;
-        $jabatan->tgl_masuk = $request->tgl_masuk;
+        $jabatan->jabatan = $request->jabatan;
+        $jabatan->gaji_pokok = $request->gaji_pokok;
+        $jabatan->tunjangan = $request->tunjangan;
         $jabatan->save();
-
 
         return redirect('admin/jabatan/index')->with('success', 'Data berhasil disimpan');
     }
@@ -92,13 +96,17 @@ class JabatanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'jabatan' => 'required',
+            'gaji_pokok' => 'required',
+            'tunjangan' => 'required'
+        ]);
+
         // get data by id
         $jabatan = jabatan::where('uuid', $id)->first();
-        $jabatan->nik = $request->nik;
-        $jabatan->nama = $request->nama;
-        $jabatan->tempat_lahir = $request->tempat_lahir;
-        $jabatan->tgl_lahir = $request->tgl_lahir;
-        $jabatan->tgl_masuk = $request->tgl_masuk;
+        $jabatan->jabatan = $request->jabatan;
+        $jabatan->gaji_pokok = $request->gaji_pokok;
+        $jabatan->tunjangan = $request->tunjangan;
         $jabatan->update();
 
         return redirect()->route('jabatanIndex')->with('success', 'Data Berhasil Diubah');
