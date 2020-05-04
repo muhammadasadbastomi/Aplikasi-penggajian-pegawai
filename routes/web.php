@@ -62,6 +62,22 @@ Route::get('/admin/rincian/edit/{id}', 'RincianController@edit')->name('rincianE
 Route::put('/admin/rincian/edit/{id}', 'RincianController@update')->name('rincianUpdate');
 Route::delete('/admin/rincian/delete/{id}', 'RincianController@destroy')->name('rincianDestroy');
 
+Route::get('/admin/lembur/index', 'LemburController@index')->name('lemburIndex');
+Route::get('/admin/lembur/detail/{id}', 'LemburController@show')->name('lemburShow');
+Route::get('/admin/lembur/create', 'LemburController@create')->name('lemburCreate');
+Route::post('/admin/lembur/create', 'LemburController@store')->name('lemburStore');
+Route::get('/admin/lembur/edit/{id}', 'LemburController@edit')->name('lemburEdit');
+Route::put('/admin/lembur/edit/{id}', 'LemburController@update')->name('lemburUpdate');
+Route::delete('/admin/lembur/delete/{id}', 'LemburController@destroy')->name('lemburDestroy');
+
+Route::get('/admin/golongan/index', 'GolonganController@index')->name('golonganIndex');
+Route::get('/admin/golongan/detail/{id}', 'GolonganController@show')->name('golonganShow');
+Route::get('/admin/golongan/create', 'GolonganController@create')->name('golonganCreate');
+Route::post('/admin/golongan/create', 'GolonganController@store')->name('golonganStore');
+Route::get('/admin/golongan/edit/{id}', 'GolonganController@edit')->name('golonganEdit');
+Route::put('/admin/golongan/edit/{id}', 'GolonganController@update')->name('golonganUpdate');
+Route::delete('/admin/golongan/delete/{id}', 'GolonganController@destroy')->name('golonganDestroy');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

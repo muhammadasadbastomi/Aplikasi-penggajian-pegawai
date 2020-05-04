@@ -9,7 +9,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-          <li class="breadcrumb-item active"><a href="{{route('pegawaiIndex')}}">Data Pegawai</a></li>
+          <li class="breadcrumb-item active"><a href="{{route('lemburIndex')}}">Data lembur Lembur Pegawai</a></li>
           <li class="breadcrumb-item active">Edit Data</li>
         </ol>
       </div>
@@ -21,7 +21,7 @@
 
   <div class="card">
     <div class="card-header">
-      <h5 class="card-title">Edit Data Gaji Pegawai - {{$gaji->gaji}}</h5>
+      <h5 class="card-title">Edit Data Lembur Gaji Pegawai {{$lembur->lembur}}</h5>
       <div class="text-right">
 
       </div>
@@ -41,21 +41,24 @@
               @csrf
               <div class="card-body">
                 <div class="form-group">
-                  <label for="potongan">Potongan</label>
-                  <input type="text" id="potongan" name="potongan" class="form-control @error ('potongan') is-invalid @enderror" placeholder="Masukkan potongan" value="{{$gaji->potongan}}">
-                  @error('Potongan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                  <label for="disabledTextInput">NIK</label>
+                  <input disabled type="text" id="disabledTextInput" class="form-control" placeholder="NIK">
                 </div>
                 <div class="form-group">
-                  <label for="keterangan">Keterangan</label>
-                  <input type="text" id="keterangan" name="keterangan" class="form-control @error ('keterangan') is-invalid @enderror" placeholder="Masukkan keterangan Lengkap" value="{{$gaji->keterangan}}">
-                  @error('Keterangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                  <label for="disabledTextInput">Nama Lengkap</label>
+                  <input disabled type="text" id="disabledTextInput" class="form-control" placeholder="Nama Lengkap">
+                </div>
+                <div class="form-group">
+                  <label for="jumlah">Jumlah</label>
+                  <input type="text" id="jumlah" name="jumlah" class="form-control @error ('jumlah') is-invalid @enderror" placeholder="Masukkan Jumlah" value="{{$lembur->jumlah}}">
+                  @error('Jumlah')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
               </div>
               <!-- /.card-body -->
 
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Ubah</button>
-                <a href="{{route('gajiIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
+                <a href="{{route('lemburIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
               </div>
             </form>
           </div>

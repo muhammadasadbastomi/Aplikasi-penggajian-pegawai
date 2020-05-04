@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('gajiIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item active">Data Gaji Pegawai</li>
+                    <li class="breadcrumb-item active">Data Gaji Lembur Pegawai</li>
                 </ol>
             </div>
         </div>
@@ -20,9 +20,9 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Data Gaji Pegawai</h5>
+            <h5 class="card-title">Data Gaji Lembur Pegawai</h5>
             <div class="text-right">
-                <a href="{{route('gajiCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah
+                <a href="{{route('lemburCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah
                     Data</a>
             </div>
         </div>
@@ -36,18 +36,20 @@
                             <thead>
                                 <tr role="row">
                                     <th>No</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Potongan</th>
-                                    <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Keterangan</th>
+                                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1">NIK</th>
+                                    <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1">Nama Lengkap</th>
+                                    <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1">Jumlah</th>
                                     <th></th>
                             </thead>
                             <tbody>
-                                @foreach ($gaji as $d)
+                                @foreach ($lembur as $d)
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
-                                    <td class="text-center">{{$d->potongan}}</td>
-                                    <td class="text-center">{{$d->keterangan}}</td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center"></td>
+                                    <td class="text-center">{{$d->jumlah}}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-xs btn-info text-white" href="{{route('gajiEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit</a>
+                                        <a class="btn btn-xs btn-info text-white" href="{{route('lemburEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit</a>
                                         <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i class="fas fa-trash"></i> Hapus</a>
                                     </td>
                                 </tr>
@@ -84,7 +86,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{ url('/admin/gaji/delete')}}" + '/' + id,
+                        url: "{{ url('/admin/lembur/delete')}}" + '/' + id,
                         type: "POST",
                         data: {
                             '_method': 'DELETE',
