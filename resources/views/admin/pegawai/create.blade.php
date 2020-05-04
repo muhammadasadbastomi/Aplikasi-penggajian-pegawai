@@ -41,30 +41,30 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="nik">NIK</label>
-                                    <input type="text" name="nik" id="nik" class="form-control @error ('nik') is-invalid @enderror" placeholder="Masukkan Nama Depan" value="{{old('nik')}}">
+                                    <input type="text" name="nik" id="nik" class="form-control @error ('nik') is-invalid @enderror" placeholder="Masukkan NIK" value="{{old('nik')}}">
                                     @error('NIK')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="nama">Nama Lengkap</label>
-                                    <input type="text" name="nama" id="nama" class="form-control @error ('nama') is-invalid @enderror" placeholder="Masukkan Nama Depan" value="{{old('nama')}}">
+                                    <input type="text" name="nama" id="nama" class="form-control @error ('nama') is-invalid @enderror" placeholder="Masukkan Nama Lengkap" value="{{old('nama')}}">
                                     @error('Nama Lengkap')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control @error ('email') is-invalid @enderror" placeholder="Masukkan Nama Depan" value="{{old('email')}}">
+                                    <input type="email" name="email" id="email" class="form-control @error ('email') is-invalid @enderror" placeholder="Masukkan Email" value="{{old('email')}}">
                                     @error('Email')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="jabatan">Jabatan</label>
-                                    <select class="custom-select" name="jabatan" id="jabatan">
-                                        <option value="1">Jabatan A</option>
-                                        <option value="2">Jabatan B</option>
-                                        <option value="3">Jabatan C</option>
+                                    <select class="custom-select" name="jabatan_id" id="jabatan_id">
+                                        @foreach($jabatan as $d)
+                                        <option value="{{$d->id}}">{{ $d->jabatan}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="tempat_lahir">Tempat Lahir</label>
-                                    <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control @error ('tempat_lahir') is-invalid @enderror" placeholder="Masukkan Nama Depan" value="{{old('tempat_lahir')}}">
+                                    <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control @error ('tempat_lahir') is-invalid @enderror" placeholder="Masukkan Tempat Lahir" value="{{old('tempat_lahir')}}">
                                     @error('Tempat Lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">

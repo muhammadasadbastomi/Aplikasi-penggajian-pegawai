@@ -16,7 +16,7 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::orderBy('id', 'Desc')->get();
 
-        return view('admin.pegawai.index', ['pegawai' => $pegawai]);
+        return view('admin.pegawai.index', compact('pegawai'));
     }
 
     /**
@@ -26,7 +26,8 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('admin.pegawai.create');
+        $jabatan = \App\Jabatan::orderBy('id', 'asc')->get();
+        return view('admin.pegawai.create', compact('jabatan'));
     }
 
     /**
