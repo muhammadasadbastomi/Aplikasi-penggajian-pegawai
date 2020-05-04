@@ -21,7 +21,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Tambah Data Jabatan</h5>
+            <h5 class="card-title">Tambah Data Pegawai</h5>
             <div class="text-right">
 
             </div>
