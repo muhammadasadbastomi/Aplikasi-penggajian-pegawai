@@ -14,9 +14,9 @@ class AbsensiController extends Controller
      */
     public function index()
     {
+        $pegawai = \App\Pegawai::orderBy('id', 'Desc')->get();
         $absensi = Absensi::orderBy('id', 'Desc')->get();
-
-        return view('admin.absensi.index', compact('absensi'));
+        return view('admin.absensi.index', compact('absensi', 'pegawai'));
     }
 
     /**
@@ -26,7 +26,8 @@ class AbsensiController extends Controller
      */
     public function create()
     {
-        return view('admin.absensi.create');
+        $pegawai = \App\Pegawai::orderBy('id', 'asc')->get();
+        return view('admin.absensi.create', compact('pegawai'));
     }
 
     /**
@@ -39,6 +40,7 @@ class AbsensiController extends Controller
     {
         //dd($request->all());
         $request->validate([
+            'jabatan_id' => 'required',
             'izin' => 'required',
             'sakit' => 'required',
             'alfa' => 'required',
@@ -48,6 +50,7 @@ class AbsensiController extends Controller
 
         // create new object
         $absensi = new absensi;
+        $absensi->pegawai_id = $request->pegawai_id;
         $absensi->izin = $request->izin;
         $absensi->sakit = $request->sakit;
         $absensi->alfa = $request->alfa;
@@ -77,9 +80,10 @@ class AbsensiController extends Controller
      */
     public function edit(Absensi $absensi, $id)
     {
+        $pegawai = \App\Pegawai::orderBy('id', 'asc')->get();
         $absensi = absensi::where('uuid', $id)->first();
 
-        return view('admin.absensi.edit', compact('absensi'));
+        return view('admin.absensi.edit', compact('absensi', 'pegawai'));
     }
 
     /**

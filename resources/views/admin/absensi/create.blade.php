@@ -40,6 +40,14 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
+                                    <label for="pegawai_id">Pegawai</label>
+                                    <select class="custom-select" name="pegawai_id" id="pegawai_id">
+                                        @foreach($pegawai as $d)
+                                        <option value="{{$d->id}}">{{ $d->nama}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="izin">Izin</label>
                                     <input type="text" name="izin" id="izin" class="form-control @error ('izin') is-invalid @enderror" placeholder="Masukkan Izin" value="{{old('izin')}}">
                                     @error('Izin')<div class="invalid-feedback"> {{$message}} </div>@enderror

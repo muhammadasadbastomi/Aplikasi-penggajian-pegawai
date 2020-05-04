@@ -16,7 +16,7 @@ class CreateAbsensisTable extends Migration
         Schema::create('absensis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid')->length(36);
-            $table->integer('user_id')->nullable();
+            $table->integer('pegawai_id');
             $table->integer('izin')->nullable();
             $table->integer('sakit')->nullable();
             $table->integer('alfa')->nullable();

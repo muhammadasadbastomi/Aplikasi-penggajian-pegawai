@@ -18,4 +18,9 @@ class Pegawai extends Model
     {
         return $this->belongsTo(Jabatan::class);
     }
+
+    public function absensi()
+    {
+        return $this->hasOne(Absensi::class);
+    }
 }

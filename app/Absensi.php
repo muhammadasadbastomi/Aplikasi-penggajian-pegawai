@@ -10,4 +10,9 @@ class Absensi extends Model
 {
     use Notifiable;
     use Uuid;
+
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class);
+    }
 }
