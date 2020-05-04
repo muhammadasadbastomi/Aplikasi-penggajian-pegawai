@@ -14,7 +14,9 @@ class GajiController extends Controller
      */
     public function index()
     {
-        //
+        $gaji = gaji::orderBy('id', 'Desc')->get();
+
+        return view('admin.gaji.index', compact('gaji'));
     }
 
     /**
@@ -24,7 +26,7 @@ class GajiController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.gaji.create');
     }
 
     /**
@@ -35,7 +37,19 @@ class GajiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        $request->validate([
+            'potongan' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        $jabatan = new Gaji();
+        $jabatan->potongan = $request->potongan;
+        $jabatan->keterangan = $request->keterangan;
+        $jabatan->save();
+
+
+        return redirect('admin/gaji/index')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -55,9 +69,11 @@ class GajiController extends Controller
      * @param  \App\Gaji  $gaji
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gaji $gaji)
+    public function edit(Gaji $gaji, $id)
     {
-        //
+        $gaji = gaji::where('uuid', $id)->first();
+
+        return view('admin.gaji.edit', compact('gaji'));
     }
 
     /**
@@ -67,9 +83,15 @@ class GajiController extends Controller
      * @param  \App\Gaji  $gaji
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gaji $gaji)
+    public function update(Request $request, Gaji $gaji, $id)
     {
-        //
+        // get data by id
+        $gaji = gaji::where('uuid', $id)->first();
+        $gaji->potongan = $request->potongan;
+        $gaji->keterangan = $request->keterangan;
+        $gaji->update();
+
+        return redirect()->route('gajiIndex')->with('success', 'Data Berhasil Diubah');
     }
 
     /**
@@ -78,8 +100,12 @@ class GajiController extends Controller
      * @param  \App\Gaji  $gaji
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gaji $gaji)
+    public function destroy(Gaji $gaji, $id)
     {
-        //
+        $gaji = gaji::where('uuid', $id)->first();
+
+        $gaji->delete();
+
+        return redirect()->route('gajiIndex'); //
     }
 }

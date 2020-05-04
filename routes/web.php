@@ -38,13 +38,13 @@ Route::get('/admin/absensi/edit/{id}', 'AbsensiController@edit')->name('absensiE
 Route::put('/admin/absensi/edit/{id}', 'AbsensiController@update')->name('absensiUpdate');
 Route::delete('/admin/absensi/delete/{id}', 'AbsensiController@destroy')->name('absensiDestroy');
 
-Route::get('/admin/gaji/index', 'GajiConroller@index')->name('gajiIndex');
-Route::get('/admin/gaji/detail/{id}', 'GajiConroller@show')->name('gajiShow');
-Route::get('/admin/gaji/create', 'GajiConroller@create')->name('gajiCreate');
-Route::post('/admin/gaji/create', 'GajiConroller@store')->name('gajiStore');
-Route::get('/admin/gaji/edit/{id}', 'GajiConroller@edit')->name('gajiEdit');
-Route::put('/admin/gaji/edit/{id}', 'GajiConroller@update')->name('gajiUpdate');
-Route::delete('/admin/gaji/delete/{id}', 'GajiConroller@destroy')->name('gajiDestroy');
+Route::get('/admin/gaji/index', 'GajiController@index')->name('gajiIndex');
+Route::get('/admin/gaji/detail/{id}', 'GajiController@show')->name('gajiShow');
+Route::get('/admin/gaji/create', 'GajiController@create')->name('gajiCreate');
+Route::post('/admin/gaji/create', 'GajiController@store')->name('gajiStore');
+Route::get('/admin/gaji/edit/{id}', 'GajiController@edit')->name('gajiEdit');
+Route::put('/admin/gaji/edit/{id}', 'GajiController@update')->name('gajiUpdate');
+Route::delete('/admin/gaji/delete/{id}', 'GajiController@destroy')->name('gajiDestroy');
 
 Route::get('/admin/jabatan/index', 'JabatanController@index')->name('jabatanIndex');
 Route::get('/admin/jabatan/detail/{id}', 'JabatanController@show')->name('jabatanShow');

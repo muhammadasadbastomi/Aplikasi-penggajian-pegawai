@@ -10,7 +10,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
                     <li class="breadcrumb-item active"><a href="{{route('gajiIndex')}}">Data Gaji Pegawai</a></li>
-                    <li class="breadcrumb-item active">Tambah Data</li>
+                    <li class="breadcrumb-item active">Tambah Gaji Data</li>
                 </ol>
             </div>
         </div>
@@ -21,7 +21,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Tambah Data Gai Pegawai</h5>
+            <h5 class="card-title">Tambah Data Gaji Pegawai</h5>
             <div class="text-right">
 
             </div>
