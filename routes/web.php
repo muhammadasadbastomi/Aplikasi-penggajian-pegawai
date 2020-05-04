@@ -20,68 +20,73 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin/index', 'AdminController@index')->name('adminIndex');
 
-Route::get('/admin/pegawai/index', 'PegawaiController@index')->name('pegawaiIndex');
-Route::get('/admin/pegawai/detail/{id}', 'PegawaiController@show')->name('pegawaiShow');
-Route::get('/admin/pegawai/create', 'PegawaiController@create')->name('pegawaiCreate');
-Route::post('/admin/pegawai/create', 'PegawaiController@store')->name('pegawaiStore');
-Route::get('/admin/pegawai/edit/{id}', 'PegawaiController@edit')->name('pegawaiEdit');
-Route::put('/admin/pegawai/edit/{id}', 'PegawaiController@update')->name('pegawaiUpdate');
-Route::delete('/admin/pegawai/delete/{id}', 'PegawaiController@destroy')->name('pegawaiDestroy');
 
-Route::get('/admin/absensi/index', 'AbsensiController@index')->name('absensiIndex');
-Route::get('/admin/absensi/detail/{id}', 'AbsensiController@show')->name('absensiShow');
-Route::get('/admin/absensi/create', 'AbsensiController@create')->name('absensiCreate');
-Route::post('/admin/absensi/create', 'AbsensiController@store')->name('absensiStore');
-Route::get('/admin/absensi/edit/{id}', 'AbsensiController@edit')->name('absensiEdit');
-Route::put('/admin/absensi/edit/{id}', 'AbsensiController@update')->name('absensiUpdate');
-Route::delete('/admin/absensi/delete/{id}', 'AbsensiController@destroy')->name('absensiDestroy');
 
-Route::get('/admin/gaji/index', 'GajiController@index')->name('gajiIndex');
-Route::get('/admin/gaji/detail/{id}', 'GajiController@show')->name('gajiShow');
-Route::get('/admin/gaji/create', 'GajiController@create')->name('gajiCreate');
-Route::post('/admin/gaji/create', 'GajiController@store')->name('gajiStore');
-Route::get('/admin/gaji/edit/{id}', 'GajiController@edit')->name('gajiEdit');
-Route::put('/admin/gaji/edit/{id}', 'GajiController@update')->name('gajiUpdate');
-Route::delete('/admin/gaji/delete/{id}', 'GajiController@destroy')->name('gajiDestroy');
 
-Route::get('/admin/jabatan/index', 'JabatanController@index')->name('jabatanIndex');
-Route::get('/admin/jabatan/detail/{id}', 'JabatanController@show')->name('jabatanShow');
-Route::get('/admin/jabatan/create', 'JabatanController@create')->name('jabatanCreate');
-Route::post('/admin/jabatan/create', 'JabatanController@store')->name('jabatanStore');
-Route::get('/admin/jabatan/edit/{id}', 'JabatanController@edit')->name('jabatanEdit');
-Route::put('/admin/jabatan/edit/{id}', 'JabatanController@update')->name('jabatanUpdate');
-Route::delete('/admin/jabatan/delete/{id}', 'JabatanController@destroy')->name('jabatanDestroy');
 
-Route::get('/admin/rincian/index', 'RincianController@index')->name('rincianIndex');
-Route::get('/admin/rincian/detail/{id}', 'RincianController@show')->name('rincianShow');
-Route::get('/admin/rincian/create', 'RincianController@create')->name('rincianCreate');
-Route::post('/admin/rincian/create', 'RincianController@store')->name('rincianStore');
-Route::get('/admin/rincian/edit/{id}', 'RincianController@edit')->name('rincianEdit');
-Route::put('/admin/rincian/edit/{id}', 'RincianController@update')->name('rincianUpdate');
-Route::delete('/admin/rincian/delete/{id}', 'RincianController@destroy')->name('rincianDestroy');
+//Route group Admin dan Pegawai Middleware
+Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () {
+    Route::get('/admin/index', 'AdminController@index')->name('adminIndex');
+});
 
-Route::get('/admin/lembur/index', 'LemburController@index')->name('lemburIndex');
-Route::get('/admin/lembur/detail/{id}', 'LemburController@show')->name('lemburShow');
-Route::get('/admin/lembur/create', 'LemburController@create')->name('lemburCreate');
-Route::post('/admin/lembur/create', 'LemburController@store')->name('lemburStore');
-Route::get('/admin/lembur/edit/{id}', 'LemburController@edit')->name('lemburEdit');
-Route::put('/admin/lembur/edit/{id}', 'LemburController@update')->name('lemburUpdate');
-Route::delete('/admin/lembur/delete/{id}', 'LemburController@destroy')->name('lemburDestroy');
 
-Route::get('/admin/golongan/index', 'GolonganController@index')->name('golonganIndex');
-Route::get('/admin/golongan/detail/{id}', 'GolonganController@show')->name('golonganShow');
-Route::get('/admin/golongan/create', 'GolonganController@create')->name('golonganCreate');
-Route::post('/admin/golongan/create', 'GolonganController@store')->name('golonganStore');
-Route::get('/admin/golongan/edit/{id}', 'GolonganController@edit')->name('golonganEdit');
-Route::put('/admin/golongan/edit/{id}', 'GolonganController@update')->name('golonganUpdate');
-Route::delete('/admin/golongan/delete/{id}', 'GolonganController@destroy')->name('golonganDestroy');
+//Route group Admin Middleware
+Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
 
-Auth::routes();
+    Route::get('/admin/pegawai/index', 'PegawaiController@index')->name('pegawaiIndex');
+    Route::get('/admin/pegawai/detail/{id}', 'PegawaiController@show')->name('pegawaiShow');
+    Route::get('/admin/pegawai/create', 'PegawaiController@create')->name('pegawaiCreate');
+    Route::post('/admin/pegawai/create', 'PegawaiController@store')->name('pegawaiStore');
+    Route::get('/admin/pegawai/edit/{id}', 'PegawaiController@edit')->name('pegawaiEdit');
+    Route::put('/admin/pegawai/edit/{id}', 'PegawaiController@update')->name('pegawaiUpdate');
+    Route::delete('/admin/pegawai/delete/{id}', 'PegawaiController@destroy')->name('pegawaiDestroy');
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/admin/absensi/index', 'AbsensiController@index')->name('absensiIndex');
+    Route::get('/admin/absensi/detail/{id}', 'AbsensiController@show')->name('absensiShow');
+    Route::get('/admin/absensi/create', 'AbsensiController@create')->name('absensiCreate');
+    Route::post('/admin/absensi/create', 'AbsensiController@store')->name('absensiStore');
+    Route::get('/admin/absensi/edit/{id}', 'AbsensiController@edit')->name('absensiEdit');
+    Route::put('/admin/absensi/edit/{id}', 'AbsensiController@update')->name('absensiUpdate');
+    Route::delete('/admin/absensi/delete/{id}', 'AbsensiController@destroy')->name('absensiDestroy');
 
-Auth::routes();
+    Route::get('/admin/gaji/index', 'GajiController@index')->name('gajiIndex');
+    Route::get('/admin/gaji/detail/{id}', 'GajiController@show')->name('gajiShow');
+    Route::get('/admin/gaji/create', 'GajiController@create')->name('gajiCreate');
+    Route::post('/admin/gaji/create', 'GajiController@store')->name('gajiStore');
+    Route::get('/admin/gaji/edit/{id}', 'GajiController@edit')->name('gajiEdit');
+    Route::put('/admin/gaji/edit/{id}', 'GajiController@update')->name('gajiUpdate');
+    Route::delete('/admin/gaji/delete/{id}', 'GajiController@destroy')->name('gajiDestroy');
 
-Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/admin/jabatan/index', 'JabatanController@index')->name('jabatanIndex');
+    Route::get('/admin/jabatan/detail/{id}', 'JabatanController@show')->name('jabatanShow');
+    Route::get('/admin/jabatan/create', 'JabatanController@create')->name('jabatanCreate');
+    Route::post('/admin/jabatan/create', 'JabatanController@store')->name('jabatanStore');
+    Route::get('/admin/jabatan/edit/{id}', 'JabatanController@edit')->name('jabatanEdit');
+    Route::put('/admin/jabatan/edit/{id}', 'JabatanController@update')->name('jabatanUpdate');
+    Route::delete('/admin/jabatan/delete/{id}', 'JabatanController@destroy')->name('jabatanDestroy');
+
+    Route::get('/admin/rincian/index', 'RincianController@index')->name('rincianIndex');
+    Route::get('/admin/rincian/detail/{id}', 'RincianController@show')->name('rincianShow');
+    Route::get('/admin/rincian/create', 'RincianController@create')->name('rincianCreate');
+    Route::post('/admin/rincian/create', 'RincianController@store')->name('rincianStore');
+    Route::get('/admin/rincian/edit/{id}', 'RincianController@edit')->name('rincianEdit');
+    Route::put('/admin/rincian/edit/{id}', 'RincianController@update')->name('rincianUpdate');
+    Route::delete('/admin/rincian/delete/{id}', 'RincianController@destroy')->name('rincianDestroy');
+
+    Route::get('/admin/lembur/index', 'LemburController@index')->name('lemburIndex');
+    Route::get('/admin/lembur/detail/{id}', 'LemburController@show')->name('lemburShow');
+    Route::get('/admin/lembur/create', 'LemburController@create')->name('lemburCreate');
+    Route::post('/admin/lembur/create', 'LemburController@store')->name('lemburStore');
+    Route::get('/admin/lembur/edit/{id}', 'LemburController@edit')->name('lemburEdit');
+    Route::put('/admin/lembur/edit/{id}', 'LemburController@update')->name('lemburUpdate');
+    Route::delete('/admin/lembur/delete/{id}', 'LemburController@destroy')->name('lemburDestroy');
+
+    Route::get('/admin/golongan/index', 'GolonganController@index')->name('golonganIndex');
+    Route::get('/admin/golongan/detail/{id}', 'GolonganController@show')->name('golonganShow');
+    Route::get('/admin/golongan/create', 'GolonganController@create')->name('golonganCreate');
+    Route::post('/admin/golongan/create', 'GolonganController@store')->name('golonganStore');
+    Route::get('/admin/golongan/edit/{id}', 'GolonganController@edit')->name('golonganEdit');
+    Route::put('/admin/golongan/edit/{id}', 'GolonganController@update')->name('golonganUpdate');
+    Route::delete('/admin/golongan/delete/{id}', 'GolonganController@destroy')->name('golonganDestroy');
+});

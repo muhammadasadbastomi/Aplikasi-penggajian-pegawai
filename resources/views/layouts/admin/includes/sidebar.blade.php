@@ -26,11 +26,11 @@
                             <a href="#" class="d-block">Alexander Pierce</a>
                         </div>
                     </div>
-
-                    <!-- Sidebar Menu -->
+                    <!-- Sidebar Menu Data -->
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column text-sm nav-legacy nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+                            <!-- Sidebar Menu Data Master Admin -->
+                            @if(auth()->user()->role == 'admin')
                             <li class="nav-item has-treeview menu-open">
                                 <a href="#" class="nav-link active">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -84,6 +84,8 @@
                                     </li>
                                 </ul>
                             </li>
+                            @endif
+                            <!-- End Sidebar Menu Data Master Admin -->
                             <li class="nav-item">
                                 <a href="pages/widgets.html" class="nav-link">
                                     <i class="nav-icon fas fa-th"></i>
@@ -580,6 +582,7 @@
                                 </a>
                             </li>
                         </ul>
+
                     </nav>
                     <!-- /.sidebar-menu -->
                 </div>
