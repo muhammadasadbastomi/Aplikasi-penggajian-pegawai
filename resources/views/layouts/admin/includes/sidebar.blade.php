@@ -53,7 +53,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route(;gajiIndex')}}" class="nav-link active">
+                                        <a href="{{route('gajiIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Data Gaji Pegawai</p>
                                         </a>
