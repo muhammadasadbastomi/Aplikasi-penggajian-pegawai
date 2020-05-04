@@ -88,9 +88,10 @@ class PegawaiController extends Controller
     public function edit(Pegawai $pegawai, $id)
     {
         // get jabatan by id
+        $jabatan = \App\Jabatan::orderBy('id', 'asc')->get();
         $pegawai = pegawai::where('uuid', $id)->first();
 
-        return view('admin.pegawai.edit', compact('pegawai'));
+        return view('admin.pegawai.edit', compact('pegawai', 'jabatan'));
     }
 
     /**
@@ -106,6 +107,7 @@ class PegawaiController extends Controller
         $pegawai = pegawai::where('uuid', $id)->first();
         $pegawai->nik = $request->nik;
         $pegawai->nama = $request->nama;
+        $pegawai->jabatan_id = $request->jabatan_id;
         $pegawai->tempat_lahir = $request->tempat_lahir;
         $pegawai->tgl_lahir = $request->tgl_lahir;
         $pegawai->tgl_masuk = $request->tgl_masuk;

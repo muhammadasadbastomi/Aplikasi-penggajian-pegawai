@@ -51,6 +51,14 @@
                   @error('nama')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
                 <div class="form-group">
+                  <label for="jabatan">Jabatan</label>
+                  <select class="custom-select" name="jabatan_id" id="jabatan_id">
+                    @foreach($jabatan as $d)
+                    <option value="{{$d->id}}" {{$pegawai->jabatan_id == $d->id ? 'selected' : ''}}>{{ $d->jabatan}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="tempat_lahir">Tempat Lahir</label>
                   <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-control @error ('tempat_lahir') is-invalid @enderror" placeholder="Masukkan Tempat Lahir" value="{{$pegawai->tempat_lahir}}">
                   @error('tempat_lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
