@@ -40,7 +40,6 @@ class AbsensiController extends Controller
     {
         //dd($request->all());
         $request->validate([
-            'jabatan_id' => 'required',
             'izin' => 'required',
             'sakit' => 'required',
             'alfa' => 'required',

@@ -21,7 +21,7 @@ class CreateAbsensisTable extends Migration
             $table->integer('sakit')->nullable();
             $table->integer('alfa')->nullable();
             $table->integer('hadir')->nullable();
-            $table->dateTime('periode')->nullable();
+            $table->date('periode')->nullable();
             $table->timestamps();
         });
     }
