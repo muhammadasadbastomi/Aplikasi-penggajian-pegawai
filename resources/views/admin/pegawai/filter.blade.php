@@ -61,7 +61,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button type="submit" class="btn btn-primary">Cetak</button>
                                 <a href="{{route('absensiIndex')}}" class="btn btn-danger text-white"><i
                                         class="mdi mdi-back"></i>Batal</a>
                             </div>
