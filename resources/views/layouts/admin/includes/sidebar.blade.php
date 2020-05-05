@@ -59,6 +59,12 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
+                                        <a href="{{route('gajiIndex')}}" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Data Gaji Karyawan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
                                         <a href="{{route('jabatanIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Data Jabatan</p>
