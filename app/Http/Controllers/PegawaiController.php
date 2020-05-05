@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Golongan;
+use App\Jabatan;
 use App\Pegawai;
+use App\User;
+use Hash;
 use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
@@ -26,8 +30,9 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $jabatan = \App\Jabatan::orderBy('id', 'asc')->get();
-        return view('admin.pegawai.create', compact('jabatan'));
+        $jabatan = Jabatan::orderBy('id', 'asc')->get();
+        $golongan = Golongan::orderBy('id', 'asc')->get();
+        return view('admin.pegawai.create', compact('jabatan', 'golongan'));
     }
 
     /**
@@ -44,17 +49,16 @@ class PegawaiController extends Controller
             'nama' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',
-            'tgl_masuk' => 'required'
+            'tgl_masuk' => 'required',
         ]);
 
         //insert ke table users
-        $user = new \App\User;
+        $user = new User;
         $user->role = 'pegawai';
         $user->name = $request->nama;
         $user->email = $request->email;
-        $user->password = bcrypt('admin123');
+        $user->password = Hash::make($request->password);
         $user->save();
-
 
         //insert ke table pegawai
         $request->request->add(['user_id' => $user->id]);
@@ -105,6 +109,22 @@ class PegawaiController extends Controller
     {
         // get data by id
         $pegawai = pegawai::where('uuid', $id)->first();
+
+        //get user
+        $user = User::where('id', $pegawai->id)->first();
+
+        $user->name = $request->nama;
+        $user->email = $request->email;
+
+        //cek if exist input password
+        if (!$request->password) {
+            $user->password = $user->password;
+        } else {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->update();
+
         $pegawai->nik = $request->nik;
         $pegawai->nama = $request->nama;
         $pegawai->jabatan_id = $request->jabatan_id;
@@ -126,7 +146,10 @@ class PegawaiController extends Controller
     {
         $pegawai = pegawai::where('uuid', $id)->first();
 
-        $pegawai->delete();
+        // get user by id
+        $user = User::where('id', $pegawai->id)->first();
+
+        $user->delete();
 
         return redirect()->route('pegawaiIndex');
     }
