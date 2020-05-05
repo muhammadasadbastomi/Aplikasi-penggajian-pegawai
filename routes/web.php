@@ -80,4 +80,5 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/admin/golongan/cetak_pdf', 'GolonganController@cetak_pdf')->name('golonganPdf');
 
     Route::get('/admin/admin/index', 'UserController@index')->name('userIndex');
+    Route::get('/admin/admin/detail', 'UserController@show')->name('userShow');
 });
