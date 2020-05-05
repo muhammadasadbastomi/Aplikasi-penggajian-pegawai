@@ -30,9 +30,7 @@
                 {{ Auth::user()->name }} <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                @foreach ($pegawai as $d)
-                <a class="dropdown-item" href="{{route('userShow', ['id' => $d->uuid])}}">Profil</a>
-                @endforeach
+                <a class="dropdown-item" href="{{route('userShow', ['id' => Auth::user()->uuid])}}">Profil
                 </a>
                 <br>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

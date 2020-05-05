@@ -12,13 +12,13 @@ class UserController extends Controller
     {
         $user = user::orderBy('id', 'Desc')->get();
 
-        return view('admin.admin.index', compact('user'));
+        return view('admin.user.index', compact('user'));
     }
 
-    public function show()
+    public function show($id)
     {
         $user = user::orderBy('id', 'Desc')->get();
-        $pegawai = Pegawai::orderBy('id', 'Desc')->get();
-        return view('admin.admin.detail', compact('user', 'pegawai'));
+        $pegawai = Pegawai::where('uuid', $id)->first();
+        return view('admin.user.detail', compact('user', 'pegawai'));
     }
 }
