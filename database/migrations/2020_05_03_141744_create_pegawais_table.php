@@ -16,13 +16,17 @@ class CreatePegawaisTable extends Migration
         Schema::create('pegawais', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid')->length(36);
-            $table->integer('user_id')->nullable();
-            $table->integer('jabatan_id')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('jabatan_id');
+            $table->unsignedBigInteger('golongan_id');
             $table->string('nik');
             $table->string('nama');
             $table->text('tempat_lahir');
             $table->date('tgl_lahir');
             $table->date('tgl_masuk');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('jabatan_id')->references('id')->on('jabatans')->onDelete('restrict');
+            $table->foreign('golongan_id')->references('id')->on('golongans')->onDelete('restrict');
             $table->timestamps();
         });
     }
