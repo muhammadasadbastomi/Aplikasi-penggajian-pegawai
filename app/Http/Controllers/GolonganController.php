@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Alert;
 use App\golongan;
+use PDF;
 use Illuminate\Http\Request;
 
 class GolonganController extends Controller
@@ -110,5 +111,11 @@ class GolonganController extends Controller
         $golongan->delete();
 
         return redirect()->route('golonganIndex');
+    }
+    public function cetak_pdf()
+    {
+        $golongan = Golongan::all();
+        $pdf = PDF::loadview('admin.golongan.cetak_pdf', compact('golongan'));
+        return $pdf->stream('laporan-golongan-pdf');
     }
 }

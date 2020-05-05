@@ -22,6 +22,9 @@
         <div class="card-header">
             <h5 class="card-title">Data Gaji Pegawai</h5>
             <div class="text-right">
+                <a href="{{route('gajiPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a>
+                <a href="{{route('gajiCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah
+                    Data</a>
             </div>
         </div>
         <!-- /.card-header -->

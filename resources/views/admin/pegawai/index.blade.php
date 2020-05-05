@@ -16,14 +16,12 @@
   </div><!-- /.container-fluid -->
 </section>
 <div class="container-fluid">
-
-
   <div class="card">
     <div class="card-header">
       <h5 class="card-title">Data Pegawai</h5>
       <div class="text-right">
-        <a href="{{route('pegawaiCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah
-          Data</a>
+        <a href="{{route('pegawaiPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a>
+        <a href="{{route('pegawaiCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah Data</a>
       </div>
     </div>
     <!-- /.card-header -->

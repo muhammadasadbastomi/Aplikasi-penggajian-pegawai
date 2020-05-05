@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Alert;
 use App\jabatan;
+use PDF;
 use Illuminate\Http\Request;
 
 class JabatanController extends Controller
@@ -126,5 +127,11 @@ class JabatanController extends Controller
         $jabatan->delete();
 
         return redirect()->route('jabatanIndex');
+    }
+    public function cetak_pdf()
+    {
+        $jabatan = Jabatan::all();
+        $pdf = PDF::loadview('admin.jabatan.cetak_pdf', compact('jabatan'));
+        return $pdf->stream('laporan-jabatan-pdf');
     }
 }
