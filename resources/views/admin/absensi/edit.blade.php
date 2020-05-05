@@ -42,12 +42,12 @@
               <div class="card-body">
                 <fieldset disabled>
                   <div class="form-group">
-                    <label for="disabledTextInput">NIK</label>
-                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{$absensi->pegawai->nik}}">
-                  </div>
-                  <div class="form-group">
                     <label for="disabledTextInput">Nama Lengkap</label>
                     <input type="text" id="disabledTextInput" class="form-control" placeholder="{{$absensi->pegawai->nama}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="disabledTextInput">NIK</label>
+                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{$absensi->pegawai->nik}}">
                   </div>
                 </fieldset>
 

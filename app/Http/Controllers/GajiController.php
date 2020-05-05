@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Gaji;
+use App\Pegawai;
+use App\Jabatan;
 use Illuminate\Http\Request;
 
 class GajiController extends Controller
@@ -14,9 +16,10 @@ class GajiController extends Controller
      */
     public function index()
     {
-        $gaji = gaji::orderBy('id', 'Desc')->get();
-
-        return view('admin.gaji.index', compact('gaji'));
+        $gaji = Gaji::orderBy('id', 'Desc')->get();
+        $pegawai = Pegawai::orderBy('id', 'Desc')->get();
+        $jabatan = Jabatan::orderBy('id', 'Desc')->get();
+        return view('admin.gaji.index', compact('gaji', 'pegawai', 'jabatan'));
     }
 
     /**

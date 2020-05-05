@@ -43,7 +43,7 @@
                                     <label for="pegawai_id">Pegawai</label>
                                     <select class="custom-select" name="pegawai_id" id="pegawai_id">
                                         @foreach($pegawai as $d)
-                                        <option value="{{$d->id}}">{{ $d->nama}}</option>
+                                        <option value="{{$d->id}}">{{$d->nik}} {{ $d->nama}}</option>
                                         @endforeach
                                     </select>
                                 </div>

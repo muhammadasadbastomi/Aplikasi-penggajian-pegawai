@@ -17,8 +17,8 @@ class CreateGajisTable extends Migration
             $table->bigIncrements('id');
             $table->string('uuid')->length(36);
             $table->integer('kode_potongan')->nullable();
-            $table->integer('potongan');
-            $table->string('keterangan');
+            $table->integer('potongan')->nullable();
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

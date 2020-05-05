@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Absensi;
+use App\Pegawai;
 use Illuminate\Http\Request;
 
 class AbsensiController extends Controller
@@ -14,7 +15,7 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        $pegawai = \App\Pegawai::orderBy('id', 'Desc')->get();
+        $pegawai = Pegawai::orderBy('id', 'Desc')->get();
         $absensi = Absensi::orderBy('id', 'Desc')->get();
         return view('admin.absensi.index', compact('absensi', 'pegawai'));
     }
@@ -26,7 +27,7 @@ class AbsensiController extends Controller
      */
     public function create()
     {
-        $pegawai = \App\Pegawai::orderBy('id', 'asc')->get();
+        $pegawai = Pegawai::orderBy('id', 'asc')->get();
         return view('admin.absensi.create', compact('pegawai'));
     }
 

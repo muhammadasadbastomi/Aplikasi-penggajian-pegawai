@@ -10,4 +10,17 @@ class Gaji extends Model
 {
     use Notifiable;
     use Uuid;
+
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class);
+    }
+    public function golongan()
+    {
+        return $this->belongsTo(Golongan::class);
+    }
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class);
+    }
 }
