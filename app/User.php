@@ -3,14 +3,9 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Model;
-use App\Traits\Uuid;
 
 class User extends Authenticatable
 {
-    use Notifiable;
-    use Uuid;
 
     /**
      * The attributes that are mass assignable.
