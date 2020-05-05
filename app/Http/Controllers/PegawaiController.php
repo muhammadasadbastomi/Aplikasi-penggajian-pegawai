@@ -147,7 +147,7 @@ class PegawaiController extends Controller
         $pegawai = pegawai::where('uuid', $id)->first();
 
         // get user by id
-        $user = User::where('id', $pegawai->id)->first();
+        $user = User::where('id', $pegawai->user_id)->first();
 
         $user->delete();
 
