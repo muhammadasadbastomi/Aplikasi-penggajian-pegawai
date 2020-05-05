@@ -41,30 +41,6 @@
                                 </a>
                                 <ul class="nav nav-treeview" style="display: block;">
                                     <li class="nav-item">
-                                        <a href="{{route('pegawaiIndex')}}" class="nav-link active">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Pegawai</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('absensiIndex')}}" class="nav-link active">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Absensi Pegawai</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('gajiIndex')}}" class="nav-link active">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Gaji Pegawai</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('gajiIndex')}}" class="nav-link active">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Gaji Karyawan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a href="{{route('jabatanIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Data Jabatan</p>
@@ -76,101 +52,60 @@
                                             <p>Golongan</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('pegawaiIndex')}}" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Data Pegawai</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('gajiIndex')}}" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Data Gaji Karyawan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('jabatanIndex')}}" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Data Absensi Pegawai</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('gajiIndex')}}" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Data Gaji Pegawai</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
-                            @endif
+
                             <!-- End Sidebar Menu Data Master Admin -->
                             <li class="nav-item">
-                                <a href="{{ route('userIndex') }}" class="nav-link">
+                                <a href="{{route('gajiIndex')}}" class="nav-link active">
+                                    <i class="nav-icon fas fa-money-check-alt"></i>
+                                    <p>
+                                        Data Gaji Pegawai
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('userIndex') }}" class="nav-link active">
                                     <i class="nav-icon fas fa-user"></i>
                                     <p>
                                         Admin
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-copy"></i>
+                            <li class="nav-item">
+                                <a href="{{route('absensiIndex')}}" class="nav-link active">
+                                    <i class="nav-icon fas fa-file-alt"></i>
                                     <p>
-                                        Layout Options
-                                        <i class="fas fa-angle-left right"></i>
-                                        <span class="badge badge-info right">6</span>
+                                        Data Absensi Pegawai
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="pages/layout/top-nav.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Top Navigation</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Top Navigation + Sidebar</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/boxed.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Boxed</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Fixed Sidebar</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Fixed Navbar</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/fixed-footer.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Fixed Footer</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Collapsed Sidebar</p>
-                                        </a>
-                                    </li>
-                                </ul>
                             </li>
-                            <li class="nav-item has-treeview">
-                                <a href="#" class="nav-link">
-                                    <i class="nav-icon fas fa-chart-pie"></i>
-                                    <p>
-                                        Charts
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="pages/charts/chartjs.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>ChartJS</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/charts/flot.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Flot</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="pages/charts/inline.html" class="nav-link">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Inline</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                            @endif
+
                         </ul>
 
                     </nav>

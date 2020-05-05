@@ -116,7 +116,7 @@ class GajiController extends Controller
     {
         $gaji = Gaji::all();
         $pegawai = Pegawai::orderBy('id', 'Desc')->get();
-        $pdf = PDF::loadview('admin.gaji.cetak_pdf', compact('gaji', 'pegawai'));
+        $pdf = PDF::loadview('laporan.cetak_gaji', compact('gaji', 'pegawai'));
         return $pdf->stream('laporan-gaji-pdf');
     }
 }

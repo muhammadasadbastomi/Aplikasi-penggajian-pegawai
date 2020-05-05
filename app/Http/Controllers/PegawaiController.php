@@ -158,7 +158,7 @@ class PegawaiController extends Controller
     {
         $pegawai = Pegawai::all();
 
-        $pdf = PDF::loadview('admin.pegawai.cetak_pdf', compact('pegawai'));
+        $pdf = PDF::loadview('laporan.cetak_pegawai', compact('pegawai'));
         return $pdf->stream('laporan-pegawai-pdf');
     }
 }
