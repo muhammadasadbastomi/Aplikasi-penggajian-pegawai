@@ -22,6 +22,7 @@
     <div class="card-header">
       <h5 class="card-title">Data Golongan</h5>
       <div class="text-right">
+        <a href="{{route('golonganPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a>
         <a href="{{route('golonganCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah
           Data</a>
       </div>

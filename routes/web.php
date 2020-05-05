@@ -50,7 +50,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/admin/absensi/edit/{id}', 'AbsensiController@edit')->name('absensiEdit');
     Route::put('/admin/absensi/edit/{id}', 'AbsensiController@update')->name('absensiUpdate');
     Route::delete('/admin/absensi/delete/{id}', 'AbsensiController@destroy')->name('absensiDestroy');
-    Route::get('/admin/absensi/cetak_pdf', 'AbsensiController@cetak_pdf')->name('AbsensiPdf');
+    Route::get('/admin/absensi/cetak_pdf', 'AbsensiController@cetak_pdf')->name('absensiPdf');
 
     Route::get('/admin/gaji/index', 'GajiController@index')->name('gajiIndex');
     Route::get('/admin/gaji/detail/{id}', 'GajiController@show')->name('gajiShow');

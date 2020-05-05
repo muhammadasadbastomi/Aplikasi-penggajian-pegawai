@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Gaji;
 use App\Pegawai;
 use App\Jabatan;
+use PDF;
 use Illuminate\Http\Request;
 
 class GajiController extends Controller
@@ -110,5 +111,12 @@ class GajiController extends Controller
         $gaji->delete();
 
         return redirect()->route('gajiIndex');
+    }
+    public function cetak_pdf()
+    {
+        $gaji = Gaji::all();
+        $pegawai = Pegawai::orderBy('id', 'Desc')->get();
+        $pdf = PDF::loadview('admin.gaji.cetak_pdf', compact('gaji', 'pegawai'));
+        return $pdf->stream('laporan-gaji-pdf');
     }
 }

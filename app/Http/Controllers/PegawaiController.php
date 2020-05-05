@@ -7,6 +7,7 @@ use App\Jabatan;
 use App\Pegawai;
 use App\User;
 use Hash;
+use PDF;
 use Illuminate\Http\Request;
 
 class PegawaiController extends Controller
@@ -147,10 +148,17 @@ class PegawaiController extends Controller
         $pegawai = pegawai::where('uuid', $id)->first();
 
         // get user by id
-        $user = User::where('id', $pegawai->user_id)->first();
+        $user = User::where('id', $pegawai->id)->first();
 
         $user->delete();
 
         return redirect()->route('pegawaiIndex');
+    }
+    public function cetak_pdf()
+    {
+        $pegawai = Pegawai::all();
+
+        $pdf = PDF::loadview('admin.pegawai.cetak_pdf', compact('pegawai'));
+        return $pdf->stream('laporan-pegawai-pdf');
     }
 }
