@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,15 +21,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-
-
-
 //Route group Admin dan Pegawai Middleware
 Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () {
     Route::get('/admin/index', 'AdminController@index')->name('adminIndex');
 });
-
 
 //Route group Admin Middleware
 Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
