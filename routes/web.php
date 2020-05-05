@@ -74,6 +74,11 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::delete('/admin/golongan/delete/{id}', 'GolonganController@destroy')->name('golonganDestroy');
     Route::get('/admin/golongan/cetak_pdf', 'GolonganController@cetak_pdf')->name('golonganPdf');
 
-    Route::get('/admin/admin/index', 'UserController@index')->name('userIndex');
-    Route::get('/admin/admin/detail', 'UserController@show')->name('userShow');
+    Route::get('/admin/user/index', 'UserController@index')->name('userIndex');
+    Route::get('/admin/user/detail/{id}', 'UserController@show')->name('userShow');
+    Route::get('/admin/user/create', 'UserController@create')->name('userCreate');
+    Route::post('/admin/user/create', 'UserController@store')->name('userStore');
+    Route::get('/admin/user/edit/{id}', 'UserController@edit')->name('userEdit');
+    Route::put('/admin/user/edit/{id}', 'UserController@update')->name('userUpdate');
+    Route::delete('/admin/user/delete/{id}', 'UserController@destroy')->name('userDestroy');
 });
