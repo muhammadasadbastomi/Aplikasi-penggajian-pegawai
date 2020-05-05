@@ -81,4 +81,6 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/admin/user/edit/{id}', 'UserController@edit')->name('userEdit');
     Route::put('/admin/user/edit/{id}', 'UserController@update')->name('userUpdate');
     Route::delete('/admin/user/delete/{id}', 'UserController@destroy')->name('userDestroy');
+
+    Route::get('/admin/pegawai/filter', 'PegawaiController@filter')->name('pegawaiFilter');
 });

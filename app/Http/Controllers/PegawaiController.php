@@ -161,4 +161,8 @@ class PegawaiController extends Controller
         $pdf = PDF::loadview('laporan.cetak_pegawai', compact('pegawai'));
         return $pdf->stream('laporan-pegawai-pdf');
     }
+    public function filter()
+    {
+        return view('admin.pegawai.filter');
+    }
 }
