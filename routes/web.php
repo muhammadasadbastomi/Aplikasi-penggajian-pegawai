@@ -66,22 +66,6 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::put('/admin/jabatan/edit/{id}', 'JabatanController@update')->name('jabatanUpdate');
     Route::delete('/admin/jabatan/delete/{id}', 'JabatanController@destroy')->name('jabatanDestroy');
 
-    Route::get('/admin/rincian/index', 'RincianController@index')->name('rincianIndex');
-    Route::get('/admin/rincian/detail/{id}', 'RincianController@show')->name('rincianShow');
-    Route::get('/admin/rincian/create', 'RincianController@create')->name('rincianCreate');
-    Route::post('/admin/rincian/create', 'RincianController@store')->name('rincianStore');
-    Route::get('/admin/rincian/edit/{id}', 'RincianController@edit')->name('rincianEdit');
-    Route::put('/admin/rincian/edit/{id}', 'RincianController@update')->name('rincianUpdate');
-    Route::delete('/admin/rincian/delete/{id}', 'RincianController@destroy')->name('rincianDestroy');
-
-    Route::get('/admin/lembur/index', 'LemburController@index')->name('lemburIndex');
-    Route::get('/admin/lembur/detail/{id}', 'LemburController@show')->name('lemburShow');
-    Route::get('/admin/lembur/create', 'LemburController@create')->name('lemburCreate');
-    Route::post('/admin/lembur/create', 'LemburController@store')->name('lemburStore');
-    Route::get('/admin/lembur/edit/{id}', 'LemburController@edit')->name('lemburEdit');
-    Route::put('/admin/lembur/edit/{id}', 'LemburController@update')->name('lemburUpdate');
-    Route::delete('/admin/lembur/delete/{id}', 'LemburController@destroy')->name('lemburDestroy');
-
     Route::get('/admin/golongan/index', 'GolonganController@index')->name('golonganIndex');
     Route::get('/admin/golongan/detail/{id}', 'GolonganController@show')->name('golonganShow');
     Route::get('/admin/golongan/create', 'GolonganController@create')->name('golonganCreate');
