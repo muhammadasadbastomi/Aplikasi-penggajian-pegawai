@@ -131,7 +131,7 @@ class JabatanController extends Controller
     public function cetak_pdf()
     {
         $jabatan = Jabatan::all();
-        $pdf = PDF::loadview('admin.jabatan.cetak_pdf', compact('jabatan'));
+        $pdf = PDF::loadview('laporan.cetak_jabatan', compact('jabatan'));
         return $pdf->stream('laporan-jabatan-pdf');
     }
 }

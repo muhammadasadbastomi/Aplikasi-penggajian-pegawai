@@ -134,7 +134,7 @@ class AbsensiController extends Controller
     {
         $absensi = Absensi::all();
         $pegawai = Pegawai::orderBy('id', 'Desc')->get();
-        $pdf = PDF::loadview('admin.absensi.cetak_pdf', compact('absensi', 'pegawai'));
+        $pdf = PDF::loadview('laporan.cetak_absensi', compact('absensi', 'pegawai'));
         return $pdf->stream('laporan-absensi-pdf');
     }
 }
