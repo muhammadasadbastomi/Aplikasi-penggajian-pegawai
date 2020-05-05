@@ -49,10 +49,26 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="nama">Nama Lengkap</label>
-                                    <input type="text" id="nama" name="nama"
+                                    <input type="text" name="nama" id="nama"
                                         class="form-control @error ('nama') is-invalid @enderror"
-                                        placeholder="Masukkan Nama Lengkap" value="{{$pegawai->nama}}">
-                                    @error('nama')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                        placeholder="Masukkan Nama Lengkap" value="{{$pegawai->user->name}}">
+                                    @error('Nama Lengkap')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email"
+                                        class="form-control @error ('email') is-invalid @enderror"
+                                        placeholder="Masukkan Email" value="{{$pegawai->user->email}}">
+                                    @error('Email')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <p>Note : Isi password jika ingin mengubah password</p>
+                                    <input type="password" name="password" id="password"
+                                        class="form-control @error ('password') is-invalid @enderror"
+                                        placeholder="Masukkan Password">
+                                    @error('Password')<div class=" invalid-feedback"> {{$message}}
+                                    </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="tempat_lahir">Tempat Lahir</label>
