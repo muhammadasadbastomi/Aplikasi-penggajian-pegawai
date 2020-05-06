@@ -51,10 +51,11 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/admin/gaji/periodekaryawan/show/{id}', 'PeriodekaryawanController@show')->name('periodekaryawanShow');
     Route::get('/admin/gaji/periodekaryawan/create', 'PeriodekaryawanController@create')->name('periodekaryawanCreate');
     Route::post('/admin/gaji/periodekaryawan/create', 'PeriodekaryawanController@store')->name('periodekaryawanStore');
-    Route::get('/admin/gaji/periodekaryawan/tambah', 'PeriodekaryawanController@tambah')->name('periodekaryawanTambah');
-    Route::post('/admin/gaji/periodekaryawan/tambah', 'PeriodekaryawanController@stambah')->name('periodekaryawanStamsbah');
-    Route::get('/admin/gaji/periodekaryawan/tambah', 'PeriodekaryawanController@tambahp')->name('periodekaryawanTambah');
-    Route::post('/admin/gaji/periodekaryawan/tambah', 'PeriodekaryawanController@stambahp')->name('periodekaryawanStamsbah');
+    Route::get('/admin/gaji/periodekaryawan/tambah/{id}', 'PeriodekaryawanController@tambah')->name('periodekaryawanTambah');
+    Route::post('/admin/gaji/periodekaryawan/tambah/{id}', 'PeriodekaryawanController@stambah')->name('periodekaryawanStamsbah');
+
+    Route::post('/admin/gaji/periodekaryawan/tambahaktif/{id}', 'PeriodekaryawanController@stambahaktif')->name('periodekaryawanTambahaktif');
+
     Route::get('/admin/gaji/periodekaryawan/edit/{id}', 'PeriodekaryawanController@edit')->name('periodekaryawanEdit');
     Route::put('/admin/gaji/periodekaryawan/edit/{id}', 'PeriodekaryawanController@update')->name('periodekaryawanUpdate');
     Route::delete('/admin/gaji/periodekaryawan/delete/{id}', 'PeriodekaryawanController@destroy')->name('periodekaryawanDestroy');

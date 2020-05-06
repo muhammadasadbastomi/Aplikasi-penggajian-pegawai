@@ -24,9 +24,11 @@
         <div class="card-header">
             <h5 class="card-title">Data Gaji Periode Pegawai - </h5>
             <div class="text-right">
+                @foreach ($periode1 as $d)
                 <a href="#" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a>
-                <a href="{{route('periodekaryawanTambah')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah Karyawan</a>
-                <a href="{{route('periodekaryawanTambah')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah Berdasarkan Karyawan Aktif</a>
+                <a href="{{route('periodekaryawanTambah', ['id' => $d->uuid])}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah Karyawan</a>
+                <a href="{{route('periodekaryawanTambahaktif', ['id' => $d->uuid])}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah Berdasarkan Karyawan Aktif</a>
+                @endforeach
             </div>
         </div>
         <!-- /.card-header -->

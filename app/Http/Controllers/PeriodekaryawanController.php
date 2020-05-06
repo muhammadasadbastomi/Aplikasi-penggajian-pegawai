@@ -77,6 +77,7 @@ class PeriodekaryawanController extends Controller
     public function show($id)
     {
         $periode = Gajiperiode::where('uuid', $id)->first();
+        $periode1 = Gajiperiode::where('uuid', $id)->get();
         $jabatan = Jabatan::orderBy('id', 'Desc')->get();
         $pegawai = Pegawai::where('status', 'aktif')->get();
         $gaji = Gaji::where('periode_id', $periode->id)->get();
@@ -97,7 +98,7 @@ class PeriodekaryawanController extends Controller
         });
 
 
-        return view('admin.gaji.periodekaryawan.show', compact('gaji', 'periode', 'pegawai', 'item'));
+        return view('admin.gaji.periodekaryawan.show', compact('gaji', 'periode', 'pegawai', 'item', 'periode1'));
     }
 
     /**
@@ -105,10 +106,9 @@ class PeriodekaryawanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tambah()
+    public function tambah($id)
     {
-        $pegawai = Pegawai::orderBy('id', 'asc')->get();
-        $periode = Gajiperiode::orderBy('id', 'asc')->get();
+        $pegawai = Pegawai::where('status', 'aktif')->get();
         return view('admin/gaji/periodekaryawan/tambah', compact('pegawai', 'periode'));
     }
 
@@ -118,30 +118,38 @@ class PeriodekaryawanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function stambah(Request $request, Gajiperiode $Gajiperiode)
+    public function stambah(Request $request, $id)
     {
         $request->validate([
             'pegawai' => 'required',
             'keterangan' => 'required',
         ]);
-
+        $periode = Gajiperiode::where('uuid', $id)->first();
         $gaji = new gaji;
 
         $gaji->pegawai_id = $request->pegawai;
-        $gaji->pegawai_id = $request->pegawai;
-        $gaji->pegawai_id = $request->pegawai;
-        $gaji->periode_id = $request->periode;
+        $gaji->periode_id = $periode->id;
         $gaji->keterangan = $request->keterangan;
         $gaji->save();
 
-        return redirect('admin/gaji/periodekaryawan/index')->with('success', 'Data berhasil disimpan');
+        return redirect('admin/gaji/periodekaryawan/show/' . $id . '')->with('success', 'Data berhasil disimpan');
     }
 
+    public function stambahaktif($id)
+    {
+        $periode = Gajiperiode::where('uuid', $id)->first();
+        $pegawai = Pegawai::where('status', 'aktif')->get();
+        $gaji = new gaji;
+        $gaji->pegawai_id = $pegawai->id;
+        $gaji->periode_id = $periode->id;
+        $gaji->save();
+
+        return redirect('admin/gaji/periodekaryawan/show/' . $id . '')->with('success', 'Data berhasil disimpan');
+    }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for creating a new resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)

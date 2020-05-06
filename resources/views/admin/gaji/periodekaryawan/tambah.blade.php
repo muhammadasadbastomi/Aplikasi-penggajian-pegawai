@@ -46,14 +46,6 @@
                                     @endforeach
                                 </select>
                                 <div class="form-group">
-                                    <label for="periode">Periode</label>
-                                    <select class="custom-select" name="periode" id="periode">
-                                        @foreach($periode as $d)
-                                        <option value="{{$d->id}}">{{ $d->periode}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="keterangan">Keterangan</label>
                                     <input type="text" name="keterangan" id="keterangan" class="form-control @error ('keterangan') is-invalid @enderror" placeholder="Masukkan Keterangan" value="{{old('keterangan')}}">
                                     @error('Keterangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
