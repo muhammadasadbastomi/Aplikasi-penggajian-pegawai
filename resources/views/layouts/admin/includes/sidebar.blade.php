@@ -65,15 +65,15 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('jabatanIndex')}}" class="nav-link active">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Absensi Pegawai</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a href="{{route('gajiIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Data Gaji Pegawai</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('jabatanIndex')}}" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Data Absensi Pegawai</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -105,7 +105,14 @@
                                 </a>
                             </li>
                             @endif
-
+                            <li class="nav-item">
+                                <a href="{{route('absensiIndex')}}" class="nav-link active">
+                                    <i class="nav-icon fas fa-file-alt"></i>
+                                    <p>
+                                        Data Absensi Pegawai
+                                    </p>
+                                </a>
+                            </li>
                         </ul>
 
                     </nav>

@@ -7,6 +7,7 @@ use App\Pegawai;
 use App\Jabatan;
 use PDF;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class GajiController extends Controller
 {
@@ -17,9 +18,25 @@ class GajiController extends Controller
      */
     public function index()
     {
-        $gaji = Gaji::orderBy('id', 'Desc')->get();
+        $data_gaji = Gaji::orderBy('id', 'Desc')->get();
         $pegawai = Pegawai::orderBy('id', 'Desc')->get();
         $jabatan = Jabatan::orderBy('id', 'Desc')->get();
+        if ($pegawai->count() == 0) {
+            $total = 0;
+        } else {
+
+            foreach ($pegawai as $data) {
+
+                $total = $data->jabatan->gaji_pokok + $data->jabatan->tunjangan;
+            }
+        }
+        $gaji = $pegawai->map(function ($item) use ($total) {
+            $item['total'] = $total;
+            // dd($item);
+            return $item;
+        });
+        // dd($gaji);
+        // dump($luas);
         return view('admin.gaji.index', compact('gaji', 'pegawai', 'jabatan'));
     }
 
