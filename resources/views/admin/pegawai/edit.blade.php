@@ -16,9 +16,8 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
+
 <div class="container-fluid">
-
-
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Edit Data Pegawai - {{$pegawai->nama}}</h5>

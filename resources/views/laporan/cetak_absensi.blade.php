@@ -102,24 +102,35 @@
     </div>
 
     <div class="container">
-        <h2 style="text-align:center;text-transform: uppercase;">laporan golongan</h2>
+        <h2 style="text-align:center;text-transform: uppercase;">laporan absensi</h2>
         <table class='table table-bordered'>
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Golongan</th>
-                    <th>Keterangan</th>
+                    <th>NIK</th>
+                    <th>Nama</th>
+                    <th>Izin</th>
+                    <th>Sakit</th>
+                    <th>Alfa</th>
+                    <th>Hadir</th>
+                    <th>Periode</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($golongan as $d)
+                @foreach($absensi as $d)
                 <tr>
-                    <td class="text-center">{{$loop->iteration}}</td>
-                    <td class="text-center">{{$d->golongan}}</td>
-                    <td class="text-center">{{$d->keterangan}}</td>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{$d->pegawai->nik}}</td>
+                    <td>{{$d->pegawai->nama}}</td>
+                    <td>{{$d->izin}}</td>
+                    <td>{{$d->sakit}}</td>
+                    <td>{{$d->alfa}}</td>
+                    <td>{{$d->hadir}}</td>
+                    <td>{{$d->periode}}</td>
                 </tr>
                 @endforeach
             </tbody>
+
         </table>
         <br>
         <br>
