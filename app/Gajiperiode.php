@@ -6,13 +6,13 @@ use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Golongan extends Model
+class Gajiperiode extends Model
 {
     use Notifiable;
     use Uuid;
 
-    public function gaji()
+    public function pegawai()
     {
-        return $this->belongsToMany(Gaji::class);
+        return $this->belongsToMany(Pegawai::class);
     }
 }

@@ -9,8 +9,8 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('gajiIndex')}}">Data Gaji Pegawai</a></li>
-                    <li class="breadcrumb-item active">Tambah Gaji Data</li>
+                    <li class="breadcrumb-item active"><a href="{{route('periodekaryawanIndex')}}">Data Periode Gaji Karyawan</a></li>
+                    <li class="breadcrumb-item active">Tambah Data Periode Gaji Karyawan</li>
                 </ol>
             </div>
         </div>
@@ -21,7 +21,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Tambah Data Gaji Pegawai</h5>
+            <h5 class="card-title">Tambah Data Gaji Periode Gaji Karyawan</h5>
             <div class="text-right">
 
             </div>
@@ -39,31 +39,43 @@
                         <form role="form" method="post">
                             @csrf
                             <div class="card-body">
+                                <label for="pegawai">Nama Pegawai</label>
+                                <select class="custom-select" name="pegawai" id="pegawai">
+                                    @foreach($pegawai as $d)
+                                    <option value="{{$d->id}}">{{ $d->nama}} {{$d->nik}}</option>
+                                    @endforeach
+                                </select>
                                 <div class="form-group">
-                                    <label for="potongan">Potong</label>
-                                    <input type="text" name="potongan" id="potongan" class="form-control @error ('potongan') is-invalid @enderror" placeholder="Masukkan Nama Depan" value="{{old('potongan')}}">
-                                    @error('Potongan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    <label for="periode">Periode</label>
+                                    <select class="custom-select" name="periode" id="periode">
+                                        @foreach($periode as $d)
+                                        <option value="{{$d->id}}">{{ $d->periode}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="keterangan">Keterangan</label>
-                                    <input type="text" name="keterangan" id="keterangan" class="form-control @error ('keterangan') is-invalid @enderror" placeholder="Masukkan keterangan Depan" value="{{old('keterangan')}}">
+                                    <input type="text" name="keterangan" id="keterangan" class="form-control @error ('keterangan') is-invalid @enderror" placeholder="Masukkan Keterangan" value="{{old('keterangan')}}">
                                     @error('Keterangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                             </div>
                             <!-- /.card-body -->
-
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="{{route('gajiIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
+                                <a href="{{route('periodekaryawanIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
                             </div>
                         </form>
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
         </div>
-        <!-- /.card-body -->
     </div>
+    <!-- /.card -->
+</div>
+</div>
+</div>
+<!-- /.card-body -->
+</div>
 </div>
 @endsection
 @section('script')

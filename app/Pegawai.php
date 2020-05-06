@@ -11,7 +11,7 @@ class Pegawai extends Model
     use Notifiable;
     use Uuid;
     protected $fillable = [
-        'nama', 'nik', 'tempat_lahir', 'tgl_lahir', 'tgl_masuk', 'user_id', 'photos', 'role', 'jabatan_id', 'golongan_id',
+        'nama', 'nik', 'tempat_lahir', 'tgl_lahir', 'tgl_masuk', 'user_id', 'photos', 'role', 'jabatan_id', 'golongan_id', 'status'
     ];
 
     public function user()
@@ -27,5 +27,9 @@ class Pegawai extends Model
     public function golongan()
     {
         return $this->belongsTo(Golongan::class);
+    }
+    public function gajiperiode()
+    {
+        return $this->belongsToMany(Gajiperiode::class);
     }
 }

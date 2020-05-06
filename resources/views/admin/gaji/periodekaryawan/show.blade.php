@@ -8,8 +8,10 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{route('gajiIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item active">Data Gaji Pegawai</li>
+                    <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('periodekaryawanIndex')}}">Data Periode Gaji Karyawan</a></li>
+
+                    <li class="breadcrumb-item active">Tambah Periode Gaji Pegawai</li>
                 </ol>
             </div>
         </div>
@@ -20,11 +22,11 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Data Gaji Pegawai</h5>
+            <h5 class="card-title">Data Gaji Periode Pegawai - </h5>
             <div class="text-right">
-                <a href="{{route('gajiPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a>
-                <a href="{{route('gajiCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah
-                    Data</a>
+                <a href="#" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a>
+                <a href="{{route('periodekaryawanTambah')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah Karyawan</a>
+                <a href="{{route('periodekaryawanTambah')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah Berdasarkan Karyawan Aktif</a>
             </div>
         </div>
         <!-- /.card-header -->
@@ -47,22 +49,22 @@
                                     <th></th>
                             </thead>
                             <tbody>
-                                @foreach ($pegawai as $d)
+                                @foreach ($gaji as $d)
 
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
-                                    <td class="text-center">{{$d->nama}}</td>
-                                    <td class="text-center">{{$d->golongan->golongan}}</td>
-                                    <td class="text-center">{{$d->jabatan->jabatan}}</td>
-                                    <td class="text-center">{{$d->jabatan->gaji_pokok}}</td>
-                                    <td class="text-center">{{$d->jabatan->tunjangan}}</td>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
+                                    <td class="text-center">{{$d->pegawai->nama}}</td>
+                                    <td class="text-center">{{$d->pegawai->golongan->golongan}}</td>
+                                    <td class="text-center">{{$d->pegawai->jabatan->jabatan}}</td>
+                                    <td class="text-center">{{$d->pegawai->jabatan->gaji_pokok}}</td>
+                                    <td class="text-center">{{$d->pegawai->jabatan->tunjangan}}</td>
+                                    <td class="text-center">{{$d->total}}</td>
+                                    <td class="text-center">{{$d->keterangan}}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-xs btn-info text-white" href="{{route('gajiEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit</a>
                                         <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i class="fas fa-trash"></i> Hapus</a>
                                     </td>
                                 </tr>
+
                                 @endforeach
                             </tbody>
                         </table>
