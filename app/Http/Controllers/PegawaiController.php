@@ -81,7 +81,7 @@ class PegawaiController extends Controller
      */
     public function show(Pegawai $pegawai)
     {
-        return view('admin.pegawai.show', compact('pegawai', 'total_members', 'members'));
+        //
     }
 
     /**

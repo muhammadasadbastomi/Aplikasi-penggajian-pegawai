@@ -22,8 +22,7 @@
     <div class="card-header">
       <h5 class="card-title">Data Periode</h5>
       <div class="text-right">
-        {{-- <a href="{{route('periodePdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i
-          class="mdi mdi-add"></i> Export PDF</a> --}}
+        {{-- <a href="{{route('periodePdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a> --}}
         @if(Auth::user()->role == 'admin')
         <a href="{{route('periodeCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah
           Data</a>
@@ -37,13 +36,11 @@
 
         <div class="row">
           <div class="col-sm-12 table-responsive">
-            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid"
-              aria-describedby="example1_info">
+            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
               <thead>
                 <tr role="row">
                   <th class="text-center">No</th>
-                  <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                    aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Periode</th>
+                  <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Periode</th>
                   <th></th>
               </thead>
               <tbody>
@@ -52,12 +49,10 @@
                   <td class="text-center">{{$loop->iteration}}</td>
                   <td class="text-center">{{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</td>
                   <td class="text-center">
-                    <a class="btn btn-xs btn-primary text-white"
-                      href="{{route('absensiUserIndex', ['id' => $d->uuid])}}"><i class="fas fa-eye"></i> Lihat
+                    <a class="btn btn-xs btn-primary text-white" href="{{route('absensiUserIndex', ['id' => $d->uuid])}}"><i class="fas fa-eye"></i> Lihat
                       Absen</a>
                     @if(Auth::user()->role == 'admin')
-                    <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i
-                        class="fas fa-trash"></i> Hapus</a>
+                    <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i class="fas fa-trash"></i> Hapus</a>
                     @else
                     @endif
                   </td>

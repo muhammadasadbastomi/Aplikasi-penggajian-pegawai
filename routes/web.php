@@ -75,12 +75,12 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/admin/gaji/periode/edit/{id}', 'PeriodekaryawanController@edit')->name('GajiperiodeEdit');
     Route::put('/admin/gaji/periode/edit/{id}', 'PeriodekaryawanController@update')->name('GajiperiodeUpdate');
     Route::delete('/admin/gaji/periode/delete/{id}', 'PeriodekaryawanController@delete')->name('GajiperiodeDelete');
-    Route::get('/laporan/cetak_periode', 'PeriodekaryawanController@cetak_pdf')->name('GajiperiodePDF');
 
     Route::get('/admin/gaji/periode/karyawan/index/{id}', 'PeriodekaryawanController@karyawan')->name('lihatkaryawanIndex');
     Route::patch('/admin/gaji/periode/karyawan/index/{id}', 'PeriodekaryawanController@createpegawai')->name('lihatkaryawanIndex');
     Route::put('/admin/gaji/periode/karyawan/index/{id}', 'PeriodekaryawanController@createpegawaiaktif')->name('lihatkaryawanIndex');
     Route::delete('/admin/gaji/periode/karyawan/delete/{id}', 'PeriodekaryawanController@destroy')->name('lihatkaryawanDelete');
+    Route::get('/laporan/cetak_periode', 'PeriodekaryawanController@cetak_pdf')->name('lihatkaryawanPDF');
 
 
     Route::get('/admin/jabatan/index', 'JabatanController@index')->name('jabatanIndex');
