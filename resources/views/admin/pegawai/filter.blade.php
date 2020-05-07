@@ -1,6 +1,7 @@
 @extends('layouts.admin.admin')
 
 @section('content')
+
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -9,19 +10,20 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('gajiIndex')}}">Data Gaji Pegawai</a></li>
-                    <li class="breadcrumb-item active">Tambah Gaji Data</li>
+                    <li class="breadcrumb-item"><a href="{{route('pegawaiIndex')}}">Data Pegawai</a></li>
+                    <li class="breadcrumb-item active">PDF Filter</li>
                 </ol>
             </div>
         </div>
     </div><!-- /.container-fluid -->
 </section>
+
 <div class="container-fluid">
 
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Tambah Data Gaji Pegawai</h5>
+            <h5 class="card-title">Filter PDF</h5>
             <div class="text-right">
 
             </div>
@@ -40,21 +42,28 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="potongan">Potong</label>
-                                    <input type="text" name="potongan" id="potongan" class="form-control @error ('potongan') is-invalid @enderror" placeholder="Masukkan Nama Depan" value="{{old('potongan')}}">
-                                    @error('Potongan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    <label for="pegawai_id">Option</label>
+                                    <select class="custom-select" name="pegawai_id" id="pegawai_id">
+
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="keterangan">Keterangan</label>
-                                    <input type="text" name="keterangan" id="keterangan" class="form-control @error ('keterangan') is-invalid @enderror" placeholder="Masukkan keterangan Depan" value="{{old('keterangan')}}">
-                                    @error('Keterangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    <label for="periode">Periode</label>
+                                    <input type="date" name="periode" id="periode" class="form-control"
+                                        placeholder="Masukkan Periode" value="">
+                                    <div class="invalid-feedback"></div>
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="{{route('gajiIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
+                                <button type="submit" class="btn btn-primary">Cetak</button>
+                                <a href="{{route('absensiIndex')}}" class="btn btn-danger text-white"><i
+                                        class="mdi mdi-back"></i>Batal</a>
                             </div>
                         </form>
                     </div>
@@ -65,7 +74,8 @@
         <!-- /.card-body -->
     </div>
 </div>
+
+
 @endsection
 @section('script')
-
 @endsection

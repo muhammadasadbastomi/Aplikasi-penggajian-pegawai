@@ -21,6 +21,7 @@ class CreatePegawaisTable extends Migration
             $table->unsignedBigInteger('golongan_id');
             $table->string('nik');
             $table->string('nama');
+            $table->enum('status', ['aktif', 'non-aktif'])->default('aktif');
             $table->text('tempat_lahir');
             $table->date('tgl_lahir');
             $table->date('tgl_masuk');

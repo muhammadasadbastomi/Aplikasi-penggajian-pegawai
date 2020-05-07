@@ -64,7 +64,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('gajiIndex')}}" class="nav-link active">
+                                        <a href="{{route('periodekaryawanIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Data Gaji Karyawan</p>
                                         </a>
@@ -72,13 +72,13 @@
                                     <li class="nav-item">
                                         <a href="{{route('periodeIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Absensi Pegawai</p>
+                                            <p>Data Gaji Pegawai</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('gajiIndex')}}" class="nav-link active">
+                                        <a href="{{route('jabatanIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Gaji Pegawai</p>
+                                            <p>Data Absensi Pegawai</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -86,7 +86,7 @@
 
                             <!-- End Sidebar Menu Data Master Admin -->
                             <li class="nav-item">
-                                <a href="{{route('gajiIndex')}}" class="nav-link active">
+                                <a href="#" class="nav-link active">
                                     <i class="nav-icon fas fa-money-check-alt"></i>
                                     <p>
                                         Data Gaji Pegawai
@@ -128,7 +128,14 @@
                                 </ul>
                             </li>
                             @endif
-
+                            <li class="nav-item">
+                                <a href="{{route('absensiIndex')}}" class="nav-link active">
+                                    <i class="nav-icon fas fa-file-alt"></i>
+                                    <p>
+                                        Data Absensi Pegawai
+                                    </p>
+                                </a>
+                            </li>
                         </ul>
 
                     </nav>

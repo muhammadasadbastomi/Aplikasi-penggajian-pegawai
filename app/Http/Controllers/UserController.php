@@ -21,4 +21,8 @@ class UserController extends Controller
         $pegawai = Pegawai::where('uuid', $id)->first();
         return view('admin.user.detail', compact('user', 'pegawai'));
     }
+    public function edit()
+    {
+        return view('admin.user.edit');
+    }
 }

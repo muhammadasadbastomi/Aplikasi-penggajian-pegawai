@@ -115,7 +115,7 @@ class GolonganController extends Controller
     public function cetak_pdf()
     {
         $golongan = Golongan::all();
-        $pdf = PDF::loadview('admin.golongan.cetak_pdf', compact('golongan'));
+        $pdf = PDF::loadview('laporan.cetak_golongan', compact('golongan'));
         return $pdf->stream('laporan-golongan-pdf');
     }
 }

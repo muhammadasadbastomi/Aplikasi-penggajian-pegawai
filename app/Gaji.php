@@ -23,4 +23,8 @@ class Gaji extends Model
     {
         return $this->belongsTo(Pegawai::class);
     }
+    public function gajiperiode()
+    {
+        return $this->belongsToMany(Gajiperiode::class);
+    }
 }

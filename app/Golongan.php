@@ -11,9 +11,8 @@ class Golongan extends Model
     use Notifiable;
     use Uuid;
 
-    // public function member()
-    // {
-    //     return $this->BelongsTo(Member::class);
-    // }
-
+    public function gaji()
+    {
+        return $this->belongsToMany(Gaji::class);
+    }
 }
