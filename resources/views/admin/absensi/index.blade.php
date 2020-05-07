@@ -20,9 +20,11 @@
 
   <div class="card">
     <div class="card-header">
-      <h5 class="card-title">Data Absensi Pegawai</h5>
+      <h5 class="card-title">Data Absensi Pegawai Bulan
+        {{carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
       <div class="text-right">
-        <a href="{{route('absensiPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a>
+        <a href="{{route('absensiPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i
+            class="mdi mdi-add"></i> Export PDF</a>
         <a href="{{route('absensiCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah
           Data</a>
       </div>
@@ -33,17 +35,25 @@
 
         <div class="row">
           <div class="col-sm-12 table-responsive">
-            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
+            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid"
+              aria-describedby="example1_info">
               <thead>
                 <tr role="row">
                   <th>No</th>
-                  <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">NIK</th>
-                  <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
-                  <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Izin</th>
-                  <th class="sorting text-center" tabindex="3" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Sakit</th>
-                  <th class="sorting text-center" tabindex="4" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Alfa</th>
-                  <th class="sorting text-center" tabindex="5" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Hadir</th>
-                  <th class="sorting text-center" tabindex="6" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Periode</th>
+                  <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending">NIK</th>
+                  <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Browser: activate to sort column ascending">Nama</th>
+                  <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending">Izin</th>
+                  <th class="sorting text-center" tabindex="3" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending">Sakit</th>
+                  <th class="sorting text-center" tabindex="4" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending">Alfa</th>
+                  <th class="sorting text-center" tabindex="5" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending">Hadir</th>
+                  <th class="sorting text-center" tabindex="6" aria-controls="example1" rowspan="1" colspan="1"
+                    aria-label="Platform(s): activate to sort column ascending">Periode</th>
                   <th></th>
               </thead>
               <tbody>
@@ -58,8 +68,10 @@
                   <td class="text-center">{{$d->hadir}}</td>
                   <td class="text-center">{{$d->periode}}</td>
                   <td class="text-center">
-                    <a class="btn btn-xs btn-info text-white" href="{{route('absensiEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit</a>
-                    <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i class="fas fa-trash"></i> Hapus</a>
+                    <a class="btn btn-xs btn-info text-white" href="{{route('absensiEdit', ['id' => $d->uuid])}}"><i
+                        class="fas fa-edit"></i> Edit</a>
+                    <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i
+                        class="fas fa-trash"></i> Hapus</a>
                   </td>
                 </tr>
                 @endforeach
