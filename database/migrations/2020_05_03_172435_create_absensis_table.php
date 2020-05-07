@@ -16,12 +16,15 @@ class CreateAbsensisTable extends Migration
         Schema::create('absensis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid')->length(36);
-            $table->integer('pegawai_id');
-            $table->integer('izin')->nullable();
-            $table->integer('sakit')->nullable();
-            $table->integer('alfa')->nullable();
-            $table->integer('hadir')->nullable();
-            $table->date('periode')->nullable();
+            $table->unsignedBigInteger('periode_id');
+            $table->tinyInteger('pegawai_id');
+            $table->tinyInteger('izin')->nullable();
+            $table->tinyInteger('sakit')->nullable();
+            $table->tinyInteger('alfa')->nullable();
+            $table->tinyInteger('hadir')->nullable();
+            $table->tinyInteger('status')->default(0);
+            $table->text('keterangan')->nullable();
+            $table->foreign('periode_id')->references('id')->on('periode')->onDelete('restrict');
             $table->timestamps();
         });
     }
