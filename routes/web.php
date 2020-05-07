@@ -24,6 +24,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route group Admin dan Pegawai Middleware
 Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () {
     Route::get('/admin/index', 'AdminController@index')->name('adminIndex');
+
+    Route::get('/pegawai/periode/index', 'PeriodeController@index')->name('periodeUserIndex');
+    Route::get('/pegawai/periode/detail/{id}', 'PeriodeController@show')->name('periodeUserShow');
+    Route::get('/laporan/cetak_periode', 'PeriodeController@cetak_pdf')->name('periodePdf');
+
+    // route absensi user
+    Route::get('/pegawai/absensi/index/{id}', 'AbsensiController@index')->name('absensiUserIndex');
+    Route::get('/pegawai/absensi/detail/{id}', 'AbsensiController@show')->name('absensiUserShow');
+    Route::get('/pegawai/absensi/hadir', 'AbsensiController@hadir')->name('absensiUserHadir');
+    Route::post('/pegawai/absensi/create', 'AbsensiController@store')->name('absensiUserStore');
+    Route::get('/pegawai/absensi/edit/{id}', 'AbsensiController@edit')->name('absensiUserEdit');
+    Route::put('/pegawai/absensi/edit/{id}', 'AbsensiController@update')->name('absensiUserUpdate');
+    Route::delete('/pegawai/absensi/delete/{id}', 'AbsensiController@destroy')->name('absensiUserDestroy');
+    Route::get('/laporan/cetak_absensi', 'AbsensiController@cetak_pdf')->name('absensiPdf');
+
 });
 
 //Route group Admin Middleware
@@ -38,7 +53,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::delete('/admin/pegawai/delete/{id}', 'PegawaiController@destroy')->name('pegawaiDestroy');
     Route::get('/laporan/cetak_pegawai', 'PegawaiController@cetak_pdf')->name('pegawaiPdf');
 
-    Route::get('/admin/absensi/index', 'AbsensiController@index')->name('absensiIndex');
+    Route::get('/admin/absensi/index/{id}', 'AbsensiController@index')->name('absensiIndex');
     Route::get('/admin/absensi/detail/{id}', 'AbsensiController@show')->name('absensiShow');
     Route::get('/admin/absensi/create', 'AbsensiController@create')->name('absensiCreate');
     Route::post('/admin/absensi/create', 'AbsensiController@store')->name('absensiStore');
@@ -46,6 +61,15 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::put('/admin/absensi/edit/{id}', 'AbsensiController@update')->name('absensiUpdate');
     Route::delete('/admin/absensi/delete/{id}', 'AbsensiController@destroy')->name('absensiDestroy');
     Route::get('/laporan/cetak_absensi', 'AbsensiController@cetak_pdf')->name('absensiPdf');
+
+    Route::get('/admin/periode/index', 'PeriodeController@index')->name('periodeIndex');
+    Route::get('/admin/periode/detail/{id}', 'PeriodeController@show')->name('periodeShow');
+    Route::get('/admin/periode/create', 'PeriodeController@create')->name('periodeCreate');
+    Route::post('/admin/periode/create', 'PeriodeController@store')->name('periodeStore');
+    Route::get('/admin/periode/edit/{id}', 'PeriodeController@edit')->name('periodeEdit');
+    Route::put('/admin/periode/edit/{id}', 'PeriodeController@update')->name('periodeUpdate');
+    Route::delete('/admin/periode/delete/{id}', 'PeriodeController@destroy')->name('periodeDestroy');
+    Route::get('/laporan/cetak_periode', 'PeriodeController@cetak_pdf')->name('periodePdf');
 
     Route::get('/admin/gaji/index', 'GajiController@index')->name('gajiIndex');
     Route::get('/admin/gaji/detail/{id}', 'GajiController@show')->name('gajiShow');
