@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\user;
 use App\pegawai;
+use Hash;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -17,28 +18,31 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $pegawai = pegawai::where('uuid', $id)->first();
+        $user = User::where('uuid', $id)->first();
+        $pegawai = Pegawai::where('user_id', $user->id)->first();
 
         return view('admin.user.profile', compact('user', 'pegawai'));
     }
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user, $id)
     {
         //dd($request->all());
         $messages = [
             'unique' => ':attribute sudah terdaftar.',
-            'required' => ':attribute harus diisi.'
+            'required' => ':attribute harus diisi.',
+            'same' => 'Masukkan :attribute dengan benar.'
         ];
         //dd($request->all());
         $request->validate([
             'nama' => 'required',
             'email' => 'unique:users',
-            'tempat_lahir' => 'required',
+            "konfirmasi_password" => "same:password",
         ], $messages);
+
         // get data by id
         $user = User::where('uuid', $id)->first();
 
         //get pegawai
-        $pegawai = Pegawai::where('id', $user->id)->first();
+        $pegawai = Pegawai::where('user_id', $user->id)->first();
 
         $user->name = $request->nama;
         //cek if exist input email
@@ -56,11 +60,8 @@ class UserController extends Controller
         $user->update();
 
         $pegawai->nama = $request->nama;
-        $pegawai->tempat_lahir = $request->tempat_lahir;
-        $pegawai->tgl_lahir = $request->tgl_lahir;
-        $pegawai->tgl_masuk = $request->tgl_masuk;
         $pegawai->update();
 
-        return redirect()->route('userShow')->with('success', 'Data Berhasil Diubah');
+        return redirect('/admin/user/profile/' . $id . '')->with('success', 'Data Berhasil Diubah!');
     }
 }
