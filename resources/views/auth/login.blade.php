@@ -1,3 +1,4 @@
+@section('title') Login @endsection
 @extends('layouts.login_register')
 
 @section('content')
@@ -36,12 +37,12 @@
                     @enderror
                 </div>
 
-                <!--<div class="contact100-form-checkbox">
+                <div class="contact100-form-checkbox">
                     <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                     <label class="label-checkbox100" for="ckb1">
                         Remember me
                     </label>
-                </div> -->
+                </div>
 
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
