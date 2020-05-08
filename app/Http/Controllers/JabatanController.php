@@ -40,12 +40,16 @@ class JabatanController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'unique' => ':attribute sudah terdaftar.',
+            'required' => ':attribute harus diisi.'
+        ];
         //dd($request->all());
         $request->validate([
-            'jabatan' => 'required',
+            'jabatan' => 'required|unique:jabatans',
             'gaji_pokok' => 'required',
             'tunjangan' => 'required'
-        ]);
+        ], $messages);
 
         // create new object
         $jabatan = new jabatan;
@@ -98,11 +102,15 @@ class JabatanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messages = [
+            'unique' => ':attribute sudah terdaftar.',
+        ];
+        //dd($request->all());
         $request->validate([
             'jabatan' => 'required',
             'gaji_pokok' => 'required',
             'tunjangan' => 'required'
-        ]);
+        ], $messages);
 
         // get data by id
         $jabatan = jabatan::where('uuid', $id)->first();
