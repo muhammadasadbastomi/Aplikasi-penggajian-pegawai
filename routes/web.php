@@ -106,11 +106,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/laporan/cetak_golongan', 'GolonganController@cetak_pdf')->name('golonganPdf');
 
     Route::get('/admin/user/index', 'UserController@index')->name('userIndex');
-    Route::get('/admin/user/detail/{id}', 'UserController@show')->name('userShow');
+    Route::get('/admin/user/profile/{id}', 'UserController@show')->name('userShow');
+    Route::put('/admin/user/profile/{id}', 'UserController@update')->name('userUpdate');
     Route::get('/admin/user/create', 'UserController@create')->name('userCreate');
     Route::post('/admin/user/create', 'UserController@store')->name('userStore');
-    Route::get('/admin/user/edit/{id}', 'UserController@edit')->name('userEdit');
-    Route::put('/admin/user/edit/{id}', 'UserController@update')->name('userUpdate');
     Route::delete('/admin/user/delete/{id}', 'UserController@destroy')->name('userDestroy');
 
     Route::get('/admin/pegawai/filter', 'PegawaiController@filter')->name('pegawaiFilter');

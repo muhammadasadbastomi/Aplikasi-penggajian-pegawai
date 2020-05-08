@@ -136,7 +136,7 @@ class PegawaiController extends Controller
         $user = User::where('id', $pegawai->user_id)->first();
 
         $user->name = $request->nama;
-        //cek if exist input email
+        //cek if exist input password
         if (!$request->email) {
             $user->email = $user->email;
         } else {
@@ -156,7 +156,6 @@ class PegawaiController extends Controller
         $pegawai->nik = $request->nik;
         $pegawai->nama = $request->nama;
         $pegawai->jabatan_id = $request->jabatan_id;
-        $pegawai->status = $request->status;
         $pegawai->tempat_lahir = $request->tempat_lahir;
         $pegawai->tgl_lahir = $request->tgl_lahir;
         $pegawai->tgl_masuk = $request->tgl_masuk;

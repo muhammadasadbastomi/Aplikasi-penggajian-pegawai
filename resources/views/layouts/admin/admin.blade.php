@@ -26,8 +26,7 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet"
-        href="{{asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- JQVMap -->
@@ -44,8 +43,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
-<body class="sidebar-mini layout-fixed text-sm accent-danger control-sidebar-slide-open sidebar-closed sidebar-collapse"
-    data-gr-c-s-loaded="true" style="height: auto;">
+<body class="sidebar-mini layout-fixed text-sm accent-danger control-sidebar-slide-open sidebar-closed sidebar-collapse" data-gr-c-s-loaded="true" style="height: auto;">
     <div class="wrapper">
 
         <!-- Navbar -->

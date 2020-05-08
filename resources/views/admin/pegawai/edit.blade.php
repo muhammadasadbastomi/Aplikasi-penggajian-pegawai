@@ -50,7 +50,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Masukkan Email">
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="{{$pegawai->user->email}}">
                                     <p>Note : Isi Email jika ingin mengubah email</p>
                                 </div>
                                 <div class="form-group">
