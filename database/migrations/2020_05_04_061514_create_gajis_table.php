@@ -16,6 +16,7 @@ class CreateGajisTable extends Migration
         Schema::create('gajis', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid')->length(36);
+            $table->tinyInteger('karyawan_id');
             $table->tinyInteger('pegawai_id');
             $table->tinyInteger('periode_id');
             $table->string('keterangan')->nullable();

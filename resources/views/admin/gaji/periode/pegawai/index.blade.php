@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('periodekaryawanIndex')}}">Data Periode Gaji Karyawan</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('GajiperiodeIndex')}}">Data Periode Gaji</a></li>
                     <li class="breadcrumb-item active">Tambah Periode Gaji Pegawai</li>
                 </ol>
             </div>
@@ -21,12 +21,10 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Data Gaji Periode Pegawai - </h5>
+            <h5 class="card-title">Data Gaji Periode Pegawai - {{$periode->periode}}</h5>
             <div class="text-right">
                 @foreach ($periode1 as $d)
-                <a href="#" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a>
-                <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Karyawan</button>
-                <a href="#" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Tambah Berdasarkan Karyawan Aktif</a>
+                <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Pegawai</button>
                 @endforeach
             </div>
         </div>
@@ -43,6 +41,7 @@
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nama</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Golongan</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jabatan</th>
+                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Gaji Pokok</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Tunjangan</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jumlah</th>
@@ -56,6 +55,7 @@
                                     <td class="text-center">{{$d->pegawai->nama}}</td>
                                     <td class="text-center">{{$d->pegawai->golongan->golongan}}</td>
                                     <td class="text-center">{{$d->pegawai->jabatan->jabatan}}</td>
+                                    <td class="text-center">{{$d->pegawai->status}}</td>
                                     <td class="text-center">{{$d->pegawai->jabatan->gaji_pokok}}</td>
                                     <td class="text-center">{{$d->pegawai->jabatan->tunjangan}}</td>
                                     <td class="text-center">{{$d->total}}</td>
@@ -64,7 +64,6 @@
                                         <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('lihatkaryawanDelete', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus </a>
                                     </td>
                                 </tr>
-
                                 @endforeach
                             </tbody>
                         </table>
@@ -98,16 +97,21 @@
                         @method('patch')
                         @csrf
                         <div class="card-body">
-                            <label for="pegawai">Nama Pegawai</label>
-                            <select class="custom-select" name="pegawai" id="pegawai">
-                                @foreach($pegawai as $d)
-                                <option value="{{$d->id}}">{{ $d->nama}} {{$d->nik}}</option>
-                                @endforeach
-                            </select>
+                            <div class="form-group">
+                                <label for="pegawai">Nama Karyawan</label>
+                                <select class="custom-select" name="pegawai" id="pegawai">
+                                    @foreach($pegawai as $d)
+                                    <option value="{{$d->id}}">{{ $d->nama}} {{$d->nik}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <input selected disabled value type="text" id="keterangan" class="form-control" placeholder="Aktif">
+                            </div>
                             <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
-                                <textarea type="text" name="keterangan" id="keterangan" class="form-control @error ('keterangan') is-invalid @enderror">{{old('keterangan')}}</textarea>
-                                @error('Keterangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                <textarea type="text" name="keterangan" id="keterangan" class="form-control">{{old('keterangan')}}</textarea>
                             </div>
                         </div>
                         <!-- /.card-body -->
@@ -138,7 +142,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{ url('admin/gaji/periodekaryawan/karyawan/delete')}}" + '/' + id,
+                        url: "{{ url('admin/gaji/periode/karyawan/delete')}}" + '/' + id,
                         type: "POST",
                         data: {
                             '_method': 'DELETE',

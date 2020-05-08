@@ -70,18 +70,22 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::delete('/admin/periode/delete/{id}', 'PeriodeController@destroy')->name('periodeDestroy');
     Route::get('/laporan/cetak_periode', 'PeriodeController@cetak_pdf')->name('periodePdf');
 
-    Route::get('/admin/gaji/periode/index', 'PeriodekaryawanController@index')->name('GajiperiodeIndex');
-    Route::post('/admin/gaji/periode/index', 'PeriodekaryawanController@create')->name('GajiperiodeCreate');
-    Route::get('/admin/gaji/periode/edit/{id}', 'PeriodekaryawanController@edit')->name('GajiperiodeEdit');
-    Route::put('/admin/gaji/periode/edit/{id}', 'PeriodekaryawanController@update')->name('GajiperiodeUpdate');
-    Route::delete('/admin/gaji/periode/delete/{id}', 'PeriodekaryawanController@delete')->name('GajiperiodeDelete');
+    Route::get('/admin/gaji/periode/index', 'PeriodegajiController@index')->name('GajiperiodeIndex');
+    Route::post('/admin/gaji/periode/index', 'PeriodegajiController@create')->name('GajiperiodeCreate');
+    Route::get('/admin/gaji/periode/edit/{id}', 'PeriodegajiController@edit')->name('GajiperiodeEdit');
+    Route::put('/admin/gaji/periode/edit/{id}', 'PeriodegajiController@update')->name('GajiperiodeUpdate');
+    Route::delete('/admin/gaji/periode/delete/{id}', 'PeriodegajiController@delete')->name('GajiperiodeDelete');
+    Route::get('/laporan/cetak_periode', 'PeriodegajiController@cetak_pdf')->name('lihatkaryawanPDF');
 
-    Route::get('/admin/gaji/periode/karyawan/index/{id}', 'PeriodekaryawanController@karyawan')->name('lihatkaryawanIndex');
-    Route::patch('/admin/gaji/periode/karyawan/index/{id}', 'PeriodekaryawanController@createpegawai')->name('lihatkaryawanIndex');
-    Route::put('/admin/gaji/periode/karyawan/index/{id}', 'PeriodekaryawanController@createpegawaiaktif')->name('lihatkaryawanIndex');
-    Route::delete('/admin/gaji/periode/karyawan/delete/{id}', 'PeriodekaryawanController@destroy')->name('lihatkaryawanDelete');
-    Route::get('/laporan/cetak_periode', 'PeriodekaryawanController@cetak_pdf')->name('lihatkaryawanPDF');
+    Route::get('/admin/gaji/periode/karyawan/index/{id}', 'PeriodegajiController@karyawan')->name('lihatkaryawanIndex');
+    Route::patch('/admin/gaji/periode/karyawan/index/{id}', 'PeriodegajiController@createkaryawan')->name('lihatkaryawanIndex');
+    Route::delete('/admin/gaji/periode/karyawan/delete/{id}', 'PeriodegajiController@deletekaryawan')->name('lihatkaryawanDelete');
+    Route::get('/laporan/cetak_periode', 'PeriodegajiController@cetak_pdf')->name('lihatkaryawanPDF');
 
+    Route::get('/admin/gaji/periode/pegawai/index/{id}', 'PeriodegajiController@pegawai')->name('lihatpegawaiIndex');
+    Route::patch('/admin/gaji/periode/pegawai/index/{id}', 'PeriodegajiController@createpegawai')->name('lihatpegawaiIndex');
+    Route::delete('/admin/gaji/periode/pegawai/delete/{id}', 'PeriodegajiController@deletepegawai')->name('lihatpegawaiDelete');
+    Route::get('/laporan/cetak_periode', 'PeriodegajiController@cetak_pdf')->name('lihatpegawaiPDF');
 
     Route::get('/admin/jabatan/index', 'JabatanController@index')->name('jabatanIndex');
     Route::get('/admin/jabatan/detail/{id}', 'JabatanController@show')->name('jabatanShow');

@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('GajiperiodeIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item active">Data Periode Gaji Karyawan</li>
+                    <li class="breadcrumb-item active">Data Periode Gaji</li>
                 </ol>
             </div>
         </div>
@@ -20,7 +20,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Data Periode Gaji Karyawan</h5>
+            <h5 class="card-title">Data Periode Gaji</h5>
             <div class="text-right">
                 <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Data Periode</button>
             </div>
@@ -48,7 +48,7 @@
                                     <td class="text-center">{{$d->keterangan}}</td>
                                     <td class="text-center">
                                         <a class="btn btn-xs btn-primary text-white" href="{{route('lihatkaryawanIndex', ['id' => $d->uuid])}}"><i class="fas fa-users"></i> Karyawan</a>
-                                        <a class="btn btn-xs btn-primary text-white" href="{{route('lihatkaryawanIndex', ['id' => $d->uuid])}}"><i class="fas fa-users"></i> Pegawai</a>
+                                        <a class="btn btn-xs btn-primary text-white" href="{{route('lihatpegawaiIndex', ['id' => $d->uuid])}}"><i class="fas fa-users"></i> Pegawai</a>
                                         <a class="btn btn-xs btn-warning text-white" href="{{route('GajiperiodeEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit Periode</a>
                                         <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('GajiperiodeDelete', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus Periode</a>
                                     </td>

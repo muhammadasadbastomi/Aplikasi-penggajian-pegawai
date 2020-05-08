@@ -9,8 +9,8 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('GajiperiodeIndex')}}">Data Periode Gaji Karyawan</a></li>
-                    <li class="breadcrumb-item active">Tambah Periode Gaji Pegawai</li>
+                    <li class="breadcrumb-item"><a href="{{route('GajiperiodeIndex')}}">Data Periode Gaji</a></li>
+                    <li class="breadcrumb-item active">Tambah Periode Gaji Karyawan</li>
                 </ol>
             </div>
         </div>
@@ -21,15 +21,10 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Data Gaji Periode Pegawai - {{$periode->periode}}</h5>
+            <h5 class="card-title">Data Gaji Periode Karyawan - {{$periode->periode}}</h5>
             <div class="text-right">
                 @foreach ($periode1 as $d)
                 <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Karyawan</button>
-                <form role="form" method="post" style="margin-top: 1px;">
-                    @method('put')
-                    @csrf
-                    <a data-id="{{$d->uuid}}" href="{{route('lihatkaryawanIndex', ['id' => $d->uuid])}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Tambah Berdasarkan Karyawan Aktif</a>
-                </form>
                 @endforeach
             </div>
         </div>
@@ -103,7 +98,7 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="pegawai">Nama Pegawai</label>
+                                <label for="pegawai">Nama Karyawan</label>
                                 <select class="custom-select" name="pegawai" id="pegawai">
                                     @foreach($pegawai as $d)
                                     <option value="{{$d->id}}">{{ $d->nama}} {{$d->nik}}</option>

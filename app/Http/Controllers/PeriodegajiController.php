@@ -7,9 +7,9 @@ use App\Gajiperiode;
 use App\Gaji;
 use App\Pegawai;
 use App\Jabatan;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
-class PeriodekaryawanController extends Controller
+class PeriodegajiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -150,7 +150,7 @@ class PeriodekaryawanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function createpegawai(Request $request, $id)
+    public function createkaryawan(Request $request, $id)
     {
         $periode = Gajiperiode::where('uuid', $id)->first();
 
@@ -161,6 +161,81 @@ class PeriodekaryawanController extends Controller
         $gaji->save();
 
         return redirect('admin/gaji/periode/karyawan/index/' . $id . '')->with('success', 'Data berhasil disimpan');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deletekaryawan($id)
+    {
+        $gaji = Gaji::where('uuid', $id)->first();
+
+        $gaji->delete();
+
+        return redirect()->route('GajiperiodeIndex');
+    }
+
+
+
+
+    //-------------------------- Karyawan Controller --------------->
+
+
+
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function pegawai($id)
+    {
+        $periode = Gajiperiode::where('uuid', $id)->first();
+        $periode1 = Gajiperiode::where('uuid', $id)->get();
+        $jabatan = Jabatan::orderBy('id', 'Desc')->get();
+        $gaji = Gaji::where('periode_id', $periode->id)->get();
+        $pegawai = Pegawai::whereIn('status', ['aktif'])->get();
+
+        if ($gaji->count() == 0) {
+            $total = 0;
+        } else {
+
+            foreach ($gaji as $data) {
+
+                $total = $data->pegawai->jabatan->gaji_pokok + $data->pegawai->jabatan->tunjangan;
+            }
+        }
+        $gaji = $gaji->map(function ($item) use ($total) {
+            $item['total'] = $total;
+            // dd($item);
+            return $item;
+        });
+
+        return view('admin.gaji.periode.pegawai.index', compact('gaji', 'periode', 'pegawai', 'item', 'periode1'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function createpegawai(Request $request, $id)
+    {
+        $periode = Gajiperiode::where('uuid', $id)->first();
+
+        $gaji = new gaji;
+        $gaji->pegawai_id = $request->pegawai;
+        $gaji->periode_id = $periode->id;
+        $gaji->keterangan = $request->keterangan;
+        $gaji->save();
+
+        return redirect('admin/gaji/periode/pegawai/index/' . $id . '')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -179,7 +254,7 @@ class PeriodekaryawanController extends Controller
         $gaji->periode_id = $periode->id->all();
         $gaji->save();
         dd($gaji);
-        return redirect('admin/gaji/periode/karyawan/index' . $id . '')->with('success', 'Data berhasil disimpan');
+        return redirect('admin/gaji/periode/pegawai/index' . $id . '')->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -188,7 +263,7 @@ class PeriodekaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deletepegawai($id)
     {
         $gaji = Gaji::where('uuid', $id)->first();
 
