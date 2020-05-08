@@ -40,40 +40,29 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="nik">NIK</label>
-                                    <input type="text" id="nik" name="nik"
-                                        class="form-control @error ('nik') is-invalid @enderror"
-                                        placeholder="Masukkan NIK" value="{{$pegawai->nik}}">
+                                    <input type="text" id="nik" name="nik" class="form-control @error ('nik') is-invalid @enderror" placeholder="Masukkan NIK" value="{{$pegawai->nik}}">
                                     @error('nik')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="nama">Nama Lengkap</label>
-                                    <input type="text" name="nama" id="nama"
-                                        class="form-control @error ('nama') is-invalid @enderror"
-                                        placeholder="Masukkan Nama Lengkap" value="{{$pegawai->user->name}}">
-                                    @error('Nama Lengkap')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    <input type="text" name="nama" id="nama" class="form-control @error ('nama') is-invalid @enderror" placeholder="Masukkan Nama Lengkap" value="{{$pegawai->user->name}}">
+                                    @error('nama')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" id="email"
-                                        class="form-control @error ('email') is-invalid @enderror"
-                                        placeholder="Masukkan Email" value="{{$pegawai->user->email}}">
-                                    @error('Email')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="Masukkan Email">
+                                    <p>Note : Isi Email jika ingin mengubah email</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <p>Note : Isi password jika ingin mengubah password</p>
-                                    <input type="password" name="password" id="password"
-                                        class="form-control @error ('password') is-invalid @enderror"
-                                        placeholder="Masukkan Password">
-                                    @error('Password')<div class=" invalid-feedback"> {{$message}}
-                                    </div>@enderror
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan Password">
+                                    <p>Note : Isi Password jika ingin mengubah password</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="jabatan">Jabatan</label>
                                     <select class="custom-select" name="jabatan_id" id="jabatan_id">
                                         @foreach($jabatan as $d)
-                                        <option value="{{$d->id}}"
-                                            {{ $pegawai->jabatan_id == $d->id ? 'selected' : ''}}>
+                                        <option value="{{$d->id}}" {{ $pegawai->jabatan_id == $d->id ? 'selected' : ''}}>
                                             {{ $d->jabatan}}
                                         </option>
                                         @endforeach
@@ -90,33 +79,34 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select class="custom-select" name="status" id="status">
+                                        @foreach($pegawai1 as $d)
+                                        <option value="{{$d->status}}" selected>Status Sekarang {{$d->status}}</option>
+                                        <option value="aktif">Pilih aktif</option>
+                                        <option value="non-aktif">Pilih non-aktif</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="tempat_lahir">Tempat Lahir</label>
-                                    <input type="text" id="tempat_lahir" name="tempat_lahir"
-                                        class="form-control @error ('tempat_lahir') is-invalid @enderror"
-                                        placeholder="Masukkan Tempat Lahir" value="{{$pegawai->tempat_lahir}}">
+                                    <textarea type="text" id="tempat_lahir" name="tempat_lahir" class="form-control @error ('tempat_lahir') is-invalid @enderror">{{$pegawai->tempat_lahir}} </textarea>
                                     @error('tempat_lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="tgl_lahir">Tanggal Lahir</label>
-                                    <input type="date" id="tgl_lahir" name="tgl_lahir"
-                                        class="form-control @error ('tgl_lahir') is-invalid @enderror"
-                                        value="{{$pegawai->tgl_lahir}}">
-                                    @error('tgl_lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control" value="{{$pegawai->tgl_lahir}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="tgl_masuk">Tanggal Masuk</label>
-                                    <input type="date" id="tgl_masuk" name="tgl_masuk"
-                                        class="form-control @error ('tgl_masuk') is-invalid @enderror"
-                                        value="{{$pegawai->tgl_masuk}}">
-                                    @error('tgl_masuk')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    <input type="date" id="tgl_masuk" name="tgl_masuk" class="form-control" value="{{$pegawai->tgl_masuk}}" required>
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Ubah</button>
-                                <a href="{{route('pegawaiIndex')}}" class="btn btn-danger text-white"><i
-                                        class="mdi mdi-back"></i>Batal</a>
+                                <a href="{{route('pegawaiIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
                             </div>
                         </form>
                     </div>

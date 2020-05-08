@@ -25,7 +25,7 @@
             <div class="text-right">
                 @foreach ($periode1 as $d)
                 <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Karyawan</button>
-                <form role="form" method="post">
+                <form role="form" method="post" style="margin-top: 1px;">
                     @method('put')
                     @csrf
                     <a data-id="{{$d->uuid}}" href="{{route('lihatkaryawanIndex', ['id' => $d->uuid])}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Tambah Berdasarkan Karyawan Aktif</a>

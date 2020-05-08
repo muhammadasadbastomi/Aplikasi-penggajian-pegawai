@@ -7,7 +7,7 @@ use App\Gajiperiode;
 use App\Gaji;
 use App\Pegawai;
 use App\Jabatan;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class PeriodekaryawanController extends Controller
 {
@@ -171,14 +171,13 @@ class PeriodekaryawanController extends Controller
      */
     public function createpegawaiaktif($id)
     {
-        $pegawai = Pegawai::whereIn('status', ['aktif'])->get()->all();
-        $gaji = Gaji::orderBy('id', 'Desc')->get()->all();
+        $periode = Gajiperiode::where('uuid', $id)->first();
+        $pegawai = Pegawai::whereIn('status', ['aktif'])->get();
 
-        $gaji = new Gaji([
-            'pegawai_id' => $pegawai->id,
-            'periode' => $id,
-            $gaji->save()
-        ]);
+        $gaji = new gaji;
+        $gaji->pegawai_id = $pegawai->id->all();
+        $gaji->periode_id = $periode->id->all();
+        $gaji->save();
         dd($gaji);
         return redirect('admin/gaji/periode/karyawan/index' . $id . '')->with('success', 'Data berhasil disimpan');
     }
