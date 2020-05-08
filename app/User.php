@@ -38,6 +38,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function photos()
+    {
+        if (!$this->photos) {
+            return asset('images/default.png');
+        }
+        return asset('images/user/' . $this->photos);
+    }
+
     public function pegawai()
     {
         return $this->belongsTo(Pegawai::class);

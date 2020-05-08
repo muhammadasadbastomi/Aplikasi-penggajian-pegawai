@@ -70,11 +70,6 @@ class PegawaiController extends Controller
         //insert ke table pegawai
         $request->request->add(['user_id' => $user->id]);
         $pegawai = pegawai::create($request->all());
-        if ($request->hasfile('photos')) {
-            $request->file('photos')->move('images/pegawai/', $request->file('photos')->getClientOriginalName());
-            $pegawai->photos = $request->file('photos')->getClientOriginalName();
-            $pegawai->save();
-        }
 
         return redirect('/admin/pegawai/index')->with('success', 'Data berhasil disimpan');
     }

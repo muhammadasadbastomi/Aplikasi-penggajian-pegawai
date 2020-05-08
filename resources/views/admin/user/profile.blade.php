@@ -69,7 +69,7 @@
                                 </ul>
                             </div>
                             <div class="col-5 text-center">
-                                <img src="../../dist/img/user1-128x128.jpg" alt="" class="img-circle img-fluid">
+                                <img src="{{$user->photos()}}" alt="" class="img-circle img-fluid">
                             </div>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
                                 <label for="photos">Photo</label>
                                 <div class="custom-file">
                                     <input type="file" name="photos" class="imgFile custom-file-input @error ('photos') is-invalid @enderror" id="photos" aria-describedby="inputGroupFileAddon04">
-                                    <label class="custom-file-label" for="photos" name="photos" value="{{$user->photos}}"></label>
+                                    <label class="custom-file-label" for="photos" name="photos">{{$user->photos}}</label>
                                     @error('photos')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                             </div>

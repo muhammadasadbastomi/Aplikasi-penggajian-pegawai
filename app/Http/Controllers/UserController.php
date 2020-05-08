@@ -29,13 +29,19 @@ class UserController extends Controller
         $messages = [
             'unique' => ':attribute sudah terdaftar.',
             'required' => ':attribute harus diisi.',
-            'same' => 'Masukkan :attribute dengan benar.'
+            'same' => 'Masukkan :attribute dengan benar.',
+            'file' => 'photo harus berupa :attribute.',
+            'image' => 'file harus berupa :attribute.',
+            'mimes' => 'photo berupa :attribute.'
+
+
         ];
         //dd($request->all());
         $request->validate([
             'nama' => 'required',
             'email' => 'unique:users',
             "konfirmasi_password" => "same:password",
+            'photos' => 'file|image|mimes:jpeg,png,gif',
         ], $messages);
 
         // get data by id
@@ -56,6 +62,12 @@ class UserController extends Controller
             $user->password = $user->password;
         } else {
             $user->password = Hash::make($request->password);
+        }
+        $user->photos = $request->photos;
+        if ($request->hasfile('photos')) {
+            $request->file('photos')->move('images/user/', $request->file('photos')->getClientOriginalName());
+            $user->photos = $request->file('photos')->getClientOriginalName();
+            $user->save();
         }
         $user->update();
 
