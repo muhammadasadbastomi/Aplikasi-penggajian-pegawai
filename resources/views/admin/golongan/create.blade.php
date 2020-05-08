@@ -42,12 +42,11 @@
                                 <div class="form-group">
                                     <label for="golongan">Golongan</label>
                                     <input type="text" name="golongan" id="golongan" class="form-control @error ('golongan') is-invalid @enderror" placeholder="Masukkan Golongan" value="{{old('golongan')}}">
-                                    @error('Golongan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    @error('golongan')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="keterangan">keterangan</label>
-                                    <input type="text" name="keterangan" id="keterangan" class="form-control @error ('keterangan') is-invalid @enderror" placeholder="Masukkan keterangan" value="{{old('keterangan')}}">
-                                    @error('keterangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    <textarea type="text" name="keterangan" id="keterangan" class="form-control" value="{{old('keterangan')}}"> </textarea>
                                 </div>
                             </div>
                             <!-- /.card-body -->
