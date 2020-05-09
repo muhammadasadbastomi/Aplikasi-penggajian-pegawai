@@ -101,6 +101,11 @@
                                 <a id="hadir" disabled="disabled" href="{{route('absensiUserHadir')}}">
                                     <span class="info-box-text text-white">Hadir</span>
                                     <span class="info-box-number text-white">*****</span>
+                                    @if($absensi->hadir == 1 && $absensi->status == 1)
+                                    <h3>✔<sup style="font-size: 20px"></sup></h3>
+                                    @else
+                                    <h3 class="text-body">-</h3>
+                                    @endif
                                 </a>
                             </div>
                             <!-- /.info-box-content -->
@@ -111,9 +116,14 @@
                             <span class="info-box-icon"><i class="far fa-comment"></i></span>
 
                             <div class="info-box-content">
-                                <a href="{{route('absensiUserHadir')}}">
+                                <a href="{{route('absensiUserIzin')}}">
                                     <span class="info-box-text text-white">Izin</span>
                                     <span class="info-box-number text-white">****</span>
+                                    @if($absensi->izin == 1 && $absensi->status == 1)
+                                    <h3>✔<sup style="font-size: 20px"></sup></h3>
+                                    @else
+                                    <h3 class="text-body">-</h3>
+                                    @endif
                                 </a>
                             </div>
                             <!-- /.info-box-content -->
@@ -124,9 +134,14 @@
                             <span class="info-box-icon"><i class="fas fa-tag"></i></span>
 
                             <div class=" info-box-content">
-                                <a href="{{route('absensiUserHadir')}}">
+                                <a>
                                     <span class="info-box-text text-black">Tanpa Keterangan </span>
                                     <span class="info-box-number text-black">*****************</span>
+                                    @if($absensi->alfa == 1 && $absensi->status == 1)
+                                    <h3>✔<sup style="font-size: 20px"></sup></h3>
+                                    @else
+                                    <h3 class="text-body">-</h3>
+                                    @endif
                                 </a>
                             </div>
                             <!-- /.info-box-content -->
@@ -137,9 +152,14 @@
                             <span class="info-box-icon"><i class="far fa-heart"></i></span>
 
                             <div class="info-box-content">
-                                <a href="{{route('absensiUserHadir')}}">
+                                <a href="{{route('absensiUserSakit')}}">
                                     <span class="info-box-text text-white">Sakit</span>
                                     <span class="info-box-number text-white">*****</span>
+                                    @if($absensi->sakit == 1 && $absensi->status == 1)
+                                    <h3>✔<sup style="font-size: 20px"></sup></h3>
+                                    @else
+                                    <h3 class="text-body">-</h3>
+                                    @endif
                                 </a>
                             </div>
                             <!-- /.info-box-content -->
