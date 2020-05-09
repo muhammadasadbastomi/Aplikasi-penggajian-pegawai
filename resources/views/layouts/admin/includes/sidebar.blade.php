@@ -78,7 +78,7 @@
                                 <a href="#" class="nav-link active">
                                     <i class="nav-icon fas fa-money-check-alt"></i>
                                     <p>
-                                        Data Gaji Pegawai
+                                        Slip Gaji Pegawai & Karyawan
                                     </p>
                                 </a>
                             </li>
