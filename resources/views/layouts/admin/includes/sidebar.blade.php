@@ -75,12 +75,6 @@
                                             <p>Data Gaji Pegawai</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('jabatanIndex')}}" class="nav-link active">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Absensi Pegawai</p>
-                                        </a>
-                                    </li>
                                 </ul>
                             </li>
 
@@ -118,24 +112,18 @@
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
-                                <ul class="nav nav-treeview" style="display: block;">
-                                    <li class="nav-item">
-                                        <a href="{{route('periodeUserIndex')}}" class="nav-link active">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Absensi</p>
-                                        </a>
-                                    </li>
-                                </ul>
+
                             </li>
-                            @endif
                             <li class="nav-item">
-                                <a href="{{route('absensiIndex')}}" class="nav-link active">
+                                <a href="{{route('periodeUserIndex')}}" class="nav-link active">
                                     <i class="nav-icon fas fa-file-alt"></i>
                                     <p>
                                         Data Absensi Pegawai
                                     </p>
                                 </a>
                             </li>
+                            @endif
+
                         </ul>
 
                     </nav>
