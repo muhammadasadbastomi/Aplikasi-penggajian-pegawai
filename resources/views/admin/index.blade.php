@@ -90,7 +90,7 @@
                 </div>
             </div>
             <!-- ./col -->
-            @if(Auth::user()->role =='pegawai')
+            @if(Auth::user()->role =='pegawai' && $absensi != null)
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-3 col-6">
