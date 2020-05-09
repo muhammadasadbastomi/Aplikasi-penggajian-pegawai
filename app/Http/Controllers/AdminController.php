@@ -39,18 +39,21 @@ class AdminController extends Controller
                 $day = carbon::now()->format('d');
 
                 if ($cek_absensi == $day) {
-                    if ($absensi->hadir == 1 && $absensi->status == 3
+                    if (
+                        $absensi->hadir == 1 && $absensi->status == 3
                         || $absensi->izin == 1 && $absensi->status == 3
-                        || $absensi->sakit == 1 && $absensi->status == 3) {
+                        || $absensi->sakit == 1 && $absensi->status == 3
+                    ) {
                         $keterangan = 'Menunggu konfirmasi admin';
-                    } elseif ($absensi->hadir == 3 && $absensi->status == 3
+                    } elseif (
+                        $absensi->hadir == 3 && $absensi->status == 3
                         || $absensi->izin == 3 && $absensi->status == 3
-                        || $absensi->sakit == 3 && $absensi->status == 3) {
+                        || $absensi->sakit == 3 && $absensi->status == 3
+                    ) {
                         $keterangan = 'Anda belum melakukan absensi';
                     } else {
                         $keterangan = 'Anda sudah melakukan absensi';
                     }
-
                 }
             }
 

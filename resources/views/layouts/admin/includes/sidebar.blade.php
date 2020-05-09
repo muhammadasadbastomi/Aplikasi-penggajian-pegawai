@@ -6,8 +6,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div
-        class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition">
+    <div class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition">
         <div class="os-resize-observer-host observed">
             <div class="os-resize-observer" style="left: 0px; right: auto;"></div>
         </div>
@@ -16,8 +15,7 @@
         </div>
         <div class="os-content-glue" style="margin: 0px -8px; width: 249px; height: 519px;"></div>
         <div class="os-padding">
-            <div class="os-viewport os-viewport-native-scrollbars-invisible os-viewport-native-scrollbars-overlaid"
-                style="overflow-y: scroll;">
+            <div class="os-viewport os-viewport-native-scrollbars-invisible os-viewport-native-scrollbars-overlaid" style="overflow-y: scroll;">
                 <div class="os-content" style="padding: 0px 8px; height: 100%; width: 100%;">
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -30,8 +28,7 @@
                     </div>
                     <!-- Sidebar Menu Data -->
                     <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column text-sm nav-legacy nav-child-indent"
-                            data-widget="treeview" role="menu" data-accordion="false">
+                        <ul class="nav nav-pills nav-sidebar flex-column text-sm nav-legacy nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
                             <!-- Sidebar Menu Data Master Admin -->
                             @if(auth()->user()->role == 'admin')
                             <li class="nav-item has-treeview menu-open">
@@ -59,6 +56,12 @@
                                         <a href="{{route('pegawaiIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Data Pegawai</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('karyawanIndex')}}" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Data Karyawan</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">

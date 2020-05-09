@@ -18,10 +18,11 @@ class CreatePegawaisTable extends Migration
             $table->string('uuid')->length(36);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('jabatan_id');
-            $table->unsignedBigInteger('golongan_id');
+            $table->unsignedBigInteger('golongan_id')->nullable();
             $table->string('nik');
             $table->string('nama');
-            $table->enum('status', ['aktif', 'non-aktif'])->default('aktif');
+            $table->enum('status', ['Aktif', 'Non-Aktif'])->default('Aktif');
+            $table->enum('pekerja', ['Karyawan', 'Pegawai'])->nullable();
             $table->text('tempat_lahir');
             $table->date('tgl_lahir');
             $table->date('tgl_masuk');

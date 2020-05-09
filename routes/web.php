@@ -56,6 +56,15 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::delete('/admin/pegawai/delete/{id}', 'PegawaiController@destroy')->name('pegawaiDestroy');
     Route::get('/laporan/cetak_pegawai', 'PegawaiController@cetak_pdf')->name('pegawaiPdf');
 
+    Route::get('/admin/karyawan/index', 'karyawanController@index')->name('karyawanIndex');
+    Route::get('/admin/karyawan/detail/{id}', 'karyawanController@show')->name('karyawanShow');
+    Route::get('/admin/karyawan/create', 'karyawanController@create')->name('karyawanCreate');
+    Route::post('/admin/karyawan/create', 'karyawanController@store')->name('karyawanStore');
+    Route::get('/admin/karyawan/edit/{id}', 'karyawanController@edit')->name('karyawanEdit');
+    Route::put('/admin/karyawan/edit/{id}', 'karyawanController@update')->name('karyawanUpdate');
+    Route::delete('/admin/karyawan/delete/{id}', 'karyawanController@destroy')->name('karyawanDestroy');
+    Route::get('/laporan/cetak_karyawan', 'karyawanController@cetak_pdf')->name('karyawanPdf');
+
     Route::get('/admin/absensi/index/{id}', 'AbsensiController@index')->name('absensiIndex');
     Route::get('/admin/absensi/detail/{id}', 'AbsensiController@show')->name('absensiShow');
     Route::get('/admin/absensi/create', 'AbsensiController@create')->name('absensiCreate');
@@ -118,4 +127,5 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::delete('/admin/user/delete/{id}', 'UserController@destroy')->name('userDestroy');
 
     Route::get('/admin/pegawai/filter', 'PegawaiController@filter')->name('pegawaiFilter');
+    Route::get('/admin/karyawan/filter', 'KaryawanController@filter')->name('karyawanFilter');
 });

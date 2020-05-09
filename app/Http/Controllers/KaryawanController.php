@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Golongan;
 use App\Jabatan;
 use App\Pegawai;
 use App\User;
 use Hash;
 use PDF;
-use Illuminate\Http\Request;
 
-class PegawaiController extends Controller
+class KaryawanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +19,9 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $pegawai = Pegawai::whereIn('pekerja', ['pegawai'])->orderBy('id', 'Desc')->get();
+        $karyawan = Pegawai::whereIn('pekerja', ['karyawan'])->orderBy('id', 'Desc')->get();
 
-        return view('admin.pegawai.index', compact('pegawai'));
+        return view('admin.karyawan.index', compact('karyawan'));
     }
 
     /**
@@ -33,15 +33,10 @@ class PegawaiController extends Controller
     {
         $jabatan = Jabatan::orderBy('id', 'asc')->get();
         $golongan = Golongan::orderBy('id', 'asc')->get();
-        return view('admin.pegawai.create', compact('jabatan', 'golongan'));
+        $karyawan = Pegawai::orderBy('id', 'asc')->get();
+        return view('admin.karyawan.create', compact('jabatan', 'golongan', 'karyawan'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //dd($request->all());
@@ -59,6 +54,7 @@ class PegawaiController extends Controller
             'tempat_lahir' => 'required',
         ], $messages);
 
+        dd($request->all());
         //insert ke table users
         $user = new User;
         $user->role = 'pegawai';
@@ -69,47 +65,29 @@ class PegawaiController extends Controller
 
         //insert ke table pegawai
         $request->request->add(['user_id' => $user->id]);
-        $pegawai = pegawai::create($request->all());
+        $request->request->add(['pekerja' => 'Karyawan']);
+        Pegawai::create($request->all());
 
-        return redirect('/admin/pegawai/index')->with('success', 'Data berhasil disimpan');
+        return redirect('/admin/karyawan/index')->with('success', 'Data berhasil disimpan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Pegawai  $pegawai
-     * @return \Illuminate\Http\Response
-     */
     public function show(Pegawai $pegawai)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Pegawai  $pegawai
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Pegawai $pegawai, $id)
     {
         // get jabatan by id
         $jabatan = Jabatan::orderBy('id', 'asc')->get();
         $golongan = golongan::orderBy('id', 'asc')->get();
-        $pegawai = Pegawai::where('uuid', $id)->first();
-        $pegawai1 = Pegawai::where('uuid', $id)->get();
+        $karyawan = Pegawai::where('uuid', $id)->first();
+        $karyawan = Pegawai::where('uuid', $id)->get();
         // dd($golongan);
 
-        return view('admin.pegawai.edit', compact('pegawai', 'jabatan', 'golongan', 'pegawai1'));
+        return view('admin.karyawan.edit', compact('karyawan', 'jabatan', 'golongan', 'pegawai1'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pegawai  $pegawai
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //dd($request->all());
@@ -125,10 +103,10 @@ class PegawaiController extends Controller
             'tempat_lahir' => 'required',
         ], $messages);
         // get data by id
-        $pegawai = pegawai::where('uuid', $id)->first();
+        $karyawan = pegawai::where('uuid', $id)->first();
 
         //get user
-        $user = User::where('id', $pegawai->user_id)->first();
+        $user = User::where('id', $karyawan->user_id)->first();
 
         $user->name = $request->nama;
         //cek if exist input password
@@ -137,7 +115,6 @@ class PegawaiController extends Controller
         } else {
             $user->email = Hash::make($request->email);
         }
-
 
         //cek if exist input password
         if (!$request->password) {
@@ -148,41 +125,35 @@ class PegawaiController extends Controller
 
         $user->update();
 
-        $pegawai->nik = $request->nik;
-        $pegawai->nama = $request->nama;
-        $pegawai->jabatan_id = $request->jabatan_id;
-        $pegawai->tempat_lahir = $request->tempat_lahir;
-        $pegawai->tgl_lahir = $request->tgl_lahir;
-        $pegawai->tgl_masuk = $request->tgl_masuk;
-        $pegawai->update();
+        $karyawan->nik = $request->nik;
+        $karyawan->nama = $request->nama;
+        $karyawan->jabatan_id = $request->jabatan_id;
+        $karyawan->tempat_lahir = $request->tempat_lahir;
+        $karyawan->tgl_lahir = $request->tgl_lahir;
+        $karyawan->tgl_masuk = $request->tgl_masuk;
+        $karyawan->update();
 
         return redirect()->route('pegawaiIndex')->with('success', 'Data Berhasil Diubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Pegawai  $pegawai
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Pegawai $pegawai, $id)
+    public function destroy(Pegawai $karyawan, $id)
     {
-        $pegawai = pegawai::where('uuid', $id)->first();
+        $karyawan = pegawai::where('uuid', $id)->first();
 
         // get user by id
-        $user = User::where('id', $pegawai->user_id)->delete();
+        $user = User::where('id', $karyawan->user_id)->delete();
 
-        return redirect()->route('pegawaiIndex');
+        return redirect()->route('karyawanIndex');
     }
     public function cetak_pdf()
     {
-        $pegawai = Pegawai::all();
+        $karyawan = Pegawai::all();
 
-        $pdf = PDF::loadview('laporan.cetak_pegawai', compact('pegawai'));
-        return $pdf->stream('laporan-pegawai-pdf');
+        $pdf = PDF::loadview('laporan.cetak_karyawan', compact('karyawan'));
+        return $pdf->stream('laporan-karyawan-pdf');
     }
     public function filter()
     {
-        return view('admin.pegawai.filter');
+        return view('admin.karyawan.filter');
     }
 }
