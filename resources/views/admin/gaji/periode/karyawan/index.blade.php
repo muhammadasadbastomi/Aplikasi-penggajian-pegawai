@@ -52,12 +52,12 @@
                                 @foreach ($gaji as $d)
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
-                                    <td class="text-center">{{$d->pegawai->nama}}</td>
-                                    <td class="text-center">{{$d->pegawai->status}}</td>
-                                    <td class="text-center">{{$d->pegawai->pekerja}}</td>
-                                    <td class="text-center">{{$d->pegawai->jabatan->jabatan}}</td>
-                                    <td class="text-center">{{$d->pegawai->jabatan->gaji_pokok}}</td>
-                                    <td class="text-center">{{$d->pegawai->jabatan->tunjangan}}</td>
+                                    <td class="text-center">{{$d->nama}}</td>
+                                    <td class="text-center">{{$d->status}}</td>
+                                    <td class="text-center">{{$d->pekerja}}</td>
+                                    <td class="text-center">{{$d->jabatan}}</td>
+                                    <td class="text-center">{{$d->gaji_pokok}}</td>
+                                    <td class="text-center">{{$d->tunjangan}}</td>
                                     <td class="text-center">{{$d->total}}</td>
                                     <td class="text-center">{{$d->keterangan}}</td>
                                     <td class="text-center">
@@ -153,11 +153,11 @@
                                 icon: 'success',
                                 title: 'Data Berhasil Dihapus',
                                 showConfirmButton: false,
-                                timer: 1500
+                                timer: 1200
                             })
                             setTimeout(function() {
                                 document.location.reload(true);
-                            }, 1000);
+                            }, 800);
                         },
                     })
                 } else if (result.dismiss === swal.DismissReason.cancel) {

@@ -10,7 +10,7 @@
                 @csrf
 
                 <span class="login100-form-logo">
-                    <img src="{{ ('img/bjb.png ') }}" style="width: 60px; heigth:65px;">
+                    <img src="{{ ('img/bjb.png ') }}" style="width: 60px; height:65px;">
                 </span>
 
                 <span class="login100-form-title p-b-34 p-t-27">

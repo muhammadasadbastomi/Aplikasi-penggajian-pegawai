@@ -122,9 +122,13 @@ class PeriodegajiController extends Controller
     {
         $periode = Gajiperiode::where('uuid', $id)->first();
         $periode1 = Gajiperiode::where('uuid', $id)->get();
-        $jabatan = Jabatan::orderBy('id', 'Desc')->get();
-        $gaji = Gaji::where('periode_id', $periode->id)->get();
         $karyawan = Pegawai::whereIn('pekerja', ['Karyawan'])->get();
+        $gaji = Gaji::where('periode_id', $periode->id)
+            ->join('pegawais', 'pegawais.id', '=', 'gajis.pegawai_id')
+            ->join('jabatans', 'jabatans.id', '=', 'pegawais.jabatan_id')
+            ->select('gajis.uuid', 'gajis.keterangan', 'jabatans.gaji_pokok', 'jabatans.tunjangan', 'pegawais.nama', 'pegawais.status', 'pegawais.pekerja', 'jabatans.jabatan')
+            ->whereIn('pekerja', ['Karyawan'])
+            ->get();
 
         if ($gaji->count() == 0) {
             $total = 0;
@@ -132,7 +136,7 @@ class PeriodegajiController extends Controller
 
             foreach ($gaji as $data) {
 
-                $total = $data->pegawai->jabatan->gaji_pokok + $data->pegawai->jabatan->tunjangan;
+                $total = $data->gaji_pokok + $data->tunjangan;
             }
         }
         $gaji = $gaji->map(function ($item) use ($total) {
@@ -141,7 +145,7 @@ class PeriodegajiController extends Controller
             return $item;
         });
 
-        return view('admin.gaji.periode.karyawan.index', compact('gaji', 'periode', 'karyawan', 'item', 'periode1'));
+        return view('admin.gaji.periode.karyawan.index', compact('gaji', 'periode', 'karyawan', 'periode1'));
     }
 
     /**
@@ -171,6 +175,7 @@ class PeriodegajiController extends Controller
      */
     public function deletekaryawan($id)
     {
+
         $gaji = Gaji::where('uuid', $id)->first();
 
         $gaji->delete();
@@ -197,9 +202,14 @@ class PeriodegajiController extends Controller
     {
         $periode = Gajiperiode::where('uuid', $id)->first();
         $periode1 = Gajiperiode::where('uuid', $id)->get();
-        $jabatan = Jabatan::orderBy('id', 'Desc')->get();
-        $gaji = Gaji::where('periode_id', $periode->id)->get();
         $pegawai = Pegawai::whereIn('pekerja', ['Pegawai'])->get();
+        $gaji = Gaji::where('periode_id', $periode->id)
+            ->join('pegawais', 'pegawais.id', '=', 'gajis.pegawai_id')
+            ->join('jabatans', 'jabatans.id', '=', 'pegawais.jabatan_id')
+            ->join('golongans', 'golongans.id', '=', 'pegawais.golongan_id')
+            ->select('gajis.uuid', 'gajis.keterangan', 'jabatans.gaji_pokok', 'jabatans.tunjangan', 'pegawais.nama', 'pegawais.status', 'pegawais.pekerja', 'jabatans.jabatan', 'golongans.golongan')
+            ->whereIn('pekerja', ['Pegawai'])
+            ->get();
 
         if ($gaji->count() == 0) {
             $total = 0;
@@ -207,7 +217,7 @@ class PeriodegajiController extends Controller
 
             foreach ($gaji as $data) {
 
-                $total = $data->pegawai->jabatan->gaji_pokok + $data->pegawai->jabatan->tunjangan;
+                $total = $data->gaji_pokok + $data->tunjangan;
             }
         }
         $gaji = $gaji->map(function ($item) use ($total) {
@@ -216,7 +226,7 @@ class PeriodegajiController extends Controller
             return $item;
         });
 
-        return view('admin.gaji.periode.pegawai.index', compact('gaji', 'periode', 'pegawai', 'item', 'periode1'));
+        return view('admin.gaji.periode.pegawai.index', compact('gaji', 'pegawai', 'periode1', 'periode'));
     }
 
     /**

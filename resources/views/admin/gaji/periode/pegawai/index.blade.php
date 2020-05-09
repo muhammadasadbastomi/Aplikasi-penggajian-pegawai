@@ -39,9 +39,10 @@
                                 <tr role="row">
                                     <th>No</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nama</th>
+                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
+                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status Pekerja</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Golongan</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jabatan</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Gaji Pokok</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Tunjangan</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jumlah</th>
@@ -52,16 +53,17 @@
                                 @foreach ($gaji as $d)
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
-                                    <td class="text-center">{{$d->pegawai->nama}}</td>
-                                    <td class="text-center">{{$d->pegawai->golongan->golongan}}</td>
-                                    <td class="text-center">{{$d->pegawai->jabatan->jabatan}}</td>
-                                    <td class="text-center">{{$d->pegawai->status}}</td>
-                                    <td class="text-center">{{$d->pegawai->jabatan->gaji_pokok}}</td>
-                                    <td class="text-center">{{$d->pegawai->jabatan->tunjangan}}</td>
+                                    <td class="text-center">{{$d->nama}}</td>
+                                    <td class="text-center">{{$d->status}}</td>
+                                    <td class="text-center">{{$d->pekerja}}</td>
+                                    <td class="text-center">{{$d->golongan}}</td>
+                                    <td class="text-center">{{$d->jabatan}}</td>
+                                    <td class="text-center">{{$d->gaji_pokok}}</td>
+                                    <td class="text-center">{{$d->tunjangan}}</td>
                                     <td class="text-center">{{$d->total}}</td>
                                     <td class="text-center">{{$d->keterangan}}</td>
                                     <td class="text-center">
-                                        <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('lihatkaryawanDelete', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus </a>
+                                        <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('lihatpegawaiDelete', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus </a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -87,7 +89,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Gaji Periode Karyawan</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Gaji Periode Pegawai</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -98,7 +100,7 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="pegawai">Nama Karyawan</label>
+                                <label for="pegawai">Nama Pegawai</label>
                                 <select class="custom-select" name="pegawai" id="pegawai">
                                     @foreach($pegawai as $d)
                                     <option value="{{$d->id}}">{{ $d->nama}} {{$d->nik}}</option>
@@ -106,8 +108,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="status">Status</label>
-                                <input selected disabled value type="text" id="keterangan" class="form-control" placeholder="Aktif">
+                                <label for="status">Status Pekerja</label>
+                                <input selected disabled value type="text" id="keterangan" class="form-control" placeholder="Pegawai">
                             </div>
                             <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
@@ -142,7 +144,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{ url('admin/gaji/periode/karyawan/delete')}}" + '/' + id,
+                        url: "{{ url('admin/gaji/periode/pegawai/delete')}}" + '/' + id,
                         type: "POST",
                         data: {
                             '_method': 'DELETE',
