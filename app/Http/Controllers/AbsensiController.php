@@ -19,11 +19,14 @@ class AbsensiController extends Controller
      */
     public function index($id)
     {
-        $periode = Periode::where('uuid', $id)->first();
-        $pegawai = Pegawai::orderBy('id', 'Desc')->get();
-        $absensi = Absensi::orderBy('id', 'Desc')->get();
 
-        return view('admin.absensi.index', compact('absensi', 'pegawai', 'periode'));
+        $periode = Periode::where('uuid', $id)->first();
+        $start_date = Carbon::now()->subDays(7)->format('Y-m-d');
+        $end_date = Carbon::now()->format('Y-m-d');
+
+        $absensi = Absensi::orderBy('tanggal', 'desc')->where('periode_id', $periode->id)->whereBetween('tanggal', [$start_date, $end_date])->get();
+
+        return view('admin.absensi.index', compact('absensi', 'periode'));
     }
 
     /**
@@ -36,47 +39,112 @@ class AbsensiController extends Controller
 
     }
 
+    public function verifikasi($id)
+    {
+        $absensi = Absensi::where('uuid', $id)->first();
+        $absensi->status = 1;
+        $absensi->update();
+
+        return redirect()->back()->with('success', 'Berhasil verifikasi');
+    }
+
     public function hadir()
     {
         $id = Auth::user()->pegawai->id;
         $now = Carbon::now()->format('m');
-        $day = Carbon::now()->format('d');
+        $dateNow = Carbon::now()->format('Y-m-d');
         $periode = Periode::orderBy('created_at', 'desc')->first();
         $month = carbon::parse($periode->periode)->format('m');
 
-        $absensi = Absensi::where('periode_id', $periode->id)->where('pegawai_id', $id)->first();
-        // dd($absensi);
-        if (!$absensi) {
-            if ($now == $month) {
-                $absensi = new Absensi;
-                $absensi->pegawai_id = $id;
-                $absensi->periode_id = $periode->id;
-                $absensi->hadir = 1;
-                $absensi->save();
-                return redirect()->route('adminIndex')->with('success', 'Berhasil absen hari ini, silahkan tunggu verifikasi admin');
+        if ($now == $month) {
+            $absensi = Absensi::where('tanggal', $dateNow)->where('pegawai_id', $id)->first();
+            if ($absensi->hadir == 1
+                || $absensi->izin == 1
+                || $absensi->sakit == 1
+            ) {
+                return redirect()->route('adminIndex')->with('warning', 'Anda sudah melakukan absen hari ini');
 
             } else {
-                return redirect()->route('adminIndex')->with('warning', 'Periode belum dibuat');
-            }
-
-        } else {
-            $cek_absensi = carbon::parse($absensi->created_at)->format('d');
-            if ($now == $month && $cek_absensi != $day) {
-                $absensi = new Absensi;
-                $absensi->pegawai_id = $id;
-                $absensi->periode_id = $periode->id;
                 $absensi->hadir = 1;
-                $absensi->save();
-
+                $absensi->update();
                 return redirect()->route('adminIndex')->with('success', 'Berhasil absen hari ini, silahkan tunggu verifikasi admin');
-            } elseif ($now == $month && $cek_absensi == $day) {
-                return redirect()->route('adminIndex')->with('warning', 'Anda sudah melakukan absensi');
 
-            } elseif ($month != $now) {
-                return redirect()->route('adminIndex')->with('warning', 'Periode belum dibuat');
             }
-
         }
+    }
+
+    public function izin()
+    {
+        $id = Auth::user()->pegawai->id;
+        $dateNow = Carbon::now()->format('Y-m-d');
+
+        $absensi = Absensi::where('tanggal', $dateNow)->where('pegawai_id', $id)->first();
+
+        if ($absensi->hadir == 1
+            || $absensi->izin == 1
+            || $absensi->sakit == 1
+        ) {
+            return redirect()->route('adminIndex')->with('warning', 'Anda sudah melakukan absen hari ini');
+
+        } elseif ($absensi->alfa == 1) {
+            return redirect()->route('adminIndex')->with('warning', 'Anda sudah telat melakukan absen hari ini');
+        } else {
+            $keterangan = 'Izin';
+            return view('admin.absensi.edit', compact('absensi', 'keterangan'));
+        }
+
+    }
+
+    public function izinStore(Request $request)
+    {
+        $id = Auth::user()->pegawai->id;
+        $dateNow = Carbon::now()->format('Y-m-d');
+
+        $absensi = Absensi::where('tanggal', $dateNow)->where('pegawai_id', $id)->first();
+
+        $absensi->izin = 1;
+        $absensi->keterangan = $request->keterangan;
+
+        $absensi->update();
+
+        return redirect()->route('adminIndex')->with('success', 'Berhasil absen hari ini, silahkan tunggu verifikasi admin');
+
+    }
+
+    public function sakit()
+    {
+        $id = Auth::user()->pegawai->id;
+        $dateNow = Carbon::now()->format('Y-m-d');
+
+        $absensi = Absensi::where('tanggal', $dateNow)->where('pegawai_id', $id)->first();
+        if ($absensi->hadir == 1
+            || $absensi->izin == 1
+            || $absensi->sakit == 1
+        ) {
+            return redirect()->route('adminIndex')->with('warning', 'Anda sudah melakukan absen hari ini');
+
+        } elseif ($absensi->alfa == 1) {
+            return redirect()->route('adminIndex')->with('warning', 'Anda sudah telat melakukan absen hari ini');
+        } else {
+            $keterangan = 'Sakit';
+            return view('admin.absensi.edit', compact('absensi', 'keterangan'));
+        }
+
+    }
+
+    public function sakitStore(Request $request)
+    {
+        $id = Auth::user()->pegawai->id;
+        $dateNow = Carbon::now()->format('Y-m-d');
+
+        $absensi = Absensi::where('tanggal', $dateNow)->where('pegawai_id', $id)->first();
+
+        $absensi->sakit = 1;
+        $absensi->keterangan = $request->keterangan;
+
+        $absensi->update();
+
+        return redirect()->route('adminIndex')->with('success', 'Berhasil absen hari ini, silahkan tunggu verifikasi admin');
 
     }
 
@@ -129,10 +197,9 @@ class AbsensiController extends Controller
      */
     public function edit(Absensi $absensi, $id)
     {
-        $pegawai = \App\Pegawai::orderBy('id', 'asc')->get();
         $absensi = absensi::where('uuid', $id)->first();
 
-        return view('admin.absensi.edit', compact('absensi', 'pegawai'));
+        return view('admin.absensi.edit', compact('absensi'));
     }
 
     /**
@@ -142,26 +209,31 @@ class AbsensiController extends Controller
      * @param  \App\Absensi  $absensi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Absensi $absensi, $id)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'izin' => 'required',
-            'sakit' => 'required',
-            'alfa' => 'required',
-            'hadir' => 'required',
-            'periode' => 'required',
-        ]);
 
         // get data by id
         $absensi = absensi::where('uuid', $id)->first();
-        $absensi->izin = $request->izin;
-        $absensi->sakit = $request->sakit;
-        $absensi->alfa = $request->alfa;
-        $absensi->hadir = $request->hadir;
-        $absensi->periode = $request->periode;
+        // dd($absensi);
+        if (isset($request->absensi)) {
+            if ($request->absensi == 1) {
+                $absensi->hadir = 1;
+            } elseif ($request->absensi == 2) {
+                $absensi->izin = 1;
+            } elseif ($request->absensi == 3) {
+                $absensi->sakit = 1;
+            } elseif ($request->absensi == 4) {
+                $absensi->alfa = 1;
+            }
+            if (isset($request->keterangan)) {
+                $absensi->keterangan = $request->keterangan;
+            }
+
+            $absensi->status = 1;
+        }
         $absensi->update();
 
-        return redirect()->route('absensiIndex')->with('success', 'Data Berhasil Diubah');
+        return redirect()->route('absensiIndex', ['id' => $absensi->periode->uuid])->with('success', 'Data Berhasil Diubah');
     }
 
     /**
