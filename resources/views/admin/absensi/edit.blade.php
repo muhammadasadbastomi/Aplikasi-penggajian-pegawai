@@ -9,7 +9,8 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-          <li class="breadcrumb-item active"><a href="{{route('absensiIndex')}}">Data Absensi Pegawai</a></li>
+          <li class="breadcrumb-item active"><a href="{{route('absensiIndex', ['id' => $absensi->periode->uuid])}}">Data
+              Absensi Pegawai</a></li>
           <li class="breadcrumb-item active">Edit Data</li>
         </ol>
       </div>
@@ -21,7 +22,8 @@
 
   <div class="card">
     <div class="card-header">
-      <h5 class="card-title">Edit Data Absensi Pegawai {{$absensi->absensi}}</h5>
+      <h5 class="card-title">Edit Data Absensi Pegawai - {{$absensi->pegawai->nama}} -
+        {{carbon\carbon::parse($absensi->tanggal)->translatedFormat('d F Y')}}</h5>
       <div class="text-right">
 
       </div>
@@ -43,46 +45,59 @@
                 <fieldset disabled>
                   <div class="form-group">
                     <label for="disabledTextInput">Nama Lengkap</label>
-                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{$absensi->pegawai->nama}}">
+                    <input type="text" id="disabledTextInput" class="form-control"
+                      placeholder="{{$absensi->pegawai->nama}}">
                   </div>
                   <div class="form-group">
                     <label for="disabledTextInput">NIK</label>
-                    <input type="text" id="disabledTextInput" class="form-control" placeholder="{{$absensi->pegawai->nik}}">
+                    <input type="text" id="disabledTextInput" class="form-control"
+                      placeholder="{{$absensi->pegawai->nik}}">
                   </div>
                 </fieldset>
+                @if(Auth::user()->role == 'admin')
+                <div class="form-group">
+                  <label for="absensi">Jabatan</label>
+                  <select class="custom-select" name="absensi" id="absensi">
+                    <option>-- Pilih Absensi --</option>
+                    <option value="1" {{ $absensi->hadir == 1 ? 'selected' : ''}}>
+                      Hadir
+                    </option>
+                    <option value="2" {{ $absensi->izin == 1 ? 'selected' : ''}}>
+                      Izin
+                    </option>
+                    <option value="3" {{ $absensi->sakit == 1 ? 'selected' : ''}}>
+                      Sakit
+                    </option>
+                    <option value="4" {{ $absensi->alfa == 1 ? 'selected' : ''}}>
+                      Tanpa Keterangan</option>
+                  </select>
+                </div>
+                <div class="form-group" id="keterangan" style="display : none;">
+                  <label for="keterangan">Keterangan</label>
+                  <input type="text" name="keterangan" id="keterangan"
+                    class="form-control @error ('keterangan') is-invalid @enderror" placeholder="Masukkan Keterangan"
+                    value="{{old('keterangan')}}">
+                  @error('Keterangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                </div>
+                @else
+                <div class="form-group" id="keterangan">
+                  <label for=" keterangan">Keterangan
+                    {{$keterangan}}
+                  </label>
+                  <input type="text" name="keterangan" id="keterangan"
+                    class="form-control @error ('keterangan') is-invalid @enderror"
+                    placeholder="Masukkan Keterangan {{$keterangan}}" value="{{old('keterangan')}}">
+                  @error('Keterangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                </div>
+                @endif
 
-                <div class="form-group">
-                  <label for="izin">Izin</label>
-                  <input type="text" id="izin" name="izin" class="form-control @error ('izin') is-invalid @enderror" placeholder="Masukkan Izin" value="{{$absensi->izin}}">
-                  @error('Izin')<div class="invalid-feedback"> {{$message}} </div>@enderror
-                </div>
-                <div class="form-group">
-                  <label for="sakit">Sakit</label>
-                  <input type="text" id="sakit" name="sakit" class="form-control @error ('sakit') is-invalid @enderror" placeholder="Masukkan Sakit" value="{{$absensi->sakit}}">
-                  @error('Sakit')<div class="invalid-feedback"> {{$message}} </div>@enderror
-                </div>
-                <div class="form-group">
-                  <label for="alfa">Alfa</label>
-                  <input type="text" id="alfa" name="alfa" class="form-control @error ('alfa') is-invalid @enderror" placeholder="Masukkan Alfa" value="{{$absensi->alfa}}">
-                  @error('Alfa')<div class="invalid-feedback"> {{$message}} </div>@enderror
-                </div>
-                <div class="form-group">
-                  <label for="hadir">Hadir</label>
-                  <input type="text" id="hadir" name="hadir" class="form-control @error ('hadir') is-invalid @enderror" placeholder="Masukkan Hadir" value="{{$absensi->hadir}}">
-                  @error('Hadir')<div class="invalid-feedback"> {{$message}} </div>@enderror
-                </div>
-                <div class="form-group">
-                  <label for="periode">Periode</label>
-                  <input type="date" id="periode" name="periode" class="form-control @error ('periode') is-invalid @enderror" value="{{$absensi->periode}}">
-                  @error('Periode')<div class="invalid-feedback"> {{$message}} </div>@enderror
-                </div>
-              </div>
-              <!-- /.card-body -->
+                <!-- /.card-body -->
 
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Ubah</button>
-                <a href="{{route('absensiIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
-              </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Simpan</button>
+                  <a href="{{route('absensiIndex',['id' => $absensi->periode->uuid ])}}"
+                    class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
+                </div>
             </form>
           </div>
           <!-- /.card -->
@@ -94,4 +109,14 @@
 </div>
 @endsection
 @section('script')
+<script>
+  $('#absensi').on("change",function(){
+  let val= $(this). children("option:selected"). val();
+  if(val == 2 || val == 3){
+  $("#keterangan").css("display", "inline");
+  }else{
+  $("#keterangan").css("display", "none");
+  }
+  })
+</script>
 @endsection

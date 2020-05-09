@@ -23,8 +23,9 @@ class CreateAbsensisTable extends Migration
             $table->tinyInteger('alfa')->nullable();
             $table->tinyInteger('hadir')->nullable();
             $table->tinyInteger('status')->default(0);
+            $table->date('tanggal');
             $table->text('keterangan')->nullable();
-            $table->foreign('periode_id')->references('id')->on('periode')->onDelete('restrict');
+            $table->foreign('periode_id')->references('id')->on('periodes')->onDelete('restrict');
             $table->timestamps();
         });
     }

@@ -33,6 +33,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () 
     Route::get('/pegawai/absensi/index/{id}', 'AbsensiController@index')->name('absensiUserIndex');
     Route::get('/pegawai/absensi/detail/{id}', 'AbsensiController@show')->name('absensiUserShow');
     Route::get('/pegawai/absensi/hadir', 'AbsensiController@hadir')->name('absensiUserHadir');
+    Route::get('/pegawai/absensi/izin', 'AbsensiController@izin')->name('absensiUserIzin');
+    Route::put('/pegawai/absensi/izin', 'AbsensiController@izinStore')->name('absensiUserIzinStore');
+    Route::get('/pegawai/absensi/sakit', 'AbsensiController@sakit')->name('absensiUserSakit');
+    Route::put('/pegawai/absensi/sakit', 'AbsensiController@sakitStore')->name('absensiUserSakitStore');
     Route::post('/pegawai/absensi/create', 'AbsensiController@store')->name('absensiUserStore');
     Route::get('/pegawai/absensi/edit/{id}', 'AbsensiController@edit')->name('absensiUserEdit');
     Route::put('/pegawai/absensi/edit/{id}', 'AbsensiController@update')->name('absensiUserUpdate');
@@ -58,6 +62,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::post('/admin/absensi/create', 'AbsensiController@store')->name('absensiStore');
     Route::get('/admin/absensi/edit/{id}', 'AbsensiController@edit')->name('absensiEdit');
     Route::put('/admin/absensi/edit/{id}', 'AbsensiController@update')->name('absensiUpdate');
+    Route::get('/admin/absensi/verifikasi/{id}', 'AbsensiController@verifikasi')->name('absensiVerifikasi');
     Route::delete('/admin/absensi/delete/{id}', 'AbsensiController@destroy')->name('absensiDestroy');
     Route::get('/laporan/cetak_absensi', 'AbsensiController@cetak_pdf')->name('absensiPdf');
 
