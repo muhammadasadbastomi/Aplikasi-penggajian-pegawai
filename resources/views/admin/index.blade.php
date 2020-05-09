@@ -90,7 +90,7 @@
                 </div>
             </div>
             <!-- ./col -->
-            @if(Auth::user()->role =='pegawai')
+            @if(Auth::user()->role =='pegawai' && $absensi != null)
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-3 col-6">
@@ -171,6 +171,7 @@
                 </div>
             </div>
             @else
+            <h2 class="text-danger">Periode belum dibuat</h2>
             @endif
         </div>
         <!-- /.row -->

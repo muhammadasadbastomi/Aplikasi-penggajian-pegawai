@@ -13,30 +13,31 @@ class AdminController extends Controller
     public function index()
     {
         $cek_periode = Periode::orderBy('periode', 'desc')->first();
-        $month = carbon::parse($cek_periode->periode)->format('m');
-        $now = carbon::now()->format('m');
+        if (isset($cek_periode)) {
+            $month = carbon::parse($cek_periode->periode)->format('m');
+            $now = carbon::now()->format('m');
 
-        if (Auth::user()->role == 'pegawai') {
-            if ($month == $now) {
-                $cek = 1;
+            if (Auth::user()->role == 'pegawai') {
+                if ($month == $now) {
+                    $cek = 1;
+                } else {
+                    $cek = 0;
+                }
             } else {
-                $cek = 0;
+                $cek = 2;
             }
-        } else {
-            $cek = 2;
-        }
 
-        if (Auth::user()->role == 'pegawai') {
-            $id = Auth::user()->pegawai->id;
-            $dateNow = Carbon::now()->format('Y-m-d');
-            $absensi = Absensi::where('periode_id', $cek_periode->id)->where('pegawai_id', $id)->where('tanggal', $dateNow)->first();
-            // dd($absensi);
+            if (Auth::user()->role == 'pegawai') {
+                $id = Auth::user()->pegawai->id;
+                $dateNow = Carbon::now()->format('Y-m-d');
+                $absensi = Absensi::where('periode_id', $cek_periode->id)->where('pegawai_id', $id)->where('tanggal', $dateNow)->first();
+                // dd($absensi);
 
-            if (isset($absensi)) {
-                $cek_absensi = carbon::parse($absensi->tanggal)->format('d');
-                // dd($cek_absensi);
-                // dd($cek_periode);
-                $day = carbon::now()->format('d');
+                if (isset($absensi)) {
+                    $cek_absensi = carbon::parse($absensi->tanggal)->format('d');
+                    // dd($cek_absensi);
+                    // dd($cek_periode);
+                    $day = carbon::now()->format('d');
 
                 if ($cek_absensi == $day) {
                     if (
@@ -55,13 +56,18 @@ class AdminController extends Controller
                         $keterangan = 'Anda sudah melakukan absensi';
                     }
                 }
+
+                return view('admin.index', compact('cek', 'keterangan', 'absensi'));
+            } else {
+
+                return view('admin.index', compact('cek'));
             }
-
-            return view('admin.index', compact('cek', 'keterangan', 'absensi'));
-        } else {
-
-            return view('admin.index', compact('cek'));
         }
+        $cek = 2;
+        $keterangan = 'periode belum dibuat';
+        $absensi = null;
+        return view('admin.index', compact('cek', 'keterangan', 'absensi'));
+
     }
 
     // bpk data view
