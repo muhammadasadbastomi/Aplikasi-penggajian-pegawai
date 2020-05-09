@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
         // For example im gonna locale all dates to Indonesian (ID)
         config(['app.locale' => 'id']);
         \Carbon\Carbon::setLocale('id');
+        date_default_timezone_set('Asia/Singapore');
 
     }
 
