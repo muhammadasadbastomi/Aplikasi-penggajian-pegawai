@@ -124,7 +124,7 @@ class PeriodegajiController extends Controller
         $periode1 = Gajiperiode::where('uuid', $id)->get();
         $jabatan = Jabatan::orderBy('id', 'Desc')->get();
         $gaji = Gaji::where('periode_id', $periode->id)->get();
-        $pegawai = Pegawai::whereIn('status', ['aktif'])->get();
+        $karyawan = Pegawai::whereIn('pekerja', ['Karyawan'])->get();
 
         if ($gaji->count() == 0) {
             $total = 0;
@@ -141,7 +141,7 @@ class PeriodegajiController extends Controller
             return $item;
         });
 
-        return view('admin.gaji.periode.karyawan.index', compact('gaji', 'periode', 'pegawai', 'item', 'periode1'));
+        return view('admin.gaji.periode.karyawan.index', compact('gaji', 'periode', 'karyawan', 'item', 'periode1'));
     }
 
     /**
@@ -155,7 +155,7 @@ class PeriodegajiController extends Controller
         $periode = Gajiperiode::where('uuid', $id)->first();
 
         $gaji = new gaji;
-        $gaji->pegawai_id = $request->pegawai;
+        $gaji->pegawai_id = $request->karyawan;
         $gaji->periode_id = $periode->id;
         $gaji->keterangan = $request->keterangan;
         $gaji->save();
@@ -199,7 +199,7 @@ class PeriodegajiController extends Controller
         $periode1 = Gajiperiode::where('uuid', $id)->get();
         $jabatan = Jabatan::orderBy('id', 'Desc')->get();
         $gaji = Gaji::where('periode_id', $periode->id)->get();
-        $pegawai = Pegawai::whereIn('status', ['aktif'])->get();
+        $pegawai = Pegawai::whereIn('pekerja', ['Pegawai'])->get();
 
         if ($gaji->count() == 0) {
             $total = 0;

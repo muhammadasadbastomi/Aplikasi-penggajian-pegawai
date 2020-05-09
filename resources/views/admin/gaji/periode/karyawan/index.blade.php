@@ -39,9 +39,9 @@
                                 <tr role="row">
                                     <th>No</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nama</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Golongan</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jabatan</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
+                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status Pekerja</th>
+                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jabatan</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Gaji Pokok</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Tunjangan</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jumlah</th>
@@ -53,9 +53,9 @@
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td class="text-center">{{$d->pegawai->nama}}</td>
-                                    <td class="text-center">{{$d->pegawai->golongan->golongan}}</td>
-                                    <td class="text-center">{{$d->pegawai->jabatan->jabatan}}</td>
                                     <td class="text-center">{{$d->pegawai->status}}</td>
+                                    <td class="text-center">{{$d->pegawai->pekerja}}</td>
+                                    <td class="text-center">{{$d->pegawai->jabatan->jabatan}}</td>
                                     <td class="text-center">{{$d->pegawai->jabatan->gaji_pokok}}</td>
                                     <td class="text-center">{{$d->pegawai->jabatan->tunjangan}}</td>
                                     <td class="text-center">{{$d->total}}</td>
@@ -98,16 +98,16 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="pegawai">Nama Karyawan</label>
-                                <select class="custom-select" name="pegawai" id="pegawai">
-                                    @foreach($pegawai as $d)
+                                <label for="karyawan">Nama Karyawan</label>
+                                <select class="custom-select" name="karyawan" id="karyawan">
+                                    @foreach($karyawan as $d)
                                     <option value="{{$d->id}}">{{ $d->nama}} {{$d->nik}}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="status">Status</label>
-                                <input selected disabled value type="text" id="keterangan" class="form-control" placeholder="Aktif">
+                                <label for="pekerja">Status Pekerja</label>
+                                <input selected disabled value type="text" id="pekerja" class="form-control" placeholder="Karyawan">
                             </div>
                             <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <!-- /.card-body -->
-                        <div class="modal-footer">
+                        <div class=" modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
