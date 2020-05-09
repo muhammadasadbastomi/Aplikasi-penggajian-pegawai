@@ -18,22 +18,17 @@
                 </span>
 
                 <div class="wrap-input100 validate-input" data-validate="Enter email">
-                    <input id="email" class="input100 @error('email') is-invalid @enderror" type="email" name="email" placeholder="Email">
+                    <input id="email" class="input100 @error('email') is-invalid @enderror" type="email" name="email"
+                        placeholder="Email">
                     <span class="focus-input100" data-placeholder="@"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate="Enter password">
-                    <input id="password" class="input100  @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password" required autocomplete="current-password">
+                    <input id="password" class="input100  @error('password') is-invalid @enderror" type="password"
+                        name="password" placeholder="Password" required autocomplete="current-password">
                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
                 </div>
 
-                <div class="contact100-form-checkbox">
-                    <input class="input-checkbox100" id="remember" type="checkbox" name="remember">
-                    {{ old('remember') ? 'checked' : '' }}
-                    <label class="label-checkbox100" for="remember">
-                        Remember me
-                    </label>
-                </div>
 
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
@@ -51,17 +46,7 @@
                     </ul>
                 </div>
                 @endif
-                <!--End menampilkan error validasi-->
-                <div class="text-left" style="margin-top:80px; padding-left:31px;">
-                    @if (Route::has('password.request'))
-                    <a class="txt2 text-white" href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
-                    @endif
-                </div>
-                <div class="text-center p-t-15">
-                    @if (Route::has('register'))
-                    <a class="txt1" href="{{ route('register') }}">{{ __("Don't Have account? Create your Account Now!") }}</a>
-                    @endif
-                </div>
+
             </form>
         </div>
     </div>
