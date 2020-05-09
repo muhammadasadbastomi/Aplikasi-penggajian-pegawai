@@ -59,6 +59,10 @@
                                     <p>Note : Isi Password jika ingin mengubah password</p>
                                 </div>
                                 <div class="form-group">
+                                    <label for="password-confirm">Konfirmasi Password</label>
+                                    <input id="password-confirm" class="form-control  @error('password-confirm') is-invalid @enderror" type="password" name="password_confirmation" placeholder="Konfirmasi Password" autocomplete="new-password">
+                                </div>
+                                <div class="form-group">
                                     <label for="jabatan">Jabatan</label>
                                     <select class="custom-select" name="jabatan_id" id="jabatan_id">
                                         @foreach($jabatan as $d)
@@ -72,10 +76,10 @@
                                     <label for="golongan">Golongan</label>
                                     <select class="custom-select" name="golongan_id" id="golongan_id">
                                         @foreach($golongan as $d)
-                                        <option value="$d->id" {{ $pegawai->golongan_id == $d->id ? 'selected' : ''}}>
+                                        <option value="{{$d->id}}" {{ $pegawai->golongan_id == $d->id ? 'selected' : ''}}>
                                             {{ $d->golongan}}
-                                            @endforeach
                                         </option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">

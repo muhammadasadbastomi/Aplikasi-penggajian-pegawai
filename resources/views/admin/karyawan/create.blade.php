@@ -56,8 +56,24 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" name="password" id="password" class="form-control @error ('password') is-invalid @enderror" placeholder="Masukkan Password" value="{{old('password')}}">
+                                    <input type="password" name="password" id="password" class="form-control @error ('password') is-invalid @enderror" placeholder="Masukkan Password" value="{{old('password')}}" autocomplete="new-password">
                                     @error('password')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="password-confirm">Konfirmasi Password</label>
+                                    <input id="password-confirm" class="form-control  @error('password-confirm') is-invalid @enderror" type="password" name="password_confirmation" placeholder="Konfirmasi Password" autocomplete="new-password">
+                                    @error('password-confirm')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                </div>
+                                <select hidden class="custom-select" name="pekerja" id="pekerja">
+                                    <option selected value="Karyawan">Karyawan</option>
+                                    <option disabled value="Pegawai">Pegawai</option>
+                                </select>
+                                <div class="form-group">
+                                    <label for="status">status</label>
+                                    <select class="custom-select" name="status" id="status">
+                                        <option selected value="Aktif">Aktif</option>
+                                        <option value="Non-Aktif">Non-Aktif</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="jabatan">Jabatan</label>

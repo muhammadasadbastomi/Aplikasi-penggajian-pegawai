@@ -20,9 +20,7 @@
     <div class="card-header">
       <h5 class="card-title">Data Karyawan</h5>
       <div class="text-right">
-        <a href="{{route('karyawanPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a>
         <a href="{{route('karyawanCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah Data</a>
-        <a href="{{route('karyawanFilter')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>PDF Filter</a>
       </div>
     </div>
     <!-- /.card-header -->
@@ -37,9 +35,9 @@
                   <th>No</th>
                   <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">NIK</th>
                   <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
-                  <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Jabatan</th>
-                  <th class="sorting text-center" tabindex="3" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Golongan</th>
-                  <th class="sorting text-center" tabindex="4" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
+                  <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
+                  <th class="sorting text-center" tabindex="3" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status Pekerja</th>
+                  <th class="sorting text-center" tabindex="4" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Jabatan</th>
                   <th class="sorting text-center" tabindex="5" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tempat Lahir</th>
                   <th class="sorting text-center" tabindex="6" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tanggal Lahir</th>
                   <th class="sorting text-center" tabindex="7" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tanggal Masuk</th>
@@ -51,9 +49,9 @@
                   <td class="text-center">{{$loop->iteration}}</td>
                   <td class="text-center">{{$d->nik}}</td>
                   <td class="text-center">{{$d->nama}}</td>
-                  <td class="text-center">{{$d->jabatan->jabatan}}</td>
-                  <td class="text-center">{{$d->golongan->golongan}}</td>
                   <td class="text-center">{{$d->status}}</td>
+                  <td class="text-center">{{$d->pekerja}}</td>
+                  <td class="text-center">{{$d->jabatan->jabatan}}</td>
                   <td class="text-center">{{$d->tempat_lahir}}</td>
                   <td class="text-center">{{$d->tgl_lahir}}</td>
                   <td class="text-center">{{$d->tgl_masuk}}</td>

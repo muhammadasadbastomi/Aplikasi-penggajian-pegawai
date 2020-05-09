@@ -22,7 +22,7 @@ class CreatePegawaisTable extends Migration
             $table->string('nik');
             $table->string('nama');
             $table->enum('status', ['Aktif', 'Non-Aktif'])->default('Aktif');
-            $table->enum('pekerja', ['Karyawan', 'Pegawai'])->nullable();
+            $table->enum('pekerja', ['Karyawan', 'Pegawai']);
             $table->text('tempat_lahir');
             $table->date('tgl_lahir');
             $table->date('tgl_masuk');

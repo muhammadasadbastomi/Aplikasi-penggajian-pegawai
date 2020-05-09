@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('pegawaiIndex')}}">Data Pegawai</a></li>
+                    <li class="breadcrumb-item active"><a href="{{route('karyawanIndex')}}">Data karyawan</a></li>
                     <li class="breadcrumb-item active">Edit Data</li>
                 </ol>
             </div>
@@ -20,7 +20,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Edit Data Pegawai - {{$pegawai->nama}}</h5>
+            <h5 class="card-title">Edit Data karyawan - {{$karyawan->nama}}</h5>
             <div class="text-right">
 
             </div>
@@ -40,48 +40,37 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="nik">NIK</label>
-                                    <input type="text" id="nik" name="nik" class="form-control @error ('nik') is-invalid @enderror" placeholder="Masukkan NIK" value="{{$pegawai->nik}}">
+                                    <input type="text" id="nik" name="nik" class="form-control @error ('nik') is-invalid @enderror" placeholder="Masukkan NIK" value="{{$karyawan->nik}}">
                                     @error('nik')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="nama">Nama Lengkap</label>
-                                    <input type="text" name="nama" id="nama" class="form-control @error ('nama') is-invalid @enderror" placeholder="Masukkan Nama Lengkap" value="{{$pegawai->user->name}}">
+                                    <input type="text" name="nama" id="nama" class="form-control @error ('nama') is-invalid @enderror" placeholder="Masukkan Nama Lengkap" value="{{$karyawan->user->name}}">
                                     @error('nama')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="{{$pegawai->user->email}}">
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="{{$karyawan->user->email}}">
                                     <p>Note : Isi Email jika ingin mengubah email</p>
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan Password">
+                                    <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan Password" autocomplete="new-password">
+                                    @error('password')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                     <p>Note : Isi Password jika ingin mengubah password</p>
                                 </div>
                                 <div class="form-group">
-                                    <label for="jabatan">Jabatan</label>
-                                    <select class="custom-select" name="jabatan_id" id="jabatan_id">
-                                        @foreach($jabatan as $d)
-                                        <option value="{{$d->id}}" {{ $pegawai->jabatan_id == $d->id ? 'selected' : ''}}>
-                                            {{ $d->jabatan}}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                    <label for="password-confirm">Konfirmasi Password</label>
+                                    <input id="password-confirm" class="form-control  @error('password-confirm') is-invalid @enderror" type="password" name="password_confirmation" placeholder="Konfirmasi Password" autocomplete="new-password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="golongan">Golongan</label>
-                                    <select class="custom-select" name="golongan_id" id="golongan_id">
-                                        @foreach($golongan as $d)
-                                        <option value="$d->id" {{ $pegawai->golongan_id == $d->id ? 'selected' : ''}}>
-                                            {{ $d->golongan}}
-                                            @endforeach
-                                        </option>
-                                    </select>
+                                    <label for="pekerja">Status Pekerja</label>
+                                    <input id="pekerja" class="form-control" type="text " placeholder="{{$karyawan->pekerja}}" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="status">Status</label>
                                     <select class="custom-select" name="status" id="status">
-                                        @foreach($pegawai1 as $d)
+                                        @foreach($karyawan1 as $d)
                                         <option value="{{$d->status}}" selected>Status Sekarang {{$d->status}}</option>
                                         <option value="aktif">Pilih aktif</option>
                                         <option value="non-aktif">Pilih non-aktif</option>
@@ -89,24 +78,34 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="jabatan">Jabatan</label>
+                                    <select class="custom-select" name="jabatan_id" id="jabatan_id">
+                                        @foreach($jabatan as $d)
+                                        <option value="{{$d->id}}" {{ $karyawan->jabatan_id == $d->id ? 'selected' : ''}}>
+                                            {{ $d->jabatan}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="tempat_lahir">Tempat Lahir</label>
-                                    <textarea type="text" id="tempat_lahir" name="tempat_lahir" class="form-control @error ('tempat_lahir') is-invalid @enderror">{{$pegawai->tempat_lahir}} </textarea>
+                                    <textarea type="text" id="tempat_lahir" name="tempat_lahir" class="form-control @error ('tempat_lahir') is-invalid @enderror">{{$karyawan->tempat_lahir}} </textarea>
                                     @error('tempat_lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="tgl_lahir">Tanggal Lahir</label>
-                                    <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control" value="{{$pegawai->tgl_lahir}}" required>
+                                    <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control" value="{{$karyawan->tgl_lahir}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="tgl_masuk">Tanggal Masuk</label>
-                                    <input type="date" id="tgl_masuk" name="tgl_masuk" class="form-control" value="{{$pegawai->tgl_masuk}}" required>
+                                    <input type="date" id="tgl_masuk" name="tgl_masuk" class="form-control" value="{{$karyawan->tgl_masuk}}" required>
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Ubah</button>
-                                <a href="{{route('pegawaiIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
+                                <a href="{{route('karyawanIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
                             </div>
                         </form>
                     </div>
