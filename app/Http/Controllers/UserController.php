@@ -21,7 +21,7 @@ class UserController extends Controller
         $user = User::where('uuid', $id)->first();
         $pegawai = Pegawai::where('user_id', $user->id)->first();
 
-        return view('admin.user.profile', compact('user', 'pegawai'));
+        return view('admin.user.profile', compact('user', 'pegawai', 'karyawan'));
     }
     public function update(Request $request, User $user, $id)
     {

@@ -21,7 +21,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Data Gaji Periode Karyawan - {{$periode->periode}}</h5>
+            <h5 class="card-title">Data Gaji Periode Karyawan - {{\carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
             <div class="text-right">
                 @foreach ($periode1 as $d)
                 <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Karyawan</button>
@@ -153,11 +153,11 @@
                                 icon: 'success',
                                 title: 'Data Berhasil Dihapus',
                                 showConfirmButton: false,
-                                timer: 1200
+                                timer: 800
                             })
                             setTimeout(function() {
                                 document.location.reload(true);
-                            }, 800);
+                            }, 400);
                         },
                     })
                 } else if (result.dismiss === swal.DismissReason.cancel) {

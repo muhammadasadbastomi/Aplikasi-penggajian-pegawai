@@ -44,7 +44,7 @@
 
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
-                                    <td class="text-center">{{$d->periode}}</td>
+                                    <td class="text-center">{{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</td>
                                     <td class="text-center">{{$d->keterangan}}</td>
                                     <td class="text-center">
                                         <a class="btn btn-xs btn-primary text-white" href="{{route('lihatkaryawanIndex', ['id' => $d->uuid])}}"><i class="fas fa-users"></i> Karyawan</a>

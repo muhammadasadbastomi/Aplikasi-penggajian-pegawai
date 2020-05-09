@@ -62,9 +62,14 @@
                             <div class="col-sm-8">
                                 <h3 class="lead"><b>{{$pegawai->nama}}</b></h3>
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
-                                    <li class="small"><span class="fa-li"><i class="fas fa-lg fa-toggle-on"></i></span>&nbsp;Status : {{$pegawai->status}}</li>
+                                    <li class="small"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;{{$pegawai->pekerja}}</li>
+                                    <li class="small" style="margin-top: 6px;"><span class="fa-li"><i class="fas fa-lg fa-toggle-on"></i></span>&nbsp;Status : {{$pegawai->status}}</li>
                                     <li class="small" style="margin-top: 6px;"><span class=" fa-li"><i class="fas fa-id-card"></i></span>&nbsp;NIK : {{$pegawai->nik}}</li>
-                                    <li class="small" style="margin-top: 6px;"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;Golongan : {{$pegawai->golongan->golongan}}</li>
+                                    @if(auth()->user()->pegawai->pekerja=='Pegawai')
+                                    <li class="small"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;Golongan : {{$pegawai->golongan}}</li>
+                                    @else
+                                    <li class="small"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;Golongan : - </li>
+                                    @endif
                                     <li class="small" style="margin-top: 6px;"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;Jabatan : {{$pegawai->jabatan->jabatan}}</li>
                                 </ul>
                             </div>

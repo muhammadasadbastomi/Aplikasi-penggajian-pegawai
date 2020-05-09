@@ -42,6 +42,13 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () 
     Route::put('/pegawai/absensi/edit/{id}', 'AbsensiController@update')->name('absensiUserUpdate');
     Route::delete('/pegawai/absensi/delete/{id}', 'AbsensiController@destroy')->name('absensiUserDestroy');
     Route::get('/laporan/cetak_absensi', 'AbsensiController@cetak_pdf')->name('absensiPdf');
+
+    Route::get('/admin/user/index', 'UserController@index')->name('userIndex');
+    Route::get('/admin/user/profile/{id}', 'UserController@show')->name('userShow');
+    Route::put('/admin/user/profile/{id}', 'UserController@update')->name('userUpdate');
+    Route::get('/admin/user/create', 'UserController@create')->name('userCreate');
+    Route::post('/admin/user/create', 'UserController@store')->name('userStore');
+    Route::delete('/admin/user/delete/{id}', 'UserController@destroy')->name('userDestroy');
 });
 
 //Route group Admin Middleware
@@ -119,12 +126,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::delete('/admin/golongan/delete/{id}', 'GolonganController@destroy')->name('golonganDestroy');
     Route::get('/laporan/cetak_golongan', 'GolonganController@cetak_pdf')->name('golonganPdf');
 
-    Route::get('/admin/user/index', 'UserController@index')->name('userIndex');
-    Route::get('/admin/user/profile/{id}', 'UserController@show')->name('userShow');
-    Route::put('/admin/user/profile/{id}', 'UserController@update')->name('userUpdate');
-    Route::get('/admin/user/create', 'UserController@create')->name('userCreate');
-    Route::post('/admin/user/create', 'UserController@store')->name('userStore');
-    Route::delete('/admin/user/delete/{id}', 'UserController@destroy')->name('userDestroy');
+
 
     Route::get('/admin/pegawai/filter', 'PegawaiController@filter')->name('pegawaiFilter');
     Route::get('/admin/karyawan/filter', 'KaryawanController@filter')->name('karyawanFilter');
