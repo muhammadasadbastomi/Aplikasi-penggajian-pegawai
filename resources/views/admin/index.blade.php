@@ -171,6 +171,7 @@
                 </div>
             </div>
             @else
+            <h2 class="text-danger">Periode belum dibuat</h2>
             @endif
         </div>
         <!-- /.row -->
