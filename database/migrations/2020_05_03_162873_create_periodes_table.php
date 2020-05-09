@@ -16,7 +16,8 @@ class CreatePeriodesTable extends Migration
         Schema::create('periodes', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->length(36);
-            $table->date('periode');
+            $table->date('periode')->unique();
+            $table->string('keterangan')->nullable();
             $table->timestamps();
         });
     }

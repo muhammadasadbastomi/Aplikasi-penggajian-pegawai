@@ -1,9 +1,8 @@
 <aside class="main-sidebar elevation-4 sidebar-dark-danger">
     <!-- Brand Logo -->
     <a href="{{ route('adminIndex') }}" class="brand-link text-sm navbar-secondary">
-        <img src="{{asset('admin/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <img src="{{asset('img/bjb.png')}}" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Dishub Banjarbaru</span>
     </a>
 
     <!-- Sidebar -->
@@ -23,8 +22,7 @@
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="{{asset('admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2"
-                                alt="User Image">
+                            <img src="{{ Auth::user()->photos() }}" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
                             <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -64,15 +62,9 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('periodekaryawanIndex')}}" class="nav-link active">
+                                        <a href="{{route('GajiperiodeIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Gaji Karyawan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('periodeIndex')}}" class="nav-link active">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Gaji Pegawai</p>
+                                            <p>Data Gaji Pegawai & Karyawan</p>
                                         </a>
                                     </li>
                                 </ul>

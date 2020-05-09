@@ -17,17 +17,16 @@
     {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
     {{-- <!-- SweetAlert2 -->
-  <link rel="stylesheet" href="{{asset('admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
     <!-- SweetAlert2 --> --}}
     {{-- <script src="{{asset('admin/plugins/sweetalert2/sweetalert2.min.js')}}"></script> --}}
     {{-- <!-- Toastr -->
-  <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css')}}"> --}}
+    <link rel="stylesheet" href="{{asset('plugins/toastr/toastr.min.css')}}"> --}}
     <!-- DataTables -->
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
     <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet"
-        href="{{asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- JQVMap -->
@@ -42,10 +41,10 @@
     <link rel="stylesheet" href="{{asset('admin/plugins/summernote/summernote-bs4.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    @yield('css')
 </head>
 
-<body class="sidebar-mini layout-fixed text-sm accent-danger control-sidebar-slide-open sidebar-closed sidebar-collapse"
-    data-gr-c-s-loaded="true" style="height: auto;">
+<body class="sidebar-mini layout-fixed text-sm accent-danger control-sidebar-slide-open sidebar-closed sidebar-collapse" data-gr-c-s-loaded="true" style="height: auto;">
     <div class="wrapper">
 
         <!-- Navbar -->

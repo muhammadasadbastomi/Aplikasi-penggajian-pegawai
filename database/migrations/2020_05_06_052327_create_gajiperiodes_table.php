@@ -16,7 +16,7 @@ class CreateGajiperiodesTable extends Migration
         Schema::create('gajiperiodes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid')->length(36);
-            $table->string('periode');
+            $table->string('periode')->unique();
             $table->string('keterangan')->nullable();
             $table->timestamps();
         });

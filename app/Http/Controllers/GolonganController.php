@@ -40,6 +40,14 @@ class GolonganController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            'unique' => ':attribute sudah terdaftar.',
+            'required' => ':attribute harus diisi.'
+        ];
+        //dd($request->all());
+        $request->validate([
+            'golongan' => 'required|unique:golongans'
+        ], $messages);
         // create new object
         $golongan = new golongan;
 
@@ -88,6 +96,13 @@ class GolonganController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $messages = [
+            'required' => ':attribute harus diisi.'
+        ];
+        //dd($request->all());
+        $request->validate([
+            'golongan' => 'required'
+        ], $messages);
         // get data by id
         $golongan = golongan::where('uuid', $id)->first();
 

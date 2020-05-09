@@ -59,7 +59,6 @@ class AdminController extends Controller
 
             return view('admin.index', compact('cek'));
         }
-
     }
 
     // bpk data view

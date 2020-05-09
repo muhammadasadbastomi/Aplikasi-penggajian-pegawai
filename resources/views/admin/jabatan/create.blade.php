@@ -42,17 +42,17 @@
                                 <div class="form-group">
                                     <label for="jabatan">Jabatan</label>
                                     <input type="text" name="jabatan" id="jabatan" class="form-control @error ('jabatan') is-invalid @enderror" placeholder="Masukkan Jabatan" value="{{old('jabatan')}}">
-                                    @error('Jabatan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    @error('jabatan')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="gaji_pokok">Gaji Pokok</label>
                                     <input type="text" name="gaji_pokok" id="gaji_pokok" class="form-control @error ('gaji_pokok') is-invalid @enderror" placeholder="Masukkan Gaji Pokok" value="{{old('gaji_pokok')}}">
-                                    @error('gaji_Pokok')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    @error('gaji_pokok')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="tunjangan">Tunjangan</label>
                                     <input type="text" name="tunjangan" id="tunjangan" class="form-control @error ('tunjangan') is-invalid @enderror" placeholder="Masukkan Tunjangan" value="{{old('tunjangan')}}">
-                                    @error('Tunjangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    @error('tunjangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                             </div>
                             <!-- /.card-body -->

@@ -45,13 +45,19 @@ class PegawaiController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
+        $messages = [
+            'unique' => ':attribute sudah terdaftar.',
+            'email' => ':attribute harus benar.',
+            'required' => ':attribute harus diisi.'
+        ];
+        //dd($request->all());
         $request->validate([
             'nik' => 'required',
             'nama' => 'required',
+            'email' => 'email|unique:users',
+            'password' => 'required',
             'tempat_lahir' => 'required',
-            'tgl_lahir' => 'required',
-            'tgl_masuk' => 'required',
-        ]);
+        ], $messages);
 
         //insert ke table users
         $user = new User;
@@ -64,11 +70,6 @@ class PegawaiController extends Controller
         //insert ke table pegawai
         $request->request->add(['user_id' => $user->id]);
         $pegawai = pegawai::create($request->all());
-        if ($request->hasfile('photos')) {
-            $request->file('photos')->move('images/pegawai/', $request->file('photos')->getClientOriginalName());
-            $pegawai->photos = $request->file('photos')->getClientOriginalName();
-            $pegawai->save();
-        }
 
         return redirect('/admin/pegawai/index')->with('success', 'Data berhasil disimpan');
     }
@@ -81,7 +82,7 @@ class PegawaiController extends Controller
      */
     public function show(Pegawai $pegawai)
     {
-        return view('admin.pegawai.show', compact('pegawai', 'total_members', 'members'));
+        //
     }
 
     /**
@@ -95,10 +96,11 @@ class PegawaiController extends Controller
         // get jabatan by id
         $jabatan = Jabatan::orderBy('id', 'asc')->get();
         $golongan = golongan::orderBy('id', 'asc')->get();
-        $pegawai = pegawai::where('uuid', $id)->first();
+        $pegawai = Pegawai::where('uuid', $id)->first();
+        $pegawai1 = Pegawai::where('uuid', $id)->get();
         // dd($golongan);
 
-        return view('admin.pegawai.edit', compact('pegawai', 'jabatan', 'golongan'));
+        return view('admin.pegawai.edit', compact('pegawai', 'jabatan', 'golongan', 'pegawai1'));
     }
 
     /**
@@ -110,6 +112,18 @@ class PegawaiController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->all());
+        $messages = [
+            'unique' => ':attribute sudah terdaftar.',
+            'required' => ':attribute harus diisi.'
+        ];
+        //dd($request->all());
+        $request->validate([
+            'nik' => 'required',
+            'nama' => 'required',
+            'email' => 'unique:users',
+            'tempat_lahir' => 'required',
+        ], $messages);
         // get data by id
         $pegawai = pegawai::where('uuid', $id)->first();
 
@@ -117,7 +131,13 @@ class PegawaiController extends Controller
         $user = User::where('id', $pegawai->user_id)->first();
 
         $user->name = $request->nama;
-        $user->email = $request->email;
+        //cek if exist input password
+        if (!$request->email) {
+            $user->email = $user->email;
+        } else {
+            $user->email = Hash::make($request->email);
+        }
+
 
         //cek if exist input password
         if (!$request->password) {

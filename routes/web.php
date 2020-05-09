@@ -42,7 +42,6 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () 
     Route::put('/pegawai/absensi/edit/{id}', 'AbsensiController@update')->name('absensiUserUpdate');
     Route::delete('/pegawai/absensi/delete/{id}', 'AbsensiController@destroy')->name('absensiUserDestroy');
     Route::get('/laporan/cetak_absensi', 'AbsensiController@cetak_pdf')->name('absensiPdf');
-
 });
 
 //Route group Admin Middleware
@@ -76,19 +75,22 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::delete('/admin/periode/delete/{id}', 'PeriodeController@destroy')->name('periodeDestroy');
     Route::get('/laporan/cetak_periode', 'PeriodeController@cetak_pdf')->name('periodePdf');
 
-    Route::get('/admin/gaji/periodekaryawan/index', 'PeriodekaryawanController@indexperiode')->name('periodekaryawanIndex');
-    Route::get('/admin/gaji/periodekaryawan/show/{id}', 'PeriodekaryawanController@show')->name('periodekaryawanShow');
-    Route::get('/admin/gaji/periodekaryawan/create', 'PeriodekaryawanController@create')->name('periodekaryawanCreate');
-    Route::post('/admin/gaji/periodekaryawan/create', 'PeriodekaryawanController@store')->name('periodekaryawanStore');
-    Route::get('/admin/gaji/periodekaryawan/tambah/{id}', 'PeriodekaryawanController@tambah')->name('periodekaryawanTambah');
-    Route::post('/admin/gaji/periodekaryawan/tambah/{id}', 'PeriodekaryawanController@stambah')->name('periodekaryawanStamsbah');
+    Route::get('/admin/gaji/periode/index', 'PeriodegajiController@index')->name('GajiperiodeIndex');
+    Route::post('/admin/gaji/periode/index', 'PeriodegajiController@create')->name('GajiperiodeCreate');
+    Route::get('/admin/gaji/periode/edit/{id}', 'PeriodegajiController@edit')->name('GajiperiodeEdit');
+    Route::put('/admin/gaji/periode/edit/{id}', 'PeriodegajiController@update')->name('GajiperiodeUpdate');
+    Route::delete('/admin/gaji/periode/delete/{id}', 'PeriodegajiController@delete')->name('GajiperiodeDelete');
+    Route::get('/laporan/cetak_periode', 'PeriodegajiController@cetak_pdf')->name('lihatkaryawanPDF');
 
-    Route::post('/admin/gaji/periodekaryawan/tambahaktif/{id}', 'PeriodekaryawanController@stambahaktif')->name('periodekaryawanTambahaktif');
+    Route::get('/admin/gaji/periode/karyawan/index/{id}', 'PeriodegajiController@karyawan')->name('lihatkaryawanIndex');
+    Route::patch('/admin/gaji/periode/karyawan/index/{id}', 'PeriodegajiController@createkaryawan')->name('lihatkaryawanIndex');
+    Route::delete('/admin/gaji/periode/karyawan/delete/{id}', 'PeriodegajiController@deletekaryawan')->name('lihatkaryawanDelete');
+    Route::get('/laporan/cetak_periode', 'PeriodegajiController@cetak_pdf')->name('lihatkaryawanPDF');
 
-    Route::get('/admin/gaji/periodekaryawan/edit/{id}', 'PeriodekaryawanController@edit')->name('periodekaryawanEdit');
-    Route::put('/admin/gaji/periodekaryawan/edit/{id}', 'PeriodekaryawanController@update')->name('periodekaryawanUpdate');
-    Route::delete('/admin/gaji/periodekaryawan/delete/{id}', 'PeriodekaryawanController@destroy')->name('periodekaryawanDestroy');
-    Route::get('/laporan/cetak_periode', 'PeriodekaryawanController@cetak_pdf')->name('periodekaryawanPdf');
+    Route::get('/admin/gaji/periode/pegawai/index/{id}', 'PeriodegajiController@pegawai')->name('lihatpegawaiIndex');
+    Route::patch('/admin/gaji/periode/pegawai/index/{id}', 'PeriodegajiController@createpegawai')->name('lihatpegawaiIndex');
+    Route::delete('/admin/gaji/periode/pegawai/delete/{id}', 'PeriodegajiController@deletepegawai')->name('lihatpegawaiDelete');
+    Route::get('/laporan/cetak_periode', 'PeriodegajiController@cetak_pdf')->name('lihatpegawaiPDF');
 
     Route::get('/admin/jabatan/index', 'JabatanController@index')->name('jabatanIndex');
     Route::get('/admin/jabatan/detail/{id}', 'JabatanController@show')->name('jabatanShow');
@@ -109,11 +111,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/laporan/cetak_golongan', 'GolonganController@cetak_pdf')->name('golonganPdf');
 
     Route::get('/admin/user/index', 'UserController@index')->name('userIndex');
-    Route::get('/admin/user/detail/{id}', 'UserController@show')->name('userShow');
+    Route::get('/admin/user/profile/{id}', 'UserController@show')->name('userShow');
+    Route::put('/admin/user/profile/{id}', 'UserController@update')->name('userUpdate');
     Route::get('/admin/user/create', 'UserController@create')->name('userCreate');
     Route::post('/admin/user/create', 'UserController@store')->name('userStore');
-    Route::get('/admin/user/edit/{id}', 'UserController@edit')->name('userEdit');
-    Route::put('/admin/user/edit/{id}', 'UserController@update')->name('userUpdate');
     Route::delete('/admin/user/delete/{id}', 'UserController@destroy')->name('userDestroy');
 
     Route::get('/admin/pegawai/filter', 'PegawaiController@filter')->name('pegawaiFilter');

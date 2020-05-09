@@ -9,8 +9,8 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('periodekaryawanIndex')}}">Data Periode Gaji Karyawan</a></li>
-                    <li class="breadcrumb-item active">Tambah Data Periode Gaji Karyawan</li>
+                    <li class="breadcrumb-item active"><a href="{{route('GajiperiodeIndex')}}">Data Periode Karyawan</a></li>
+                    <li class="breadcrumb-item active">Edit Data Periode Karyawan</li>
                 </ol>
             </div>
         </div>
@@ -21,7 +21,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Tambah Data Gaji Periode Gaji Karyawan</h5>
+            <h5 class="card-title">Edit Data Periode Karyawan - {{$periode->periode}}</h5>
             <div class="text-right">
 
             </div>
@@ -37,24 +37,24 @@
                         <!-- /.card-header -->
                         <!-- form start -->
                         <form role="form" method="post">
+                            {{method_field('PUT')}}
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
+                                <div class="form-group col-md-2">
                                     <label for="periode">Periode</label>
-                                    <input type="month" name="periode" id="periode" class="form-control @error ('periode') is-invalid @enderror" placeholder="Masukkan Periode" value="{{old('periode')}}">
-                                    @error('Periode')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    <input type="month" id="periode" name="periode" class="form-control @error ('periode') is-invalid @enderror" placeholder="Masukkan Periode" value="{{$periode->periode}}">
+                                    @error('periode')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group  col-md-3">
                                     <label for="keterangan">Keterangan</label>
-                                    <input type="text" name="keterangan" id="keterangan" class="form-control @error ('keterangan') is-invalid @enderror" placeholder="Masukkan keterangan" value="{{old('keterangan')}}">
-                                    @error('Keterangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                    <textarea id="keterangan" name="keterangan" class="form-control"> {{$periode->keterangan}}</textarea>
                                 </div>
                             </div>
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="{{route('periodekaryawanIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
+                                <button type="submit" class="btn btn-primary">Ubah</button>
+                                <a href="{{route('GajiperiodeIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
                             </div>
                         </form>
                     </div>
@@ -67,5 +67,4 @@
 </div>
 @endsection
 @section('script')
-
 @endsection

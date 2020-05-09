@@ -12,9 +12,20 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
+
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+        $messages = [
+            'email' => ':attribute harus benar.',
+            'required' => ':attribute harus diisi.',
+            'min' => ':attribute minimal harus 5 karakter.'
+        ];
+        $request->validate([
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string', 'min:5'],
+        ], $messages);
+
+        if (!$request->expectsJson()) {
             return route('login');
         }
     }
