@@ -170,8 +170,10 @@
                     </div>
                 </div>
             </div>
+            @elseif(Auth::user()->role == 'admin')
             @else
             <h2 class="text-danger">Periode belum dibuat</h2>
+
             @endif
         </div>
         <!-- /.row -->
