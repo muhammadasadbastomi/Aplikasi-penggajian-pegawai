@@ -88,7 +88,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="Periode">Periode</label>
-                                <input type="month" name="periode" id="periode" class="form-control @error ('periode') is-invalid @enderror" placeholder="Masukkan Periode" value="{{old('periode')}}">
+                                <input type="date" name="periode" id="periode" class="form-control @error ('periode') is-invalid @enderror" placeholder="Masukkan Periode" value="{{old('periode')}}">
                                 @error('periode')<div class="invalid-feedback"> {{$message}} </div>@enderror
                             </div>
                             <div class="form-group">
