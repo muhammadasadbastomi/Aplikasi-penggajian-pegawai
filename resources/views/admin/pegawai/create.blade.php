@@ -92,6 +92,11 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="alamat">Alamat</label>
+                                    <textarea type="text" name="alamat" id="alamat" class="form-control @error ('alamat') is-invalid @enderror"> {{old('alamat')}}</textarea>
+                                    @error('alamat')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                </div>
+                                <div class="form-group">
                                     <label for="tempat_lahir">Tempat Lahir</label>
                                     <textarea type="text" name="tempat_lahir" id="tempat_lahir" class="form-control @error ('tempat_lahir') is-invalid @enderror"> {{old('tempat_lahir')}}</textarea>
                                     @error('tempat_lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror

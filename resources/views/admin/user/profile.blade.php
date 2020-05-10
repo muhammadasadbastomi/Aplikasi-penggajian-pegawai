@@ -101,42 +101,30 @@
                 <!-- About Me Box -->
                 <div class="card card-gray">
                     <div class="card-header">
-                        @if(auth()->user()->role=='pegawai')
-                        <h3 class="card-title">About {{$pegawai->nama}} </h3>
-                        @else
-                        <h3 class="card-title">About {{$user->name}}</h3>
-                        @endif
+                        <h3 class="card-title">About</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         @if(auth()->user()->role=='pegawai')
                         <p><strong><i class="fas fa-calendar-alt mr-1"></i> Tanggal Masuk</strong> : {{$pegawai->tgl_masuk}}</p>
-
                         <hr>
-
                         <p><strong><i class="fas fa-at mr-1"></i> Email</strong> : {{$pegawai->user->email}}</p>
-
                         <hr>
-
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat</strong> : <p style="margin: 12px; "> {{$pegawai->alamat}}</p>
+                        <hr>
                         <p><strong><i class="fas fa-calendar-alt mr-1"></i> Tanggal Lahir</strong> : {{$pegawai->tgl_lahir}}</p>
-
                         <hr>
-
-                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat</strong> : <p style="margin: 12px; "> {{$pegawai->tempat_lahir}}</p>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Tempat Lahir</strong> : <p style="margin: 12px; "> {{$pegawai->tempat_lahir}}</p>
                         @else
                         <p><strong><i class="fas fa-calendar-alt mr-1"></i> Tanggal Masuk</strong> : - </p>
-
                         <hr>
-
                         <p><strong><i class="fas fa-at mr-1"></i> Email</strong> : - </p>
-
                         <hr>
-
-                        <p><strong><i class="fas fa-calendar-alt mr-1"></i> Tanggal Lahir</strong> : - </p>
-
-                        <hr>
-
                         <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat</strong> : <p style="margin: 12px; "> - </p>
+                        <hr>
+                        <p><strong><i class="fas fa-calendar-alt mr-1"></i> Tanggal Lahir</strong> : - </p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Tempat Lahir</strong> : <p style="margin: 12px; "> - </p>
                         @endif
                     </div>
                     <!-- /.card-body -->

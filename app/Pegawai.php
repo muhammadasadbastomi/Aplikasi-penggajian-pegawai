@@ -11,7 +11,7 @@ class Pegawai extends Model
     use Notifiable;
     use Uuid;
     protected $fillable = [
-        'nama', 'nik', 'tempat_lahir', 'tgl_lahir', 'tgl_masuk', 'user_id', 'photos', 'role', 'jabatan_id', 'golongan_id', 'status', 'pekerja'
+        'nama', 'nik', 'tempat_lahir', 'tgl_lahir', 'tgl_masuk', 'user_id', 'photos', 'role', 'jabatan_id', 'golongan_id', 'status', 'pekerja', 'alamat'
     ];
 
     public function user()

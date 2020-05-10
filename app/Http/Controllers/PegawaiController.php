@@ -158,6 +158,7 @@ class PegawaiController extends Controller
         $pegawai->jabatan_id = $request->jabatan_id;
         $pegawai->golongan_id = $request->golongan_id;
         $pegawai->tempat_lahir = $request->tempat_lahir;
+        $pegawai->alamat = $request->alamat;
         $pegawai->tgl_lahir = $request->tgl_lahir;
         $pegawai->tgl_masuk = $request->tgl_masuk;
         $pegawai->update();

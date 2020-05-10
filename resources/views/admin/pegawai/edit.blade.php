@@ -98,6 +98,11 @@
                                     @error('tempat_lahir')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="alamat">Alamat</label>
+                                    <textarea type="text" id="alamat" name="alamat" class="form-control @error ('alamat') is-invalid @enderror">{{$pegawai->alamat}} </textarea>
+                                    @error('alamat')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                                </div>
+                                <div class="form-group">
                                     <label for="tgl_lahir">Tanggal Lahir</label>
                                     <input type="date" id="tgl_lahir" name="tgl_lahir" class="form-control" value="{{$pegawai->tgl_lahir}}" required>
                                 </div>
