@@ -29,6 +29,12 @@
                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
                 </div>
 
+                <div class="contact100-form-checkbox">
+
+                    <label class="" for="remember">
+
+                    </label>
+                </div>
 
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn">
@@ -46,7 +52,17 @@
                     </ul>
                 </div>
                 @endif
-
+                <!--End menampilkan error validasi-->
+                <div class="text-left" style="margin-top:80px; padding-left:31px;">
+                    @if (Route::has('password.request'))
+                    <a class="txt2 text-white" href="{{ route('password.request') }}"></a>
+                    @endif
+                </div>
+                <div class="text-center p-t-15">
+                    @if (Route::has('register'))
+                    <a class="txt1" href="{{ route('register') }}"></a>
+                    @endif
+                </div>
             </form>
         </div>
     </div>
