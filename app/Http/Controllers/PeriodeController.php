@@ -105,4 +105,14 @@ class PeriodeController extends Controller
         return redirect()->route('periodeIndex')->with('success', 'Data berhasil disimpan');
 
     }
+
+    public function destroy($id)
+    {
+        $periode = Periode::where('uuid', $id)->first();
+        $absensi = Absensi::where('periode_id', $periode->id)->delete();
+        $periode->delete();
+
+        return redirect()->route('periodeIndex');
+
+    }
 }
