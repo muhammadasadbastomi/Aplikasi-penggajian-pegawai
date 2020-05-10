@@ -21,7 +21,7 @@ class UserController extends Controller
         $user = User::where('uuid', $id)->first();
         $pegawai = Pegawai::where('user_id', $user->id)->first();
 
-        return view('admin.user.profile', compact('user', 'pegawai', 'karyawan'));
+        return view('admin.user.profile', compact('user', 'pegawai'));
     }
     public function update(Request $request, User $user, $id)
     {
@@ -71,8 +71,10 @@ class UserController extends Controller
         }
         $user->update();
 
-        $pegawai->nama = $request->nama;
-        $pegawai->update();
+        if ($user->role == 'Pegawai') {
+            $pegawai->nama = $request->nama;
+            $pegawai->update();
+        }
 
         return redirect('/admin/user/profile/' . $id . '')->with('success', 'Data Berhasil Diubah!');
     }

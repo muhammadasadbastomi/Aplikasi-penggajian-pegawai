@@ -60,17 +60,29 @@
                     <div class="card-body pt-0" style="margin-top: 16px;">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h3 class="lead"><b>{{$pegawai->nama}}</b></h3>
+                                @if(auth()->user()->role=='pegawai')
+                                <h3 class="lead"><b> {{$pegawai->nama}} </b></h3>
+                                @else
+                                <h3 class="lead"><b> {{$user->name}} </b></h3>
+                                @endif
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
+                                    @if(auth()->user()->role=='pegawai')
                                     <li class="small"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;{{$pegawai->pekerja}}</li>
                                     <li class="small" style="margin-top: 6px;"><span class="fa-li"><i class="fas fa-lg fa-toggle-on"></i></span>&nbsp;Status : {{$pegawai->status}}</li>
                                     <li class="small" style="margin-top: 6px;"><span class=" fa-li"><i class="fas fa-id-card"></i></span>&nbsp;NIK : {{$pegawai->nik}}</li>
-                                    @if(auth()->user()->pegawai->pekerja=='Pegawai')
-                                    <li class="small"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;Golongan : {{$pegawai->golongan}}</li>
+                                    @if(auth()->user()->pegawai->pekerja=='pegawai')
+                                    <li class="small" style="margin-top: 6px;"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;Golongan : {{$pegawai->golongan}}</li>
                                     @else
-                                    <li class="small"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;Golongan : - </li>
+                                    <li class="small" style="margin-top: 6px;"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;Golongan : - </li>
                                     @endif
                                     <li class="small" style="margin-top: 6px;"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;Jabatan : {{$pegawai->jabatan->jabatan}}</li>
+                                    @else
+                                    <li class="small"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp; Admin </li>
+                                    <li class="small" style="margin-top: 6px;"><span class="fa-li"><i class="fas fa-lg fa-toggle-on"></i></span>&nbsp;Status : - </li>
+                                    <li class="small" style="margin-top: 6px;"><span class=" fa-li"><i class="fas fa-id-card"></i></span>&nbsp;NIK : - </li>
+                                    <li class="small" style="margin-top: 6px;"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;Golongan : - </li>
+                                    <li class="small" style="margin-top: 6px;"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;Jabatan : - </li>
+                                    @endif
                                 </ul>
                             </div>
                             <div class="col-md-4 text-center">
@@ -89,11 +101,15 @@
                 <!-- About Me Box -->
                 <div class="card card-gray">
                     <div class="card-header">
-                        <h3 class="card-title">About {{$pegawai->nama}}</h3>
+                        @if(auth()->user()->role=='pegawai')
+                        <h3 class="card-title">About {{$pegawai->nama}} </h3>
+                        @else
+                        <h3 class="card-title">About {{$user->name}}</h3>
+                        @endif
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-
+                        @if(auth()->user()->role=='pegawai')
                         <p><strong><i class="fas fa-calendar-alt mr-1"></i> Tanggal Masuk</strong> : {{$pegawai->tgl_masuk}}</p>
 
                         <hr>
@@ -107,7 +123,21 @@
                         <hr>
 
                         <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat</strong> : <p style="margin: 12px; "> {{$pegawai->tempat_lahir}}</p>
+                        @else
+                        <p><strong><i class="fas fa-calendar-alt mr-1"></i> Tanggal Masuk</strong> : - </p>
 
+                        <hr>
+
+                        <p><strong><i class="fas fa-at mr-1"></i> Email</strong> : - </p>
+
+                        <hr>
+
+                        <p><strong><i class="fas fa-calendar-alt mr-1"></i> Tanggal Lahir</strong> : - </p>
+
+                        <hr>
+
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat</strong> : <p style="margin: 12px; "> - </p>
+                        @endif
                     </div>
                     <!-- /.card-body -->
                 </div>

@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () {
     Route::get('/admin/index', 'AdminController@index')->name('adminIndex');
 
+    Route::get('/admin/user/profile/{id}', 'UserController@show')->name('userShow');
     Route::get('/pegawai/periode/index', 'PeriodeController@index')->name('periodeUserIndex');
     Route::get('/pegawai/periode/detail/{id}', 'PeriodeController@show')->name('periodeUserShow');
     Route::get('/laporan/cetak_periode', 'PeriodeController@cetak_pdf')->name('periodePdf');
@@ -125,8 +126,6 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::put('/admin/golongan/edit/{id}', 'GolonganController@update')->name('golonganUpdate');
     Route::delete('/admin/golongan/delete/{id}', 'GolonganController@destroy')->name('golonganDestroy');
     Route::get('/laporan/cetak_golongan', 'GolonganController@cetak_pdf')->name('golonganPdf');
-
-
 
     Route::get('/admin/pegawai/filter', 'PegawaiController@filter')->name('pegawaiFilter');
     Route::get('/admin/karyawan/filter', 'KaryawanController@filter')->name('karyawanFilter');

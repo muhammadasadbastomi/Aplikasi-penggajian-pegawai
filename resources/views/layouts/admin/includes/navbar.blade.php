@@ -34,6 +34,9 @@
                 @if(auth()->user()->role == 'pegawai')
                 <a class="dropdown-item" href="{{route('userShow', ['id' => Auth::user()->uuid])}}">Profile</a>
                 <br>
+                @else
+                <a class="dropdown-item" href="{{route('userShow', ['id' => Auth::user()->uuid])}}">Profile Admin</a>
+                <br>
                 @endif
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">

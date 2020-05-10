@@ -98,7 +98,8 @@
                                     </p>
                                 </a>
                             </li>
-                            @else
+                            @else(auth()->user()->role == 'pegawai')
+
                             <li class="nav-item has-treeview menu-open">
                                 <a href="#" class="nav-link active">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -107,7 +108,14 @@
                                         <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
-
+                            <li class="nav-item">
+                                <a href="{{route('userShow', ['id' => Auth::user()->uuid])}}" class="nav-link active">
+                                    <i class="nav-icon fas fa-user"></i>
+                                    <p>
+                                        Profile
+                                    </p>
+                                </a>
+                            </li>
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('periodeUserIndex')}}" class="nav-link active">
