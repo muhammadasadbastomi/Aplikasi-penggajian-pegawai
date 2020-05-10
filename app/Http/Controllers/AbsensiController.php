@@ -149,47 +149,6 @@ class AbsensiController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //dd($request->all());
-        $request->validate([
-            'izin' => 'required',
-            'sakit' => 'required',
-            'alfa' => 'required',
-            'hadir' => 'required',
-            'periode' => 'required',
-        ]);
-
-        // create new object
-        $absensi = new absensi;
-        $absensi->pegawai_id = $request->pegawai_id;
-        $absensi->izin = $request->izin;
-        $absensi->sakit = $request->sakit;
-        $absensi->alfa = $request->alfa;
-        $absensi->hadir = $request->hadir;
-        $absensi->periode = $request->periode;
-        $absensi->save();
-
-        return redirect('admin/absensi/index')->with('success', 'Data berhasil disimpan');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Absensi  $absensi
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Absensi $absensi)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Absensi  $absensi
