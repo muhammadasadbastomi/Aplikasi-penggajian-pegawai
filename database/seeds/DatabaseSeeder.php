@@ -30,9 +30,9 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             'uuid' => Str::random(36),
             'name' => Str::random(10),
-            'email' => 'tomycules@gmail.com',
-            'photos' => 'default.jpg',
-            'password' => Hash::make('48344951'),
+            'email' => 'admin@gmail.com',
+            'photos' => 'default.png',
+            'password' => Hash::make('123'),
         ]);
     }
 }
