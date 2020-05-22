@@ -47,27 +47,21 @@
                                         </a>
                                     </li>
                                     <!-- <li class="nav-item">
-                                        <a href="{{route('golonganIndex')}}" class="nav-link active">
+                                        <a href="golonganIndex" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Golongan</p>
                                         </a>
                                     </li> -->
-                                    <li class="nav-item">
-                                        <a href="{{route('pegawaiIndex')}}" class="nav-link active">
+                                    <!-- <li class="nav-item">
+                                        <a href="pegawaiIndex" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Data Pegawai</p>
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li class="nav-item">
                                         <a href="{{route('kinerjaperiodeIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Data Kinerja Karyawan</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('karyawanIndex')}}" class="nav-link active">
-                                            <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Karyawan</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
