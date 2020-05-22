@@ -23,7 +23,7 @@
                             <img src="{{ Auth::user()->photos() }}" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                            <a href="{{route('userShow', ['id' => Auth::user()->uuid])}}" class="d-block">{{ Auth::user()->name }}</a>
                         </div>
                     </div>
                     <!-- Sidebar Menu Data -->
@@ -41,21 +41,27 @@
                                 </a>
                                 <ul class="nav nav-treeview" style="display: block;">
                                     <li class="nav-item">
-                                        <a href="{{route('jabatanIndex')}}" class="nav-link active">
+                                        <a href="{{route('karyawanIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Jabatan</p>
+                                            <p>Data Karyawan</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
+                                    <!-- <li class="nav-item">
                                         <a href="{{route('golonganIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Golongan</p>
                                         </a>
-                                    </li>
+                                    </li> -->
                                     <li class="nav-item">
                                         <a href="{{route('pegawaiIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Data Pegawai</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{route('kinerjaperiodeIndex')}}" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Data Kinerja Karyawan</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -67,7 +73,7 @@
                                     <li class="nav-item">
                                         <a href="{{route('GajiperiodeIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Gaji Pegawai & Karyawan</p>
+                                            <p>Data Gaji Karyawan</p>
                                         </a>
                                     </li>
                                 </ul>
@@ -78,7 +84,7 @@
                                 <a href="#" class="nav-link active">
                                     <i class="nav-icon fas fa-money-check-alt"></i>
                                     <p>
-                                        Slip Gaji Pegawai & Karyawan
+                                        Slip Gaji Karyawan
                                     </p>
                                 </a>
                             </li>
@@ -94,7 +100,7 @@
                                 <a href="{{route('periodeIndex')}}" class="nav-link active">
                                     <i class="nav-icon fas fa-file-alt"></i>
                                     <p>
-                                        Data Absensi Pegawai
+                                        Data Absensi Karyawan
                                     </p>
                                 </a>
                             </li>
@@ -121,7 +127,7 @@
                                 <a href="{{route('periodeUserIndex')}}" class="nav-link active">
                                     <i class="nav-icon fas fa-file-alt"></i>
                                     <p>
-                                        Data Absensi Pegawai
+                                        Data Absensi Karyawan
                                     </p>
                                 </a>
                             </li>

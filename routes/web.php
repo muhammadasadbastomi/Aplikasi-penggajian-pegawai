@@ -18,14 +18,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/admin/index', 'AdminController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 //Route group Admin dan Pegawai Middleware
 Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () {
     Route::get('/admin/index', 'AdminController@index')->name('adminIndex');
 
-    Route::get('/admin/user/profile/{id}', 'UserController@show')->name('userShow');
     Route::get('/pegawai/periode/index', 'PeriodeController@index')->name('periodeUserIndex');
     Route::get('/pegawai/periode/detail/{id}', 'PeriodeController@show')->name('periodeUserShow');
     Route::get('/laporan/cetak_periode', 'PeriodeController@cetak_pdf')->name('periodePdf');
@@ -63,6 +62,22 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::put('/admin/pegawai/edit/{id}', 'PegawaiController@update')->name('pegawaiUpdate');
     Route::delete('/admin/pegawai/delete/{id}', 'PegawaiController@destroy')->name('pegawaiDestroy');
     Route::get('/laporan/cetak_pegawai', 'PegawaiController@cetak_pdf')->name('pegawaiPdf');
+
+    Route::get('/admin/kinerja/periode/index', 'KinerjaController@periode')->name('kinerjaperiodeIndex');
+    Route::post('/admin/kinerja/periode/index', 'KinerjaController@tambah')->name('kinerjaperiodeCreate');
+    Route::get('/admin/kinerja/periode/edit/{id}', 'KinerjaController@ubah')->name('kinerjaperiodeEdit');
+    Route::put('/admin/kinerja/periode/edit/{id}', 'KinerjaController@ubahp')->name('kinerjaperiodeUpdate');
+    Route::delete('/admin/kinerja/periode/delete/{id}', 'KinerjaController@hapus')->name('kinerjaperiodeDelete');
+
+
+    Route::get('/admin/kinerja/index/{id}', 'KinerjaController@index')->name('kinerjaIndex');
+    Route::patch('/admin/kinerja/index/{id}', 'KinerjaController@create')->name('kinerjaCreate');
+    Route::get('/admin/kinerja/detail/{id}', 'KinerjaController@show')->name('kinerjaShow');
+    Route::post('/admin/kinerja/create', 'KinerjaController@store')->name('kinerjaStore');
+    Route::get('/admin/kinerja/edit/{id}', 'KinerjaController@edit')->name('kinerjaEdit');
+    Route::put('/admin/kinerja/edit/{id}', 'KinerjaController@update')->name('kinerjaUpdate');
+    Route::delete('/admin/kinerja/delete/{id}', 'KinerjaController@destroy')->name('kinerjaDestroy');
+    Route::get('/laporan/cetak_kinerja', 'KinerjaController@cetak_pdf')->name('kinerjaPdf');
 
     Route::get('/admin/karyawan/index', 'karyawanController@index')->name('karyawanIndex');
     Route::get('/admin/karyawan/detail/{id}', 'karyawanController@show')->name('karyawanShow');
@@ -104,29 +119,29 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::delete('/admin/gaji/periode/karyawan/delete/{id}', 'PeriodegajiController@deletekaryawan')->name('lihatkaryawanDelete');
     Route::get('/laporan/cetak_periode', 'PeriodegajiController@cetak_pdf')->name('lihatkaryawanPDF');
 
-    Route::get('/admin/gaji/periode/pegawai/index/{id}', 'PeriodegajiController@pegawai')->name('lihatpegawaiIndex');
-    Route::patch('/admin/gaji/periode/pegawai/index/{id}', 'PeriodegajiController@createpegawai')->name('lihatpegawaiIndex');
-    Route::delete('/admin/gaji/periode/pegawai/delete/{id}', 'PeriodegajiController@deletepegawai')->name('lihatpegawaiDelete');
-    Route::get('/laporan/cetak_periode', 'PeriodegajiController@cetak_pdf')->name('lihatpegawaiPDF');
+    // Route::get('/admin/gaji/periode/pegawai/index/{id}', 'PeriodegajiController@pegawai')->name('lihatpegawaiIndex');
+    // Route::patch('/admin/gaji/periode/pegawai/index/{id}', 'PeriodegajiController@createpegawai')->name('lihatpegawaiIndex');
+    // Route::delete('/admin/gaji/periode/pegawai/delete/{id}', 'PeriodegajiController@deletepegawai')->name('lihatpegawaiDelete');
+    // Route::get('/laporan/cetak_periode', 'PeriodegajiController@cetak_pdf')->name('lihatpegawaiPDF');
 
-    Route::get('/admin/jabatan/index', 'JabatanController@index')->name('jabatanIndex');
-    Route::get('/admin/jabatan/detail/{id}', 'JabatanController@show')->name('jabatanShow');
-    Route::get('/admin/jabatan/create', 'JabatanController@create')->name('jabatanCreate');
-    Route::post('/admin/jabatan/create', 'JabatanController@store')->name('jabatanStore');
-    Route::get('/admin/jabatan/edit/{id}', 'JabatanController@edit')->name('jabatanEdit');
-    Route::put('/admin/jabatan/edit/{id}', 'JabatanController@update')->name('jabatanUpdate');
-    Route::delete('/admin/jabatan/delete/{id}', 'JabatanController@destroy')->name('jabatanDestroy');
-    Route::get('/admin/jabatan/cetak_pdf', 'JabatanController@cetak_pdf')->name('jabatanPdf');
+    // Route::get('/admin/jabatan/index', 'JabatanController@index')->name('jabatanIndex');
+    // Route::get('/admin/jabatan/detail/{id}', 'JabatanController@show')->name('jabatanShow');
+    // Route::get('/admin/jabatan/create', 'JabatanController@create')->name('jabatanCreate');
+    // Route::post('/admin/jabatan/create', 'JabatanController@store')->name('jabatanStore');
+    // Route::get('/admin/jabatan/edit/{id}', 'JabatanController@edit')->name('jabatanEdit');
+    // Route::put('/admin/jabatan/edit/{id}', 'JabatanController@update')->name('jabatanUpdate');
+    // Route::delete('/admin/jabatan/delete/{id}', 'JabatanController@destroy')->name('jabatanDestroy');
+    // Route::get('/admin/jabatan/cetak_pdf', 'JabatanController@cetak_pdf')->name('jabatanPdf');
 
-    Route::get('/admin/golongan/index', 'GolonganController@index')->name('golonganIndex');
-    Route::get('/admin/golongan/detail/{id}', 'GolonganController@show')->name('golonganShow');
-    Route::get('/admin/golongan/create', 'GolonganController@create')->name('golonganCreate');
-    Route::post('/admin/golongan/create', 'GolonganController@store')->name('golonganStore');
-    Route::get('/admin/golongan/edit/{id}', 'GolonganController@edit')->name('golonganEdit');
-    Route::put('/admin/golongan/edit/{id}', 'GolonganController@update')->name('golonganUpdate');
-    Route::delete('/admin/golongan/delete/{id}', 'GolonganController@destroy')->name('golonganDestroy');
-    Route::get('/laporan/cetak_golongan', 'GolonganController@cetak_pdf')->name('golonganPdf');
+    // Route::get('/admin/golongan/index', 'GolonganController@index')->name('golonganIndex');
+    // Route::get('/admin/golongan/detail/{id}', 'GolonganController@show')->name('golonganShow');
+    // Route::get('/admin/golongan/create', 'GolonganController@create')->name('golonganCreate');
+    // Route::post('/admin/golongan/create', 'GolonganController@store')->name('golonganStore');
+    // Route::get('/admin/golongan/edit/{id}', 'GolonganController@edit')->name('golonganEdit');
+    // Route::put('/admin/golongan/edit/{id}', 'GolonganController@update')->name('golonganUpdate');
+    // Route::delete('/admin/golongan/delete/{id}', 'GolonganController@destroy')->name('golonganDestroy');
+    // Route::get('/laporan/cetak_golongan', 'GolonganController@cetak_pdf')->name('golonganPdf');
 
-    Route::get('/admin/pegawai/filter', 'PegawaiController@filter')->name('pegawaiFilter');
+    // Route::get('/admin/pegawai/filter', 'PegawaiController@filter')->name('pegawaiFilter');
     Route::get('/admin/karyawan/filter', 'KaryawanController@filter')->name('karyawanFilter');
 });

@@ -18,14 +18,12 @@
                 </span>
 
                 <div class="wrap-input100 validate-input" data-validate="Enter email">
-                    <input id="email" class="input100 @error('email') is-invalid @enderror" type="email" name="email"
-                        placeholder="Email">
+                    <input id="email" class="input100 @error('email') is-invalid @enderror" type="email" name="email" placeholder="Email">
                     <span class="focus-input100" data-placeholder="@"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate="Enter password">
-                    <input id="password" class="input100  @error('password') is-invalid @enderror" type="password"
-                        name="password" placeholder="Password" required autocomplete="current-password">
+                    <input id="password" class="input100  @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password" required autocomplete="current-password">
                     <span class="focus-input100" data-placeholder="&#xf191;"></span>
                 </div>
 
