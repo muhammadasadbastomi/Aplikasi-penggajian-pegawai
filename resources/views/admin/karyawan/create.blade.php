@@ -1,5 +1,7 @@
 @extends('layouts.admin.admin')
 
+@section('title') Tambah Data Karyawan @endsection
+
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
@@ -50,8 +52,8 @@
                                     @error('nama')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control @error ('email') is-invalid @enderror" placeholder="Masukkan Email" value="{{old('email')}}">
+                                    <label for="email">E-mail</label>
+                                    <input type="email" name="email" id="email" class="form-control @error ('email') is-invalid @enderror" placeholder="Masukkan E-mail" value="{{old('email')}}">
                                     @error('email')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group">
@@ -75,14 +77,12 @@
                                         <option value="Non-Aktif">Non-Aktif</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="jabatan">Jabatan</label>
                                     <select class="custom-select" name="jabatan_id" id="jabatan_id">
-                                        @foreach($jabatan as $d)
-                                        <option value="{{$d->id}}">{{ $d->jabatan}}</option>
-                                        @endforeach
+                                       
                                     </select>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="alamat">Alamat</label>
                                     <textarea type="text" name="alamat" id="alamat" class="form-control @error ('alamat') is-invalid @enderror"> {{old('alamat')}}</textarea>

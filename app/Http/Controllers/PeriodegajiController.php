@@ -122,28 +122,33 @@ class PeriodegajiController extends Controller
     {
         $periode = Gajiperiode::where('uuid', $id)->first();
         $periode1 = Gajiperiode::where('uuid', $id)->get();
-        $karyawan = Pegawai::whereIn('pekerja', ['Karyawan'])->get();
+        // $karyawan = Pegawai::whereIn('pekerja', ['Karyawan'])->get();
+        $karyawan = Pegawai::all();
+        // $gaji = Gaji::where('periode_id', $periode->id)
+        //     ->join('pegawais', 'pegawais.id', '=', 'gajis.pegawai_id')
+        //     ->join('jabatans', 'jabatans.id', '=', 'pegawais.jabatan_id')
+        //     ->select('gajis.uuid', 'gajis.keterangan', 'jabatans.gaji_pokok', 'jabatans.tunjangan', 'pegawais.nama', 'pegawais.status', 'pegawais.pekerja', 'jabatans.jabatan')
+        //     ->whereIn('pekerja', ['Karyawan'])
+        //     ->get();
         $gaji = Gaji::where('periode_id', $periode->id)
             ->join('pegawais', 'pegawais.id', '=', 'gajis.pegawai_id')
-            ->join('jabatans', 'jabatans.id', '=', 'pegawais.jabatan_id')
-            ->select('gajis.uuid', 'gajis.keterangan', 'jabatans.gaji_pokok', 'jabatans.tunjangan', 'pegawais.nama', 'pegawais.status', 'pegawais.pekerja', 'jabatans.jabatan')
-            ->whereIn('pekerja', ['Karyawan'])
+            ->select('gajis.uuid', 'gajis.keterangan', 'pegawais.nama', 'pegawais.status')
             ->get();
 
-        if ($gaji->count() == 0) {
-            $total = 0;
-        } else {
+        // if ($gaji->count() == 0) {
+        //     $total = 0;
+        // } else {
 
-            foreach ($gaji as $data) {
+        //     foreach ($gaji as $data) {
 
-                $total = $data->gaji_pokok + $data->tunjangan;
-            }
-        }
-        $gaji = $gaji->map(function ($item) use ($total) {
-            $item['total'] = $total;
-            // dd($item);
-            return $item;
-        });
+        //         $total = $data->gaji_pokok + $data->tunjangan;
+        //     }
+        // }
+        // $gaji = $gaji->map(function ($item) use ($total) {
+        //     $item['total'] = $total;
+        //     // dd($item);
+        //     return $item;
+        // });
 
         return view('admin.gaji.periode.karyawan.index', compact('gaji', 'periode', 'karyawan', 'periode1'));
     }

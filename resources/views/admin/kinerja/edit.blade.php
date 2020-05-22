@@ -1,5 +1,7 @@
 @extends('layouts.admin.admin')
 
+@section('title') Ubah Data Kinerja Karyawan @endsection
+
 @section('content')
 <section class="content-header">
   <div class="container-fluid">
@@ -9,8 +11,9 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-          <li class="breadcrumb-item active"><a href="{{route('golonganIndex')}}">Data Golongan</a></li>
-          <li class="breadcrumb-item active">Edit Data Golongan</li>
+          <li class="breadcrumb-item active"><a href="{{route('kinerjaperiodeIndex')}}">Data Periode Kinerja Karyawan</a></li>
+          <li class="breadcrumb-item active"><a href="{{route('kinerjaperiodeIndex')}}">Data Kinerja Karyawan</a></li>
+          <li class="breadcrumb-item active">Edit Data Kinerja Karyawan</li>
         </ol>
       </div>
     </div>
@@ -21,15 +24,13 @@
 
   <div class="card">
     <div class="card-header">
-      <h5 class="card-title">Edit Data golongan - {{$golongan->golongan}}</h5>
+      <h5 class="card-title">Edit Data Kinerja Karyawan - {{$data->id}}</h5>
       <div class="text-right">
 
       </div>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-
-
       <div class="row">
         <div class="col-md-12">
           <!-- general form elements -->
@@ -41,13 +42,28 @@
               @csrf
               <div class="card-body">
                 <div class="form-group">
-                  <label for="golongan">golongan</label>
-                  <input type="text" id="golongan" name="golongan" class="form-control @error ('golongan') is-invalid @enderror" placeholder="Masukkan golongan" value="{{$golongan->golongan}}">
-                  @error('golongan')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                  <label for="disiplin">disiplin</label>
+                  <input type="text" id="disiplin" name="disiplin" class="form-control @error ('disiplin') is-invalid @enderror" placeholder="Masukkan disiplin" value="#">
+                  @error('disiplin')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                </div>
+                <div class="form-group">
+                  <label for="waktu">waktu</label>
+                  <input type="text" id="waktu" name="waktu" class="form-control @error ('waktu') is-invalid @enderror" placeholder="Masukkan waktu" value="#">
+                  @error('waktu')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                </div>
+                <div class="form-group">
+                  <label for="penyelesaian">penyelesaian</label>
+                  <input type="text" id="penyelesaian" name="penyelesaian" class="form-control @error ('penyelesaian') is-invalid @enderror" placeholder="Masukkan penyelesaian" value="#">
+                  @error('penyelesaian')<div class="invalid-feedback"> {{$message}} </div>@enderror
+                </div>
+                <div class="form-group">
+                  <label for="inisiatif">inisiatif</label>
+                  <input type="text" id="inisiatif" name="inisiatif" class="form-control @error ('inisiatif') is-invalid @enderror" placeholder="Masukkan inisiatif" value="#">
+                  @error('inisiatif')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
                 <div class="form-group">
                   <label for="keterangan">Keterangan</label>
-                  <input type="text" id="keterangan" name="keterangan" class="form-control @error ('keterangan') is-invalid @enderror" placeholder="Masukkan Keterangan" value="{{$golongan->keterangan}}">
+                  <input type="text" id="keterangan" name="keterangan" class="form-control @error ('keterangan') is-invalid @enderror" placeholder="Masukkan Keterangan" value="#">
                   @error('Keterangan')<div class="invalid-feedback"> {{$message}} </div>@enderror
                 </div>
               </div>
@@ -55,7 +71,7 @@
 
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Ubah</button>
-                <a href="{{route('golonganIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
+                <a href="{{route('kinerjaperiodeIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
               </div>
             </form>
           </div>

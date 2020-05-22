@@ -21,7 +21,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Edit Data Periode Karyawan - {{$periode->periode}}</h5>
+            <h5 class="card-title">Edit Data Periode Karyawan - {{\carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
             <div class="text-right">
 
             </div>
@@ -42,7 +42,7 @@
                             <div class="card-body">
                                 <div class="form-group col-md-2">
                                     <label for="periode">Periode</label>
-                                    <input type="month" id="periode" name="periode" class="form-control @error ('periode') is-invalid @enderror" placeholder="Masukkan Periode" value="{{$periode->periode}}">
+                                    <input type="date" id="periode" name="periode" class="form-control @error ('periode') is-invalid @enderror" value="{{$periode->periode}}">
                                     @error('periode')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                                 <div class="form-group  col-md-3">

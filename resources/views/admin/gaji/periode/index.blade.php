@@ -48,7 +48,7 @@
                                     <td class="text-center">{{$d->keterangan}}</td>
                                     <td class="text-center">
                                         <a class="btn btn-xs btn-primary text-white" href="{{route('lihatkaryawanIndex', ['id' => $d->uuid])}}"><i class="fas fa-users"></i> Karyawan</a>
-                                        <a class="btn btn-xs btn-primary text-white" href="{{route('lihatpegawaiIndex', ['id' => $d->uuid])}}"><i class="fas fa-users"></i> Pegawai</a>
+                                        <!-- <a class="btn btn-xs btn-primary text-white" href="#"><i class="fas fa-users"></i> Pegawai</a> -->
                                         <a class="btn btn-xs btn-warning text-white" href="{{route('GajiperiodeEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit Periode</a>
                                         <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('GajiperiodeDelete', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus Periode</a>
                                     </td>

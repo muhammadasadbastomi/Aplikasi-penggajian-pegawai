@@ -40,10 +40,7 @@
                                     <th>No</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nama</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status Pekerja</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jabatan</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Gaji Pokok</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Tunjangan</th>
+                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Gaji</th>
                                     <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jumlah</th>
                                     <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Keterangan</th>
                                     <th></th>
@@ -54,10 +51,7 @@
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td class="text-center">{{$d->nama}}</td>
                                     <td class="text-center">{{$d->status}}</td>
-                                    <td class="text-center">{{$d->pekerja}}</td>
-                                    <td class="text-center">{{$d->jabatan}}</td>
-                                    <td class="text-center">{{$d->gaji_pokok}}</td>
-                                    <td class="text-center">{{$d->tunjangan}}</td>
+                                    <td class="text-center">#</td>
                                     <td class="text-center">{{$d->total}}</td>
                                     <td class="text-center">{{$d->keterangan}}</td>
                                     <td class="text-center">
@@ -105,10 +99,10 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="pekerja">Status Pekerja</label>
                                 <input selected disabled value type="text" id="pekerja" class="form-control" placeholder="Karyawan">
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
                                 <textarea type="text" name="keterangan" id="keterangan" class="form-control">{{old('keterangan')}}</textarea>

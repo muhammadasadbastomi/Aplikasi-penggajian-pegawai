@@ -36,8 +36,6 @@
                   <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">NIK</th>
                   <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
                   <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
-                  <th class="sorting text-center" tabindex="3" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status Pekerja</th>
-                  <th class="sorting text-center" tabindex="4" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Jabatan</th>
                   <th class="sorting text-center" tabindex="5" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Alamat</th>
                   <th class="sorting text-center" tabindex="6" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tempat Lahir</th>
                   <th class="sorting text-center" tabindex="7" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tanggal Lahir</th>
@@ -51,8 +49,6 @@
                   <td class="text-center">{{$d->nik}}</td>
                   <td class="text-center">{{$d->nama}}</td>
                   <td class="text-center">{{$d->status}}</td>
-                  <td class="text-center">{{$d->pekerja}}</td>
-                  <td class="text-center">{{$d->jabatan->jabatan}}</td>
                   <td class="text-center">{{$d->alamat}}</td>
                   <td class="text-center">{{$d->tempat_lahir}}</td>
                   <td class="text-center">{{$d->tgl_lahir}}</td>

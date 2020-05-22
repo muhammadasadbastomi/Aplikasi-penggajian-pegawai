@@ -19,8 +19,8 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $karyawan = Pegawai::whereIn('pekerja', ['karyawan'])->orderBy('id', 'Desc')->get();
-
+        // $karyawan = Pegawai::whereIn('pekerja', ['karyawan'])->orderBy('id', 'Desc')->get();
+        $karyawan = Pegawai::orderBy('id', 'Desc')->get();
         return view('admin.karyawan.index', compact('karyawan'));
     }
 
@@ -31,10 +31,10 @@ class KaryawanController extends Controller
      */
     public function create()
     {
-        $jabatan = Jabatan::orderBy('id', 'asc')->get();
-        $golongan = Golongan::orderBy('id', 'asc')->get();
+        // $jabatan = Jabatan::orderBy('id', 'asc')->get();
+        // $golongan = Golongan::orderBy('id', 'asc')->get();
         $karyawan = Pegawai::orderBy('id', 'asc')->get();
-        return view('admin.karyawan.create', compact('jabatan', 'golongan', 'karyawan'));
+        return view('admin.karyawan.create', compact('karyawan'));
     }
 
     public function store(Request $request)
@@ -78,9 +78,7 @@ class KaryawanController extends Controller
 
     public function edit(Pegawai $pegawai, $id)
     {
-        // get jabatan by id
-        $jabatan = Jabatan::orderBy('id', 'asc')->get();
-        $golongan = golongan::orderBy('id', 'asc')->get();
+        // get karyawan by id
         $karyawan = Pegawai::where('uuid', $id)->first();
         $karyawan1 = Pegawai::where('uuid', $id)->get();
         // dd($golongan);
@@ -130,7 +128,7 @@ class KaryawanController extends Controller
         $karyawan->nik = $request->nik;
         $karyawan->nama = $request->nama;
         $karyawan->status = $request->status;
-        $karyawan->jabatan_id = $request->jabatan_id;
+        $karyawan->alamat = $request->alamat;
         $karyawan->tempat_lahir = $request->tempat_lahir;
         $karyawan->tgl_lahir = $request->tgl_lahir;
         $karyawan->tgl_masuk = $request->tgl_masuk;

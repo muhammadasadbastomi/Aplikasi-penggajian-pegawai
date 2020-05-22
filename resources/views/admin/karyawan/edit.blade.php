@@ -63,10 +63,10 @@
                                     <label for="password-confirm">Konfirmasi Password</label>
                                     <input id="password-confirm" class="form-control  @error('password-confirm') is-invalid @enderror" type="password" name="password_confirmation" placeholder="Konfirmasi Password" autocomplete="new-password">
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="pekerja">Status Pekerja</label>
-                                    <input id="pekerja" class="form-control" type="text " placeholder="{{$karyawan->pekerja}}" disabled>
-                                </div>
+                                    <input id="pekerja" class="form-control" type="text " placeholder="#" disabled>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="status">Status</label>
                                     <select class="custom-select" name="status" id="status">
@@ -77,16 +77,12 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label for="jabatan">Jabatan</label>
                                     <select class="custom-select" name="jabatan_id" id="jabatan_id">
-                                        @foreach($jabatan as $d)
-                                        <option value="{{$d->id}}" {{ $karyawan->jabatan_id == $d->id ? 'selected' : ''}}>
-                                            {{ $d->jabatan}}
-                                        </option>
-                                        @endforeach
+                                       
                                     </select>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="alamat">Alamat</label>
                                     <textarea type="text" id="alamat" name="alamat" class="form-control @error ('alamat') is-invalid @enderror">{{$karyawan->alamat}} </textarea>

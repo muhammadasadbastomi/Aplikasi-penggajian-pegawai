@@ -10,8 +10,11 @@ class Pegawai extends Model
 {
     use Notifiable;
     use Uuid;
+    // protected $fillable = [
+    //     'nama', 'nik', 'tempat_lahir', 'tgl_lahir', 'tgl_masuk', 'user_id', 'photos', 'role', 'jabatan_id', 'golongan_id', 'status', 'pekerja', 'alamat'
+    // ];
     protected $fillable = [
-        'nama', 'nik', 'tempat_lahir', 'tgl_lahir', 'tgl_masuk', 'user_id', 'photos', 'role', 'jabatan_id', 'golongan_id', 'status', 'pekerja', 'alamat'
+        'nama', 'nik', 'tempat_lahir', 'tgl_lahir', 'tgl_masuk', 'user_id', 'photos', 'role', 'status', 'alamat'
     ];
 
     public function user()
@@ -36,5 +39,10 @@ class Pegawai extends Model
     public function absensi()
     {
         return $this->HasMany(Absensi::class);
+    }
+
+    public function kinerja()
+    {
+        return $this->HasMany(Kinerja::class);
     }
 }

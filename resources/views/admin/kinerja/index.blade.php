@@ -9,6 +9,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{route('kinerjaperiodeIndex')}}">Data Periode Kinerja Karyawan</a></li>
           <li class="breadcrumb-item active">Data Kinerja Karyawan</li>
         </ol>
       </div>
@@ -20,7 +21,7 @@
 
   <div class="card">
     <div class="card-header">
-      <h5 class="card-title">Data Kinerja</h5>
+      <h5 class="card-title">Data Kinerja Karyawan</h5>
       <div class="text-right">
         <!-- <a href="{{route('kinerjaPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a> -->
         <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Karyawan</button>
@@ -36,23 +37,29 @@
               <thead>
                 <tr role="row">
                   <th>No</th>
+                  <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nama</th>
+                  <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
                   <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Disiplin</th>
                   <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Ketepatan Waktu</th>
                   <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Penyelesaian Pekerjaan</th>
                   <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Inisiatif</th>
+                  <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Keterangan</th>
                   <th></th>
               </thead>
               <tbody>
                 @foreach ($data as $d)
                 <tr>
                   <td class="text-center">{{$loop->iteration}}</td>
+                  <td class="text-center">{{$d->pegawai}}</td>
+                  <td class="text-center">{{$d->pegawai}}</td>
                   <td class="text-center">{{$d->disiplin}}</td>
                   <td class="text-center">{{$d->waktu}}</td>
                   <td class="text-center">{{$d->penyelesaian}}</td>
                   <td class="text-center">{{$d->inisitaif}}</td>
+                  <td class="text-center">{{$d->keterangan}}</td>
                   <td class="text-center">
                     <a class="btn btn-xs btn-info text-white" href="{{route('kinerjaEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit</a>
-                    <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i class="fas fa-trash"></i> Hapus</a>
+                    <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('kinerjaDestroy', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus</a>
                   </td>
                 </tr>
                 @endforeach
@@ -95,10 +102,10 @@
                   @endforeach
                 </select>
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="pekerja">Status Pekerja</label>
                 <input selected disabled value type="text" id="pekerja" class="form-control" placeholder="Karyawan">
-              </div>
+              </div> -->
               <div class="form-group">
                 <label for="keterangan">Keterangan</label>
                 <textarea type="text" name="keterangan" id="keterangan" class="form-control">{{old('keterangan')}}</textarea>

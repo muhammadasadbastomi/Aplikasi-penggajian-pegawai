@@ -46,11 +46,11 @@ class KinerjaController extends Controller
     public function ubahp(Request $request, $id)
     {
         $messages = [
-            'unique' => ':attribute sudah ada.'
+            'required' => ':attribute harus diisi.'
         ];
         //dd($request->all());
         $request->validate([
-            'periode' => 'unique:gajiperiodes'
+            'periode' => 'required'
         ], $messages);
 
         // get data by id
@@ -59,7 +59,7 @@ class KinerjaController extends Controller
         $periode->keterangan = $request->keterangan;
         $periode->update();
 
-        return redirect()->route('GajiperiodeIndex')->with('success', 'Data Berhasil Diubah');
+        return redirect()->route('kinerjaperiodeIndex')->with('success', 'Data Berhasil Diubah');
     }
 
     public function hapus($id)
@@ -78,10 +78,10 @@ class KinerjaController extends Controller
      */
     public function index($id)
     {
-        $data = kinerja::orderBy('id', 'Desc')->get();
+        $periode = Gajiperiode::where('uuid', $id)->first();
+        $data = kinerja::orderBy('id', 'Desc')->where('periode_id', $periode->id)->get();
         $karyawan = Pegawai::orderBy('id', 'Desc')->get();
-
-        return view('admin.kinerja.index', compact('data', 'karyawan'));
+        return view('admin.kinerja.index', compact('data', 'karyawan', 'pegawai'));
     }
 
     /**
@@ -130,9 +130,10 @@ class KinerjaController extends Controller
      * @param  \App\kinerja  $kinerja
      * @return \Illuminate\Http\Response
      */
-    public function edit(kinerja $kinerja)
+    public function edit($id)
     {
-        //
+        $data = kinerja::where('uuid', $id)->first();
+        return view('admin/kinerja/edit', compact('data'));
     }
 
     /**
@@ -153,8 +154,12 @@ class KinerjaController extends Controller
      * @param  \App\kinerja  $kinerja
      * @return \Illuminate\Http\Response
      */
-    public function destroy(kinerja $kinerja)
+    public function destroy($id)
     {
-        //
+        $data = Kinerja::where('uuid', $id)->first();
+
+        $data->delete();
+
+        return back();
     }
 }

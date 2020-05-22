@@ -6,8 +6,18 @@ use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class kinerja extends Model
+class Kinerja extends Model
 {
     use Notifiable;
     use Uuid;
+
+    public function pegawai()
+    {
+        return $this->belongsTo(Pegawai::class);
+    }
+
+    public function Gajiperiode()
+    {
+        return $this->belongsTo(Gajiperiode::class);
+    }
 }
