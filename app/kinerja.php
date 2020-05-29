@@ -11,7 +11,9 @@ class Kinerja extends Model
 
     use Notifiable;
     use Uuid;
-
+    protected $fillable = [
+        'pegawai_id'
+    ];
     public function pegawai()
     {
         return $this->belongsTo(Pegawai::class);

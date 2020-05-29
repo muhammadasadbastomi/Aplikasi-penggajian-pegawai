@@ -47,7 +47,7 @@
                                     <td class="text-center">{{$d->keterangan}}</td>
                                     <td class="text-center">
                                         <a class="btn btn-xs btn-primary text-white" href="{{route('kinerjaIndex', ['id' => $d->uuid])}}"><i class="fas fa-users"></i> Kinerja Karyawan</a>
-                                        <a class="btn btn-xs btn-warning text-white" href="{{route('kinerjaEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit Periode</a>
+                                        <a class="btn btn-xs btn-warning text-white" href="{{route('kinerjaperiodeEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit Periode</a>
                                         <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('kinerjaperiodeDelete', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus Periode</a>
                                     </td>
                                 </tr>

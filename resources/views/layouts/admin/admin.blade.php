@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Aplikasi Penggajian | Dashboard</title>
+    <title>@yield('title')</title>
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="{{ asset('img/bjb.png') }}" />
     <!-- Tell the browser to be responsive to screen width -->
@@ -98,6 +98,7 @@
         <!-- Tempusdominus Bootstrap 4 -->
         <script src="{{asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
         <!-- Summernote -->
+        @yield('script')
         <script src="{{asset('admin/plugins/summernote/summernote-bs4.min.js')}}"></script>
         <!-- overlayScrollbars -->
         <script src="{{asset('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
@@ -114,7 +115,6 @@
         <script src="{{asset('admin/dist/js/demo.js')}}"></script>
         <script src="{{ asset('vendor/sweetalert/sweetalert.all.js')  }}"></script>
         @include('sweetalert::alert')
-        @yield('script')
 </body>
 
 </html>

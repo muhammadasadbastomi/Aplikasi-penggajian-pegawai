@@ -58,18 +58,18 @@
                   <td class="text-center">{{$d->waktu}}</td>
                   <td class="text-center">{{$d->penyelesaian}}</td>
                   <td class="text-center">{{$d->inisiatif}}</td>
-                  <td class="text-center">{{$total}}</td>
+                  <td class="text-center">{{$d->total}}</td>
                   <td class="text-center">
-                    @if ($total == 0 )
-                    Belum Ada Nilai
-                    @elseif ($total < 50) Buruk @elseif ($total> 74 ) Terbaik @elseif ($total> 49 ) Lumayan
+                    @if ($d->total == 0 )
+                    -
+                    @elseif ($d->total < 140) Kurang Baik @elseif ($d->total> 235 ) Terbaik @elseif ($d->total> 139 ) Baik
                       @else
                       -
                       @endif
                   </td>
                   <td class="text-center">{{$d->keterangan}}</td>
                   <td class="text-center">
-                    <a class="btn btn-xs btn-info text-white" href="{{route('kinerjaEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit</a>
+                    <a class="btn btn-xs btn-info text-white" data-id="{{$d->id}}" data-nama="{{$d->pegawai->nama}}" data-nik="{{$d->pegawai->nik}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-keterangan="{{$d->keterangan}}" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-edit"></i> Edit</a>
                     <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('kinerjaDestroy', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus</a>
                   </td>
                 </tr>
@@ -90,62 +90,42 @@
   </div>
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Tambah Data Periode</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form role="form" method="post">
-            @method('patch')
-            @csrf
-            <div class="card-body">
-              <div class="form-group">
-                <label for="karyawan">Nama Karyawan</label>
-                <select class="custom-select" name="karyawan" id="karyawan">
-                  @foreach($karyawan as $d)
-                  <option value="{{$d->id}}">{{ $d->nama}} {{$d->nik}}</option>
-                  @endforeach
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="waktu">Ketepatan Waktu</label>
-                <input type="number" name="waktu" id="waktu" class="form-control" placeholder="Masukkan Nilai Ketepatan Waktu">
-              </div>
-              <div class="form-group">
-                <label for="penyelesaian">Penyelesaian Pekerjaan</label>
-                <input type="number" name="penyelesaian" id="penyelesaian" class="form-control" placeholder="Masukkan Nilai Penyelesaian Pekerjaan">
-              </div>
-              <div class="form-group">
-                <label for="inisiatif">Inisiatif</label>
-                <input type="number" name="inisiatif" id="inisiatif" class="form-control" placeholder="Masukkan Nilai Inisiatif">
-              </div>
-              <!-- <div class="form-group">
-              <label for="pekerja">Status Pekerja</label>
-              <input selected disabled value type="text" id="pekerja" class="form-control" placeholder="Karyawan">
-            </div> -->
-              <div class="form-group">
-                <label for="keterangan">Keterangan</label>
-                <textarea type="text" name="keterangan" id="keterangan" class="form-control">{{old('keterangan')}}</textarea>
-              </div>
-            </div>
-            <!-- /.card-body -->
-            <div class=" modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-              <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- modal tambah-->
+  @include('admin.kinerja.tambah')
+  <!-- end modal tambah -->
+
+  <!-- modal edit -->
+  @include('admin.kinerja.edit')
+  <!-- end modal edit -->
+
   @endsection
   @section('script')
+
+
+
+  <script>
+    $('#ModalEdit').on('show.bs.modal', function(event) {
+      var button = $(event.relatedTarget)
+      var id = button.data('id')
+      var nama = button.data('nama')
+      var nik = button.data('nik')
+      var penyelesaian = button.data('penyelesaian')
+      var waktu = button.data('waktu')
+      // var disiplin = button.data('disiplin')
+      var inisiatif = button.data('inisiatif')
+      var keterangan = button.data('keterangan')
+      var modal = $(this)
+
+      modal.find('.modal-body #id').val(id)
+      modal.find('.modal-body #nama').val(nama)
+      modal.find('.modal-body #nik').val(nik)
+      modal.find('.modal-body #penyelesaiann').val(penyelesaian)
+      modal.find('.modal-body #waktuu').val(waktu)
+      // modal.find('.modal-body #disiplinn').val(disiplin)
+      modal.find('.modal-body #inisiatiff').val(inisiatif)
+      modal.find('.modal-body #keterangan').val(keterangan)
+    })
+  </script>
 
   <script>
     $(document).on('click', '.delete', function(e) {
@@ -199,5 +179,24 @@
       "autoWidth": false,
       "responsive": true,
     });
+  </script>
+
+  <script>
+    function nilaiwaktu(vol) {
+      document.querySelector('#waktuu').value = vol;
+    }
+
+    function nilaidisiplin(vol) {
+      document.querySelector('#disiplinn').value = vol;
+    }
+
+
+    function nilaipenyelesaian(vol) {
+      document.querySelector('#penyelesaiann').value = vol;
+    }
+
+    function nilaiinisiatif(vol) {
+      document.querySelector('#inisiatiff').value = vol;
+    }
   </script>
   @endsection

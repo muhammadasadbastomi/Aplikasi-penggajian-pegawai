@@ -74,8 +74,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::patch('/admin/kinerja/index/{id}', 'KinerjaController@create')->name('kinerjaCreate');
     Route::get('/admin/kinerja/detail/{id}', 'KinerjaController@show')->name('kinerjaShow');
     Route::post('/admin/kinerja/create', 'KinerjaController@store')->name('kinerjaStore');
-    Route::get('/admin/kinerja/edit/{id}', 'KinerjaController@edit')->name('kinerjaEdit');
-    Route::put('/admin/kinerja/edit/{id}', 'KinerjaController@update')->name('kinerjaUpdate');
+    Route::put('/admin/kinerja/index/{id}', 'KinerjaController@update')->name('kinerjaUpdate');
     Route::delete('/admin/kinerja/delete/{id}', 'KinerjaController@destroy')->name('kinerjaDestroy');
     Route::get('/laporan/cetak_kinerja', 'KinerjaController@cetak_pdf')->name('kinerjaPdf');
 

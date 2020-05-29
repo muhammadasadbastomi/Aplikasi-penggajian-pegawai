@@ -78,24 +78,20 @@ class KinerjaController extends Controller
      */
     public function index($id)
     {
+
         $periode = Gajiperiode::where('uuid', $id)->first();
         $data = kinerja::orderBy('id', 'Desc')->where('periode_id', $periode->id)->get();
         // $data1 = kinerja::orderBy('id', 'Desc')->where('periode_id', $periode->id)->first();
         $karyawan = Pegawai::orderBy('id', 'Desc')->get();
 
-        if ($data->count() == 0) {
-            $total = 0;
-        } else {
-            foreach ($data as $d) {
-                $total = $d->waktu + $d->inisiatif + $d->penyelesaian;
-            }
-        }
-        $data = $data->map(function ($item) use ($total) {
-            $item['total'] = $total;
+
+        $data = $data->map(function ($item) {
+            $item['total'] = $item->waktu + $item->inisiatif + $item->penyelesaian;
             // dd($item);
             return $item;
         });
-        // dd($total);
+
+        // dd($data);
 
         return view('admin.kinerja.index', compact('data', 'karyawan', 'pegawai', 'total'));
     }
@@ -107,6 +103,14 @@ class KinerjaController extends Controller
      */
     public function create(Request $request, $id)
     {
+        // $messages = [
+        //     'unique' => ':attribute.'
+        // ];
+        // //dd($request->all());
+        // $request->validate([
+        //     'karyawan' => 'pegawai_id|unique:kinerjas',
+        // ], $messages);
+
         $periode = Gajiperiode::where('uuid', $id)->first();
 
         $data = new Kinerja;
@@ -149,11 +153,11 @@ class KinerjaController extends Controller
      * @param  \App\kinerja  $kinerja
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $data = kinerja::where('uuid', $id)->first();
-        return view('admin/kinerja/edit', compact('data'));
-    }
+    // public function edit($id)
+    // {
+    //     $data = kinerja::where('uuid', $id)->first();
+    //     return view('admin/kinerja/edit', compact('data'));
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -162,9 +166,18 @@ class KinerjaController extends Controller
      * @param  \App\kinerja  $kinerja
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, kinerja $kinerja)
+    public function update(Request $request)
     {
-        //
+        // get data by id
+        $data = Kinerja::findOrFail($request->id);
+        // $data->disiplin = $request->disiplin;
+        $data->waktu = $request->waktu;
+        $data->penyelesaian = $request->penyelesaian;
+        $data->inisiatif = $request->inisiatif;
+        $data->keterangan = $request->keterangan;
+        $data->update();
+
+        return back()->with('success', 'Data berhasil diubah');
     }
 
     /**
