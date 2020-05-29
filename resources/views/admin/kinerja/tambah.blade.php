@@ -25,16 +25,16 @@
                             <input selected disabled value type="text" id="pekerja" class="form-control" placeholder="Karyawan">
                         </div>
                         <div class="form-group">
-                            <label>Ketepatan Waktu</label> <span class="badge badge-primary"><output for="waktuu" id="waktuu">50</output></span>
-                            <input type="range" min="0" max="100" id="waktuu" name="waktu" class="form-control-range" oninput="nilaiwaktu(value)">
+                            <label>Ketepatan Waktu</label> <span class="badge badge-primary float-right"><output for="waktuuu" id="waktuuu">50</output></span>
+                            <input type="range" min="0" max="100" id="waktuuu" name="waktu" class="form-control-range" oninput="nilaiwaktuu(value)">
                         </div>
                         <div class="form-group">
-                            <label>Penyelesaian Pekerjaan <span class="badge badge-primary"><output for="penyelesaiann" id="penyelesaiann">50</output></span></label>
-                            <input type="range" min="0" max="100" id="penyelesaiann" name="penyelesaian" class="form-control-range" oninput="nilaipenyelesaian(value)">
+                            <label>Penyelesaian Pekerjaan</label> <span class="badge badge-primary float-right"><output for="penyelesaiannn" id="penyelesaiannn">50</output></span>
+                            <input type="range" min="0" max="100" id="penyelesaiannn" name="penyelesaian" class="form-control-range" oninput="nilaipenyelesaiann(value)">
                         </div>
                         <div class="form-group">
-                            <label>Inisiatif <span class="badge badge-primary"><output for="inisiatiff" id="inisiatiff">50</output></span></label>
-                            <input type="range" min="0" max="100" id="inisiatiff" name="inisiatif" class="form-control-range" oninput="nilaiinisiatif(value)">
+                            <label>Inisiatif</label> <span class="badge badge-primary float-right"><output for="inisiatifff" id="inisiatifff">50</output></span>
+                            <input type="range" min="0" max="100" id="inisiatifff" name="inisiatif" class="form-control-range" oninput="nilaiinisiatiff(value)">
                         </div>
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>

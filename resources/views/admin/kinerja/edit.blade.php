@@ -26,15 +26,15 @@
             <input type="range" min="0" max="100" id="disiplinn" name="disiplin" class="form-control-range" oninput="nilaidisiplin(value)">
           </div> -->
           <div class="form-group">
-            <label>Ketepatan Waktu</label> <span class="badge badge-primary"><output for="waktuu" id="waktuu"></output></span>
+            <label>Ketepatan Waktu</label> <span class="badge badge-primary float-right"><output for="waktuu" id="waktuu"></output></span>
             <input type="range" min="0" max="100" id="waktuu" name="waktu" class="form-control-range" oninput="nilaiwaktu(value)">
           </div>
           <div class="form-group">
-            <label>Penyelesaian Pekerjaan <span class="badge badge-primary"><output for="penyelesaiann" id="penyelesaiann"></output></span></label>
+            <label>Penyelesaian Pekerjaan</label> <span class="badge badge-primary float-right"><output for="penyelesaiann" id="penyelesaiann"></output></span>
             <input type="range" min="0" max="100" id="penyelesaiann" name="penyelesaian" class="form-control-range" oninput="nilaipenyelesaian(value)">
           </div>
           <div class="form-group">
-            <label>Inisiatif <span class="badge badge-primary"><output for="inisiatiff" id="inisiatiff"></output></span></label>
+            <label>Inisiatif</label> <span class="badge badge-primary float-right"><output for="inisiatiff" id="inisiatiff"></output></span>
             <input type="range" min="0" max="100" id="inisiatiff" name="inisiatif" class="form-control-range" oninput="nilaiinisiatif(value)">
           </div>
           <div class="form-group">

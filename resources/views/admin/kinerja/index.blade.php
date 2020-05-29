@@ -1,5 +1,7 @@
 @extends('layouts.admin.admin')
 
+@section('title') Data Kinerja Karyawan @endsection
+
 @section('content')
 <section class="content-header">
   <div class="container-fluid">
@@ -89,7 +91,6 @@
     </div>
   </div>
 
-
   <!-- modal tambah-->
   @include('admin.kinerja.tambah')
   <!-- end modal tambah -->
@@ -99,10 +100,8 @@
   <!-- end modal edit -->
 
   @endsection
+
   @section('script')
-
-
-
   <script>
     $('#ModalEdit').on('show.bs.modal', function(event) {
       var button = $(event.relatedTarget)
@@ -182,14 +181,23 @@
   </script>
 
   <script>
+    function nilaiwaktuu(vol) {
+      document.querySelector('#waktuuu').value = vol;
+    }
+
+    function nilaipenyelesaiann(vol) {
+      document.querySelector('#penyelesaiannn').value = vol;
+    }
+
+    function nilaiinisiatiff(vol) {
+      document.querySelector('#inisiatifff').value = vol;
+    }
+  </script>
+
+  <script>
     function nilaiwaktu(vol) {
       document.querySelector('#waktuu').value = vol;
     }
-
-    function nilaidisiplin(vol) {
-      document.querySelector('#disiplinn').value = vol;
-    }
-
 
     function nilaipenyelesaian(vol) {
       document.querySelector('#penyelesaiann').value = vol;
