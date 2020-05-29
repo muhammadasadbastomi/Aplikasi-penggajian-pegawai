@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-
+@section('title') Data Periode Gaji Honor Karyawan @endsection
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
@@ -22,7 +22,7 @@
         <div class="card-header">
             <h5 class="card-title">Data Periode Gaji</h5>
             <div class="text-right">
-                <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Data Periode</button>
+                <!-- <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Data Periode</button> -->
             </div>
         </div>
         <!-- /.card-header -->

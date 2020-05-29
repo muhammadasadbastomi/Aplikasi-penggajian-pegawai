@@ -20,6 +20,7 @@ class CreateKinerjasTable extends Migration
             $table->tinyInteger('gajiperiode_id');
             $table->string('disiplin')->nullable();
             $table->string('waktu')->nullable();
+            $table->string('honor')->default('2000000');
             $table->string('penyelesaian')->nullable();
             $table->string('inisiatif')->nullable();
             $table->string('keterangan')->nullable();

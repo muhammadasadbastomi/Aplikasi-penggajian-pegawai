@@ -69,7 +69,7 @@
                 <td class="text-center">
                   @if ($d->total == 0 )
                   -
-                  @elseif ($d->total < 140) Kurang Baik @elseif ($d->total> 235 ) Terbaik @elseif ($d->total> 139 ) Baik
+                  @elseif ($d->total < 140) Kurang Baik @elseif ($d->total> 245 ) Terbaik @elseif ($d->total> 139 ) Baik
                     @else
                     -
                     @endif

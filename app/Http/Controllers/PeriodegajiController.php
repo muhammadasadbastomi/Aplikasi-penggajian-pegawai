@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Gajiperiode;
 use App\Gaji;
 use App\Pegawai;
+use App\Kinerja;
 use App\Jabatan;
 use Illuminate\Support\Facades\DB;
 
@@ -122,18 +123,28 @@ class PeriodegajiController extends Controller
     {
         $periode = Gajiperiode::where('uuid', $id)->first();
         $periode1 = Gajiperiode::where('uuid', $id)->get();
+
+        $data = kinerja::orderBy('id', 'Desc')->where('gajiperiode_id', $periode->id)->get();
+        $karyawan = Pegawai::orderBy('id', 'Desc')->get();
+
+        $data = $data->map(function ($item) {
+            $item['total'] = $item->waktu + $item->inisiatif + $item->penyelesaian;
+            // dd($item);
+            return $item;
+        });
+
         // $karyawan = Pegawai::whereIn('pekerja', ['Karyawan'])->get();
-        $karyawan = Pegawai::all();
+        // $karyawan = Pegawai::all();
         // $gaji = Gaji::where('periode_id', $periode->id)
         //     ->join('pegawais', 'pegawais.id', '=', 'gajis.pegawai_id')
         //     ->join('jabatans', 'jabatans.id', '=', 'pegawais.jabatan_id')
         //     ->select('gajis.uuid', 'gajis.keterangan', 'jabatans.gaji_pokok', 'jabatans.tunjangan', 'pegawais.nama', 'pegawais.status', 'pegawais.pekerja', 'jabatans.jabatan')
         //     ->whereIn('pekerja', ['Karyawan'])
         //     ->get();
-        $gaji = Gaji::where('periode_id', $periode->id)
-            ->join('pegawais', 'pegawais.id', '=', 'gajis.pegawai_id')
-            ->select('gajis.uuid', 'gajis.keterangan', 'pegawais.nama', 'pegawais.status')
-            ->get();
+        // $gaji = Gaji::where('periode_id', $periode->id)
+        //     ->join('pegawais', 'pegawais.id', '=', 'gajis.pegawai_id')
+        //     ->select('gajis.uuid', 'gajis.keterangan', 'pegawais.nama', 'pegawais.status')
+        //     ->get();
 
         // if ($gaji->count() == 0) {
         //     $total = 0;
@@ -150,7 +161,7 @@ class PeriodegajiController extends Controller
         //     return $item;
         // });
 
-        return view('admin.gaji.periode.karyawan.index', compact('gaji', 'periode', 'karyawan', 'periode1'));
+        return view('admin.gaji.periode.karyawan.index', compact('periode', 'karyawan', 'periode1', 'data'));
     }
 
     /**

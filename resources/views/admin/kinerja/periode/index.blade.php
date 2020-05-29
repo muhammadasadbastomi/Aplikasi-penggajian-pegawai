@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-
+@section('title') Data Periode Kinerja Karyawan @endsection
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
@@ -34,9 +34,9 @@
                         <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
                             <thead>
                                 <tr role="row">
-                                    <th>No</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Periode</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Keterangan</th>
+                                    <th class="sorting_asc text-center">No</th>
+                                    <th class="sorting_asc text-center">Periode</th>
+                                    <th class="sorting_asc text-center">Keterangan</th>
                                     <th></th>
                             </thead>
                             <tbody>

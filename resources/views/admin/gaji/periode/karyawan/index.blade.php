@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-
+@section('title') Data Gaji Honor Karyawan @endsection
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
@@ -24,7 +24,7 @@
             <h5 class="card-title">Data Gaji Periode Karyawan - {{\carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
             <div class="text-right">
                 @foreach ($periode1 as $d)
-                <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Karyawan</button>
+                <!-- <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Karyawan</button> -->
                 @endforeach
             </div>
         </div>
@@ -34,29 +34,45 @@
 
                 <div class="row">
                     <div class="col-sm-12 table-responsive">
-                        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
+                        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed nowrap" role="grid" aria-describedby="example1_info">
                             <thead>
                                 <tr role="row">
-                                    <th>No</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nama</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Gaji Honor</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jumlah</th>
-                                    <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Keterangan</th>
-                                    <th></th>
+                                    <th class="sorting_asc text-center">No</th>
+                                    <th class="sorting_asc text-center">Nama</th>
+                                    <th class="sorting_asc text-center">Status</th>
+                                    <th class="sorting_asc text-center">Gaji Honor</th>
+                                    <th class="sorting_asc text-center">Kinerja</th>
+                                    <th class="sorting_asc text-center">Total Honor</th>
+                                    <th class="sorting_asc text-center">Keterangan</th>
+                                    <!-- <th></th> -->
                             </thead>
                             <tbody>
-                                @foreach ($gaji as $d)
+                                @foreach ($data as $d)
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
-                                    <td class="text-center">{{$d->nama}}</td>
-                                    <td class="text-center">{{$d->status}}</td>
-                                    <td class="text-center">#</td>
-                                    <td class="text-center">{{$d->total}}</td>
-                                    <td class="text-center">{{$d->keterangan}}</td>
+                                    <td class="text-center">{{$d->pegawai->nama}}</td>
+                                    <td class="text-center">{{$d->pegawai->status}}</td>
+                                    <td class="text-center">Rp. {{number_format($d->honor, 0, ',', '.')}},-</td>
                                     <td class="text-center">
-                                        <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('lihatkaryawanDelete', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus </a>
+                                        @if ($d->total == 0 ) -
+                                        @elseif ($d->total < 140) Kurang Baik <span class="badge badge-danger float-right">0%</span> @elseif ($d->total> 245 ) Terbaik <span class="badge badge-success float-right">25%</span>
+                                            @elseif ($d->total> 139 ) Baik <span class="badge badge-primary float-right">15%</span>
+                                            @else
+                                            -
+                                            @endif
                                     </td>
+                                    <td class="text-center">
+                                        @if ($d->total == 0 ) -
+                                        @elseif ($d->total < 140) Rp. {{number_format($d->honor, 0, ',', '.') }},- @elseif ($d->total> 245 ) Rp. {{number_format($d->honor * 0.025 + $d->honor, 0, ',', '.') }},-
+                                            @elseif ($d->total> 139 ) Rp. {{number_format($d->honor * 0.015 + $d->honor, 0, ',', '.') }},-
+                                            @else
+                                            -
+                                            @endif
+                                    </td>
+                                    <td class="text-center">{{$d->keterangan}}</td>
+                                    <!-- <td class="text-center">
+                                        <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('lihatkaryawanDelete', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus </a>
+                                    </td> -->
                                 </tr>
                                 @endforeach
                             </tbody>

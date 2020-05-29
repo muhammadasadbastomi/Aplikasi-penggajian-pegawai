@@ -80,7 +80,7 @@ class KinerjaController extends Controller
     {
 
         $periode = Gajiperiode::where('uuid', $id)->first();
-        $data = kinerja::orderBy('id', 'Desc')->where('periode_id', $periode->id)->get();
+        $data = kinerja::orderBy('id', 'Desc')->where('gajiperiode_id', $periode->id)->get();
         $karyawan = Pegawai::orderBy('id', 'Desc')->get();
 
         $data = $data->map(function ($item) {
@@ -101,16 +101,18 @@ class KinerjaController extends Controller
      */
     public function create(Request $request, $id)
     {
+
         //dd($request->all());
         $request->validate([
             'karyawan' => 'unique:kinerjas,pegawai_id'
         ]);
 
+
         $periode = Gajiperiode::where('uuid', $id)->first();
 
         $data = new Kinerja;
         $data->pegawai_id = $request->karyawan;
-        $data->periode_id = $periode->id;
+        $data->gajiperiode_id = $periode->id;
         $data->waktu = $request->waktu;
         $data->penyelesaian = $request->penyelesaian;
         $data->inisiatif = $request->inisiatif;
