@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Kinerja extends Model
 {
+
     use Notifiable;
     use Uuid;
 
@@ -16,7 +17,7 @@ class Kinerja extends Model
         return $this->belongsTo(Pegawai::class);
     }
 
-    public function Gajiperiode()
+    public function gajiperiode()
     {
         return $this->belongsTo(Gajiperiode::class);
     }

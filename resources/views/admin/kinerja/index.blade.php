@@ -33,7 +33,7 @@
 
         <div class="row">
           <div class="col-sm-12 table-responsive">
-            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
+            <table id="example1" class="table table-bordered nowrap table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
               <thead>
                 <tr role="row">
                   <th>No</th>
@@ -43,6 +43,8 @@
                   <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Ketepatan Waktu</th>
                   <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Penyelesaian Pekerjaan</th>
                   <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Inisiatif</th>
+                  <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Total Nilai</th>
+                  <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Hasil Kinerja</th>
                   <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Keterangan</th>
                   <th></th>
               </thead>
@@ -50,12 +52,21 @@
                 @foreach ($data as $d)
                 <tr>
                   <td class="text-center">{{$loop->iteration}}</td>
-                  <td class="text-center">{{$d->pegawai}}</td>
-                  <td class="text-center">{{$d->pegawai}}</td>
+                  <td class="text-center">{{$d->pegawai->nama}}</td>
+                  <td class="text-center">{{$d->pegawai->status}}</td>
                   <td class="text-center">{{$d->disiplin}}</td>
                   <td class="text-center">{{$d->waktu}}</td>
                   <td class="text-center">{{$d->penyelesaian}}</td>
-                  <td class="text-center">{{$d->inisitaif}}</td>
+                  <td class="text-center">{{$d->inisiatif}}</td>
+                  <td class="text-center">{{$total}}</td>
+                  <td class="text-center">
+                    @if ($total == 0 )
+                    Belum Ada Nilai
+                    @elseif ($total < 50) Buruk @elseif ($total> 74 ) Terbaik @elseif ($total> 49 ) Lumayan
+                      @else
+                      -
+                      @endif
+                  </td>
                   <td class="text-center">{{$d->keterangan}}</td>
                   <td class="text-center">
                     <a class="btn btn-xs btn-info text-white" href="{{route('kinerjaEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit</a>
@@ -97,15 +108,27 @@
               <div class="form-group">
                 <label for="karyawan">Nama Karyawan</label>
                 <select class="custom-select" name="karyawan" id="karyawan">
-                  @foreach($karyawan as $d)
+                  @foreach($karyawankaryawan as $d)
                   <option value="{{$d->id}}">{{ $d->nama}} {{$d->nik}}</option>
                   @endforeach
                 </select>
               </div>
+              <div class="form-group">
+                <label for="waktu">Ketepatan Waktu</label>
+                <input type="number" name="waktu" id="waktu" class="form-control" placeholder="Masukkan Nilai Ketepatan Waktu">
+              </div>
+              <div class="form-group">
+                <label for="penyelesaian">Penyelesaian Pekerjaan</label>
+                <input type="number" name="penyelesaian" id="penyelesaian" class="form-control" placeholder="Masukkan Nilai Penyelesaian Pekerjaan">
+              </div>
+              <div class="form-group">
+                <label for="inisiatif">Inisiatif</label>
+                <input type="number" name="inisiatif" id="inisiatif" class="form-control" placeholder="Masukkan Nilai Inisiatif">
+              </div>
               <!-- <div class="form-group">
-                <label for="pekerja">Status Pekerja</label>
-                <input selected disabled value type="text" id="pekerja" class="form-control" placeholder="Karyawan">
-              </div> -->
+              <label for="pekerja">Status Pekerja</label>
+              <input selected disabled value type="text" id="pekerja" class="form-control" placeholder="Karyawan">
+            </div> -->
               <div class="form-group">
                 <label for="keterangan">Keterangan</label>
                 <textarea type="text" name="keterangan" id="keterangan" class="form-control">{{old('keterangan')}}</textarea>

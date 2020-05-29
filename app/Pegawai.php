@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class Pegawai extends Model
 {
+
     use Notifiable;
     use Uuid;
     // protected $fillable = [
@@ -22,27 +23,23 @@ class Pegawai extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function jabatan()
-    {
-        return $this->belongsTo(Jabatan::class);
-    }
+    // public function jabatan()
+    // {
+    //     return $this->belongsTo(Jabatan::class);
+    // }
 
-    public function golongan()
-    {
-        return $this->belongsTo(Golongan::class);
-    }
-    public function gajiperiode()
-    {
-        return $this->belongsToMany(Gajiperiode::class);
-    }
+    // public function golongan()
+    // {
+    //     return $this->belongsTo(Golongan::class);
+    // }
 
     public function absensi()
     {
-        return $this->HasMany(Absensi::class);
+        return $this->hasMany(Absensi::class);
     }
 
     public function kinerja()
     {
-        return $this->HasMany(Kinerja::class);
+        return $this->hasMany('App\Kinerja', 'karyawan_id', 'id');
     }
 }

@@ -31,9 +31,9 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        $jabatan = Jabatan::orderBy('id', 'asc')->get();
-        $golongan = Golongan::orderBy('id', 'asc')->get();
-        return view('admin.pegawai.create', compact('jabatan', 'golongan'));
+        // $jabatan = Jabatan::orderBy('id', 'asc')->get();
+        // $golongan = Golongan::orderBy('id', 'asc')->get();
+        return view('admin.pegawai.create');
     }
 
     /**

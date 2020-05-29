@@ -16,8 +16,8 @@ class CreateKinerjasTable extends Migration
         Schema::create('kinerjas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid')->length(36);
-            $table->tinyInteger('karyawan_id');
-            $table->tinyInteger('periode_id');
+            $table->tinyInteger('pegawai_id');
+            $table->tinyInteger('gajiperiode_id');
             $table->string('disiplin')->nullable();
             $table->string('waktu')->nullable();
             $table->string('penyelesaian')->nullable();

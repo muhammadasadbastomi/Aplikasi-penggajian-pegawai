@@ -80,8 +80,24 @@ class KinerjaController extends Controller
     {
         $periode = Gajiperiode::where('uuid', $id)->first();
         $data = kinerja::orderBy('id', 'Desc')->where('periode_id', $periode->id)->get();
+        // $data1 = kinerja::orderBy('id', 'Desc')->where('periode_id', $periode->id)->first();
         $karyawan = Pegawai::orderBy('id', 'Desc')->get();
-        return view('admin.kinerja.index', compact('data', 'karyawan', 'pegawai'));
+
+        if ($data->count() == 0) {
+            $total = 0;
+        } else {
+            foreach ($data as $d) {
+                $total = $d->waktu + $d->inisiatif + $d->penyelesaian;
+            }
+        }
+        $data = $data->map(function ($item) use ($total) {
+            $item['total'] = $total;
+            // dd($item);
+            return $item;
+        });
+        // dd($total);
+
+        return view('admin.kinerja.index', compact('data', 'karyawan', 'pegawai', 'total'));
     }
 
     /**
@@ -94,8 +110,11 @@ class KinerjaController extends Controller
         $periode = Gajiperiode::where('uuid', $id)->first();
 
         $data = new Kinerja;
-        $data->karyawan_id = $request->karyawan;
+        $data->pegawai_id = $request->karyawan;
         $data->periode_id = $periode->id;
+        $data->waktu = $request->waktu;
+        $data->penyelesaian = $request->penyelesaian;
+        $data->inisiatif = $request->inisiatif;
         $data->keterangan = $request->keterangan;
         $data->save();
 

@@ -11,8 +11,8 @@ class Gajiperiode extends Model
     use Notifiable;
     use Uuid;
 
-    public function pegawai()
+    public function kinerja()
     {
-        return $this->belongsToMany(Pegawai::class);
+        return $this->hasMany(Kinerja::class);
     }
 }

@@ -14,7 +14,7 @@ class CreateGajiperiodesTable extends Migration
     public function up()
     {
         Schema::create('gajiperiodes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('uuid')->length(36);
             $table->date('periode')->unique()->nullable();
             $table->string('keterangan')->nullable();
