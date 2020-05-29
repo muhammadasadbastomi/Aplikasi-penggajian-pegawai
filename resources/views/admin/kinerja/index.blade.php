@@ -108,7 +108,7 @@
               <div class="form-group">
                 <label for="karyawan">Nama Karyawan</label>
                 <select class="custom-select" name="karyawan" id="karyawan">
-                  @foreach($karyawankaryawan as $d)
+                  @foreach($karyawan as $d)
                   <option value="{{$d->id}}">{{ $d->nama}} {{$d->nik}}</option>
                   @endforeach
                 </select>
