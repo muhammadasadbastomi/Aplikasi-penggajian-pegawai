@@ -111,15 +111,13 @@
         }
       })
     });
-
-    $('#example1').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
+  </script>
+  <script>
+    $(function() {
+      $("#example1").DataTable({
+        "responsive": true,
+        "autoWidth": false,
+      });
     });
   </script>
   @endsection

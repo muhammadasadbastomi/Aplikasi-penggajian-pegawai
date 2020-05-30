@@ -91,7 +91,7 @@ class KinerjaController extends Controller
 
         // dd($data);
 
-        return view('admin.kinerja.index', compact('data', 'karyawan', 'pegawai', 'total'));
+        return view('admin.kinerja.index', compact('data', 'karyawan', 'periode', 'total'));
     }
 
     /**
@@ -102,13 +102,14 @@ class KinerjaController extends Controller
     public function create(Request $request, $id)
     {
 
+        $periode = Gajiperiode::where('uuid', $id)->first();
+
         //dd($request->all());
         $request->validate([
-            'karyawan' => 'unique:kinerjas,pegawai_id'
+            'karyawan' => 'unique:kinerjas,pegawai_id,null,id,gajiperiode_id,' . $request->gajiperiode_id . ''
         ]);
 
 
-        $periode = Gajiperiode::where('uuid', $id)->first();
 
         $data = new Kinerja;
         $data->pegawai_id = $request->karyawan;

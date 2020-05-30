@@ -7,9 +7,6 @@
 @endsection
 
 @section('content')
-
-
-
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -28,7 +25,7 @@
 
 <div class="card">
   <div class="card-header">
-    <h5 class="card-title">Data Kinerja Karyawan</h5>
+    <h5 class="card-title">Data Kinerja Karyawan {{\carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
     <div class="text-right">
       <!-- <a href="{{route('kinerjaPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a> -->
       <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Karyawan</button>
@@ -95,7 +92,6 @@
     <!-- /.card-body -->
   </div>
 </div>
-
 
 <!-- modal tambah-->
 @include('admin.kinerja.tambah')
@@ -174,16 +170,6 @@
       }
     })
   });
-
-  $('#example1').DataTable({
-    "paging": true,
-    "lengthChange": true,
-    "searching": true,
-    "ordering": true,
-    "info": true,
-    "autoWidth": false,
-    "responsive": true,
-  });
 </script>
 
 <!-- Toastr -->
@@ -243,4 +229,12 @@
 </script>
 @endif
 
+<script>
+  $(function() {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+  });
+</script>
 @endsection
