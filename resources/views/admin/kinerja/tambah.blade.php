@@ -16,7 +16,7 @@
                         <label for="karyawan">Nama Karyawan</label>
                         <select class="custom-select" name="karyawan" id="karyawan">
                             @foreach($karyawan as $d)
-                            <option data-nik="{{$d->nik}}" value="{{$d->id}}">{{ $d->nama}} {{$d->nik}}</option>
+                            <option data-nik="{{$d->nik}}" value="{{$d->id}}">{{$d->nama}}</option>
                             @endforeach
                         </select>
                     </div>

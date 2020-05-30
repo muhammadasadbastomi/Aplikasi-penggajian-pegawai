@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::delete('/admin/kinerja/delete/{id}', 'KinerjaController@destroy')->name('kinerjaDestroy');
     Route::get('/laporan/cetak_kinerja', 'KinerjaController@cetak_pdf')->name('kinerjaPdf');
 
+
     Route::get('/admin/karyawan/index', 'karyawanController@index')->name('karyawanIndex');
     Route::get('/admin/karyawan/detail/{id}', 'karyawanController@show')->name('karyawanShow');
     Route::get('/admin/karyawan/create', 'karyawanController@create')->name('karyawanCreate');
