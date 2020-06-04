@@ -112,6 +112,9 @@ class KinerjaController extends Controller
         $periode = Gajiperiode::where('uuid', $id)->first();
         $monthgaji = Carbon::parse($periode->periode)->format('m');
         $periodeTomi = Periode::whereMonth('periode', $monthgaji)->first();
+        if (!$periodeTomi) {
+            return redirect()->back()->withWarning('Periode absensi belum dibuat');
+        }
         $alfa = Absensi::where('periode_id', $periodeTomi->id)->where('alfa', 1)->get()->count();
         $izin = Absensi::where('periode_id', $periodeTomi->id)->where('izin', 1)->get()->count();
         $sakit = Absensi::where('periode_id', $periodeTomi->id)->where('sakit', 1)->get()->count();
