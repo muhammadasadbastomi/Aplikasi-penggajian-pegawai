@@ -12,7 +12,7 @@ class Kinerja extends Model
     use Notifiable;
     use Uuid;
     protected $fillable = [
-        'pegawai_id'
+        'pegawai_id',
     ];
     public function pegawai()
     {
@@ -22,5 +22,10 @@ class Kinerja extends Model
     public function gajiperiode()
     {
         return $this->belongsTo(Gajiperiode::class);
+    }
+
+    public function disiplin_detail()
+    {
+        return $this->hasOne(Disiplin_detail::class);
     }
 }

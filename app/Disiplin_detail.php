@@ -4,16 +4,14 @@ namespace App;
 
 use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 
-class Gajiperiode extends Model
+class Disiplin_detail extends Model
 {
-    use Notifiable;
     use Uuid;
 
     public function kinerja()
     {
-        return $this->hasMany(Kinerja::class);
+        return $this->belongsTo(Kinerja::class);
     }
 
 }
