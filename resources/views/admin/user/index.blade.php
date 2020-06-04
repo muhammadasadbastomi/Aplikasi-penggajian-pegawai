@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-
+@section('title') Admin User @endsection
 @section('content')
 <section class="content-header">
   <div class="container-fluid">
@@ -22,8 +22,8 @@
     <div class="card-header">
       <h5 class="card-title">Data User</h5>
       <div class="text-right">
-        <a href="{{route('golonganCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah
-          Data</a>
+        <!-- <a href="#" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah
+          Data</a> -->
       </div>
     </div>
     <!-- /.card-header -->
@@ -88,7 +88,7 @@
       }).then((result) => {
         if (result.value) {
           $.ajax({
-            url: "{{ url('/admin/golongan/delete')}}" + '/' + id,
+            url: "{{ url('/admin/#/delete')}}" + '/' + id,
             type: "POST",
             data: {
               '_method': 'DELETE',
