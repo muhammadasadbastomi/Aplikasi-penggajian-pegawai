@@ -54,73 +54,8 @@
                   translatedformat('d'))
                   <tr>
                     @else
-                  <tr style="background-color : rgb(240, 255, 107) !important;">
-                    @endif
-                    <td class="text-center">{{$loop->iteration}}</td>
-                    <td class="text-center">{{carbon\carbon::parse($d->tanggal)->translatedFormat('D, d F Y')}}</td>
-                    <td class="text-center">{{$d->pegawai->nama}}</td>
-                    <td class="text-center">
-                      @if($d->izin == 1)
-                      ✔
-                      @else
-                      -
-                      @endif</td>
-                    <td class="text-center">
-                      @if($d->sakit == 1)
-                      ✔
-                      @else
-                      -
-                      @endif
-                    </td>
-                    <td class="text-center">
-                      @if($d->alfa == 1)
-                      ✔
-                      @else
-                      -
-                      @endif</td>
-                    <td class="text-center">
-                      @if($d->hadir == 1)
-                      ✔
-                      @else
-                      -
-                      @endif
-                    </td>
-                    <td class="text-center">
-                      @if(isset($d->keterangan))
-                      {{$d->keterangan}}
-                      @else
-                      -
-                      @endif
-                    </td>
-                    <td class="text-center">
-                      @if(Auth::user()->role == 'admin')
-                      @if($d->hadir == 1 && $d->status == 3
-                      || $d->izin == 1 && $d->status == 3
-                      || $d->sakit == 1 && $d->status == 3)
-                      <a class="btn btn-xs btn-primary text-white" href="{{route('absensiVerifikasi', ['id' => $d->uuid])}}"><i></i> Verifikasi</a>
-                      @elseif($d->status == 1)
-                      <a class="btn btn-xs btn-success text-white"><i class="fas fa-check"></i>
-                        Terverifikasi</a>
-                      @elseif(carbon\carbon::parse($d->tanggal)->format('d') < carbon\carbon::now()->format('d')) <a class="btn btn-xs btn-info text-white" href="{{route('absensiEdit',['id' => $d->uuid])}}"><i class="fas fa-edit"></i>
-                          Edit Manual</a>
-                        @else
-                        @endif
-                        @elseif($d->status == 1)
-                        <a class="btn btn-xs btn-success text-white"><i class="fas fa-check"></i>
-                          Terverifikasi</a>
-                        @elseif($d->hadir == 1 && $d->status == 3
-                        || $d->izin == 1 && $d->status == 3
-                        || $d->sakit == 1 && $d->status == 3)
-                        <a class="btn btn-xs btn-success text-white"><i class="fas fa-clock"></i>
-                          Menunggu Verifikasi Admin</a>
-                        @endif
-                    </td>
-                    {{-- <td class="text-center">
-                    <a class="btn btn-xs btn-info text-white" href="{{route('absensiEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit</a>
-                    <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i class="fas fa-trash"></i> Hapus</a>
-                    </td> --}}
-                  </tr>
-                  @endforeach
+
+                    @endforeach
               </tbody>
             </table>
           </div>

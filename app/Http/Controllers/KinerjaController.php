@@ -91,7 +91,7 @@ class KinerjaController extends Controller
 
         // dd($data);
 
-        return view('admin.kinerja.index', compact('data', 'karyawan', 'periode', 'total'));
+        return view('admin.kinerja.index', compact('data', 'karyawan', 'periode'));
     }
 
     /**

@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-
+@section('title') Dashboard Absen @endsection
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -30,7 +30,7 @@
     <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-            <div class="col-lg-3 col-6">
+            <div class="col-lg-12 col-6">
                 <!-- small box -->
                 <!-- small box -->
                 @if(Auth::user()->role =='pegawai' && $absensi != null)
@@ -113,6 +113,7 @@
                         </div>
                     </div>
                 </div>
+
                 @elseif(Auth::user()->role == 'admin')
                 @else
                 <h2 class="text-danger">Periode belum dibuat</h2>

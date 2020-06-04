@@ -101,11 +101,10 @@
                             @else(auth()->user()->role == 'pegawai')
 
                             <li class="nav-item has-treeview menu-open">
-                                <a href="#" class="nav-link active">
+                                <a href="{{route('adminIndex')}}" class="nav-link active">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
-                                        Data Master
-                                        <i class="right fas fa-angle-left"></i>
+                                        Dashboard
                                     </p>
                                 </a>
                             <li class="nav-item">
