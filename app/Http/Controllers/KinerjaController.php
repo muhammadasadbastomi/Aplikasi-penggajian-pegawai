@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\kinerja;
+use App\Absensi;
+use App\Disiplin_detail;
 use App\Gajiperiode;
+use App\kinerja;
 use App\Pegawai;
+use App\Periode;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class KinerjaController extends Controller
@@ -21,18 +25,17 @@ class KinerjaController extends Controller
     {
         $messages = [
             'unique' => ':attribute sudah ada.',
-            'required' => ':attribute harus diisi.'
+            'required' => ':attribute harus diisi.',
         ];
         //dd($request->all());
         $request->validate([
-            'periode' => 'required|unique:gajiperiodes'
+            'periode' => 'required|unique:gajiperiodes',
         ], $messages);
 
         $data = new Gajiperiode();
         $data->periode = $request->periode;
         $data->keterangan = $request->keterangan;
         $data->save();
-
 
         return redirect('admin/kinerja/periode/index')->with('success', 'Data berhasil disimpan');
     }
@@ -46,11 +49,11 @@ class KinerjaController extends Controller
     public function ubahp(Request $request, $id)
     {
         $messages = [
-            'required' => ':attribute harus diisi.'
+            'required' => ':attribute harus diisi.',
         ];
         //dd($request->all());
         $request->validate([
-            'periode' => 'required'
+            'periode' => 'required',
         ], $messages);
 
         // get data by id
@@ -82,16 +85,20 @@ class KinerjaController extends Controller
         $periode = Gajiperiode::where('uuid', $id)->first();
         $data = kinerja::orderBy('id', 'Desc')->where('gajiperiode_id', $periode->id)->get();
         $karyawan = Pegawai::orderBy('id', 'Desc')->get();
+        $count_days = carbon::parse($periode->id)->daysInMonth;
 
-        $data = $data->map(function ($item) {
-            $item['total'] = $item->waktu + $item->inisiatif + $item->penyelesaian;
+        $data = $data->map(function ($item) use ($count_days) {
+            $nilai = $count_days - $item->disiplin_detail->alfa;
+            $persentase = ($nilai * 100) / $count_days;
+            $item->disiplin = ceil($persentase);
+            $item['total'] = ($item->waktu + $item->inisiatif + $item->penyelesaian + ceil($persentase)) / 4;
             // dd($item);
             return $item;
         });
 
         // dd($data);
 
-        return view('admin.kinerja.index', compact('data', 'karyawan', 'periode', 'total'));
+        return view('admin.kinerja.index', compact('data', 'karyawan', 'periode'));
     }
 
     /**
@@ -103,13 +110,20 @@ class KinerjaController extends Controller
     {
 
         $periode = Gajiperiode::where('uuid', $id)->first();
+        $monthgaji = Carbon::parse($periode->periode)->format('m');
+        $periodeTomi = Periode::whereMonth('periode', $monthgaji)->first();
+        $alfa = Absensi::where('periode_id', $periodeTomi->id)->where('alfa', 1)->get()->count();
+        $izin = Absensi::where('periode_id', $periodeTomi->id)->where('izin', 1)->get()->count();
+        $sakit = Absensi::where('periode_id', $periodeTomi->id)->where('sakit', 1)->get()->count();
+        $hadir = Absensi::where('periode_id', $periodeTomi->id)->where('hadir', 1)->get()->count();
+        $count_days = carbon::parse($periodeTomi->periode)->daysInMonth;
+
+        $disiplinKinerja = $count_days - $alfa;
 
         //dd($request->all());
         $request->validate([
-            'karyawan' => 'unique:kinerjas,pegawai_id,null,id,gajiperiode_id,' . $request->gajiperiode_id . ''
+            'karyawan' => 'unique:kinerjas,pegawai_id,null,id,gajiperiode_id,' . $request->gajiperiode_id . '',
         ]);
-
-
 
         $data = new Kinerja;
         $data->pegawai_id = $request->karyawan;
@@ -119,6 +133,18 @@ class KinerjaController extends Controller
         $data->inisiatif = $request->inisiatif;
         $data->keterangan = $request->keterangan;
         $data->save();
+
+        $disiplin = new Disiplin_detail;
+        $disiplin->kinerja_id = $data->id;
+        $disiplin->alfa = $alfa;
+        $disiplin->izin = $izin;
+        $disiplin->sakit = $sakit;
+        $disiplin->hadir = $hadir;
+
+        $disiplin->save();
+
+        $data->disiplin = $disiplinKinerja;
+        $data->update();
 
         return redirect('admin/kinerja/index/' . $id . '')->with('success', 'Data berhasil disimpan');
     }
