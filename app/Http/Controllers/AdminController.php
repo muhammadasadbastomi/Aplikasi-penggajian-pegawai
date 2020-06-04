@@ -56,9 +56,9 @@ class AdminController extends Controller
                             $keterangan = 'Anda sudah melakukan absensi';
                         }
                     }
+                    return view('admin.index', compact('cek', 'keterangan', 'absensi'));
                 }
 
-                return view('admin.index', compact('cek', 'keterangan', 'absensi'));
             } else {
 
                 return view('admin.index', compact('cek'));
