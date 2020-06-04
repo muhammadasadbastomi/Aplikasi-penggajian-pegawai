@@ -29,8 +29,7 @@
     </h5>
     <div class="text-right">
       <!-- <a href="{{route('kinerjaPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a> -->
-      <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i
-          class="mdi mdi-add"></i> Tambah Karyawan</button>
+      <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Karyawan</button>
     </div>
   </div>
   <!-- /.card-header -->
@@ -39,29 +38,19 @@
 
       <div class="row">
         <div class="col-sm-12 table-responsive">
-          <table id="example1" class="table table-bordered nowrap table-striped dataTable dtr-inline collapsed"
-            role="grid" aria-describedby="example1_info">
+          <table id="example1" class="table table-bordered nowrap table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
             <thead>
               <tr role="row">
                 <th>No</th>
-                <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                  aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nama</th>
-                <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                  aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
-                <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
-                  aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Disiplin</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1"
-                  aria-label="Browser: activate to sort column ascending">Ketepatan Waktu</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1"
-                  aria-label="Browser: activate to sort column ascending">Penyelesaian Pekerjaan</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1"
-                  aria-label="Browser: activate to sort column ascending">Inisiatif</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1"
-                  aria-label="Browser: activate to sort column ascending">Total Nilai</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1"
-                  aria-label="Browser: activate to sort column ascending">Hasil Kinerja</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1"
-                  aria-label="Browser: activate to sort column ascending">Keterangan</th>
+                <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nama</th>
+                <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
+                <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Disiplin</th>
+                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Ketepatan Waktu</th>
+                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Penyelesaian Pekerjaan</th>
+                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Inisiatif</th>
+                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Total Nilai</th>
+                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Hasil Kinerja</th>
+                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Keterangan</th>
                 <th></th>
             </thead>
             <tbody>
@@ -70,12 +59,9 @@
                 <td class="text-center">{{$loop->iteration}}</td>
                 <td class="text-center">{{$d->pegawai->nama}}</td>
                 <td class="text-center">{{$d->pegawai->status}}</td>
-                <td class="text-center">{{$d->disiplin}}
+                <td class="text-center">{{$d->disiplin}} <button data-toggle="modal" style="border-style:none;" class='btn noHover' data-target="#modaldisiplin"><span class="badge badge-primary"> ! </span></button>
+                  @include('admin.kinerja.disiplin')
 
-                  <hr>Hadir : {{$d->disiplin_detail->hadir}} Hari
-                  <hr>Sakit : {{$d->disiplin_detail->sakit}} Hari
-                  <hr>Izin : {{$d->disiplin_detail->izin}} Hari
-                  <hr>Alfa : {{$d->disiplin_detail->alfa}} Hari
                 </td>
                 <td class="text-center">{{$d->waktu}}</td>
                 <td class="text-center">{{$d->penyelesaian}}</td>
@@ -84,19 +70,15 @@
                 <td class="text-center">
                   @if ($d->total == 0 )
                   -
-                  @elseif ($d->total < 140) Kurang Baik @elseif ($d->total> 245 ) Terbaik @elseif ($d->total> 139 ) Baik
+                  @elseif ($d->total < 51) Buruk @elseif ($d->total> 84 ) Terbaik @elseif ($d->total> 50 ) Baik
                     @else
                     -
                     @endif
                 </td>
                 <td class="text-center">{{$d->keterangan}}</td>
                 <td class="text-center">
-                  <a class="btn btn-xs btn-info text-white" data-id="{{$d->id}}" data-nama="{{$d->pegawai->nama}}"
-                    data-nik="{{$d->pegawai->nik}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}"
-                    data-inisiatif="{{$d->inisiatif}}" data-keterangan="{{$d->keterangan}}" data-toggle="modal"
-                    data-target="#ModalEdit"><i class="fas fa-edit"></i> Edit</a>
-                  <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}"
-                    href="{{route('kinerjaDestroy', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus</a>
+                  <a class="btn btn-xs btn-info text-white" data-id="{{$d->id}}" data-nama="{{$d->pegawai->nama}}" data-nik="{{$d->pegawai->nik}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-keterangan="{{$d->keterangan}}" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-edit"></i> Edit</a>
+                  <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('kinerjaDestroy', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus</a>
                 </td>
               </tr>
               @endforeach

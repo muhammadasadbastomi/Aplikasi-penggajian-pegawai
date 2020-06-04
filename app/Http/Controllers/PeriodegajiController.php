@@ -7,6 +7,7 @@ use App\Gajiperiode;
 use App\Gaji;
 use App\Pegawai;
 use App\Kinerja;
+use Carbon\Carbon;
 use App\Jabatan;
 use Illuminate\Support\Facades\DB;
 
@@ -127,8 +128,13 @@ class PeriodegajiController extends Controller
         $data = kinerja::orderBy('id', 'Desc')->where('gajiperiode_id', $periode->id)->get();
         $karyawan = Pegawai::orderBy('id', 'Desc')->get();
 
-        $data = $data->map(function ($item) {
-            $item['total'] = $item->waktu + $item->inisiatif + $item->penyelesaian;
+        $count_days = carbon::parse($periode->id)->daysInMonth;
+
+        $data = $data->map(function ($item) use ($count_days) {
+            $nilai = $count_days - $item->disiplin_detail->alfa;
+            $persentase = ($nilai * 100) / $count_days;
+            $item->disiplin = ceil($persentase);
+            $item['total'] = ($item->waktu + $item->inisiatif + $item->penyelesaian + ceil($persentase)) / 4;
             // dd($item);
             return $item;
         });

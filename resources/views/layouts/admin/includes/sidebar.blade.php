@@ -82,14 +82,14 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="{{ route('userIndex') }}" class="nav-link active">
+                            <!-- <li class="nav-item">
+                                <a href="" class="nav-link active">
                                     <i class="nav-icon fas fa-user"></i>
                                     <p>
                                         Admin
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a href="{{route('periodeIndex')}}" class="nav-link active">
                                     <i class="nav-icon fas fa-file-alt"></i>
