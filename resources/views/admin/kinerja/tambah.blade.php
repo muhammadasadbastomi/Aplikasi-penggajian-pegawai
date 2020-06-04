@@ -11,7 +11,6 @@
                 <form role="form" method="post">
                     @method('patch')
                     @csrf
-
                     <div class="form-group">
                         <label for="karyawan">Nama Karyawan</label>
                         <select class="custom-select" name="karyawan" id="karyawan">
