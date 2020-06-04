@@ -45,8 +45,8 @@
                 <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nama</th>
                 <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
                 <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Disiplin</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Ketepatan Waktu</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Penyelesaian Pekerjaan</th>
+                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Ketepatan<br>Waktu</th>
+                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Penyelesaian<br>Pekerjaan</th>
                 <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Inisiatif</th>
                 <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Total Nilai</th>
                 <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Hasil Kinerja</th>
@@ -55,28 +55,98 @@
             </thead>
             <tbody>
               @foreach ($data as $d)
-              <tr>
-                <td class="text-center">{{$loop->iteration}}</td>
-                <td class="text-center">{{$d->pegawai->nama}}</td>
-                <td class="text-center">{{$d->pegawai->status}}</td>
-                <td class="text-center">{{$d->disiplin}} <button data-toggle="modal" style="border-style:none;" class='btn noHover' data-target="#modaldisiplin"><span class="badge badge-primary"> ! </span></button>
+              z<tr style="background-color : rgb(209, 209, 224);">
+                <td class="text-center align-middle">{{$loop->iteration}}</td>
+                <td class="text-center align-middle">{{$d->pegawai->nama}}</td>
+                <td class="text-center align-middle">{{$d->pegawai->status}}</td>
+                <td class="text-center align-middle">
+                  <div class="progress-group">
+                    <span class="text-right"><b>{{$d->disiplin}}</b>/100 <button data-toggle="modal" style="border-style:none;" class='btn noHover' data-target="#modaldisiplin"><span class="badge badge-primary"> ! </span></button></span>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar 
+                      @if ($d->disiplin < 50 )
+                      bg-danger
+                      @elseif ($d->disiplin > 49 && $d->disiplin < 85)
+                      bg-info
+                      @else
+                      bg-primary
+                      @endif " style="width: {{$d->disiplin}}%"></div>
+                    </div>
+                  </div>
                   @include('admin.kinerja.disiplin')
-
                 </td>
-                <td class="text-center">{{$d->waktu}}</td>
-                <td class="text-center">{{$d->penyelesaian}}</td>
-                <td class="text-center">{{$d->inisiatif}}</td>
-                <td class="text-center">{{$d->total}}</td>
-                <td class="text-center">
+                <td class="text-center align-middle">
+                  <div class="progress-group">
+                    <span class="text-right"><b>{{$d->waktu}}</b>/100</span>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar 
+                      @if ($d->waktu < 50 )
+                      bg-danger
+                      @elseif ($d->waktu > 49 && $d->waktu < 85)
+                      bg-info
+                      @else
+                      bg-primary
+                      @endif " style="width: {{$d->waktu}}%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center align-middle">
+                  <div class="progress-group">
+                    <span class="text-right"><b>{{$d->penyelesaian}}</b>/100</span>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar 
+                      @if ($d->penyelesaian < 50 )
+                      bg-danger
+                      @elseif ($d->penyelesaian > 49 && $d->penyelesaian < 85 )
+                      bg-info
+                      @else
+                      bg-primary
+                      @endif " style="width: {{$d->penyelesaian}}%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center align-middle">
+                  <div class="progress-group">
+                    <span class="text-right"><b>{{$d->inisiatif}}</b>/100</span>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar 
+                      @if ($d->inisiatif < 50 )
+                      bg-danger
+                      @elseif ($d->inisiatif > 49  && $d->inisiatif < 85)
+                      bg-info
+                      @else
+                      bg-primary
+                      @endif " style="width: {{$d->inisiatif}}%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center align-middle">
+                  <div class="progress-group">
+                    <span class="text-right"><b>
+                        {{ceil($d->total)}}</b>/100</span>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar 
+                      @if ($d->total < 50 )
+                      bg-danger
+                      @elseif ($d->total > 49 && $d->total < 85)
+                      bg-info
+                      @else
+                      bg-primary
+                      @endif
+                      " style="width:{{ceil($d->total)}}%"></div>
+                    </div>
+                  </div>
+                </td>
+                <td class="text-center align-middle">
                   @if ($d->total == 0 )
                   -
-                  @elseif ($d->total < 51) Buruk @elseif ($d->total> 84 ) Terbaik @elseif ($d->total> 50 ) Baik
+                  @elseif ($d->total < 51) <span class="badge badge-danger">Buruk</span> @elseif ($d->total> 84 ) <span class="badge badge-primary">Terbaik</span> @elseif ($d->total> 50 ) <span class="badge badge-info">Baik</span>
                     @else
                     -
                     @endif
                 </td>
-                <td class="text-center">{{$d->keterangan}}</td>
-                <td class="text-center">
+                <td class="text-center align-middle">{{$d->keterangan}}</td>
+                <td class="text-center align-middle">
                   <a class="btn btn-xs btn-info text-white" data-id="{{$d->id}}" data-nama="{{$d->pegawai->nama}}" data-nik="{{$d->pegawai->nik}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-keterangan="{{$d->keterangan}}" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-edit"></i> Edit</a>
                   <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('kinerjaDestroy', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus</a>
                 </td>

@@ -52,11 +52,12 @@
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td class="text-center">{{$d->pegawai->nama}}</td>
                                     <td class="text-center">{{$d->pegawai->status}}</td>
-                                    <td class="text-center">Rp. {{number_format($d->honor, 0, ',', '.')}},-</td>
+                                    <td class="text-center">Rp. {{number_format($d->honor, 0, ',', '.')}},-
+                                    </td>
                                     <td class="text-center">
                                         @if ($d->total == 0 ) -
-                                        @elseif ($d->total < 50) Buruk <span class="badge badge-danger float-right">0%</span> @elseif ($d->total> 84 ) Terbaik <span class="badge badge-success float-right">25%</span>
-                                            @elseif ($d->total> 49 ) Baik <span class="badge badge-primary float-right">15%</span>
+                                        @elseif ($d->total < 50) Buruk @elseif ($d->total> 84 ) Terbaik
+                                            @elseif ($d->total> 49 ) Baik
                                             @else
                                             -
                                             @endif
@@ -64,10 +65,21 @@
                                     <td class="text-center">
                                         @if ($d->total == 0 ) -
                                         @elseif ($d->total < 49) Rp. {{number_format($d->honor, 0, ',', '.') }},- @elseif ($d->total> 84 ) Rp. {{number_format($d->honor * 0.025 + $d->honor, 0, ',', '.') }},-
-                                            @elseif ($d->total> 50 ) Rp. {{number_format($d->honor * 0.015 + $d->honor, 0, ',', '.') }},-
+                                            @elseif ($d->total> 50 ) Rp. {{number_format($d->honor * 0.015 + $d->honor, 0, ',', '.') }},
                                             @else
                                             -
                                             @endif
+
+                                            @if ($d->total == 0 ) -
+                                            @elseif ($d->total < 50) @elseif ($d->total> 84 ) &emsp14;<span class="text-success">
+                                                    <i class="fas fa-arrow-up"></i> 25%
+                                                </span>
+                                                @elseif ($d->total> 49 ) <span class="text-success">
+                                                    <i class="fas fa-arrow-up"></i> 15%
+                                                </span>
+                                                @else
+                                                -
+                                                @endif
                                     </td>
                                     <td class="text-center">{{$d->keterangan}}</td>
                                     <!-- <td class="text-center">
