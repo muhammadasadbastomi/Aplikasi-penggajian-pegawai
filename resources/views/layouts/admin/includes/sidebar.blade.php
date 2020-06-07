@@ -72,7 +72,6 @@
                                     </li>
                                 </ul>
                             </li>
-
                             <!-- End Sidebar Menu Data Master Admin -->
                             <li class="nav-item">
                                 <a href="#" class="nav-link active">
@@ -82,19 +81,21 @@
                                     </p>
                                 </a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a href="" class="nav-link active">
-                                    <i class="nav-icon fas fa-user"></i>
-                                    <p>
-                                        Admin
-                                    </p>
-                                </a>
-                            </li> -->
+
                             <li class="nav-item">
                                 <a href="{{route('periodeIndex')}}" class="nav-link active">
                                     <i class="nav-icon fas fa-file-alt"></i>
                                     <p>
                                         Data Absensi Karyawan
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="{{route('userShow', ['id' => Auth::user()->uuid])}}" class="nav-link active">
+                                    <i class="nav-icon fas fa-user-cog"></i>
+                                    <p>
+                                        Setting
                                     </p>
                                 </a>
                             </li>
@@ -109,7 +110,7 @@
                                 </a>
                             <li class="nav-item">
                                 <a href="{{route('userShow', ['id' => Auth::user()->uuid])}}" class="nav-link active">
-                                    <i class="nav-icon fas fa-user"></i>
+                                    <i class="nav-icon fas fa-user-cog"></i>
                                     <p>
                                         Profile
                                     </p>
@@ -125,9 +126,7 @@
                                 </a>
                             </li>
                             @endif
-
                         </ul>
-
                     </nav>
                     <!-- /.sidebar-menu -->
                 </div>

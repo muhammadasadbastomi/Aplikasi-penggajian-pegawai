@@ -42,26 +42,26 @@
             <thead>
               <tr role="row">
                 <th>No</th>
-                <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nama</th>
-                <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
-                <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Disiplin</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Ketepatan<br>Waktu</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Penyelesaian<br>Pekerjaan</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Inisiatif</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Total Nilai</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Hasil Kinerja</th>
-                <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Keterangan</th>
-                <th></th>
+                <th class="text-center">Nama</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Disiplin</th>
+                <th class="text-center">Ketepatan<br>Waktu</th>
+                <th class="text-center">Penyelesaian<br>Pekerjaan</th>
+                <th class="text-center">Inisiatif</th>
+                <th class="text-center">Total Nilai</th>
+                <th class="text-center">Hasil Kinerja</th>
+                <th class="text-center">Keterangan</th>
+                <th class="text-center">Aksi</th>
             </thead>
             <tbody>
               @foreach ($data as $d)
-              z<tr style="background-color : rgb(209, 209, 224);">
+              <tr style="background-color : rgb(209, 209, 224);">
                 <td class="text-center align-middle">{{$loop->iteration}}</td>
                 <td class="text-center align-middle">{{$d->pegawai->nama}}</td>
                 <td class="text-center align-middle">{{$d->pegawai->status}}</td>
-                <td class="text-center align-middle">
+                <td class="text-center">
                   <div class="progress-group">
-                    <span class="text-right"><b>{{$d->disiplin}}</b>/100 <button data-toggle="modal" style="border-style:none;" class='btn noHover' data-target="#modaldisiplin"><span class="badge badge-primary"> ! </span></button></span>
+                    <span class="text-right" style="margin-left: 9px;"><b>{{$d->disiplin}}</b> / 100 <button data-toggle=" modal" class="btn btn-noHover btn-sm border-transparent" data-target="#modaldisiplin"><span class="badge badge-primary">!</span></button></span>
                     <div class="progress progress-sm">
                       <div class="progress-bar 
                       @if ($d->disiplin < 50 )
@@ -75,9 +75,9 @@
                   </div>
                   @include('admin.kinerja.disiplin')
                 </td>
-                <td class="text-center align-middle">
+                <td class="text-center">
                   <div class="progress-group">
-                    <span class="text-right"><b>{{$d->waktu}}</b>/100</span>
+                    <span class="text-right"> <button class="btn btn-noHover btn-sm border-transparent"> <b>{{$d->waktu}}</b> / 100</button></span>
                     <div class="progress progress-sm">
                       <div class="progress-bar 
                       @if ($d->waktu < 50 )
@@ -90,9 +90,9 @@
                     </div>
                   </div>
                 </td>
-                <td class="text-center align-middle">
+                <td class="text-center">
                   <div class="progress-group">
-                    <span class="text-right"><b>{{$d->penyelesaian}}</b>/100</span>
+                    <span class="text-right"><button class="btn btn-noHover btn-sm border-transparent"> <b>{{$d->penyelesaian}}</b> / 100</button></span>
                     <div class="progress progress-sm">
                       <div class="progress-bar 
                       @if ($d->penyelesaian < 50 )
@@ -105,9 +105,9 @@
                     </div>
                   </div>
                 </td>
-                <td class="text-center align-middle">
+                <td class="text-center">
                   <div class="progress-group">
-                    <span class="text-right"><b>{{$d->inisiatif}}</b>/100</span>
+                    <span class="text-right"><button class="btn btn-noHover btn-sm border-transparent"> <b>{{$d->inisiatif}}</b> / 100</button></span>
                     <div class="progress progress-sm">
                       <div class="progress-bar 
                       @if ($d->inisiatif < 50 )
@@ -120,10 +120,9 @@
                     </div>
                   </div>
                 </td>
-                <td class="text-center align-middle">
+                <td class="text-center">
                   <div class="progress-group">
-                    <span class="text-right"><b>
-                        {{ceil($d->total)}}</b>/100</span>
+                    <span class="text-right"><button class="btn btn-noHover btn-sm border-transparent"> <b> {{ceil($d->total)}}</b> /100</button></span>
                     <div class="progress progress-sm">
                       <div class="progress-bar 
                       @if ($d->total < 50 )
@@ -145,7 +144,7 @@
                     -
                     @endif
                 </td>
-                <td class="text-center align-middle">{{$d->keterangan}}</td>
+                <td class="text-center align-middle"> @empty($d->keterangan) - @else {{$d->keterangan}} @endempty</td>
                 <td class="text-center align-middle">
                   <a class="btn btn-xs btn-info text-white" data-id="{{$d->id}}" data-nama="{{$d->pegawai->nama}}" data-nik="{{$d->pegawai->nik}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-keterangan="{{$d->keterangan}}" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-edit"></i> Edit</a>
                   <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('kinerjaDestroy', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus</a>
@@ -156,12 +155,6 @@
           </table>
         </div>
       </div>
-      {{-- <div class="row">
-        <div class="col-sm-12 col-md-5">
-          <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-        </div>
-        <div class="col-sm-12 col-md-7">
-          <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div> --}}
     </div>
     <!-- /.card-body -->
   </div>

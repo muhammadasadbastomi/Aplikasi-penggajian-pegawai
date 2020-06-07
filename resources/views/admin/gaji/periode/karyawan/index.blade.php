@@ -65,23 +65,23 @@
                                     <td class="text-center">
                                         @if ($d->total == 0 ) -
                                         @elseif ($d->total < 49) Rp. {{number_format($d->honor, 0, ',', '.') }},- @elseif ($d->total> 84 ) Rp. {{number_format($d->honor * 0.025 + $d->honor, 0, ',', '.') }},-
-                                            @elseif ($d->total> 50 ) Rp. {{number_format($d->honor * 0.015 + $d->honor, 0, ',', '.') }},
+                                            @elseif ($d->total> 50 ) Rp. {{number_format($d->honor * 0.015 + $d->honor, 0, ',', '.') }},-
                                             @else
                                             -
                                             @endif
 
                                             @if ($d->total == 0 ) -
                                             @elseif ($d->total < 50) @elseif ($d->total> 84 ) &emsp14;<span class="text-success">
-                                                    <i class="fas fa-arrow-up"></i> 25%
+                                                    &emsp14;<i class="fas fa-arrow-up"></i> 25%
                                                 </span>
                                                 @elseif ($d->total> 49 ) <span class="text-success">
-                                                    <i class="fas fa-arrow-up"></i> 15%
+                                                    &emsp14;<i class="fas fa-arrow-up"></i> 15%
                                                 </span>
                                                 @else
                                                 -
                                                 @endif
                                     </td>
-                                    <td class="text-center">{{$d->keterangan}}</td>
+                                    <td class="text-center"> @empty($d->keterangan) - @else {{$d->keterangan}} @endempty</td>
                                     <!-- <td class="text-center">
                                         <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('lihatkaryawanDelete', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus </a>
                                     </td> -->
