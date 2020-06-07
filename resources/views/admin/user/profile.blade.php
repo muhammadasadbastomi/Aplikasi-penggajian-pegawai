@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style>
     #imgView {
-        width: 300px;
+        width: 200px;
     }
 
     .loadAnimate {
@@ -167,8 +167,8 @@
                                     @error('photos')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                 </div>
                             </div>
-                            <div class="imgWrap">
-                                <img src="no-image.png" id="imgView" class="card-img-top img-fluid">
+                            <div class="imgWrap float-right" style="margin-right: 440px;">
+                                <img src="{{url('images/blank.png')}}" id="imgView" class="card-img-top img-fluid">
                             </div>
                             <div class="footer" style="margin-top: 30px; margin-bottom: 30px;">
                                 <button type="submit" class="btn btn-primary">Ubah</button>
