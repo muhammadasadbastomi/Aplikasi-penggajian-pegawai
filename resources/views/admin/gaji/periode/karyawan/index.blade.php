@@ -64,8 +64,8 @@
                                     </td>
                                     <td class="text-center">
                                         @if ($d->total == 0 ) -
-                                        @elseif ($d->total < 49) Rp. {{number_format($d->honor, 0, ',', '.') }},- @elseif ($d->total> 84 ) Rp. {{number_format($d->honor * 0.025 + $d->honor, 0, ',', '.') }},-
-                                            @elseif ($d->total> 50 ) Rp. {{number_format($d->honor * 0.015 + $d->honor, 0, ',', '.') }},-
+                                        @elseif ($d->total < 49) Rp. {{number_format($d->honor, 0, ',', '.') }},- @elseif ($d->total> 84 ) Rp. {{number_format($d->honor * 0.25 + $d->honor, 0, ',', '.') }},-
+                                            @elseif ($d->total> 50 ) Rp. {{number_format($d->honor * 0.15 + $d->honor, 0, ',', '.') }},-
                                             @else
                                             -
                                             @endif
