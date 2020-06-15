@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-
+@section('title') Data Absensi Pegawai @endsection
 @section('content')
 <section class="content-header">
   <div class="container-fluid">
@@ -9,6 +9,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{route('periodeUserIndex')}}">Data Periode Pegawai</a></li>
           <li class="breadcrumb-item active">Data Absensi Pegawai</li>
         </ol>
       </div>
@@ -57,7 +58,7 @@
                   <tr style="background-color : rgb(240, 255, 107) !important;">
                     @endif
                     <td class="text-center">{{$loop->iteration}}</td>
-                    <td class="text-center">{{carbon\carbon::parse($d->tanggal)->translatedFormat('D, d F Y')}}</td>
+                    <td class="text-center">{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}</td>
                     <td class="text-center">{{$d->pegawai->nama}}</td>
                     <td class="text-center">
                       @if($d->izin == 1)

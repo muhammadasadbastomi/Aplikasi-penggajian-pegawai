@@ -44,6 +44,10 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () 
     Route::delete('/pegawai/absensi/delete/{id}', 'AbsensiController@destroy')->name('absensiUserDestroy');
     Route::get('/laporan/cetak_absensi', 'AbsensiController@cetak_pdf')->name('absensiPdf');
 
+    // route absensi user
+    Route::get('/pegawai/kinerja/index/{id}', 'HarianController@index')->name('kinerjaUserIndex');
+    Route::patch('/pegawai/kinerja/index/{id}', 'HarianController@create')->name('kinerjaUsercreate');
+
     Route::get('/admin/user/index', 'UserController@index')->name('userIndex');
     Route::get('/admin/user/profile/{id}', 'UserController@show')->name('userShow');
     Route::put('/admin/user/profile/{id}', 'UserController@update')->name('userUpdate');

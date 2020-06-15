@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Kinerja Pegawai</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Input Data Kinerja Pegawai</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,29 +11,26 @@
                 <form role="form" method="post">
                     @method('patch')
                     @csrf
+                    <input type="hidden" id="id" name="uuid">
                     <div class="form-group">
-                        <label for="karyawan">Nama Karyawan</label>
-                        <select class="custom-select" name="karyawan" id="karyawan">
-                            @foreach($karyawan as $d)
-                            <option data-nik="{{$d->nik}}" value="{{$d->id}}">{{$d->nama}}</option>
-                            @endforeach
-                        </select>
+                        <label for="karyawan">Tanggal</label>
+                        <input type="text" id="tgl" name="tgl" class="form-control" readonly>
                     </div>
                     <div class="form-group">
-                        <label>Status Pekerja</label>
-                        <input readonly placeholder="Karyawan" id="pekerja" class="form-control">
+                        <label for="karyawan">Nama Karyawan</label>
+                        <input type="text" id="nama" name="nama" class="form-control" readonly>
                     </div>
                     <input type="hidden" name="gajiperiode_id" value="{{$periode->id}}">
                     <div class="form-group">
-                        <label>Ketepatan Waktu</label> <span class="badge badge-primary float-right"><output for="waktuuu" id="waktuuu">50</output></span>
+                        <label>Nilai Ketepatan Waktu</label> <span class="badge badge-primary float-right"><output for="waktuuu" id="waktuuu">50</output></span>
                         <input type="range" min="0" max="100" id="waktuuu" name="waktu" class="form-control-range" oninput="nilaiwaktuu(value)">
                     </div>
                     <div class="form-group">
-                        <label>Penyelesaian Pekerjaan</label> <span class="badge badge-primary float-right"><output for="penyelesaiannn" id="penyelesaiannn">50</output></span>
+                        <label>Nilai Penyelesaian Pekerjaan</label> <span class="badge badge-primary float-right"><output for="penyelesaiannn" id="penyelesaiannn">50</output></span>
                         <input type="range" min="0" max="100" id="penyelesaiannn" name="penyelesaian" class="form-control-range" oninput="nilaipenyelesaiann(value)">
                     </div>
                     <div class="form-group">
-                        <label>Inisiatif</label> <span class="badge badge-primary float-right"><output for="inisiatifff" id="inisiatifff">50</output></span>
+                        <label>Nilai Inisiatif</label> <span class="badge badge-primary float-right"><output for="inisiatifff" id="inisiatifff">50</output></span>
                         <input type="range" min="0" max="100" id="inisiatifff" name="inisiatif" class="form-control-range" oninput="nilaiinisiatiff(value)">
                     </div>
                     <div class="form-group">

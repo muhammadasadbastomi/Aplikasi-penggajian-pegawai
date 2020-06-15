@@ -3,7 +3,7 @@
 @section('title') Data Hasil Kinerja Pegawai @endsection
 
 @section('css')
-<link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
+<!-- <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css"> -->
 @endsection
 
 @section('content')
@@ -35,21 +35,21 @@
   <!-- /.card-header -->
   <div class="card-body">
     <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-
       <div class="row">
         <div class="col-sm-12 table-responsive">
           <table id="example1" class="table table-bordered nowrap table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
             <thead>
               <tr role="row">
-                <th>No</th>
-                <th class="text-center">Nama Lengkap</th>
-                <th class="text-center">Status Sekarang</th>
-                <th class="text-center">Disiplin</th>
+                <th class="text-center align-middle">No</th>
+                <th class="text-center align-middle">Nama Lengkap</th>
+                <th class="text-center align-middle">Status Sekarang</th>
+                <th class="text-center align-middle">Disiplin</th>
                 <th class="text-center">Ketepatan<br>Waktu</th>
                 <th class="text-center">Penyelesaian<br>Pekerjaan</th>
-                <th class="text-center">Inisiatif</th>
-                <th class="text-center">Total Nilai</th>
-                <th class="text-center">Hasil Kinerja</th>
+                <th class="text-center align-middle">Inisiatif</th>
+                <th class="text-center align-middle">Total Nilai</th>
+                <th class="text-center align-middle">Hasil Kinerja</th>
+              </tr>
             </thead>
             <tbody>
               @foreach ($data as $d)
@@ -224,37 +224,8 @@
 </script>
 
 <!-- Toastr -->
-<script src="../../plugins/toastr/toastr.min.js"></script>
-
-<script>
-  function nilaiwaktuu(vol) {
-    document.querySelector('#waktuuu').value = vol;
-  }
-
-  function nilaipenyelesaiann(vol) {
-    document.querySelector('#penyelesaiannn').value = vol;
-  }
-
-  function nilaiinisiatiff(vol) {
-    document.querySelector('#inisiatifff').value = vol;
-  }
-</script>
-
-<script>
-  function nilaiwaktu(vol) {
-    document.querySelector('#waktuu').value = vol;
-  }
-
-  function nilaipenyelesaian(vol) {
-    document.querySelector('#penyelesaiann').value = vol;
-  }
-
-  function nilaiinisiatif(vol) {
-    document.querySelector('#inisiatiff').value = vol;
-  }
-</script>
-
-@if (count($errors) > 0)
+<!-- <script src="../../plugins/toastr/toastr.min.js"></script> -->
+<!-- @if (count($errors) > 0)
 <script>
   $(function() {
     Command: toastr["error"]("Karyawan Sudah Ada.", "Gagal")
@@ -278,7 +249,7 @@
     "hideMethod": "fadeOut"
   }
 </script>
-@endif
+@endif -->
 
 <script>
   $(function() {

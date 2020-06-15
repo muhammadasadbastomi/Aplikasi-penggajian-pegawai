@@ -17,7 +17,7 @@ class CreatePegawaisTable extends Migration
             $table->bigIncrements('id');
             $table->string('uuid')->length(36);
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('jabatan_id')->nullable();;
+            $table->unsignedBigInteger('jabatan_id')->nullable();
             $table->unsignedBigInteger('golongan_id')->nullable();
             $table->string('nik');
             $table->string('nama');

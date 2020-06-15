@@ -33,5 +33,16 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123'),
         ]);
+        DB::table('users')->insert([
+            'uuid' => Str::random(36),
+            'name' => 'aryudi',
+            'email' => 'aryudi33@gmail.com',
+            'password' => Hash::make('123'),
+        ]);
+
+
+        $this->call([
+            PegawaiSeeder::class,
+        ]);
     }
 }

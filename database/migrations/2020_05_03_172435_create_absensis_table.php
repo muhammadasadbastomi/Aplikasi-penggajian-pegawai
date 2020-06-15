@@ -18,6 +18,9 @@ class CreateAbsensisTable extends Migration
             $table->string('uuid')->length(36);
             $table->unsignedBigInteger('periode_id');
             $table->tinyInteger('pegawai_id');
+            $table->integer('waktu')->nullable();
+            $table->integer('inisiatif')->nullable();
+            $table->integer('penyelesaian')->nullable();
             $table->tinyInteger('izin')->nullable();
             $table->tinyInteger('sakit')->nullable();
             $table->tinyInteger('alfa')->nullable();
@@ -25,6 +28,7 @@ class CreateAbsensisTable extends Migration
             $table->tinyInteger('status')->default(0);
             $table->date('tanggal');
             $table->text('keterangan')->nullable();
+            $table->text('keterangankinerja')->nullable();
             $table->foreign('periode_id')->references('id')->on('periodes')->onDelete('restrict');
             $table->timestamps();
         });
