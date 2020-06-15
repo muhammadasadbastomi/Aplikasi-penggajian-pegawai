@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-
+@section('title') Edit Data Periode Pegawai @endsection
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
@@ -9,8 +9,8 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('GajiperiodeIndex')}}">Data Periode Karyawan</a></li>
-                    <li class="breadcrumb-item active">Edit Data Periode Karyawan</li>
+                    <li class="breadcrumb-item active"><a href="{{route('kinerjaperiodeIndex')}}">Data Periode Pegawai</a></li>
+                    <li class="breadcrumb-item active">Edit Data Periode Pegawai</li>
                 </ol>
             </div>
         </div>
@@ -21,7 +21,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Edit Data Periode Karyawan - {{\carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
+            <h5 class="card-title">Edit Data Periode Pegawai - {{\carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
             <div class="text-right">
 
             </div>
@@ -54,7 +54,7 @@
 
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Ubah</button>
-                                <a href="{{route('GajiperiodeIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
+                                <a href="{{route('kinerjaperiodeIndex')}}" class="btn btn-danger text-white"><i class="mdi mdi-back"></i>Batal</a>
                             </div>
                         </form>
                     </div>

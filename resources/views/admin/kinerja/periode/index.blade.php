@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-@section('title') Data Periode Kinerja Karyawan @endsection
+@section('title') Data Periode Pegawai @endsection
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item active">Data Periode Kinerja</li>
+                    <li class="breadcrumb-item active">Data Periode Pegawai</li>
                 </ol>
             </div>
         </div>
@@ -20,7 +20,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Data Periode Kinerja Karyawan</h5>
+            <h5 class="card-title">Data Periode Pegawai</h5>
             <div class="text-right">
                 <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Data Periode</button>
             </div>
@@ -46,9 +46,10 @@
                                     <td class="text-center">{{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</td>
                                     <td class="text-center">{{$d->keterangan}}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-xs btn-primary text-white" href="{{route('kinerjaIndex', ['id' => $d->uuid])}}"><i class="fas fa-users"></i> Kinerja Karyawan</a>
-                                        <a class="btn btn-xs btn-warning text-white" href="{{route('kinerjaperiodeEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit Periode</a>
-                                        <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('kinerjaperiodeDelete', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus Periode</a>
+                                        <a class="btn btn-xs btn-primary text-white" href="{{route('kinerjaIndex', ['id' => $d->uuid])}}"><i class="fas fa-users"></i> Lihat Hasil Kinerja & Gaji Pegawai - {{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</a>
+                                        <!-- <a class="btn btn-xs btn-primary text-white" href="{{route('lihatkaryawanIndex', ['id' => $d->uuid])}}"><i class="fas fa-users"></i> Lihat Gaji Honor Pegawai Pada Bulan {{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</a> -->
+                                        <a class="btn btn-xs btn-warning text-white" href="{{route('kinerjaperiodeEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i>Edit</a>
+                                        <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('kinerjaperiodeDelete', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i>Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach

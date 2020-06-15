@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-@section('title') Data Absensi Karyawan @endsection
+@section('title') Lihat Data Gaji Honor Pegawai @endsection
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
@@ -9,8 +9,8 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('GajiperiodeIndex')}}">Data Periode Gaji</a></li>
-                    <li class="breadcrumb-item active">Tambah Periode Gaji Pegawai</li>
+                    <li class="breadcrumb-item"><a href="{{route('kinerjaperiodeIndex')}}">Data Periode Pegawai</a></li>
+                    <li class="breadcrumb-item active">Lihat Periode Gaji Honor Pegawai</li>
                 </ol>
             </div>
         </div>
@@ -21,10 +21,10 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Data Gaji Periode Pegawai - {{\carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
+            <h5 class="card-title">Data Gaji Honor Periode Pegawai - {{\carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
             <div class="text-right">
                 @foreach ($periode1 as $d)
-                <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Pegawai</button>
+                <!-- <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Karyawan</button> -->
                 @endforeach
             </div>
         </div>
@@ -34,37 +34,54 @@
 
                 <div class="row">
                     <div class="col-sm-12 table-responsive">
-                        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
+                        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed nowrap" role="grid" aria-describedby="example1_info">
                             <thead>
                                 <tr role="row">
-                                    <th>No</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Nama</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Status Pekerja</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Golongan</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jabatan</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Gaji Pokok</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Tunjangan</th>
-                                    <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">Jumlah</th>
-                                    <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Keterangan</th>
-                                    <th></th>
+                                    <th class="sorting_asc text-center">No</th>
+                                    <th class="sorting_asc text-center">Nama</th>
+                                    <th class="sorting_asc text-center">Status</th>
+                                    <th class="sorting_asc text-center">Gaji Honor</th>
+                                    <th class="sorting_asc text-center">Kinerja</th>
+                                    <th class="sorting_asc text-center">Total Honor</th>
+                                    <th class="sorting_asc text-center">Keterangan</th>
+                                    <!-- <th></th> -->
                             </thead>
                             <tbody>
-                                @foreach ($gaji as $d)
+                                @foreach ($data as $d)
                                 <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
-                                    <td class="text-center">{{$d->nama}}</td>
-                                    <td class="text-center">{{$d->status}}</td>
-                                    <td class="text-center">{{$d->pekerja}}</td>
-                                    <td class="text-center">{{$d->golongan}}</td>
-                                    <td class="text-center">{{$d->jabatan}}</td>
-                                    <td class="text-center">{{$d->gaji_pokok}}</td>
-                                    <td class="text-center">{{$d->tunjangan}}</td>
-                                    <td class="text-center">{{$d->total}}</td>
-                                    <td class="text-center">{{$d->keterangan}}</td>
-                                    <td class="text-center">
-                                        <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('lihatpegawaiDelete', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus </a>
+                                    <td class="text-center">{{$d->pegawai->nama}}</td>
+                                    <td class="text-center">{{$d->pegawai->status}}</td>
+                                    <td class="text-center">Rp. {{number_format($d->honor, 0, ',', '.')}},-
                                     </td>
+                                    <td class="text-center">
+                                        @if ($d->total == 0 ) -
+                                        @elseif ($d->total < 50) Buruk @elseif ($d->total> 84 ) Terbaik
+                                            @elseif ($d->total> 49 ) Baik
+                                            @else
+                                            -
+                                            @endif
+                                    </td>
+                                    <td class="text-center">
+                                        @if ($d->total == 0 ) -
+                                        @elseif ($d->total < 49) Rp. {{number_format($d->honor, 0, ',', '.') }},- @elseif ($d->total> 84 ) Rp. {{number_format($d->honor * 0.25 + $d->honor, 0, ',', '.') }},-
+                                            @elseif ($d->total> 50 ) Rp. {{number_format($d->honor * 0.15 + $d->honor, 0, ',', '.') }},-
+                                            @else
+                                            -
+                                            @endif
+
+                                            @if ($d->total == 0 ) -
+                                            @elseif ($d->total < 50) @elseif ($d->total> 84 ) &emsp14;<span class="text-success">
+                                                    &emsp14;<i class="fas fa-arrow-up"></i> 25%
+                                                </span>
+                                                @elseif ($d->total> 49 ) <span class="text-success">
+                                                    &emsp14;<i class="fas fa-arrow-up"></i> 15%
+                                                </span>
+                                                @else
+                                                -
+                                                @endif
+                                    </td>
+                                    <td class="text-center"> @empty($d->keterangan) - @else {{$d->keterangan}} @endempty</td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -89,7 +106,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Gaji Periode Pegawai</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Gaji Periode Karyawan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -100,24 +117,24 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="pegawai">Nama Pegawai</label>
-                                <select class="custom-select" name="pegawai" id="pegawai">
-                                    @foreach($pegawai as $d)
+                                <label for="karyawan">Nama Karyawan</label>
+                                <select class="custom-select" name="karyawan" id="karyawan">
+                                    @foreach($karyawan as $d)
                                     <option value="{{$d->id}}">{{ $d->nama}} {{$d->nik}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="status">Status Pekerja</label>
-                                <input selected disabled value type="text" id="keterangan" class="form-control" placeholder="Pegawai">
-                            </div>
+                            <!-- <div class="form-group">
+                                <label for="pekerja">Status Pekerja</label>
+                                <input selected disabled value type="text" id="pekerja" class="form-control" placeholder="Karyawan">
+                            </div> -->
                             <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
                                 <textarea type="text" name="keterangan" id="keterangan" class="form-control">{{old('keterangan')}}</textarea>
                             </div>
                         </div>
                         <!-- /.card-body -->
-                        <div class="modal-footer">
+                        <div class=" modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
@@ -144,7 +161,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{ url('admin/gaji/periode/pegawai/delete')}}" + '/' + id,
+                        url: "{{ url('admin/gaji/periode/karyawan/delete')}}" + '/' + id,
                         type: "POST",
                         data: {
                             '_method': 'DELETE',
@@ -171,15 +188,14 @@
                 }
             })
         });
+    </script>
 
-        $('#example1').DataTable({
-            "paging": true,
-            "lengthChange": true,
-            "searching": true,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
+    <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
         });
     </script>
     @endsection

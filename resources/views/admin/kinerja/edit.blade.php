@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Tambah Data Periode</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Data Kinerja Pegawai</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -14,7 +14,7 @@
           @csrf
           <input type="hidden" name="id" id="id">
           <div class="form-group">
-            <label for="nama">Nama</label>
+            <label for="nama">Nama Lengkap</label>
             <input disabled type="text" id="nama" name="nama" class="form-control">
           </div>
           <div class="form-group">

@@ -58,18 +58,24 @@
                                             <p>Data Pegawai</p>
                                         </a>
                                     </li> -->
+                                    <!-- <li class="nav-item">
+                                        <a href="{{route('kinerjaperiodeIndex')}}" class="nav-link active">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Data Hasil Kinerja & Gaji</p>
+                                        </a>
+                                    </li> -->
                                     <li class="nav-item">
                                         <a href="{{route('kinerjaperiodeIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Kinerja Karyawan</p>
+                                            <p>Data Hasil Kinerja & Gaji</p>
                                         </a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('GajiperiodeIndex')}}" class="nav-link active">
+                                    <!-- <li class="nav-item">
+                                        <a href="" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Data Gaji Karyawan</p>
                                         </a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </li>
                             <!-- End Sidebar Menu Data Master Admin -->
