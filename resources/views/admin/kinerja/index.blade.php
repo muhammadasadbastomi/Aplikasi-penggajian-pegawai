@@ -15,7 +15,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-          <li class="breadcrumb-item"><a href="{{route('kinerjaperiodeIndex')}}">Data Periode Pegawai</a></li>
+          <li class="breadcrumb-item"><a href="{{route('hasilperiodeIndex')}}">Data Periode Pegawai</a></li>
           <li class="breadcrumb-item active">Data Hasil Kinerja Pegawai</li>
         </ol>
       </div>
@@ -29,7 +29,7 @@
     </h5>
     <div class="text-right">
       <!-- <a href="{{route('kinerjaPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a> -->
-      <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Data</button>
+      <!-- <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Data</button> -->
     </div>
   </div>
   <!-- /.card-header -->
@@ -43,17 +43,13 @@
               <tr role="row">
                 <th>No</th>
                 <th class="text-center">Nama Lengkap</th>
-                <th class="text-center">Status</th>
-                <th class="text-center">Gaji Honor</th>
+                <th class="text-center">Status Sekarang</th>
                 <th class="text-center">Disiplin</th>
                 <th class="text-center">Ketepatan<br>Waktu</th>
                 <th class="text-center">Penyelesaian<br>Pekerjaan</th>
                 <th class="text-center">Inisiatif</th>
                 <th class="text-center">Total Nilai</th>
                 <th class="text-center">Hasil Kinerja</th>
-                <th class="text-center">Total Gaji Honor</th>
-                <th class="text-center">Keterangan</th>
-                <th class="text-center">Aksi</th>
             </thead>
             <tbody>
               @foreach ($data as $d)
@@ -61,12 +57,9 @@
                 <td class="text-center align-middle">{{$loop->iteration}}</td>
                 <td class="text-center align-middle">{{$d->pegawai->nama}}</td>
                 <td class="text-center align-middle">{{$d->pegawai->status}}</td>
-                <td class="text-center align-middle">Rp. {{number_format($d->honor, 0, ',', '.')}},-</td>
                 <td class="text-center">
                   <div class="progress-group">
-
                     <span class="text-right" style="margin-left: 9px;"><b>{{$d->disiplin}}</b> / 100 <button data-toggle="modal" class="btn btn-noHover btn-sm border-transparent" data-target="#modaldisiplin"><span class="badge badge-primary">!</span></button></span>
-
                     <div class="progress progress-sm">
                       <div class="progress-bar 
                       @if ($d->disiplin < 50 )
@@ -149,30 +142,6 @@
                     -
                     @endif
                 </td>
-                <td class="text-center align-middle">
-                  @if ($d->total == 0 ) -
-                  @elseif ($d->total < 49) Rp. {{number_format($d->honor, 0, ',', '.') }},- @elseif ($d->total> 84 ) Rp. {{number_format($d->honor * 0.25 + $d->honor, 0, ',', '.') }},-
-                    @elseif ($d->total> 50 ) Rp. {{number_format($d->honor * 0.15 + $d->honor, 0, ',', '.') }},-
-                    @else
-                    -
-                    @endif
-
-                    @if ($d->total == 0 ) -
-                    @elseif ($d->total < 50) @elseif ($d->total> 84 ) &emsp14;<span class="text-success">
-                        &emsp14;<i class="fas fa-arrow-up"></i> 25%
-                      </span>
-                      @elseif ($d->total> 49 ) <span class="text-success">
-                        &emsp14;<i class="fas fa-arrow-up"></i> 15%
-                      </span>
-                      @else
-                      -
-                      @endif
-                </td>
-                <td class="text-center align-middle"> @empty($d->keterangan) - @else {{$d->keterangan}} @endempty</td>
-                <td class="text-center align-middle">
-                  <!-- <a class="btn btn-xs btn-info text-white" data-id="{{$d->id}}" data-nama="{{$d->pegawai->nama}}" data-nik="{{$d->pegawai->nik}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-keterangan="{{$d->keterangan}}" data-toggle="modal" data-target="#ModalEdit"><i class="fas fa-edit"></i> Edit</a> -->
-                  <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="{{route('kinerjaDestroy', ['id' => $d->uuid])}}"><i class="fas fa-trash"></i> Hapus</a>
-                </td>
               </tr>
               @endforeach
             </tbody>
@@ -183,15 +152,6 @@
     <!-- /.card-body -->
   </div>
 </div>
-
-<!-- modal tambah-->
-@include('admin.kinerja.tambah')
-<!-- end modal tambah -->
-
-<!-- modal edit -->
-@include('admin.kinerja.edit')
-<!-- end modal edit -->
-
 @endsection
 
 @section('script')

@@ -1,6 +1,6 @@
 @extends('layouts.admin.admin')
 
-@section('title') Tambah Data Karyawan @endsection
+@section('title') Tambah Data Pegawai @endsection
 
 @section('content')
 <section class="content-header">
@@ -11,7 +11,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item active"><a href="{{route('karyawanIndex')}}">Data Karyawan</a></li>
+                    <li class="breadcrumb-item active"><a href="{{route('karyawanIndex')}}">Data Pegawai</a></li>
                     <li class="breadcrumb-item active">Tambah Data</li>
                 </ol>
             </div>
@@ -23,7 +23,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">Tambah Data Karyawan</h5>
+            <h5 class="card-title">Tambah Data Pegawai</h5>
             <div class="text-right">
 
             </div>

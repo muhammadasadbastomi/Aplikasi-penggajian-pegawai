@@ -17,6 +17,13 @@ class PeriodeController extends Controller
         return view('admin.periode.index', compact('periode'));
     }
 
+    public function hasilindex()
+    {
+        $periode = Periode::orderBy('id', 'desc')->get();
+
+        return view('admin.periode.hasilindex', compact('periode'));
+    }
+
     public function create()
     {
         return view('admin.periode.create');
@@ -73,7 +80,6 @@ class PeriodeController extends Controller
                     }
                 }
                 return redirect()->route('periodeIndex')->with('success', 'Data berhasil disimpan');
-
             }
         }
         $tahun = carbon::parse($request->periode)->format('Y');
@@ -103,7 +109,6 @@ class PeriodeController extends Controller
             }
         }
         return redirect()->route('periodeIndex')->with('success', 'Data berhasil disimpan');
-
     }
 
     public function destroy($id)
@@ -113,6 +118,5 @@ class PeriodeController extends Controller
         $periode->delete();
 
         return redirect()->route('periodeIndex');
-
     }
 }

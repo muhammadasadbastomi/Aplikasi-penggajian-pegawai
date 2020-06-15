@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-@section('title') Data Karyawan @endsection
+@section('title') Data Pegawai @endsection
 @section('content')
 <section class="content-header">
   <div class="container-fluid">
@@ -9,7 +9,7 @@
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
           <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-          <li class="breadcrumb-item active">Data Karyawan</li>
+          <li class="breadcrumb-item active">Data Pegawai</li>
         </ol>
       </div>
     </div>
@@ -18,7 +18,7 @@
 <div class="container-fluid">
   <div class="card">
     <div class="card-header">
-      <h5 class="card-title">Data Karyawan</h5>
+      <h5 class="card-title">Data Pegawai</h5>
       <div class="text-right">
         <a href="{{route('karyawanCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah Data</a>
       </div>
@@ -34,7 +34,7 @@
                 <tr role="row">
                   <th>No</th>
                   <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">NIK</th>
-                  <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
+                  <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama Lengkap</th>
                   <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
                   <th class="sorting text-center" tabindex="5" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Alamat</th>
                   <th class="sorting text-center" tabindex="6" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tempat Lahir</th>
@@ -91,7 +91,7 @@
       }).then((result) => {
         if (result.value) {
           $.ajax({
-            url: "{{ url('/admin/karyawan/delete')}}" + '/' + id,
+            url: "{{ url('/admin/pegawai/delete')}}" + '/' + id,
             type: "POST",
             data: {
               '_method': 'DELETE',

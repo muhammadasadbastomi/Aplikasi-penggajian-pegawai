@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-@section('title') Data Absensi Karyawan @endsection
+@section('title') Data Absensi Pegawai @endsection
 @section('content')
 <section class="content-header">
   <div class="container-fluid">

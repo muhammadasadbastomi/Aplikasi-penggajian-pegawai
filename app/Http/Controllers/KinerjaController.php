@@ -101,6 +101,50 @@ class KinerjaController extends Controller
         return view('admin.kinerja.index', compact('data', 'karyawan', 'periode'));
     }
 
+    public function hasilkinerjaindex($id)
+    {
+
+        $periode = Periode::where('uuid', $id)->first();
+        $data = kinerja::orderBy('id', 'Desc')->where('periode_id', $periode->id)->get();
+        $karyawan = Pegawai::orderBy('id', 'Desc')->get();
+        $count_days = carbon::parse($periode->id)->daysInMonth;
+
+        $data = $data->map(function ($item) use ($count_days) {
+            $nilai = $count_days - $item->disiplin_detail->alfa;
+            $persentase = ($nilai * 100) / $count_days;
+            $item->disiplin = ceil($persentase);
+            $item['total'] = ($item->waktu + $item->inisiatif + $item->penyelesaian + ceil($persentase)) / 4;
+            // dd($item);
+            return $item;
+        });
+
+        // dd($data);
+
+        return view('admin.kinerja.index', compact('data', 'karyawan', 'periode'));
+    }
+
+    public function hasilgajiindex($id)
+    {
+        $periode = periode::where('uuid', $id)->first();
+        $periode1 = periode::where('uuid', $id)->get();
+
+        $data = kinerja::orderBy('id', 'Desc')->where('periode_id', $periode->id)->get();
+        $karyawan = Pegawai::orderBy('id', 'Desc')->get();
+
+        $count_days = carbon::parse($periode->id)->daysInMonth;
+
+        $data = $data->map(function ($item) use ($count_days) {
+            $nilai = $count_days - $item->disiplin_detail->alfa;
+            $persentase = ($nilai * 100) / $count_days;
+            $item->disiplin = ceil($persentase);
+            $item['total'] = ($item->waktu + $item->inisiatif + $item->penyelesaian + ceil($persentase)) / 4;
+            // dd($item);
+            return $item;
+        });
+
+        return view('admin.kinerja.gaji.index', compact('periode', 'karyawan', 'periode1', 'data'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -109,7 +153,7 @@ class KinerjaController extends Controller
     public function create(Request $request, $id)
     {
 
-        $periode = Gajiperiode::where('uuid', $id)->first();
+        $periode = Periode::where('uuid', $id)->first();
         $monthgaji = Carbon::parse($periode->periode)->format('m');
         $periodeTomi = Periode::whereMonth('periode', $monthgaji)->first();
         if (!$periodeTomi) {
@@ -125,12 +169,12 @@ class KinerjaController extends Controller
 
         //dd($request->all());
         $request->validate([
-            'karyawan' => 'unique:kinerjas,pegawai_id,null,id,gajiperiode_id,' . $request->gajiperiode_id . '',
+            'karyawan' => 'unique:kinerjas,pegawai_id,null,id,periode_id,' . $request->periode_id . '',
         ]);
 
         $data = new Kinerja;
         $data->pegawai_id = $request->karyawan;
-        $data->gajiperiode_id = $periode->id;
+        $data->periode_id = $periode->id;
         $data->waktu = $request->waktu;
         $data->penyelesaian = $request->penyelesaian;
         $data->inisiatif = $request->inisiatif;
@@ -149,7 +193,7 @@ class KinerjaController extends Controller
         $data->disiplin = $disiplinKinerja;
         $data->update();
 
-        return redirect('admin/kinerja/index/' . $id . '')->with('success', 'Data berhasil disimpan');
+        return redirect()->back()->with('success', 'Data berhasil disimpan');
     }
 
     /**

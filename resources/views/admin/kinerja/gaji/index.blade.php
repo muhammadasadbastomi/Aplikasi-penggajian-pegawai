@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('kinerjaperiodeIndex')}}">Data Periode Pegawai</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('hasilperiodeIndex')}}">Data Periode Pegawai</a></li>
                     <li class="breadcrumb-item active">Lihat Periode Gaji Honor Pegawai</li>
                 </ol>
             </div>
@@ -38,12 +38,11 @@
                             <thead>
                                 <tr role="row">
                                     <th class="sorting_asc text-center">No</th>
-                                    <th class="sorting_asc text-center">Nama</th>
-                                    <th class="sorting_asc text-center">Status</th>
+                                    <th class="sorting_asc text-center">Nama Lengkap</th>
+                                    <th class="sorting_asc text-center">Status Sekarang</th>
                                     <th class="sorting_asc text-center">Gaji Honor</th>
-                                    <th class="sorting_asc text-center">Kinerja</th>
-                                    <th class="sorting_asc text-center">Total Honor</th>
-                                    <th class="sorting_asc text-center">Keterangan</th>
+                                    <th class="sorting_asc text-center">Hasil Kinerja</th>
+                                    <th class="sorting_asc text-center">Total Gaji Honor</th>
                                     <!-- <th></th> -->
                             </thead>
                             <tbody>
@@ -54,10 +53,10 @@
                                     <td class="text-center">{{$d->pegawai->status}}</td>
                                     <td class="text-center">Rp. {{number_format($d->honor, 0, ',', '.')}},-
                                     </td>
-                                    <td class="text-center">
-                                        @if ($d->total == 0 ) -
-                                        @elseif ($d->total < 50) Buruk @elseif ($d->total> 84 ) Terbaik
-                                            @elseif ($d->total> 49 ) Baik
+                                    <td class="text-center align-middle">
+                                        @if ($d->total == 0 )
+                                        -
+                                        @elseif ($d->total < 51) <span class="badge badge-danger">Buruk</span> @elseif ($d->total> 84 ) <span class="badge badge-primary">Terbaik</span> @elseif ($d->total> 50 ) <span class="badge badge-info">Baik</span>
                                             @else
                                             -
                                             @endif
@@ -81,7 +80,6 @@
                                                 -
                                                 @endif
                                     </td>
-                                    <td class="text-center"> @empty($d->keterangan) - @else {{$d->keterangan}} @endempty</td>
                                 </tr>
                                 @endforeach
                             </tbody>

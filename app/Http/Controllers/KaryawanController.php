@@ -68,7 +68,7 @@ class KaryawanController extends Controller
         $request->request->add(['user_id' => $user->id]);
         Pegawai::create($request->all());
 
-        return redirect('/admin/karyawan/index')->with('success', 'Data berhasil disimpan');
+        return redirect()->route('karyawanIndex')->with('success', 'Data berhasil disimpan');
     }
 
     public function show(Pegawai $pegawai)
