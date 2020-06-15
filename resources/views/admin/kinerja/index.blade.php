@@ -28,7 +28,7 @@
     <h5 class="card-title">Data Hasil Kinerja Pegawai - {{\carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}
     </h5>
     <div class="text-right">
-      <!-- <a href="{{route('kinerjaPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a> -->
+      <!-- <a href="" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a> -->
       <!-- <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Data</button> -->
     </div>
   </div>

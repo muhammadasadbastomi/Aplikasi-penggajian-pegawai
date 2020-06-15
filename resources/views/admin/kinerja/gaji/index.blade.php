@@ -22,11 +22,6 @@
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Data Gaji Honor Periode Pegawai - {{\carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
-            <div class="text-right">
-                @foreach ($periode1 as $d)
-                <!-- <button type="button" class="btn btn-sm btn-primary text-white" data-toggle="modal" data-target="#exampleModal"><i class="mdi mdi-add"></i> Tambah Karyawan</button> -->
-                @endforeach
-            </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -51,7 +46,7 @@
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td class="text-center">{{$d->pegawai->nama}}</td>
                                     <td class="text-center">{{$d->pegawai->status}}</td>
-                                    <td class="text-center">Rp. {{number_format($d->honor, 0, ',', '.')}},-
+                                    <td class="text-center">Rp. {{number_format($d->pegawai->honor, 0, ',', '.')}},-
                                     </td>
                                     <td class="text-center align-middle">
                                         @if ($d->total == 0 )
@@ -63,8 +58,8 @@
                                     </td>
                                     <td class="text-center">
                                         @if ($d->total == 0 ) -
-                                        @elseif ($d->total < 49) Rp. {{number_format($d->honor, 0, ',', '.') }},- @elseif ($d->total> 84 ) Rp. {{number_format($d->honor * 0.25 + $d->honor, 0, ',', '.') }},-
-                                            @elseif ($d->total> 50 ) Rp. {{number_format($d->honor * 0.15 + $d->honor, 0, ',', '.') }},-
+                                        @elseif ($d->total < 49) Rp. {{number_format($d->pegawai->honor, 0, ',', '.') }},- @elseif ($d->total> 84 ) Rp. {{number_format($d->pegawai->honor * 0.25 + $d->pegawai->honor, 0, ',', '.') }},-
+                                            @elseif ($d->total> 50 ) Rp. {{number_format($d->pegawai->honor * 0.15 + $d->pegawai->honor, 0, ',', '.') }},-
                                             @else
                                             -
                                             @endif
@@ -94,51 +89,6 @@
         <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div> --}}
             </div>
             <!-- /.card-body -->
-        </div>
-    </div>
-
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Gaji Periode Karyawan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form role="form" method="post">
-                        @method('patch')
-                        @csrf
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="karyawan">Nama Karyawan</label>
-                                <select class="custom-select" name="karyawan" id="karyawan">
-                                    @foreach($karyawan as $d)
-                                    <option value="{{$d->id}}">{{ $d->nama}} {{$d->nik}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <!-- <div class="form-group">
-                                <label for="pekerja">Status Pekerja</label>
-                                <input selected disabled value type="text" id="pekerja" class="form-control" placeholder="Karyawan">
-                            </div> -->
-                            <div class="form-group">
-                                <label for="keterangan">Keterangan</label>
-                                <textarea type="text" name="keterangan" id="keterangan" class="form-control">{{old('keterangan')}}</textarea>
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class=" modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
     @endsection

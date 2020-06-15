@@ -9,9 +9,8 @@ class Disiplin_detail extends Model
 {
     use Uuid;
 
-    public function kinerja()
+    public function absensi()
     {
-        return $this->belongsTo(Kinerja::class);
+        return $this->belongsTo(Absensi::class);
     }
-
 }

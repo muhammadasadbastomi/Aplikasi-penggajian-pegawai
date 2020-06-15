@@ -20,4 +20,9 @@ class Absensi extends Model
     {
         return $this->belongsTo(Periode::class);
     }
+
+    public function disiplin_detail()
+    {
+        return $this->hasOne(Disiplin_detail::class);
+    }
 }

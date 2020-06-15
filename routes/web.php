@@ -69,26 +69,26 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/laporan/cetak_pegawai', 'PegawaiController@cetak_pdf')->name('pegawaiPdf');
 
 
-    // Start kinerja / Gaji Perbulan
-    Route::get('/admin/kinerja/periode/index', 'KinerjaController@periode')->name('kinerjaperiodeIndex');
-    Route::post('/admin/kinerja/periode/index', 'KinerjaController@tambah')->name('kinerjaperiodeCreate');
-    Route::get('/admin/kinerja/periode/edit/{id}', 'KinerjaController@ubah')->name('kinerjaperiodeEdit');
-    Route::put('/admin/kinerja/periode/edit/{id}', 'KinerjaController@ubahp')->name('kinerjaperiodeUpdate');
-    Route::delete('/admin/kinerja/periode/delete/{id}', 'KinerjaController@hapus')->name('kinerjaperiodeDelete');
+    // Start kinerja Perbulan
+    // Route::get('/admin/kinerja/periode/index', 'KinerjaController@periode')->name('kinerjaperiodeIndex');
+    // Route::post('/admin/kinerja/periode/index', 'KinerjaController@tambah')->name('kinerjaperiodeCreate');
+    // Route::get('/admin/kinerja/periode/edit/{id}', 'KinerjaController@ubah')->name('kinerjaperiodeEdit');
+    // Route::put('/admin/kinerja/periode/edit/{id}', 'KinerjaController@ubahp')->name('kinerjaperiodeUpdate');
+    // Route::delete('/admin/kinerja/periode/delete/{id}', 'KinerjaController@hapus')->name('kinerjaperiodeDelete');
 
-    Route::get('/admin/kinerja/index/{id}', 'KinerjaController@index')->name('kinerjaIndex');
-    Route::patch('/admin/kinerja/index/{id}', 'KinerjaController@create')->name('kinerjaCreate');
-    Route::get('/admin/kinerja/detail/{id}', 'KinerjaController@show')->name('kinerjaShow');
-    Route::post('/admin/kinerja/create', 'KinerjaController@store')->name('kinerjaStore');
-    Route::put('/admin/kinerja/index/{id}', 'KinerjaController@update')->name('kinerjaUpdate');
-    Route::delete('/admin/kinerja/delete/{id}', 'KinerjaController@destroy')->name('kinerjaDestroy');
-    Route::get('/laporan/cetak_kinerja', 'KinerjaController@cetak_pdf')->name('kinerjaPdf');
+    // Route::get('/admin/kinerja/index/{id}', 'KinerjaController@index')->name('kinerjaIndex');
+    // Route::patch('/admin/kinerja/index/{id}', 'KinerjaController@create')->name('kinerjaCreate');
+    // Route::get('/admin/kinerja/detail/{id}', 'KinerjaController@show')->name('kinerjaShow');
+    // Route::post('/admin/kinerja/create', 'KinerjaController@store')->name('kinerjaStore');
+    // Route::put('/admin/kinerja/index/{id}', 'KinerjaController@update')->name('kinerjaUpdate');
+    // Route::delete('/admin/kinerja/delete/{id}', 'KinerjaController@destroy')->name('kinerjaDestroy');
+    // Route::get('/laporan/cetak_kinerja', 'KinerjaController@cetak_pdf')->name('kinerjaPdf');
 
     Route::get('/admin/hasil/kinerja/gaji/periode/index', 'PeriodeController@hasilindex')->name('hasilperiodeIndex');
-    Route::get('/admin/hasil/Gaji/index/{id}', 'KinerjaController@hasilgajiindex')->name('hasilgajiIndex');
-    Route::get('/admin/hasil/kinerja/index/{id}', 'KinerjaController@hasilkinerjaindex')->name('hasilkinerjaIndex');
+    Route::get('/admin/hasil/Gaji/index/{id}', 'KinerjaController@gajiindex')->name('hasilgajiIndex');
+    Route::get('/admin/hasil/kinerja/index/{id}', 'KinerjaController@kinerjaindex')->name('hasilkinerjaIndex');
     // Route::patch('/admin/hasil/kinerja/index/{id}', 'KinerjaController@create')->name('hasilkinerjaCreate');
-    // End kinerja / Gaji Perbulan
+    // End kinerja Perbulan
 
 
     Route::get('/admin/pegawai/index', 'karyawanController@index')->name('karyawanIndex');

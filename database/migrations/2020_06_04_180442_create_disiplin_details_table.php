@@ -16,7 +16,7 @@ class CreateDisiplinDetailsTable extends Migration
         Schema::create('disiplin_details', function (Blueprint $table) {
             $table->id();
             $table->string('uuid', 36);
-            $table->foreignId('kinerja_id')->OnDelete('cascade');
+            $table->foreignId('absensi_id')->OnDelete('cascade');
             $table->string('alfa');
             $table->string('izin');
             $table->string('sakit');

@@ -2,16 +2,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detail Kehadiran {{$d->pegawai->nama}}, Bulan {{carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Detail Kehadiran {{$d->pegawai->nama}}, Bulan {{carbon\carbon::parse($d->periode->periode)->translatedFormat('F Y')}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Hadir : {{$d->disiplin_detail->hadir}} Hari
-                <hr>Sakit : {{$d->disiplin_detail->sakit}} Hari
-                <hr>Izin : {{$d->disiplin_detail->izin}} Hari
-                <hr>Alfa : {{$d->disiplin_detail->alfa}} Hari
+                Hadir : {{$d->hadir}} Hari
+                <hr>Sakit : {{$d->sakit}} Hari
+                <hr>Izin : {{$d->izin}} Hari
+                <hr>Alfa : {{$d->alfa}} Hari
             </div>
         </div>
     </div>

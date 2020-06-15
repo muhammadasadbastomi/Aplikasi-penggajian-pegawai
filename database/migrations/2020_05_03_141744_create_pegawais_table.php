@@ -27,6 +27,7 @@ class CreatePegawaisTable extends Migration
             $table->text('tempat_lahir');
             $table->date('tgl_lahir');
             $table->date('tgl_masuk');
+            $table->string('honor')->default('2000000');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('jabatan_id')->references('id')->on('jabatans')->onDelete('restrict');
             $table->foreign('golongan_id')->references('id')->on('golongans')->onDelete('restrict');
