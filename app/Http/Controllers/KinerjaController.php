@@ -109,7 +109,7 @@ class KinerjaController extends Controller
         $data = Absensi::orderBy('id', 'Desc')->where('periode_id', $periode->id)->where('tanggal', $end)->get();
 
         $data = $data->map(function ($item) use ($count_days) {
-            $nilai = $count_days - $item->alfa;
+            $nilai = $count_days - $item->where('alfa', 1)->sum('alfa');
             $persentase1 = ($nilai * 100) / $count_days;
 
             $nilaiwaktu = $item->sum('waktu');
@@ -125,6 +125,10 @@ class KinerjaController extends Controller
             $item->waktu = ceil($persentase2);
             $item->inisiatif = ceil($persentase3);
             $item->penyelesaian = ceil($persentase4);
+            $item['totalalfa'] = $item->where('alfa', 1)->sum('alfa');
+            $item['totalhadir'] = $item->where('hadir', 1)->sum('hadir');
+            $item['totalsakit'] = $item->where('sakit', 1)->sum('sakit');
+            $item['totalizin'] = $item->where('izin', 1)->sum('izin');
             $item['total'] = (ceil($persentase1) + ceil($persentase2) + ceil($persentase3) + ceil($persentase4)) / 4;
 
             // dd($item);
@@ -143,8 +147,10 @@ class KinerjaController extends Controller
         $data = Absensi::orderBy('id', 'Desc')->where('periode_id', $periode->id)->where('tanggal', $end)->get();
         $count_days = carbon::parse($periode->periode)->daysInMonth;
 
+        // $alfa = Absensi::where('periode_id', $periode_id)->where('tanggal', $end)->where('alfa', 1)->sum();
+
         $data = $data->map(function ($item) use ($count_days) {
-            $nilai = $count_days - $item->alfa == 1;
+            $nilai = $count_days - $item->where('alfa', 1)->sum('alfa');
             $persentase1 = ($nilai * 100) / $count_days;
 
             $nilaiwaktu = $item->sum('waktu');

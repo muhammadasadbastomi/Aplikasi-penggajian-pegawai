@@ -68,7 +68,7 @@
                       bg-info
                       @else
                       bg-primary
-                      @endif " style="width: {{$d->disiplin}}%"></div>
+                      @endif " style="width:{{$d->disiplin}}%"></div>
                     </div>
                   </div>
                   @include('admin.kinerja.disiplin')
