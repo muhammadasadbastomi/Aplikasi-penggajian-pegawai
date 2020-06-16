@@ -53,6 +53,7 @@
             </thead>
             <tbody>
               @foreach ($data as $d)
+
               <tr style="background-color : rgb(209, 209, 224);">
                 <td class="text-center align-middle">{{$loop->iteration}}</td>
                 <td class="text-center align-middle">{{$d->pegawai->nama}}</td>

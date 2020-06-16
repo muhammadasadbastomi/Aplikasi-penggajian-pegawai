@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Hadir : {{$d->totalhadir}} Hari
+                Hadir : {{$d->totalsakit}} Hari
                 <hr>Sakit : {{$d->totalsakit}} Hari
                 <hr>Izin : {{$d->totalizin}} Hari
                 <hr>Alfa : {{$d->totalalfa}} Hari

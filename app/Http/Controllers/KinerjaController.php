@@ -106,8 +106,10 @@ class KinerjaController extends Controller
         $periode = Periode::where('uuid', $id)->first();
         $end =  Carbon::parse($periode->periode)->endOfMonth()->toDateString();
         $count_days = carbon::parse($periode->periode)->daysInMonth;
-        $data = Absensi::orderBy('id', 'Desc')->where('periode_id', $periode->id)->where('tanggal', $end)->get();
+        $data = Absensi::orderBy('id', 'asc')->where('periode_id', $periode->id)->where('tanggal', $end)->get();
 
+
+        // dd($alfa);
         $data = $data->map(function ($item) use ($count_days) {
             $nilai = $count_days - $item->where('alfa', 1)->sum('alfa');
             $persentase1 = ($nilai * 100) / $count_days;
@@ -120,15 +122,20 @@ class KinerjaController extends Controller
 
             $nilaipenyelesaian = $item->sum('penyelesaian');
             $persentase4 = ($nilaipenyelesaian / $count_days);
-
             $item->disiplin = ceil($persentase1);
             $item->waktu = ceil($persentase2);
             $item->inisiatif = ceil($persentase3);
             $item->penyelesaian = ceil($persentase4);
-            $item['totalalfa'] = $item->where('alfa', 1)->sum('alfa');
-            $item['totalhadir'] = $item->where('hadir', 1)->sum('hadir');
-            $item['totalsakit'] = $item->where('sakit', 1)->sum('sakit');
-            $item['totalizin'] = $item->where('izin', 1)->sum('izin');
+
+            $pegawai = Pegawai::orderBy('id', 'asc')->get();
+            foreach ($pegawai as $d) {
+                $item['totalalfa'] = $item->where('alfa', 1)->where('pegawai_id', $d->id)->get('alfa');
+                $item['totalhadir'] = $item->where('hadir', 1)->sum('hadir');
+                $item['totalsakit'] = $item->where('sakit', 1)->sum('sakit');
+                $item['totalizin'] = $item->where('izin', 1)->sum('izin');
+            }
+
+
             $item['total'] = (ceil($persentase1) + ceil($persentase2) + ceil($persentase3) + ceil($persentase4)) / 4;
 
             // dd($item);
