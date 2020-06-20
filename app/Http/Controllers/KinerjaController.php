@@ -106,35 +106,25 @@ class KinerjaController extends Controller
         $periode = Periode::where('uuid', $id)->first();
         $end =  Carbon::parse($periode->periode)->endOfMonth()->toDateString();
         $count_days = carbon::parse($periode->periode)->daysInMonth;
-        $data = Absensi::orderBy('id', 'asc')->where('periode_id', $periode->id)->where('tanggal', $end)->get();
+        $data = Absensi::orderBy('id', 'desc')->where('periode_id', $periode->id)->where('tanggal', $end)->get();
 
-
-        // dd($alfa);
         $data = $data->map(function ($item) use ($count_days) {
-            $nilai = $count_days - $item->where('alfa', 1)->sum('alfa');
+
+            $nilai = $count_days - $item->where('alfa', 1)->where('pegawai_id', $item->pegawai_id)->sum('alfa');
             $persentase1 = ($nilai * 100) / $count_days;
 
-            $nilaiwaktu = $item->sum('waktu');
+            $nilaiwaktu = $item->where('pegawai_id', $item->pegawai_id)->sum('waktu');
             $persentase2 = ($nilaiwaktu / $count_days);
 
-            $nilaiinisiatif = $item->sum('inisiatif');
+            $nilaiinisiatif = $item->where('pegawai_id', $item->pegawai_id)->sum('inisiatif');
             $persentase3 = ($nilaiinisiatif / $count_days);
 
-            $nilaipenyelesaian = $item->sum('penyelesaian');
+            $nilaipenyelesaian = $item->where('pegawai_id', $item->pegawai_id)->sum('penyelesaian');
             $persentase4 = ($nilaipenyelesaian / $count_days);
             $item->disiplin = ceil($persentase1);
             $item->waktu = ceil($persentase2);
             $item->inisiatif = ceil($persentase3);
             $item->penyelesaian = ceil($persentase4);
-
-            $pegawai = Pegawai::orderBy('id', 'asc')->get();
-            foreach ($pegawai as $d) {
-                $item['totalalfa'] = $item->where('alfa', 1)->where('pegawai_id', $d->id)->get('alfa');
-                $item['totalhadir'] = $item->where('hadir', 1)->sum('hadir');
-                $item['totalsakit'] = $item->where('sakit', 1)->sum('sakit');
-                $item['totalizin'] = $item->where('izin', 1)->sum('izin');
-            }
-
 
             $item['total'] = (ceil($persentase1) + ceil($persentase2) + ceil($persentase3) + ceil($persentase4)) / 4;
 
@@ -142,10 +132,13 @@ class KinerjaController extends Controller
             return $item;
         });
 
+
         // dd($data);
 
         return view('admin.kinerja.index', compact('data', 'pegawai', 'periode'));
     }
+
+
 
     public function gajiindex($id)
     {
@@ -154,30 +147,31 @@ class KinerjaController extends Controller
         $data = Absensi::orderBy('id', 'Desc')->where('periode_id', $periode->id)->where('tanggal', $end)->get();
         $count_days = carbon::parse($periode->periode)->daysInMonth;
 
-        // $alfa = Absensi::where('periode_id', $periode_id)->where('tanggal', $end)->where('alfa', 1)->sum();
 
         $data = $data->map(function ($item) use ($count_days) {
-            $nilai = $count_days - $item->where('alfa', 1)->sum('alfa');
+
+            $nilai = $count_days - $item->where('alfa', 1)->where('pegawai_id', $item->pegawai_id)->sum('alfa');
             $persentase1 = ($nilai * 100) / $count_days;
 
-            $nilaiwaktu = $item->sum('waktu');
+            $nilaiwaktu = $item->where('pegawai_id', $item->pegawai_id)->sum('waktu');
             $persentase2 = ($nilaiwaktu / $count_days);
 
-            $nilaiinisiatif = $item->sum('inisiatif');
+            $nilaiinisiatif = $item->where('pegawai_id', $item->pegawai_id)->sum('inisiatif');
             $persentase3 = ($nilaiinisiatif / $count_days);
 
-            $nilaipenyelesaian = $item->sum('penyelesaian');
+            $nilaipenyelesaian = $item->where('pegawai_id', $item->pegawai_id)->sum('penyelesaian');
             $persentase4 = ($nilaipenyelesaian / $count_days);
-
             $item->disiplin = ceil($persentase1);
             $item->waktu = ceil($persentase2);
             $item->inisiatif = ceil($persentase3);
             $item->penyelesaian = ceil($persentase4);
+
             $item['total'] = (ceil($persentase1) + ceil($persentase2) + ceil($persentase3) + ceil($persentase4)) / 4;
 
             // dd($item);
             return $item;
         });
+
 
         return view('admin.kinerja.gaji.index', compact('periode', 'data'));
     }

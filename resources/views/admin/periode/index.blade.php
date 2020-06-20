@@ -50,8 +50,8 @@
                   <td class="text-center">{{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</td>
                   <td class="text-center">
                     <a class="btn btn-xs btn-primary text-white" href="{{route('absensiUserIndex', ['id' => $d->uuid])}}"><i class="fas fa-concierge-bell"> </i> Absensi Pegawai</a>
-                    <a class="btn btn-xs btn-info text-white" href="{{route('kinerjaUserIndex', ['id' => $d->uuid])}}"><i class="fas fa-chart-line"> </i> Kinerja Pegawai</a>
                     @if(Auth::user()->role == 'admin')
+                    <a class="btn btn-xs btn-info text-white" href="{{route('kinerjaUserIndex', ['id' => $d->uuid])}}"><i class="fas fa-chart-line"> </i> Kinerja Pegawai</a>
                     <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i class="fas fa-trash"></i> Hapus</a>
                     @else
                     @endif

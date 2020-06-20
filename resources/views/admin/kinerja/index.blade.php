@@ -53,14 +53,14 @@
             </thead>
             <tbody>
               @foreach ($data as $d)
-
               <tr style="background-color : rgb(209, 209, 224);">
                 <td class="text-center align-middle">{{$loop->iteration}}</td>
                 <td class="text-center align-middle">{{$d->pegawai->nama}}</td>
                 <td class="text-center align-middle">{{$d->pegawai->status}}</td>
                 <td class="text-center">
                   <div class="progress-group">
-                    <span class="text-right" style="margin-left: 9px;"><b>{{$d->disiplin}}</b> / 100 <button data-toggle="modal" class="btn btn-noHover btn-sm border-transparent" data-target="#modaldisiplin"><span class="badge badge-primary">!</span></button></span>
+                    <span class="text-right" style="margin-left: 9px;"><b>{{$d->disiplin}}</b> / 100 <button data-nama="{{$d->pegawai->nama}}" data-alfa="{{$d->where('alfa', 1)->where('pegawai_id', $d->pegawai_id)->sum('alfa')}}" data-sakit="{{$d->where('sakit', 1)->where('pegawai_id', $d->pegawai_id)->sum('sakit')}}" data-hadir="{{$d->where('hadir', 1)->where('pegawai_id', $d->pegawai_id)->sum('hadir')}}" data-izin="{{$d->where('izin', 1)->where('pegawai_id', $d->pegawai_id)->sum('izin')}}" data-toggle="modal" class="btn btn-noHover btn-sm border-transparent" data-target="#modaldisiplin"><span class="badge badge-primary">!</span></button></span>
+                    @include('admin.kinerja.disiplin')
                     <div class="progress progress-sm">
                       <div class="progress-bar 
                       @if ($d->disiplin < 50 )
@@ -72,7 +72,6 @@
                       @endif " style="width:{{$d->disiplin}}%"></div>
                     </div>
                   </div>
-                  @include('admin.kinerja.disiplin')
                 </td>
                 <td class="text-center">
                   <div class="progress-group">
@@ -153,8 +152,8 @@
     <!-- /.card-body -->
   </div>
 </div>
-@endsection
 
+@endsection
 @section('script')
 <script>
   $('#ModalEdit').on('show.bs.modal', function(event) {
@@ -177,6 +176,24 @@
     // modal.find('.modal-body #disiplinn').val(disiplin)
     modal.find('.modal-body #inisiatiff').val(inisiatif)
     modal.find('.modal-body #keterangan').val(keterangan)
+  })
+</script>
+
+<script>
+  $('#modaldisiplin').on('show.bs.modal', function(event) {
+    var button = $(event.relatedTarget)
+    var nama = button.data('nama')
+    var izin = button.data('izin')
+    var hadir = button.data('hadir')
+    var alfa = button.data('alfa')
+    var sakit = button.data('sakit')
+    var modal = $(this)
+
+    modal.find('.modal-body #nama').val(nama)
+    modal.find('.modal-body #izin').val(izin)
+    modal.find('.modal-body #hadir').val(hadir)
+    modal.find('.modal-body #alfa').val(alfa)
+    modal.find('.modal-body #sakit').val(sakit)
   })
 </script>
 

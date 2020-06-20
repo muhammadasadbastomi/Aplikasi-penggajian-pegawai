@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/admin/hasil/kinerja/gaji/periode/index', 'PeriodeController@hasilindex')->name('hasilperiodeIndex');
     Route::get('/admin/hasil/Gaji/index/{id}', 'KinerjaController@gajiindex')->name('hasilgajiIndex');
     Route::get('/admin/hasil/kinerja/index/{id}', 'KinerjaController@kinerjaindex')->name('hasilkinerjaIndex');
+    Route::get('/admin/hasil/kinerjadetail/{periode}/{pegawai}', 'KinerjaController@kinerjadetail')->name('hasilkinerjadetailIndex');
     // Route::patch('/admin/hasil/kinerja/index/{id}', 'KinerjaController@create')->name('hasilkinerjaCreate');
     // End kinerja Perbulan
 
