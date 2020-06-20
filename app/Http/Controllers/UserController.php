@@ -78,4 +78,11 @@ class UserController extends Controller
 
         return redirect('/admin/user/profile/' . $id . '')->with('success', 'Data Berhasil Diubah!');
     }
+
+    public function slipgaji()
+    {
+        $data = Pegawai::all();
+
+        return view('/admin/slipgaji', compact('data'));
+    }
 }

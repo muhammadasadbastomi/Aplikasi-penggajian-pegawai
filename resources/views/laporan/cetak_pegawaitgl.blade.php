@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Laporan Pegawai</title>
 
     <style>
         .logo {
@@ -43,7 +43,7 @@
         .ttd {
             margin-left: 70%;
             text-align: center;
-            text-transform: uppercase;
+
         }
 
         .sizeimg {
@@ -68,7 +68,6 @@
         .ttd {
             margin-left: 70%;
             text-align: center;
-            text-transform: uppercase;
         }
 
         hr {
@@ -100,26 +99,35 @@
         </div>
         <hr>
     </div>
-
     <div class="container">
-        <h2 style="text-align:center;text-transform: uppercase;">laporan data jabatan</h2>
+        <h2 style="text-align:center; margin-top:-25px;">Laporan Data Pegawai</h2>
+        <div style="text-align:right; margin-bottom:5px;">
+            <small>Rekap : {{$start}} s/d {{$end}}</small>
+        </div>
         <table class='table table-bordered'>
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Jabatan
-                    </th>
-                    <th>Gaji Pokok</th>
-                    <th>Tunjangan</th>
+                    <th>NIK</th>
+                    <th>Nama Lengkap</th>
+                    <th>Status</th>
+                    <th>Alamat</th>
+                    <th>Tempat Lahir</th>
+                    <th>Tanggal Lahir</th>
+                    <th>Tanggal Masuk</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($jabatan as $d)
+                @foreach($data as $d)
                 <tr>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$d->jabatan}}</td>
-                    <td>{{$d->gaji_pokok}}</td>
-                    <td>{{$d->tunjangan}}</td>
+                    <td class="text-center">{{$loop->iteration}}</td>
+                    <td class="text-center">{{$d->nik}}</td>
+                    <td class="text-center">{{$d->nama}}</td>
+                    <td class="text-center">{{$d->status}}</td>
+                    <td class="text-center">{{$d->alamat}}</td>
+                    <td class="text-center">{{$d->tempat_lahir}}</td>
+                    <td class="text-center">{{\carbon\carbon::parse($d->tgl_LAHIR)->translatedFormat('d F Y')}}</td>
+                    <td class="text-center">{{\carbon\carbon::parse($d->tgl_masuk)->translatedFormat('d F Y')}}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -128,14 +136,14 @@
         <br>
         <div class="ttd">
             <h5>
-                Banjarbaru,
+                Banjarbaru, {{$now}}
             </h5>
-            <h5>isi jabatan</h5>
+            <h5>Kepala Dinas</h5>
             <br>
             <br>
-            <h5 style="text-decoration:underline;">nama pejabat</h5>
-            <h5>golongan / kode golongan</h5>
-            <h5>NIP.</h5>
+            <h5 style="text-decoration:underline;">AHMAD YANI, S.Sos, MM</h5>
+            <h5>Pembina Utama Muda</h5>
+            <h5>NIP.19641102 198903 1 006</h5>
         </div>
     </div>
 </body>

@@ -1,81 +1,32 @@
-@extends('layouts.admin.admin')
-
-@section('content')
-
-<section class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
+<div class="modal fade" id="modalfilter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cetak Berdasarkan Tanggal Masuk Pegawai</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{route('adminIndex')}}">Home</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('pegawaiIndex')}}">Data Pegawai</a></li>
-                    <li class="breadcrumb-item active">PDF Filter</li>
-                </ol>
-            </div>
-        </div>
-    </div><!-- /.container-fluid -->
-</section>
-
-<div class="container-fluid">
-
-
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title">Filter PDF</h5>
-            <div class="text-right">
-
-            </div>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-
-
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- general form elements -->
-                    <div class="card card-primary">
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <form role="form" method="post">
-                            @csrf
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="pegawai_id">Option</label>
-                                    <select class="custom-select" name="pegawai_id" id="pegawai_id">
-
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="periode">Periode</label>
-                                    <input type="date" name="periode" id="periode" class="form-control"
-                                        placeholder="Masukkan Periode" value="">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
-
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Cetak</button>
-                                <a href="{{route('absensiIndex')}}" class="btn btn-danger text-white"><i
-                                        class="mdi mdi-back"></i>Batal</a>
-                            </div>
-                        </form>
+            <div class="modal-body">
+                <form method="get" action="{{route('pegawaitglCetak')}}" target="_blank">
+                    {{ method_field('put') }}
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="start">Dari Tanggal</label>
+                            <input type="date" name="start" id="start" class="form-control" value="{{old('start')}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="end">Sampai Tanggal</label>
+                            <input type="date" name="end" id="end" class="form-control" value="{{old('end')}}">
+                        </div>
                     </div>
-                    <!-- /.card -->
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-print"> </i> Cetak</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <!-- /.card-body -->
     </div>
 </div>
-
-
-@endsection
-@section('script')
-@endsection

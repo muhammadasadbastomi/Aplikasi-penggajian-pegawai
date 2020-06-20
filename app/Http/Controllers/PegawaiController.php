@@ -181,15 +181,4 @@ class PegawaiController extends Controller
 
         return redirect()->route('pegawaiIndex');
     }
-    public function cetak_pdf()
-    {
-        $pegawai = Pegawai::all();
-
-        $pdf = PDF::loadview('laporan.cetak_pegawai', compact('pegawai'));
-        return $pdf->stream('laporan-pegawai-pdf');
-    }
-    public function filter()
-    {
-        return view('admin.pegawai.filter');
-    }
 }

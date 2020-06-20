@@ -20,27 +20,33 @@
     <div class="card-header">
       <h5 class="card-title">Data Pegawai</h5>
       <div class="text-right">
-        <a href="{{route('karyawanCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah Data</a>
+        <a href="{{route('karyawanCreate')}}" class="btn btn-sm btn-primary text-white"><i class="fa fa-plus"> </i> Tambah Data</a>
+        <button class="btn btn-outline-primary dropdown-toggle btn-sm btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-print"> </i> Cetak
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="{{route('pegawaiCetak')}}" target="#blank">Keseluruhan</a>
+          <button class="dropdown-item" data-toggle="modal" data-target="#modalfilter">Berdasarkan Tanggal Masuk</button>
+        </div>
       </div>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
       <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-
         <div class="row">
           <div class="col-sm-12 table-responsive">
             <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
               <thead>
                 <tr role="row">
                   <th>No</th>
-                  <th class="sorting_asc text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">NIK</th>
-                  <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama Lengkap</th>
-                  <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
-                  <th class="sorting text-center" tabindex="5" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Alamat</th>
-                  <th class="sorting text-center" tabindex="6" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tempat Lahir</th>
-                  <th class="sorting text-center" tabindex="7" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tanggal Lahir</th>
-                  <th class="sorting text-center" tabindex="8" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Tanggal Masuk</th>
-                  <th></th>
+                  <th class="text-center">NIK</th>
+                  <th class="text-center">Nama Lengkap</th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">Alamat</th>
+                  <th class="text-center">Tempat Lahir</th>
+                  <th class="text-center">Tanggal Lahir</th>
+                  <th class="text-center">Tanggal Masuk</th>
+                  <th class="text-center">Aksi</th>
               </thead>
               <tbody>
                 @foreach ($karyawan as $d)
@@ -73,6 +79,7 @@
       <!-- /.card-body -->
     </div>
   </div>
+  @include('admin.karyawan.filter')
   @endsection
   @section('script')
 

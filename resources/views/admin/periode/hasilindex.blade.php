@@ -16,11 +16,18 @@
     </div><!-- /.container-fluid -->
 </section>
 <div class="container-fluid">
-
-
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Data Periode Pegawai</h5>
+            <div class="text-right">
+                <button class="btn btn-outline-primary dropdown-toggle btn-sm btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-print"> </i> Cetak
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{route('kinerjabulanCetak')}}" target="#blank">Berdasarkan Kinerja Bulan Ini</a>
+                    <a class="dropdown-item" href="{{route('gajibulanCetak')}}" target="#blank">Berdasarkan Gaji Bulan Ini</a>
+                </div>
+            </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body">

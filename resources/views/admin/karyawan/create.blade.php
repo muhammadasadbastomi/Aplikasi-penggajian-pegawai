@@ -19,19 +19,12 @@
     </div><!-- /.container-fluid -->
 </section>
 <div class="container-fluid">
-
-
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Tambah Data Pegawai</h5>
-            <div class="text-right">
-
-            </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-
-
             <div class="row">
                 <div class="col-md-12">
                     <!-- general form elements -->

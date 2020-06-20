@@ -23,6 +23,7 @@
 
         td,
         th {
+            font-size: 14px;
             border: 1px solid;
             padding-left: 5px;
             text-align: center;
@@ -100,36 +101,42 @@
         <hr>
     </div>
     <div class="container">
-        <h2 style="text-align:center; margin-top:-25px;">Laporan Data Pegawai</h2>
-        <table class='table table-bordered'>
+        <h2 style="text-align:center; margin-top:-25px;">Laporan Data Kinerja Pegawai Bulan {{$noww}}</h2>
+        <table id="example1" class="table table-bordered nowrap table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
             <thead>
-                <tr>
-                    <th>No</th>
-                    <th>NIK</th>
-                    <th>Nama Lengkap</th>
-                    <th>Status</th>
-                    <th>Alamat</th>
-                    <th>Tempat Lahir</th>
-                    <th>Tanggal Lahir</th>
-                    <th>Tanggal Masuk</th>
+                <tr role="row">
+                    <th class="text-center align-middle">No</th>
+                    <th class="text-center align-middle">Nama Lengkap</th>
+                    <th class="text-center align-middle">Status Sekarang</th>
+                    <th class="text-center align-middle">Disiplin</th>
+                    <th class="text-center">Ketepatan<br>Waktu</th>
+                    <th class="text-center">Penyelesaian<br>Pekerjaan</th>
+                    <th class="text-center align-middle">Inisiatif</th>
+                    <th class="text-center align-middle">Total Nilai</th>
+                    <th class="text-center align-middle">Hasil Kinerja</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($data as $d)
+                @foreach ($data as $d)
                 <tr>
-                    <td class="text-center">{{$loop->iteration}}</td>
-                    <td class="text-center">{{$d->nik}}</td>
-                    <td class="text-center">{{$d->nama}}</td>
-                    <td class="text-center">{{$d->status}}</td>
-                    <td class="text-center">{{$d->alamat}}</td>
-                    <td class="text-center">{{$d->tempat_lahir}}</td>
-                    <td class="text-center">{{\carbon\carbon::parse($d->tgl_LAHIR)->translatedFormat('d F Y')}}</td>
-                    <td class="text-center">{{\carbon\carbon::parse($d->tgl_masuk)->translatedFormat('d F Y')}}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-        <br>
+                    <td class="text-center align-middle">{{$loop->iteration}}</td>
+                    <td class="text-center align-middle">{{$d->pegawai->nama}}</td>
+                    <td class="text-center align-middle">{{$d->pegawai->status}}</td>
+                    <td class="text-center"><b>{{$d->disiplin}}</b> / 100 </td>
+                    <td class="text-center"><b>{{$d->waktu}}</b> / 100 </td>
+                    <td class="text-center"><b>{{$d->penyelesaian}}</b> / 100 </td>
+                    <td class="text-center"><b>{{$d->inisiatif}}</b> / 100 </td>
+                    <td class="text-center"><b>{{ceil($d->total)}}</b> / 100 </td>
+                    <td class="text-center align-middle">
+                        @if ($d->total == 0 )
+                        -
+                        @elseif ($d->total < 51) Buruk @elseif ($d->total> 84 ) Terbaik @elseif ($d->total> 50 ) Baik
+                            @else
+                            -
+                            @endif
+                    </td>
+                    @endforeach </tbody>
+        </table> <br>
         <br>
         <div class="ttd">
             <h5>

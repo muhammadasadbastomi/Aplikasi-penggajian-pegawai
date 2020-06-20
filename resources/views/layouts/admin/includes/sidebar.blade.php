@@ -62,7 +62,7 @@
                             </li>
                             <!-- End Sidebar Menu Data Master Admin -->
                             <li class="nav-item">
-                                <a href="#" class="nav-link active">
+                                <a href="{{route('slipgajiIndex')}}" class="nav-link active">
                                     <i class="nav-icon fas fa-money-check-alt"></i>
                                     <p>
                                         Slip Gaji Pegawai
