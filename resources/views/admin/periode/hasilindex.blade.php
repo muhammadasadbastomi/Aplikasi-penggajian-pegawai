@@ -19,15 +19,6 @@
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Data Periode Pegawai</h5>
-            <div class="text-right">
-                <button class="btn btn-outline-primary dropdown-toggle btn-sm btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-print"> </i> Cetak
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="{{route('kinerjabulanCetak')}}" target="#blank">Berdasarkan Kinerja Bulan Ini</a>
-                    <a class="dropdown-item" href="{{route('gajibulanCetak')}}" target="#blank">Berdasarkan Gaji Bulan Ini</a>
-                </div>
-            </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -47,8 +38,15 @@
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td class="text-center">{{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-xs btn-primary text-white" href="{{route('hasilkinerjaIndex', ['id' => $d->uuid])}}"><i class="fas fa-chart-line"></i> Lihat Hasil Kinerja Pegawai - {{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</a>
+                                        <a class="btn btn-xs btn-primary text-white" href="{{route('hasilkinerjaIndex', ['id' => $d->uuid])}}"><i class="fas fa-chart-line"></i> Lihat Hasil Kinerja Pegawai Bulan {{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</a>
                                         <a class="btn btn-xs btn-info text-white" href="{{route('hasilgajiIndex', ['id' => $d->uuid])}}"><i class="fas fa-money-bill-wave"></i> Lihat Gaji Honor Pegawai Pada Bulan {{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</a>
+                                        <button class="btn btn-outline-primary btn-xs dropdown-toggle btn-sm btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-print"> </i> Cetak
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="{{route('kinerjabulanCetak', ['periode_id' => $d->uuid,'periode' => $d->periode])}}" target="#blank">Cetak Kinerja Bulan {{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</a>
+                                            <a class="dropdown-item" href="{{route('gajibulanCetak', ['periode_id' => $d->uuid,'periode' => $d->periode])}}" target="#blank">Cetak Gaji Bulan {{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</a>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -114,11 +114,11 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::put('/admin/periode/edit/{id}', 'PeriodeController@update')->name('periodeUpdate');
     Route::delete('/admin/periode/delete/{id}', 'PeriodeController@destroy')->name('periodeDestroy');
 
-    Route::get('/admin/gaji/slip}', 'UserController@slipgaji')->name('slipgajiIndex');
+    // Route::get('/admin/gaji/slip}', 'UserController@slipgaji')->name('slipgajiIndex');
 
     Route::get('/admin/pegawai/cetak', 'CetakController@pegawai')->name('pegawaiCetak');
     Route::get('/admin/pegawai/cetak/tanggal', 'CetakController@pegawaitgl')->name('pegawaitglCetak');
-    Route::get('/admin/hasil/kinerja/cetak/bulan', 'CetakController@kinerjabulan')->name('kinerjabulanCetak');
-    Route::get('/admin/hasil/gaji/cetak/bulan', 'CetakController@gajibulan')->name('gajibulanCetak');
-    Route::get('/admin/slip/gaji/cetak/{id}', 'CetakController@slipgaji')->name('slipgajiCetak');
+    Route::get('/admin/hasil/kinerja/cetak/bulan/{periode_id}/{periode}', 'CetakController@kinerjabulan')->name('kinerjabulanCetak');
+    Route::get('/admin/hasil/gaji/cetak/bulan/{periode_id}/{periode}', 'CetakController@gajibulan')->name('gajibulanCetak');
+    Route::get('/admin/hasil/gaji/cetak/slipgaji/{uuid}/{id}/{tgl}/{pegawai_id}', 'CetakController@slipgaji')->name('slipgajiCetak');
 });

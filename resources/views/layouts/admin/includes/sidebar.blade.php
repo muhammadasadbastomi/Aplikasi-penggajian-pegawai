@@ -61,14 +61,14 @@
                                 </ul>
                             </li>
                             <!-- End Sidebar Menu Data Master Admin -->
-                            <li class="nav-item">
-                                <a href="{{route('slipgajiIndex')}}" class="nav-link active">
+                            <!-- <li class="nav-item">
+                                <a href="#" class="nav-link active">
                                     <i class="nav-icon fas fa-money-check-alt"></i>
                                     <p>
                                         Slip Gaji Pegawai
                                     </p>
                                 </a>
-                            </li>
+                            </li> -->
 
                             <li class="nav-item">
                                 <a href="{{route('userShow', ['id' => Auth::user()->uuid])}}" class="nav-link active">

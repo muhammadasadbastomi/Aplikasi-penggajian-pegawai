@@ -38,7 +38,7 @@
                                     <th class="sorting_asc text-center">Gaji Honor</th>
                                     <th class="sorting_asc text-center">Hasil Kinerja</th>
                                     <th class="sorting_asc text-center">Total Gaji Honor</th>
-                                    <!-- <th></th> -->
+                                    <th class="sorting_asc text-center">Cetak Slip Gaji</th>
                             </thead>
                             <tbody>
                                 @foreach ($data as $d)
@@ -75,6 +75,7 @@
                                                 -
                                                 @endif
                                     </td>
+                                    <td class="text-center"><a class="btn btn-outline-primary text-primary" href="{{route('slipgajiCetak',['uuid' => $d->uuid, 'id' => $d->periode_id, 'tgl' => $d->tanggal, 'pegawai_id' => $d->pegawai_id])}}" target="#blank"> <i class="fa fa-print"> Cetak Slip Gaji </i> </a></td>
                                 </tr>
                                 @endforeach
                             </tbody>

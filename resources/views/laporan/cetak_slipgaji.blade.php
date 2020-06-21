@@ -5,27 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laporan Pegawai</title>
+    <title>Laporan Slip Gaji Pegawai</title>
 
     <style>
         .logo {
             float: left;
-            margin-right: 0px;
+            margin-left: 170px;
             width: 15%;
             padding: 0px;
-            text-align: right;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td,
-        th {
-            border: 1px solid;
-            padding-left: 5px;
-            text-align: center;
         }
 
         .judul {
@@ -65,13 +52,18 @@
             padding: 0px;
         }
 
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
         .ttd {
             margin-left: 70%;
             text-align: center;
         }
 
         hr {
-            margin-top: 10%;
+            margin-top: 15%;
             height: 3px;
             background-color: black;
         }
@@ -100,35 +92,132 @@
         <hr>
     </div>
     <div class="container">
-        <h2 style="text-align:center; margin-top:-25px;">Laporan Data Pegawai</h2>
-        <table class='table table-bordered'>
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>NIK</th>
-                    <th>Nama Lengkap</th>
-                    <th>Status</th>
-                    <th>Alamat</th>
-                    <th>Tempat Lahir</th>
-                    <th>Tanggal Lahir</th>
-                    <th>Tanggal Masuk</th>
-                </tr>
-            </thead>
+        <h3 style="text-align:center; margin-top:-37px;">Slip Gaji Pegawai Kontrak</h3>
+        <br>
+        <h4 style="text-align:center; margin-top:-30px;">Periode {{\carbon\carbon::parse($start)->translatedFormat('d F Y')}} - {{\carbon\carbon::parse($end)->translatedFormat('d F Y')}}</h4>
+        <br>
+        <table>
+            @foreach($data as $d)
             <tbody>
-                @foreach($data as $d)
                 <tr>
-                    <td class="text-center">{{$loop->iteration}}</td>
-                    <td class="text-center">{{$d->nik}}</td>
-                    <td class="text-center">{{$d->nama}}</td>
-                    <td class="text-center">{{$d->status}}</td>
-                    <td class="text-center">{{$d->alamat}}</td>
-                    <td class="text-center">{{$d->tempat_lahir}}</td>
-                    <td class="text-center">{{\carbon\carbon::parse($d->tgl_LAHIR)->translatedFormat('d F Y')}}</td>
-                    <td class="text-center">{{\carbon\carbon::parse($d->tgl_masuk)->translatedFormat('d F Y')}}</td>
+                    <td> </td>
+                    <td style="width: 65px;"> </td>
+                    <td style="width: 1px;"> </td>
+                    <td style="width: 100px;">NIK</td>
+                    <td style="width: 10px;">:</td>
+                    <td>{{$d->pegawai->nik}}</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
                 </tr>
-                @endforeach
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td>Nama</td>
+                    <td>:</td>
+                    <td>{{$d->pegawai->nama}}</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td>Status</td>
+                    <td>:</td>
+                    <td>Pegawai Kontrak</td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
             </tbody>
+            @endforeach
         </table>
+        <br>
+        <table>
+            @foreach($data as $d)
+            <tbody>
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td style="height: 25px;"> <b>Penghasilan</b> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> <b>Total Penghasilan</b> </td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td style="height: 25px;">Gaji Pokok</td>
+                    <td>Rp. {{number_format($d->pegawai->honor, 0, ',', '.')}},-</td>
+                    <td> </td>
+                    <td>
+                        @if ($d->total == 0 ) -
+                        @elseif ($d->total < 49) Rp. {{number_format($d->pegawai->honor, 0, ',', '.') }},- @elseif ($d->total> 84 ) Rp. {{number_format($d->pegawai->honor * 0.25 + $d->pegawai->honor, 0, ',', '.') }},-
+                            @elseif ($d->total> 50 ) Rp. {{number_format($d->pegawai->honor * 0.15 + $d->pegawai->honor , 0, ',', '.') }},-
+                            @else - @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td style="height: 25px;"> Total Kinerja </td>
+                    <td>
+                        @if ($d->total == 0 ) -
+                        @elseif ($d->total < 49) Rp. {{number_format($d->pegawai->honor * 0 , 0, ',', '.') }},- @elseif ($d->total> 84 ) Rp. {{number_format($d->pegawai->honor * 0.25, 0, ',', '.') }},-
+                            @elseif ($d->total> 50 ) Rp. {{number_format($d->pegawai->honor * 0.15 , 0, ',', '.') }},-
+                            @else - @endif
+                    </td>
+                    <td></td>
+                    <td>
+                        @if ($d->total == 0 ) -
+                        @elseif ($d->total < 49) Terbilang : Dua Juta Rupiah. @elseif ($d->total> 84 ) Terbilang : Dua Juta Rupiah Lima Ratus Ribu Rupiah.
+                            @elseif ($d->total> 50 ) Terbilang : Dua Juta Tiga Ratus Ribu Rupiah.
+                            @else - @endif
+                    </td>
+                </tr>
+            </tbody>
+            @endforeach
+        </table>
+        <br>
         <br>
         <br>
         <div class="ttd">
