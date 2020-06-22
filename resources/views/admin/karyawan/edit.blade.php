@@ -50,7 +50,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="{{$karyawan->user->email}}">
+                                    <input type="email" name="email" id="email" class="form-control @error ('email') is-invalid @enderror" placeholder="{{$karyawan->user->email}}">
+                                    @error('email')<div class="invalid-feedback"> {{$message}} </div>@enderror
                                     <p>Note : Isi Email jika ingin mengubah email</p>
                                 </div>
                                 <div class="form-group">
@@ -80,7 +81,7 @@
                                 <!-- <div class="form-group">
                                     <label for="jabatan">Jabatan</label>
                                     <select class="custom-select" name="jabatan_id" id="jabatan_id">
-                                       
+
                                     </select>
                                 </div> -->
                                 <div class="form-group">
