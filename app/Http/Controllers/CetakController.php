@@ -100,12 +100,21 @@ class CetakController extends Controller
 
             $item['total'] = (ceil($persentase1) + ceil($persentase2) + ceil($persentase3) + ceil($persentase4)) / 4;
 
+            // if($item['total']  < 49 ){
+            //     $item['hasil'] = 2000000
+            // }elseif($d->total> 84 ){
+            //     $item['hasil'] = 2000000 * 0.25
+            // }elseif($item['total'] 50 ){
+            //     $item['hasil'] = 2000000 * 0.15
+            // }else{
+            // 1
+            // }
             // dd($item);
             return $item;
         });
 
 
-        $pdf = PDF::loadview('laporan.cetak_gajibulan', compact('data', 'noww', 'now', 'start', 'end'));
+        $pdf = PDF::loadview('laporan.cetak_gajibulan', compact('data', 'noww', 'now', 'start', 'end', 'total'));
         return $pdf->stream('laporan-gaji-bulan-pdf');
     }
 

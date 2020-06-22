@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laporan Pegawai Gaji Perbulan</title>
+    <title>Laporan Gaji Pegawai Kontrak</title>
 
     <style>
         .logo {
@@ -100,7 +100,7 @@
         <hr>
     </div>
     <div class="container">
-        <h2 style="text-align:center; margin-top:-25px;">Laporan Data Gaji Pegawai Bulan {{$noww}}</h2>
+        <h2 style="text-align:center; margin-top:-25px;">Laporan Data Gaji Pegawai Kontrak Bulan {{$noww}}</h2>
         <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed nowrap" role="grid" aria-describedby="example1_info">
             <thead>
                 <tr role="row">
@@ -123,7 +123,6 @@
                     </td>
                     <td class="text-center align-middle">
                         @if ($d->total == 0 )
-                        -
                         @elseif ($d->total < 51) <span class="badge badge-danger">Buruk</span> @elseif ($d->total> 84 ) <span class="badge badge-primary">Terbaik</span> @elseif ($d->total> 50 ) <span class="badge badge-info">Baik</span>
                             @else
                             -

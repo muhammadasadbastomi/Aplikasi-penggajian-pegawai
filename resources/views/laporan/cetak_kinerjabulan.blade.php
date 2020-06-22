@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laporan Pegawai</title>
+    <title>Laporan Kinerja Pegawai Kontrak</title>
 
     <style>
         .logo {
@@ -101,7 +101,7 @@
         <hr>
     </div>
     <div class="container">
-        <h2 style="text-align:center; margin-top:-25px;">Laporan Data Kinerja Pegawai Bulan {{$noww}}</h2>
+        <h2 style="text-align:center; margin-top:-25px;">Laporan Data Kinerja Pegawai Kontrak Bulan {{$noww}}</h2>
         <table id="example1" class="table table-bordered nowrap table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">
             <thead>
                 <tr role="row">
