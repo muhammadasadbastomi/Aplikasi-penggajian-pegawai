@@ -23,9 +23,23 @@
             <h5 class="card-title">Data Kinerja Pegawai Bulan
                 {{carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
             <div class="text-right">
-                @if(Auth::user()->role =='admin')
-                {{-- <a href="{{route('absensiPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a> --}}
-                @endif
+                <div class="text-right">
+                    <button class="btn btn-outline-primary dropdown-toggle btn-sm btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-print"> </i> Cetak Absensi
+                    </button>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{{route('kinerjawaktuCetak',['id' => $periode->uuid])}}" target="#_blank">Berdasarkan Ketepatan Waktu</a>
+                        <button class="dropdown-item" data-toggle="modal" data-target="#modalfilterwaktu">Berdasarkan Ketepatan Waktu Pegawai</button>
+                        <a class="dropdown-item" href="{{route('kinerjapenyelesaianCetak',['id' => $periode->uuid])}}" target="#_blank">Berdasarkan Penyelesaian Pekerjaan</a>
+                        <button class="dropdown-item" data-toggle="modal" data-target="#modalfilterpenyelesaian">Berdasarkan Penyelesaian Pekerjaan Pegawai</button>
+                        <a class="dropdown-item" href="{{route('kinerjainisiatifCetak',['id' => $periode->uuid])}}" target="#_blank">Berdasarkan Inisiatif</a>
+                        <button class="dropdown-item" data-toggle="modal" data-target="#modalfilterinisiatif">Berdasarkan Inisiatif Pegawai</button>
+                    </div>
+                    @include('admin.harian.filterwaktu')
+                    @include('admin.harian.filterpenyelesaian')
+                    @include('admin.harian.filterinisiatif')
+                </div>
             </div>
         </div>
         <!-- /.card-header -->

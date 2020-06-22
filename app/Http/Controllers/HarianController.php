@@ -21,10 +21,11 @@ class HarianController extends Controller
         $periode = Periode::where('uuid', $id)->first();
         $start_date = Carbon::now()->subDays(7)->format('Y-m-d');
         $end_date = Carbon::now()->format('Y-m-d');
+        $pegawai = Pegawai::all();
 
         $harian = Absensi::orderBy('tanggal', 'desc')->where('periode_id', $periode->id)->whereBetween('tanggal', [$start_date, $end_date])->get();
 
-        return view('admin.harian.index', compact('harian', 'periode'));
+        return view('admin.harian.index', compact('harian', 'periode', 'pegawai'));
     }
 
     /**

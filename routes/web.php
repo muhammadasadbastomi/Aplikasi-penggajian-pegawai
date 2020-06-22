@@ -121,4 +121,13 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/admin/hasil/kinerja/cetak/bulan/{periode_id}/{periode}', 'CetakController@kinerjabulan')->name('kinerjabulanCetak');
     Route::get('/admin/hasil/gaji/cetak/bulan/{periode_id}/{periode}', 'CetakController@gajibulan')->name('gajibulanCetak');
     Route::get('/admin/hasil/gaji/cetak/slipgaji/{uuid}/{id}/{tgl}/{pegawai_id}', 'CetakController@slipgaji')->name('slipgajiCetak');
+    Route::get('/admin/hasil/gaji/cetak/kinerjapegawai/{uuid}/{id}/{tgl}/{pegawai_id}', 'CetakController@kinerjapegawai')->name('kinerjapegawaiCetak');
+    Route::get('/admin/hasil/gaji/cetak/absensi/{uuid}', 'CetakController@absensi')->name('absensiCetak');
+    Route::get('/admin/hasil/gaji/cetak/absensi/pegawai/{id}', 'CetakController@absensipegawai')->name('absensipegawaiCetak');
+    Route::get('/admin/hasil/gaji/cetak/kinerja/waktu/{id}', 'CetakController@kinerjawaktu')->name('kinerjawaktuCetak');
+    Route::get('/admin/hasil/gaji/cetak/kinerja/waktu/pegawai/{id}', 'CetakController@kinerjawaktupegawai')->name('kinerjawaktupegawaiCetak');
+    Route::get('/admin/hasil/gaji/cetak/kinerja/penyelesaian/{id}', 'CetakController@kinerjapenyelesaian')->name('kinerjapenyelesaianCetak');
+    Route::get('/admin/hasil/gaji/cetak/kinerja/penyelesaian/pegawai/{id}', 'CetakController@kinerjapenyelesaianpegawai')->name('kinerjapenyelesaianpegawaiCetak');
+    Route::get('/admin/hasil/gaji/cetak/kinerja/inisiatif/{id}', 'CetakController@kinerjainisiatif')->name('kinerjainisiatifCetak');
+    Route::get('/admin/hasil/gaji/cetak/kinerja/inisiatif/pegawai/{id}', 'CetakController@kinerjainisiatifpegawai')->name('kinerjainisiatifpegawaiCetak');
 });

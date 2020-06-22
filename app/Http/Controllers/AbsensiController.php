@@ -19,14 +19,14 @@ class AbsensiController extends Controller
      */
     public function index($id)
     {
-
+        $pegawai = Pegawai::all();
         $periode = Periode::where('uuid', $id)->first();
         $start_date = Carbon::now()->subDays(7)->format('Y-m-d');
         $end_date = Carbon::now()->format('Y-m-d');
 
         $absensi = Absensi::orderBy('tanggal', 'desc')->where('periode_id', $periode->id)->whereBetween('tanggal', [$start_date, $end_date])->get();
 
-        return view('admin.absensi.index', compact('absensi', 'periode'));
+        return view('admin.absensi.index', compact('absensi', 'periode', 'pegawai'));
     }
 
     /**

@@ -17,22 +17,29 @@
   </div><!-- /.container-fluid -->
 </section>
 <div class="container-fluid">
-
-
   <div class="card">
     <div class="card-header">
       <h5 class="card-title">Data Absensi Pegawai Bulan
         {{carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
       <div class="text-right">
         @if(Auth::user()->role =='admin')
-        {{-- <a href="{{route('absensiPdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a> --}}
-        @endif
+        <div class="text-right">
+          <button class="btn btn-outline-primary dropdown-toggle btn-sm btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-print"> </i> Cetak Absensi
+          </button>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{{route('absensiCetak',['uuid' => $periode->uuid])}}" target="#_blank">Keseluruhan</a>
+            <button class="dropdown-item" data-toggle="modal" data-target="#modalfilter">Berdasarkan Nama Pegawai</button>
+          </div>
+          @include('admin.absensi.filter')
+          @endif
+        </div>
       </div>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
       <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-
         <div class="row">
           <div class="col-sm-12 table-responsive">
             <table id="example1" class="table table-bordered table-striped dataTable dtr-inline collapsed" role="grid" aria-describedby="example1_info">

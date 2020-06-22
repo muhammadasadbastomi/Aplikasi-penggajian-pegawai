@@ -49,6 +49,7 @@
                 <th class="text-center align-middle">Inisiatif</th>
                 <th class="text-center align-middle">Total Nilai</th>
                 <th class="text-center align-middle">Hasil Kinerja</th>
+                <th class="text-center align-middle">Cetak Kinerja</th>
               </tr>
             </thead>
             <tbody>
@@ -142,6 +143,7 @@
                     -
                     @endif
                 </td>
+                <td class="text-center align-middle"><a class="btn btn-outline-primary text-primary" href="{{route('kinerjapegawaiCetak',['uuid' => $d->uuid, 'id' => $d->periode_id, 'tgl' => $d->tanggal, 'pegawai_id' => $d->pegawai_id])}}" target="#blank"> <i class="fa fa-print"> Cetak Kinerja </i> </a></td>
               </tr>
               @endforeach
             </tbody>
