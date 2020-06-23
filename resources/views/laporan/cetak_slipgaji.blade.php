@@ -27,12 +27,6 @@
             padding-right: 10%;
         }
 
-        .ttd {
-            margin-left: 70%;
-            text-align: center;
-
-        }
-
         .sizeimg {
             width: 60px;
         }
@@ -139,9 +133,10 @@
             @endforeach
         </table>
         <br>
+        <br>
         <table>
             @foreach($data as $d)
-            <tbody>
+            <tbody style="font-size: 19px;">
                 <tr>
                     <td> </td>
                     <td> </td>
@@ -156,7 +151,7 @@
                     <td> </td>
                     <td> </td>
                     <td> </td>
-                    <td style="height: 25px;"> <b>Penghasilan</b> </td>
+                    <td style="height: 30px;"> <b>Penghasilan</b> </td>
                     <td> </td>
                     <td> </td>
                     <td> <b>Total Penghasilan</b> </td>
@@ -175,7 +170,7 @@
                     <td> </td>
                     <td> </td>
                     <td> </td>
-                    <td style="height: 25px;">Gaji Pokok</td>
+                    <td style="height: 30px;">Gaji Pokok</td>
                     <td>Rp. {{number_format($d->pegawai->honor, 0, ',', '.')}},-</td>
                     <td> </td>
                     <td>
@@ -199,7 +194,7 @@
                     <td> </td>
                     <td> </td>
                     <td> </td>
-                    <td style="height: 25px;"> Total Kinerja </td>
+                    <td style="height: 30px;"> Total Kinerja </td>
                     <td>
                         @if ($d->total == 0 ) -
                         @elseif ($d->total < 49) Rp. {{number_format($d->pegawai->honor * 0 , 0, ',', '.') }},- @elseif ($d->total> 84 ) Rp. {{number_format($d->pegawai->honor * 0.25, 0, ',', '.') }},-
