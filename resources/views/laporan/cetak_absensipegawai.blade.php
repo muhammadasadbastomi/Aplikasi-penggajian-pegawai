@@ -139,29 +139,29 @@
                         <td class="text-center">{{$d->pegawai->nama}}</td>
                         <td class="text-center">
                             @if($d->izin == 1)
-                        <td style="font-family: DejaVu Sans, sans-serif;">✔</td>
-                        @else
-                        -
-                        @endif</td>
+                        <td style="font-family: DejaVu Sans, sans-serif;">✔
+                            @else
+                            -
+                            @endif</td>
                         <td class="text-center">
                             @if($d->sakit == 1)
-                        <td style="font-family: DejaVu Sans, sans-serif;">✔</td>
-                        @else
-                        -
-                        @endif
+                        <td style="font-family: DejaVu Sans, sans-serif;">✔
+                            @else
+                            -
+                            @endif
                         </td>
                         <td class="text-center">
                             @if($d->alfa == 1)
-                        <td style="font-family: DejaVu Sans, sans-serif;">✔</td>
-                        @else
-                        -
-                        @endif</td>
+                        <td style="font-family: DejaVu Sans, sans-serif;">✔
+                            @else
+                            -
+                            @endif</td>
                         <td class="text-center">
                             @if($d->hadir == 1)
-                        <td style="font-family: DejaVu Sans, sans-serif;">✔</td>
-                        @else
-                        -
-                        @endif
+                        <td style="font-family: DejaVu Sans, sans-serif;">✔
+                            @else
+                            -
+                            @endif
                         </td>
                         <td class="text-center">
                             @if(isset($d->keterangan))
