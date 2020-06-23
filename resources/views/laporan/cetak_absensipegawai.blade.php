@@ -137,28 +137,28 @@
                         <td class="text-center">{{$loop->iteration}}</td>
                         <td class="text-center">{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}</td>
                         <td class="text-center">{{$d->pegawai->nama}}</td>
-                        <td class="text-center">
+                        <td class="text-center" style="font-family: DejaVu Sans, sans-serif;">
                             @if($d->izin == 1)
-                        <td style="font-family: DejaVu Sans, sans-serif;">✔
+                            ✔
                             @else
                             -
                             @endif</td>
-                        <td class="text-center">
+                        <td class="text-center" style="font-family: DejaVu Sans, sans-serif;">
                             @if($d->sakit == 1)
-                        <td style="font-family: DejaVu Sans, sans-serif;">✔
+                            ✔
                             @else
                             -
                             @endif
                         </td>
-                        <td class="text-center">
+                        <td class="text-center" style="font-family: DejaVu Sans, sans-serif;">
                             @if($d->alfa == 1)
-                        <td style="font-family: DejaVu Sans, sans-serif;">✔
+                            ✔
                             @else
                             -
                             @endif</td>
-                        <td class="text-center">
+                        <td class="text-center" style="font-family: DejaVu Sans, sans-serif;">
                             @if($d->hadir == 1)
-                        <td style="font-family: DejaVu Sans, sans-serif;">✔
+                            ✔
                             @else
                             -
                             @endif
