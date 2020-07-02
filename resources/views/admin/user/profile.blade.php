@@ -73,7 +73,7 @@
                                     <li class="small" style="margin-top: 6px;"><span class=" fa-li"><i class="fas fa-id-card"></i></span>&nbsp;NIK : {{$pegawai->nik}}</li>
 
                                     @else
-                                    <li class="small"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp; Admin </li>
+                                    <li class="small"><span class=" fa-li"><i class="fas fa-user-tie"></i></span>&nbsp;Admin </li>
                                     <li class="small" style="margin-top: 6px;"><span class="fa-li"><i class="fas fa-lg fa-toggle-on"></i></span>&nbsp;Status : - </li>
                                     <li class="small" style="margin-top: 6px;"><span class=" fa-li"><i class="fas fa-id-card"></i></span>&nbsp;NIK : - </li>
                                     @endif

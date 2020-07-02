@@ -1,5 +1,5 @@
 @extends('layouts.admin.admin')
-@section('title') Data Absensi Pegawai @endsection
+@section('title') Data Absensi dan Kinerja Pegawai Kontrak @endsection
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
@@ -21,14 +21,6 @@
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">Data Periode</h5>
-            <div class="text-right">
-                {{-- <a href="{{route('periodePdf')}}" target="_blank" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i> Export PDF</a> --}}
-                @if(Auth::user()->role == 'admin')
-                <a href="{{route('periodeCreate')}}" class="btn btn-sm btn-primary text-white"><i class="mdi mdi-add"></i>Tambah
-                    Data</a>
-                @else
-                @endif
-            </div>
         </div>
         <!-- /.card-header -->
         <div class="card-body">
@@ -49,12 +41,8 @@
                                     <td class="text-center">{{$loop->iteration}}</td>
                                     <td class="text-center">{{\carbon\carbon::parse($d->periode)->translatedFormat('F Y')}}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-xs btn-primary text-white" href="{{route('absensiUserIndex', ['id' => $d->uuid])}}"><i class="fas fa-concierge-bell"> </i> Absensi Pegawai</a>
-                                        <a class="btn btn-xs btn-info text-white" href="{{route('kinerjaUserIndex', ['id' => $d->uuid])}}"><i class="fas fa-chart-line"> </i> Kinerja Pegawai</a>
-                                        @if(Auth::user()->role == 'admin')
-                                        <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i class="fas fa-trash"></i> Hapus</a>
-                                        @else
-                                        @endif
+                                        <a class="btn btn-xs btn-primary text-white" href="{{route('pegawaiAbsensi', ['id' => $d->uuid])}}"><i class="fas fa-concierge-bell"> </i> Absensi Pegawai</a>
+                                        <a class="btn btn-xs btn-info text-white" href="{{route('pegawaiKinerja', ['id' => $d->uuid])}}"><i class="fas fa-chart-line"> </i> Kinerja Pegawai</a>
                                     </td>
                                 </tr>
                                 @endforeach

@@ -22,19 +22,6 @@
             <h5 class="card-title">Data Absensi Pegawai Bulan
                 {{carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
             <div class="text-right">
-                @if(Auth::user()->role =='admin')
-                <div class="text-right">
-                    <button class="btn btn-outline-primary dropdown-toggle btn-sm btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-print"> </i> Cetak Absensi
-                    </button>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{{route('absensiCetak',['uuid' => $periode->uuid])}}" target="#_blank">Keseluruhan</a>
-                        <button class="dropdown-item" data-toggle="modal" data-target="#modalfilter">Berdasarkan Nama Pegawai</button>
-                    </div>
-                    @include('admin.absensi.filter')
-                </div>
-                @endif
             </div>
         </div>
         <!-- /.card-header -->
@@ -123,10 +110,7 @@
                                                     Menunggu Verifikasi Admin</a>
                                                 @endif
                                         </td>
-                                        {{-- <td class="text-center">
-                    <a class="btn btn-xs btn-info text-white" href="{{route('absensiEdit', ['id' => $d->uuid])}}"><i class="fas fa-edit"></i> Edit</a>
-                                        <a class="delete btn btn-xs btn-danger text-white" data-id="{{$d->uuid}}" href="#"><i class="fas fa-trash"></i> Hapus</a>
-                                        </td> --}}
+
                                     </tr>
                                     @endforeach
                             </tbody>

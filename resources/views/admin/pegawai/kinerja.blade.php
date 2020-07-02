@@ -23,23 +23,6 @@
             <h5 class="card-title">Data Kinerja Pegawai Bulan
                 {{carbon\carbon::parse($periode->periode)->translatedFormat('F Y')}}</h5>
             <div class="text-right">
-                @if(Auth::user()->role =='admin')
-                <button class="btn btn-outline-primary dropdown-toggle btn-sm btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-print"> </i> Cetak Kinerja
-                </button>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="{{route('kinerjawaktuCetak',['id' => $periode->uuid])}}" target="#_blank">Berdasarkan Ketepatan Waktu</a>
-                    <button class="dropdown-item" data-toggle="modal" data-target="#modalfilterwaktu">Berdasarkan Ketepatan Waktu Pegawai</button>
-                    <a class="dropdown-item" href="{{route('kinerjapenyelesaianCetak',['id' => $periode->uuid])}}" target="#_blank">Berdasarkan Penyelesaian Pekerjaan</a>
-                    <button class="dropdown-item" data-toggle="modal" data-target="#modalfilterpenyelesaian">Berdasarkan Penyelesaian Pekerjaan Pegawai</button>
-                    <a class="dropdown-item" href="{{route('kinerjainisiatifCetak',['id' => $periode->uuid])}}" target="#_blank">Berdasarkan Inisiatif</a>
-                    <button class="dropdown-item" data-toggle="modal" data-target="#modalfilterinisiatif">Berdasarkan Inisiatif Pegawai</button>
-                </div>
-                @include('admin.harian.filterwaktu')
-                @include('admin.harian.filterpenyelesaian')
-                @include('admin.harian.filterinisiatif')
-                @endif
             </div>
         </div>
         <!-- /.card-header -->
@@ -63,7 +46,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($harian as $d)
+                                @foreach ($kinerja as $d)
                                 @if(carbon\carbon::parse($d->tanggal)->translatedformat('d') < carbon\carbon::now()->
                                     translatedformat('d'))
                                     <tr>
@@ -98,15 +81,6 @@
                                             </div> @else - @endif
                                         </td>
                                         <td class="text-center align-middle">@if (!empty($d->keterangankinerja)) {!!$d->keterangankinerja!!} @else - @endif</td>
-                                        @if(Auth::user()->role =='admin')
-                                        <td class="text-center align-middle">
-                                            @if($d->tanggal == carbon\carbon::now()->format('Y-m-d'))
-                                            <button type="button" data-id="{{$d->uuid}}" data-keterangan="{{$d->keterangankinerja}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-tgl="{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}" data-nama="{{$d->pegawai->nama}}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-chart-line"></i> Masukkan Kinerja</button>
-                                            @else
-                                            <button type="button" data-id="{{$d->uuid}}" data-keterangan="{{$d->keterangankinerja}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-tgl="{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}" data-nama="{{$d->pegawai->nama}}" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-edit"></i> Edit Kinerja</button>
-                                            @endif
-                                        </td>
-                                        @endif
                                     </tr>
                                     @endforeach
                             </tbody>

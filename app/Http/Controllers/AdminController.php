@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Absensi;
+use App\Kinerja;
 use App\Periode;
 use Auth;
 use Carbon\Carbon;
+use App\Pegawai;
+use App\User;
 
 class AdminController extends Controller
 {
@@ -79,5 +82,38 @@ class AdminController extends Controller
         $kinerja = '2';
         $absensi = null;
         return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja', 'keterangankinerja'));
+    }
+
+    public function periode()
+    {
+        $periode = Periode::orderBy('id', 'desc')->get();
+
+        return view('admin.pegawai.index', compact('periode'));
+    }
+
+    public function absensi($id)
+    {
+        $periode = Periode::where('uuid', $id)->first();
+        $start_date = Carbon::now()->subDays(7)->format('Y-m-d');
+        $end_date = Carbon::now()->format('Y-m-d');
+        $user = user::find(Auth::user()->id);
+        $pegawai = Pegawai::where('user_id', $user->id)->first();
+
+        $absensi = Absensi::orderBy('tanggal', 'desc')->where('periode_id', $periode->id)->whereBetween('tanggal', [$start_date, $end_date])->where('pegawai_id', $pegawai->id)->get();
+
+        return view('admin.pegawai.absensi', compact('absensi', 'periode', 'pegawai'));
+    }
+
+    public function kinerja($id)
+    {
+        $periode = Periode::where('uuid', $id)->first();
+        $start_date = Carbon::now()->subDays(7)->format('Y-m-d');
+        $end_date = Carbon::now()->format('Y-m-d');
+        $user = user::find(Auth::user()->id);
+        $pegawai = Pegawai::where('user_id', $user->id)->first();
+
+        $kinerja = Absensi::orderBy('tanggal', 'desc')->where('periode_id', $periode->id)->whereBetween('tanggal', [$start_date, $end_date])->where('pegawai_id', $pegawai->id)->get();
+
+        return view('admin.pegawai.kinerja', compact('kinerja', 'periode', 'pegawai'));
     }
 }
