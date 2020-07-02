@@ -117,34 +117,18 @@
                     @csrf
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-5">
+                            <h4>{{$keterangankinerja}}</h4>
+                            <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label>Nilai Ketepatan Waktu</label> <span class="badge badge-primary float-right"><output for="waktuuu" id="waktuuu">50</output></span>
-                                    <input type="range" min="0" max="100" id="waktuuu" name="waktu" class="form-control-range" oninput="nilaiwaktuu(value)">
-                                </div>
-                                <div class="form-group">
-                                    <label>Nilai Penyelesaian Pekerjaan</label> <span class="badge badge-primary float-right"><output for="penyelesaiannn" id="penyelesaiannn">50</output></span>
-                                    <input type="range" min="0" max="100" id="penyelesaiannn" name="penyelesaian" class="form-control-range" oninput="nilaipenyelesaiann(value)">
-                                </div>
-                                <div class="form-group">
-                                    <label>Nilai Inisiatif</label> <span class="badge badge-primary float-right"><output for="inisiatifff" id="inisiatifff">50</output></span>
-                                    <input type="range" min="0" max="100" id="inisiatifff" name="inisiatif" class="form-control-range" oninput="nilaiinisiatiff(value)">
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <label for="keterangankinerja">Keterangan</label>
-                                    <textarea type="text" name="keterangankinerja" placeholder="Masukkan Keterangan Kinerja ..." id="keterangankinerjas" class="form-control">{{old('keterangankinerja')}}</textarea>
+                                    <textarea class="textarea" name="keterangankinerja" id="keterangankinerja" style="width: 100%; height: 100px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; padding-bottom: 100px; display: none;"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary float-right">Submit</button>
                                 <button style="margin-right: 10px;" type="reset" class="btn btn-danger float-right">Reset</button>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <p>Note : {{$keterangankinerja}}</p>
-                        </div>
+                        </div> -->
                     </div>
                 </form>
                 @elseif($kinerja == 2)
@@ -231,9 +215,9 @@
                                 <span class="info-box-icon"><i class="fa fa-chart-line"></i></span>
                                 <div class="info-box-content" style="margin-top: 20px; margin-bottom:20px;">
                                     <a href="{{route('absensiUserSakit')}}">
-                                        <span class="info-box-text text-white">Kinerja</span>
+                                        <span class="info-box-text text-white">{{$keterangankinerja}}</span>
                                         <span class="info-box-number text-white">*****</span>
-                                        @if($absensi->waktu != null)
+                                        @if($absensi->keterangankinerja != null)
                                         <h3>✔<sup style="font-size: 20px"></sup></h3>
                                         @else
                                         <h3 class="text-body">-</h3>
@@ -244,9 +228,6 @@
                             </div>
                         </div>
                         <div class="col-lg-6"></div>
-                        <div class="row">
-                            <p>Note : {{$keterangankinerja}}</p>
-                        </div>
                     </div>
                 </div>
                 @else

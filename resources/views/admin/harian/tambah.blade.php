@@ -33,10 +33,10 @@
                         <label>Nilai Inisiatif</label> <span class="badge badge-primary float-right"><output for="inisiatifff" id="inisiatifff">50</output></span>
                         <input type="range" min="0" max="100" id="inisiatifff" name="inisiatif" class="form-control-range" oninput="nilaiinisiatiff(value)">
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="keterangan">Keterangan</label>
                         <textarea type="text" name="keterangan" id="keterangan" class="form-control">{{old('keterangan')}}</textarea>
-                    </div>
+                    </div> -->
                     <!-- /.card-body -->
                     <div class=" modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

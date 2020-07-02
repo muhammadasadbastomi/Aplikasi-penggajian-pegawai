@@ -42,15 +42,15 @@ class AbsensiController extends Controller
         $dateNow = Carbon::now()->format('Y-m-d');
         $data = Absensi::where('periode_id', $periode->id)->where('pegawai_id', $id)->where('tanggal', $dateNow)->first();
 
-        $data->waktu = $request->waktu;
-        $data->penyelesaian = $request->penyelesaian;
-        $data->inisiatif = $request->inisiatif;
+        // $data->waktu = $request->waktu;
+        // $data->penyelesaian = $request->penyelesaian;
+        // $data->inisiatif = $request->inisiatif;
         $data->keterangankinerja = $request->keterangankinerja;
         $data->update();
 
         // $absensi = Absensi::orderBy('tanggal', 'desc')->where('periode_id', $periode->id)->whereBetween('tanggal', [$start_date, $end_date])->get();
 
-        return back()->withSuccess('Hasil kinerja hari ini berhasil tersimpan');
+        return back()->withSuccess('Success Data Berhasil Tersimpan.');
         // return view('admin.absensi.index', compact('absensi', 'periode', 'pegawai'));
     }
 

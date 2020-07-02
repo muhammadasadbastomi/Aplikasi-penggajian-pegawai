@@ -56,12 +56,12 @@ class AdminController extends Controller
                             $keterangan = 'Anda belum melakukan absensi';
                         } elseif ($absensi->hadir == 1 && $absensi->status == 1) {
                             $keterangan = 'Anda sudah melakukan absensi.';
-                            if ($absensi->waktu == null) {
+                            if ($absensi->keterangankinerja == null) {
                                 $kinerja = 1;
-                                $keterangankinerja = 'Silahkan memasukkan nilai kinerja hari ini.';
+                                $keterangankinerja = 'Silahkan Masukkan Kegiatan Hari Ini.';
                             } else {
                                 $kinerja = 2;
-                                $keterangankinerja = 'Anda sudah memasukkan kinerja.';
+                                $keterangankinerja = 'Anda Sudah Memasukkan Hasil Kegiatan Hari Ini.';
                             }
                         } else {
                             $kinerja = 0;

@@ -39,7 +39,7 @@ class HarianController extends Controller
         $data->waktu = $request->waktu;
         $data->inisiatif = $request->inisiatif;
         $data->penyelesaian = $request->penyelesaian;
-        $data->keterangankinerja = $request->keterangan;
+        // $data->keterangankinerja = $request->keterangan;
         $data->update();
 
         return redirect()->back()->with('success', 'Kinerja ' . $request->nama . ' Pada ' . $request->tgl . ' Berhasil Di Input');

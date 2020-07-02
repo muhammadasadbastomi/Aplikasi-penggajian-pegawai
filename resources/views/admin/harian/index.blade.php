@@ -56,7 +56,7 @@
                                     <th class="text-center">Ketepatan<br>Waktu</th>
                                     <th class="text-center">Penyelesaian<br>Pekerjaan</th>
                                     <th class="text-center align-middle">Inisiatif</th>
-                                    <th class="text-center align-middle">Keterangan</th>
+                                    <th class="text-center align-middle">Kegiatan</th>
                                     <th class="text-center align-middle">Aksi</th>
                                 </tr>
                             </thead>
@@ -95,10 +95,10 @@
                                                 </div>
                                             </div> @else - @endif
                                         </td>
-                                        <td class="text-center align-middle">@if (!empty($d->keterangankinerja)) {{$d->keterangankinerja}} @else - @endif</td>
+                                        <td class="text-center align-middle">@if (!empty($d->keterangankinerja)) {!!$d->keterangankinerja!!} @else - @endif</td>
                                         <td class="text-center align-middle">
                                             @if($d->tanggal == carbon\carbon::now()->format('Y-m-d'))
-                                            <button type="button" data-id="{{$d->uuid}}" data-keterangan="{{$d->keterangankinerja}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-tgl="{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}" data-nama="{{$d->pegawai->nama}}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-edit"></i> Edit Kinerja</button>
+                                            <button type="button" data-id="{{$d->uuid}}" data-keterangan="{{$d->keterangankinerja}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-tgl="{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}" data-nama="{{$d->pegawai->nama}}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-chart-line"></i> Masukkan Kinerja</button>
                                             @else
                                             <button type="button" data-id="{{$d->uuid}}" data-keterangan="{{$d->keterangankinerja}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-tgl="{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}" data-nama="{{$d->pegawai->nama}}" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-edit"></i> Edit Kinerja</button>
                                             @endif
