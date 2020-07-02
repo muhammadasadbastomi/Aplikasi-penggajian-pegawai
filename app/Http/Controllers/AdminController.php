@@ -58,10 +58,10 @@ class AdminController extends Controller
                             $keterangan = 'Anda sudah melakukan absensi.';
                             if ($absensi->keterangankinerja == null) {
                                 $kinerja = 1;
-                                $keterangankinerja = 'Silahkan Masukkan Kegiatan Hari Ini.';
+                                $keterangankinerja = 'Silahkan Isi Kegiatan Hari Ini.';
                             } else {
                                 $kinerja = 2;
-                                $keterangankinerja = 'Anda Sudah Memasukkan Hasil Kegiatan Hari Ini.';
+                                $keterangankinerja = 'Anda Sudah Mengisi Hasil Kegiatan Hari Ini.';
                             }
                         } else {
                             $kinerja = 0;
