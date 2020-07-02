@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Absensi;
 use App\Pegawai;
 use App\Periode;
+use App\Kinerja;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -34,8 +35,23 @@ class AbsensiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function kinerjaindex(Request $request)
     {
+        $periode = Periode::orderBy('periode', 'desc')->first();
+        $id = Auth::user()->pegawai->id;
+        $dateNow = Carbon::now()->format('Y-m-d');
+        $data = Absensi::where('periode_id', $periode->id)->where('pegawai_id', $id)->where('tanggal', $dateNow)->first();
+
+        $data->waktu = $request->waktu;
+        $data->penyelesaian = $request->penyelesaian;
+        $data->inisiatif = $request->inisiatif;
+        $data->keterangankinerja = $request->keterangankinerja;
+        $data->update();
+
+        // $absensi = Absensi::orderBy('tanggal', 'desc')->where('periode_id', $periode->id)->whereBetween('tanggal', [$start_date, $end_date])->get();
+
+        return back()->withSuccess('Hasil kinerja hari ini berhasil tersimpan');
+        // return view('admin.absensi.index', compact('absensi', 'periode', 'pegawai'));
     }
 
     public function verifikasi($id)

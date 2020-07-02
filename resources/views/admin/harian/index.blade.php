@@ -25,7 +25,7 @@
             <div class="text-right">
                 <div class="text-right">
                     <button class="btn btn-outline-primary dropdown-toggle btn-sm btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-print"> </i> Cetak Absensi
+                        <i class="fa fa-print"> </i> Cetak Kinerja
                     </button>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -98,7 +98,7 @@
                                         <td class="text-center align-middle">@if (!empty($d->keterangankinerja)) {{$d->keterangankinerja}} @else - @endif</td>
                                         <td class="text-center align-middle">
                                             @if($d->tanggal == carbon\carbon::now()->format('Y-m-d'))
-                                            <button type="button" data-id="{{$d->uuid}}" data-keterangan="{{$d->keterangankinerja}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-tgl="{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}" data-nama="{{$d->pegawai->nama}}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-chart-line"></i> Masukkan Kinerja</button>
+                                            <button type="button" data-id="{{$d->uuid}}" data-keterangan="{{$d->keterangankinerja}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-tgl="{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}" data-nama="{{$d->pegawai->nama}}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-edit"></i> Edit Kinerja</button>
                                             @else
                                             <button type="button" data-id="{{$d->uuid}}" data-keterangan="{{$d->keterangankinerja}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-tgl="{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}" data-nama="{{$d->pegawai->nama}}" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-edit"></i> Edit Kinerja</button>
                                             @endif

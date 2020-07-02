@@ -29,6 +29,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () 
     Route::get('/pegawai/periode/index', 'PeriodeController@index')->name('periodeUserIndex');
     Route::get('/pegawai/periode/detail/{id}', 'PeriodeController@show')->name('periodeUserShow');
 
+    // route kinerja user
+    Route::post('/kinerja/pegawai/absensi/index', 'AbsensiController@kinerjaindex')->name('absensiKinerjaIndex');
+
     // route absensi user
     Route::get('/pegawai/absensi/index/{id}', 'AbsensiController@index')->name('absensiUserIndex');
     Route::get('/pegawai/absensi/detail/{id}', 'AbsensiController@show')->name('absensiUserShow');

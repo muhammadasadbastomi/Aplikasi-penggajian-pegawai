@@ -43,7 +43,7 @@
                                     <li class="nav-item">
                                         <a href="{{route('karyawanIndex')}}" class="nav-link active">
                                             <i class="far fa-circle nav-icon"></i>
-                                            <p>Data Pegawai</p>
+                                            <p>Data Pegawai Kontrak</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
@@ -79,7 +79,6 @@
                                 </a>
                             </li>
                             @else(auth()->user()->role == 'pegawai')
-
                             <li class="nav-item has-treeview menu-open">
                                 <a href="{{route('adminIndex')}}" class="nav-link active">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
