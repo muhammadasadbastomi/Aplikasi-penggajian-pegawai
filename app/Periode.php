@@ -10,5 +10,4 @@ class Periode extends Model
 {
     use Notifiable;
     use Uuid;
-
 }

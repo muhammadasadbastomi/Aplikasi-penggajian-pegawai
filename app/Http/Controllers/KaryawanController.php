@@ -2,59 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Golongan;
-use App\Jabatan;
 use App\Pegawai;
 use App\User;
-use Hash;
-use PDF;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class KaryawanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        // $karyawan = Pegawai::whereIn('pekerja', ['karyawan'])->orderBy('id', 'Desc')->get();
-        $karyawan = Pegawai::orderBy('id', 'Desc')->get();
-        return view('admin.karyawan.index', compact('karyawan'));
-    }
+        $data = Pegawai::orderBy('id', 'Desc')->get();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // $jabatan = Jabatan::orderBy('id', 'asc')->get();
-        // $golongan = Golongan::orderBy('id', 'asc')->get();
-        $karyawan = Pegawai::orderBy('id', 'asc')->get();
-        return view('admin.karyawan.create', compact('karyawan'));
+        return view('admin.pegawai.index', compact('data'));
     }
 
     public function store(Request $request)
     {
-        //dd($request->all());
         $messages = [
-            'unique' => ':attribute sudah terdaftar.',
-            'email' => ':attribute harus benar.',
+            'unique' => 'Email Sudah Terdaftar.',
+            'email' => 'Email Harus Benar.',
             'required' => ':attribute harus diisi.',
-            'confirmed' => ':attribute salah.',
-            'min' => ':attribute minimal 5 karakter.'
+            'confirmed' => 'Password Salah.',
+            'min' => 'Password Minimal 5 Karakter.'
         ];
-        //dd($request->all());
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nik' => 'required',
             'nama' => 'required',
             'email' => 'email|unique:users',
             'password' => 'required|confirmed|min:5',
             'tempat_lahir' => 'required',
+            'alamat' => 'required',
+            'tgl_lahir' => 'required',
+            'tgl_masuk' => 'required',
         ], $messages);
+
+        if ($validator->fails()) {
+            return back()->with('warning', $validator->errors()->all()[0])->withInput();
+        }
 
         //insert ke table users
         $user = new User;
@@ -68,46 +53,37 @@ class KaryawanController extends Controller
         $request->request->add(['user_id' => $user->id]);
         Pegawai::create($request->all());
 
-        return redirect()->route('karyawanIndex')->with('success', 'Data berhasil disimpan');
+        return back()->with('success', 'Data berhasil disimpan');
     }
 
-    public function show(Pegawai $pegawai)
+    public function update(Request $request)
     {
-        //
-    }
-
-    public function edit(Pegawai $pegawai, $id)
-    {
-        // get karyawan by id
-        $karyawan = Pegawai::where('uuid', $id)->first();
-        $karyawan1 = Pegawai::where('uuid', $id)->get();
-        // dd($golongan);
-
-        return view('admin.karyawan.edit', compact('karyawan', 'jabatan', 'golongan', 'karyawan1'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        //dd($request->all());
         $messages = [
-            'unique' => ':attribute sudah terdaftar.',
+            'email' => 'Email Harus Benar.',
             'required' => ':attribute harus diisi.',
-            'confirmed' => ':attribute salah.',
+            'confirmed' => 'Password yang anda Masukkan Salah.',
+            'min' => 'Password Minimal 5 Karakter.'
         ];
-        //dd($request->all());
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nik' => 'required',
+            'email' => 'required|email',
             'nama' => 'required',
-            'email' => 'unique:users',
+            'password' => 'confirmed|min:5',
             'tempat_lahir' => 'required',
-            'password' => 'confirmed',
+            'alamat' => 'required',
+            'tgl_lahir' => 'required',
+            'tgl_masuk' => 'required',
         ], $messages);
-        // get data by id
-        $karyawan = pegawai::where('uuid', $id)->first();
 
-        //get user
-        $user = User::where('id', $karyawan->user_id)->first();
+        if ($validator->fails()) {
+            return back()->with('warning', $validator->errors()->all()[0])->withInput();
+        }
 
+
+        $pegawai = pegawai::where('id', $request->id)->first();
+        $user = User::where('id', $pegawai->user_id)->first();
+
+        //user
         $user->name = $request->nama;
         //cek if exist input password
         if (!$request->email) {
@@ -115,46 +91,35 @@ class KaryawanController extends Controller
         } else {
             $user->email = $request->email;
         }
-
         //cek if exist input password
         if (!$request->password) {
             $user->password = $user->password;
         } else {
             $user->password = Hash::make($request->password);
         }
-
         $user->update();
 
-        $karyawan->nik = $request->nik;
-        $karyawan->nama = $request->nama;
-        $karyawan->status = $request->status;
-        $karyawan->alamat = $request->alamat;
-        $karyawan->tempat_lahir = $request->tempat_lahir;
-        $karyawan->tgl_lahir = $request->tgl_lahir;
-        $karyawan->tgl_masuk = $request->tgl_masuk;
-        $karyawan->update();
+        //karywan
+        $pegawai->nik = $request->nik;
+        $pegawai->nama = $request->nama;
+        $pegawai->status = $request->status;
+        $pegawai->alamat = $request->alamat;
+        $pegawai->tempat_lahir = $request->tempat_lahir;
+        $pegawai->tgl_lahir = $request->tgl_lahir;
+        $pegawai->tgl_masuk = $request->tgl_masuk;
+        $pegawai->update();
 
-        return redirect()->route('karyawanIndex')->with('success', 'Data Berhasil Diubah');
+        return back()->with('success', 'Data Berhasil Diubah');
     }
 
-    public function destroy(Pegawai $karyawan, $id)
+    public function destroy($uuid, $id)
     {
-        $karyawan = pegawai::where('uuid', $id)->first();
+        $pegawai = pegawai::where('uuid', $uuid)->first();
+        $pegawai->delete();
 
-        // get user by id
-        $user = User::where('id', $karyawan->user_id)->delete();
+        $user = User::where('uuid', $id)->first();
+        $user->delete();
 
-        return redirect()->route('karyawanIndex');
-    }
-    public function cetak_pdf()
-    {
-        $karyawan = Pegawai::all();
-
-        $pdf = PDF::loadview('laporan.cetak_karyawan', compact('karyawan'));
-        return $pdf->stream('laporan-karyawan-pdf');
-    }
-    public function filter()
-    {
-        return view('admin.karyawan.filter');
+        return back()->with('success', 'Data Berhasil Dihapus');
     }
 }

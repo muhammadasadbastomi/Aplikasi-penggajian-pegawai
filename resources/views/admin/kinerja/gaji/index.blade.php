@@ -51,24 +51,24 @@
                                     <td class="text-center align-middle">
                                         @if ($d->total == 0 )
                                         -
-                                        @elseif ($d->total < 51) <span class="badge badge-danger">Buruk</span> @elseif ($d->total> 84 ) <span class="badge badge-primary">Terbaik</span> @elseif ($d->total> 50 ) <span class="badge badge-info">Baik</span>
+                                        @elseif ($d->total < 50) <span class="badge badge-danger">Buruk</span> @elseif ($d->total> 84 ) <span class="badge badge-primary">Terbaik</span> @elseif ($d->total> 49 ) <span class="badge badge-info">Baik</span>
                                             @else
                                             -
                                             @endif
                                     </td>
                                     <td class="text-center">
                                         @if ($d->total == 0 ) -
-                                        @elseif ($d->total < 49) Rp. {{number_format($d->pegawai->honor, 0, ',', '.') }},- @elseif ($d->total> 84 ) Rp. {{number_format($d->pegawai->honor * 0.25 + $d->pegawai->honor, 0, ',', '.') }},-
+                                        @elseif ($d->total < 49) Rp. {{number_format($d->pegawai->honor, 0, ',', '.') }},- @elseif ($d->total > 84 ) Rp. {{number_format($d->pegawai->honor * 0.25 + $d->pegawai->honor, 0, ',', '.') }},-
                                             @elseif ($d->total> 50 ) Rp. {{number_format($d->pegawai->honor * 0.15 + $d->pegawai->honor, 0, ',', '.') }},-
                                             @else
                                             -
                                             @endif
 
                                             @if ($d->total == 0 ) -
-                                            @elseif ($d->total < 50) @elseif ($d->total> 84 ) &emsp14;<span class="text-success">
+                                            @elseif ($d->total < 50) @elseif ($d->total > 84 ) &emsp14;<span class="text-success">
                                                     &emsp14;<i class="fas fa-arrow-up"></i> 25%
                                                 </span>
-                                                @elseif ($d->total> 49 ) <span class="text-success">
+                                                @elseif ($d->total > 49 ) <span class="text-success">
                                                     &emsp14;<i class="fas fa-arrow-up"></i> 15%
                                                 </span>
                                                 @else
@@ -82,69 +82,64 @@
                         </table>
                     </div>
                 </div>
-                {{-- <div class="row">
-        <div class="col-sm-12 col-md-5">
-        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-        </div>
-        <div class="col-sm-12 col-md-7">
-        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div> --}}
+                <!-- /.card-body -->
             </div>
-            <!-- /.card-body -->
         </div>
     </div>
-    @endsection
-    @section('script')
+</div>
+@endsection
+@section('script')
 
-    <script>
-        $(document).on('click', '.delete', function(e) {
-            e.preventDefault();
-            var id = $(this).data('id');
-            swal.fire({
-                title: "Apakah anda yakin?",
-                icon: "warning",
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: "Ya",
-                cancelButtonText: "Tidak",
-                showCancelButton: true,
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url: "{{ url('admin/gaji/periode/karyawan/delete')}}" + '/' + id,
-                        type: "POST",
-                        data: {
-                            '_method': 'DELETE',
-                            "_token": "{{ csrf_token() }}"
-                        },
-                        success: function(response) {
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Data Berhasil Dihapus',
-                                showConfirmButton: false,
-                                timer: 800
-                            })
-                            setTimeout(function() {
-                                document.location.reload(true);
-                            }, 400);
-                        },
-                    })
-                } else if (result.dismiss === swal.DismissReason.cancel) {
-                    Swal.fire(
-                        'Dibatalkan',
-                        'data batal dihapus',
-                        'error'
-                    )
-                }
-            })
-        });
-    </script>
+<script>
+    $(document).on('click', '.delete', function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        swal.fire({
+            title: "Apakah anda yakin?",
+            icon: "warning",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: "Ya",
+            cancelButtonText: "Tidak",
+            showCancelButton: true,
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: "{{ url('admin/gaji/periode/karyawan/delete')}}" + '/' + id,
+                    type: "POST",
+                    data: {
+                        '_method': 'DELETE',
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Data Berhasil Dihapus',
+                            showConfirmButton: false,
+                            timer: 800
+                        })
+                        setTimeout(function() {
+                            document.location.reload(true);
+                        }, 400);
+                    },
+                })
+            } else if (result.dismiss === swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Dibatalkan',
+                    'data batal dihapus',
+                    'error'
+                )
+            }
+        })
+    });
+</script>
 
-    <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "autoWidth": false,
-            });
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
         });
-    </script>
-    @endsection
+    });
+</script>
+@endsection

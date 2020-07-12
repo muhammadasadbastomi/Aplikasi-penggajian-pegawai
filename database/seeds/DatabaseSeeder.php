@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,37 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(BpkSeeder::class);
-        // Create 100 records of bpks
-        factory(App\Jabatan::class, 3)->create()->each(function ($jabatan) {
-
-            // Seed the relation with 10 members
-            // $members = factory(App\Member::class, 10)->make();
-            // $bpk->members()->saveMany($members);
-        });
-
-        factory(App\Golongan::class, 3)->create()->each(function ($golongan) {
-
-            // Seed the relation with 10 members
-            // $members = factory(App\Member::class, 10)->make();
-            // $bpk->members()->saveMany($members);
-        });
-
+        //admin
         DB::table('users')->insert([
             'uuid' => Str::random(36),
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123'),
         ]);
-        DB::table('users')->insert([
-            'uuid' => Str::random(36),
-            'name' => 'aryudi',
-            'email' => 'aryudi33@gmail.com',
-            'password' => Hash::make('123'),
-        ]);
-
 
         $this->call([
+            UserSeeder::class,
             PegawaiSeeder::class,
         ]);
     }

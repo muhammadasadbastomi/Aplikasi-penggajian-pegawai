@@ -138,7 +138,7 @@
                                 <td class="text-center align-middle">
                                     @if ($d->total == 0 )
                                     -
-                                    @elseif ($d->total < 51) <span class="badge badge-danger">Buruk</span> @elseif ($d->total> 84 ) <span class="badge badge-primary">Terbaik</span> @elseif ($d->total> 50 ) <span class="badge badge-info">Baik</span>
+                                    @elseif ($d->total < 50) <span class="badge badge-danger">Buruk</span> @elseif ($d->total> 84 ) <span class="badge badge-primary">Terbaik</span> @elseif ($d->total> 49 ) <span class="badge badge-info">Baik</span>
                                         @else
                                         -
                                         @endif
