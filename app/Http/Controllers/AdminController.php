@@ -88,7 +88,7 @@ class AdminController extends Controller
     {
         $periode = Periode::orderBy('id', 'desc')->get();
 
-        return view('admin.pegawai.index', compact('periode'));
+        return view('pegawai.index', compact('periode'));
     }
 
     public function absensi($id)

@@ -154,7 +154,6 @@
         <!-- /.card-body -->
     </div>
 </div>
-
 @endsection
 @section('script')
 <script>
@@ -243,34 +242,6 @@
     });
 </script>
 
-<!-- Toastr -->
-<!-- <script src="../../plugins/toastr/toastr.min.js"></script> -->
-<!-- @if (count($errors) > 0)
-<script>
-  $(function() {
-    Command: toastr["error"]("Karyawan Sudah Ada.", "Gagal")
-  });
-
-  toastr.options = {
-    "toast": true,
-    "closeButton": true,
-    "debug": true,
-    "newestOnTop": true,
-    "progressBar": true,
-    "positionClass": "toast-top-right",
-    "preventDuplicates": true,
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-  }
-</script>
-@endif -->
-
 <script>
     $(function() {
         $("#example1").DataTable({
@@ -279,6 +250,4 @@
         });
     });
 </script>
-
-
 @endsection
