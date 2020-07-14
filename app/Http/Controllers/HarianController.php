@@ -51,21 +51,13 @@ class HarianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function show($id)
     {
-        //
+        $data = Absensi::where('pegawai_id', $id)->get();
+
+        return view('admin.harian.detail', compact('data'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Harian  $harian
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Harian $harian)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

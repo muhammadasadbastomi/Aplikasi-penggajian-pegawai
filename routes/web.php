@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () 
     // route absensi user
     Route::get('/pegawai/kinerja/index/{id}', 'HarianController@index')->name('kinerjaUserIndex');
     Route::patch('/pegawai/kinerja/index/{id}', 'HarianController@create')->name('kinerjaUsercreate');
+    Route::get('/pegawai/kinerja/detail/{id}', 'HarianController@show')->name('DetailKinerja');
 
     Route::get('/admin/user/index', 'UserController@index')->name('userIndex');
     Route::get('/admin/user/profile/{id}', 'UserController@show')->name('userShow');

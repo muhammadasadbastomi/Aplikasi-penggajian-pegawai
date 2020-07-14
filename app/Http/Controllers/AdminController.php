@@ -62,16 +62,20 @@ class AdminController extends Controller
                             if ($absensi->keterangankinerja == null) {
                                 $kinerja = 1;
                                 $keterangankinerja = 'Silahkan Isi Kegiatan Hari Ini.';
+                                return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja', 'keterangankinerja'));
                             } else {
                                 $kinerja = 2;
                                 $keterangankinerja = 'Anda Sudah Mengisi Hasil Kegiatan Hari Ini.';
+                                return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja', 'keterangankinerja'));
                             }
+                            return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja', 'keterangankinerja'));
                         } else {
                             $kinerja = 0;
                             $keterangan = 'Anda belum melakukan absensi.';
+                            return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja'));
                         }
                     }
-                    return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja', 'keterangankinerja'));
+                    return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja'));
                 }
             } else {
                 return view('admin.index', compact('cek'));
