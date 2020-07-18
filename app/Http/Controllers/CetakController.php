@@ -114,7 +114,7 @@ class CetakController extends Controller
         });
 
 
-        $pdf = PDF::loadview('laporan.cetak_gajibulan', compact('data', 'noww', 'now', 'start', 'end', 'total'));
+        $pdf = PDF::loadview('laporan.cetak_gajibulan', compact('data', 'noww', 'now', 'start', 'end'));
         return $pdf->stream('laporan-gaji-bulan-pdf');
     }
 
@@ -195,7 +195,7 @@ class CetakController extends Controller
 
     public function absensi($uuid)
     {
-        $periode = Periode::where('uuid', $uuid)->first();;
+        $periode = Periode::where('uuid', $uuid)->first();
         $now = Carbon::parse($periode->periode)->translatedFormat('d F Y');
         $noww = Carbon::parse($periode->periode)->translatedFormat('F Y');
         $end =  Carbon::parse($periode->periode)->endOfMonth()->toDateString();

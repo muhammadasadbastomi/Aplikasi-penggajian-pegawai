@@ -26,6 +26,7 @@
             border: 1px solid;
             padding-left: 5px;
             text-align: center;
+            font-size: 13px;
         }
 
         .judul {

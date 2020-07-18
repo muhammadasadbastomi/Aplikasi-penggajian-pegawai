@@ -108,8 +108,6 @@
                     <th class="text-center align-middle">Tanggal</th>
                     <th class="text-center align-middle">Nama Lengkap</th>
                     <th class="text-center">Ketepatan Waktu</th>
-                    <!-- <th class="text-center">Penyelesaian<br>Pekerjaan</th>
-                    <th class="text-center align-middle">Inisiatif</th> -->
                     <th class="text-center align-middle">Keterangan</th>
                 </tr>
             </thead>
@@ -129,23 +127,7 @@
                                 <b>{{$d->waktu}}</b> / 100
                             </div> @else - @endif
                         </td>
-                        <!-- <td class="text-center align-middle">@if (!empty($d->inisiatif))
-                            <div class="progress-group">
-                                <b>{{$d->inisiatif}}</b> / 100
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar @if ($d->waktu < 50 ) bg-danger @elseif ($d->waktu > 49 && $d->waktu < 85) bg-info @else bg-primary @endif " style="width: {{$d->waktu}}%"></div>
-                                </div>
-                            </div> @else - @endif
-                        </td>
-                        <td class="text-center align-middle">@if (!empty($d->penyelesaian))
-                            <div class="progress-group">
-                                <b>{{$d->penyelesaian}}</b> / 100
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar @if ($d->waktu < 50 ) bg-danger @elseif ($d->waktu > 49 && $d->waktu < 85) bg-info @else bg-primary @endif " style="width: {{$d->waktu}}%"></div>
-                                </div>
-                            </div> @else - @endif
-                        </td> -->
-                        <td class="text-center align-middle">@if (!empty($d->keterangankinerja)) {{$d->keterangankinerja}} @else - @endif</td>
+                        <td class="text-center align-middle">@if (!empty($d->keterangankinerja)) {!!$d->keterangankinerja!!} @else - @endif</td>
                     </tr>
                     @endforeach
             </tbody>

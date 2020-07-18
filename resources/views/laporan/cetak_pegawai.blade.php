@@ -26,6 +26,7 @@
             border: 1px solid;
             padding-left: 5px;
             text-align: center;
+            font-size: 13px;
         }
 
         .judul {
@@ -43,19 +44,10 @@
         .ttd {
             margin-left: 70%;
             text-align: center;
-
         }
 
         .sizeimg {
             width: 60px;
-        }
-
-        .headtext {
-            float: right;
-            margin-left: 0px;
-            width: 75%;
-            padding-left: 0px;
-            padding-right: 10%;
         }
 
         .header {
@@ -101,7 +93,7 @@
     </div>
     <div class="container">
         <h2 style="text-align:center; margin-top:-25px;">Laporan Data Pegawai</h2>
-        <table class='table table-bordered'>
+        <table class='table table-bordered nowrap'>
             <thead>
                 <tr>
                     <th>No</th>

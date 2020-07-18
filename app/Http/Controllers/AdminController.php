@@ -68,11 +68,10 @@ class AdminController extends Controller
                                 $keterangankinerja = 'Anda Sudah Mengisi Hasil Kegiatan Hari Ini.';
                                 return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja', 'keterangankinerja'));
                             }
-                            return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja', 'keterangankinerja'));
+                            return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja'));
                         } else {
                             $kinerja = 0;
                             $keterangan = 'Anda belum melakukan absensi.';
-                            return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja'));
                         }
                     }
                     return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja'));
@@ -85,7 +84,7 @@ class AdminController extends Controller
         $keterangan = 'periode belum dibuat';
         $kinerja = '2';
         $absensi = null;
-        return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja', 'keterangankinerja'));
+        return view('admin.index', compact('cek', 'keterangan', 'absensi', 'kinerja'));
     }
 
     public function periode()

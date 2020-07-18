@@ -38,8 +38,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () 
     Route::post('/kinerja/pegawai/absensi/index', 'AbsensiController@kinerjaindex')->name('absensiKinerjaIndex');
 
     // route absensi user
+    Route::get('/pegawai/absensi/detail/{id}/{uuid}/{periode}', 'AbsensiController@show')->name('DetailAbsensi');
     Route::get('/pegawai/absensi/index/{id}', 'AbsensiController@index')->name('absensiUserIndex');
-    Route::get('/pegawai/absensi/detail/{id}', 'AbsensiController@show')->name('absensiUserShow');
+    // Route::get('/pegawai/absensi/detail/{id}', 'AbsensiController@show')->name('absensiUserShow');
     Route::get('/pegawai/absensi/hadir', 'AbsensiController@hadir')->name('absensiUserHadir');
     Route::get('/pegawai/absensi/izin', 'AbsensiController@izin')->name('absensiUserIzin');
     Route::put('/pegawai/absensi/izin', 'AbsensiController@izinStore')->name('absensiUserIzinStore');
@@ -53,7 +54,7 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin,pegawai']], function () 
     // route absensi user
     Route::get('/pegawai/kinerja/index/{id}', 'HarianController@index')->name('kinerjaUserIndex');
     Route::patch('/pegawai/kinerja/index/{id}', 'HarianController@create')->name('kinerjaUsercreate');
-    Route::get('/pegawai/kinerja/detail/{id}', 'HarianController@show')->name('DetailKinerja');
+    Route::get('/pegawai/kinerja/detail/{id}/{uuid}/{periode}', 'HarianController@show')->name('DetailKinerja');
 
     Route::get('/admin/user/index', 'UserController@index')->name('userIndex');
     Route::get('/admin/user/profile/{id}', 'UserController@show')->name('userShow');

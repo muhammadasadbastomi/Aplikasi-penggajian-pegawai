@@ -27,6 +27,7 @@ class CreateAbsensisTable extends Migration
             $table->tinyInteger('hadir')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->date('tanggal');
+            $table->time('waktu_absen')->nullable();
             $table->text('keterangan')->nullable();
             $table->text('keterangankinerja')->nullable();
             $table->foreign('periode_id')->references('id')->on('periodes')->onDelete('restrict');

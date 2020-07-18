@@ -27,10 +27,9 @@
                     <button class="btn btn-outline-primary dropdown-toggle btn-sm btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-print"> </i> Cetak Absensi
                     </button>
-                    </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{{route('absensiCetak',['uuid' => $periode->uuid])}}" target="#_blank">Keseluruhan</a>
-                        <button class="dropdown-item" data-toggle="modal" data-target="#modalfilter">Berdasarkan Nama Pegawai</button>
+                        <a class="dropdown-item" href="{{route('absensiCetak', ['uuid' => $periode->uuid])}}" target="#_blank">Keseluruhan</a>
+                        <button class="dropdown-item" data-toggle="modal" data-target="#modalfilter">Berdasarkan Pegawai</button>
                     </div>
                     @include('admin.absensi.filter')
                 </div>
@@ -48,13 +47,13 @@
                                     <th>No</th>
                                     <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Tanggal</th>
                                     <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
+                                    <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Waktu Absen</th>
                                     <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Izin</th>
                                     <th class="sorting text-center" tabindex="3" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Sakit</th>
                                     <th class="sorting text-center" tabindex="4" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Alfa</th>
                                     <th class="sorting text-center" tabindex="5" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Hadir</th>
                                     <th class="sorting text-center" tabindex="6" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Keterangan</th>
                                     <th class="sorting text-center" tabindex="7" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
-                                    {{-- <th></th> --}}
                             </thead>
                             <tbody>
                                 @foreach ($absensi as $d)
@@ -66,7 +65,8 @@
                                         @endif
                                         <td class="text-center">{{$loop->iteration}}</td>
                                         <td class="text-center">{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}</td>
-                                        <td class="text-center">{{$d->pegawai->nama}}</td>
+                                        <td class="text-center align-middle"><a style="color: black;" href="{{route('DetailAbsensi', ['id' => $d->pegawai_id , 'uuid' => $d->uuid , 'periode' => $d->periode_id])}}">{{$d->pegawai->nama}}</a></td>
+                                        <td class="text-center align-middle">@if($d->waktu_absen == !null) {{carbon\carbon::parse($d->waktu_absen)->format('H:i')}} @else - @endif</td>
                                         <td class="text-center">
                                             @if($d->izin == 1)
                                             ✔

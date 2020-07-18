@@ -106,10 +106,8 @@
                 <tr role="row">
                     <th class="text-center align-middle">No</th>
                     <th class="text-center align-middle">Tanggal</th>
-                    <th class="text-center align-middle">Nama Lengkap</th>
+                    <th class="text-center align-middle">Waktu Absen</th>
                     <th class="text-center">Ketepatan Waktu</th>
-                    <!-- <th class="text-center">Penyelesaian<br>Pekerjaan</th>
-                    <th class="text-center align-middle">Inisiatif</th> -->
                     <th class="text-center align-middle">Keterangan</th>
                 </tr>
             </thead>
@@ -123,7 +121,7 @@
                         @endif
                         <td class="text-center align-middle">{{$loop->iteration}}</td>
                         <td class="text-center align-middle">{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}</td>
-                        <td class="text-center align-middle">{{$d->pegawai->nama}}</td>
+                        <td class="text-center align-middle">@if($d->waktu_absen == !null){{carbon\carbon::parse($d->waktu_absen)->format('H:i')}}@else - @endif</td>
                         <td class="text-center align-middle">@if (!empty($d->waktu))
                             <div class="progress-group">
                                 <b>{{$d->waktu}}</b> / 100
@@ -145,7 +143,7 @@
                                 </div>
                             </div> @else - @endif
                         </td> -->
-                        <td class="text-center align-middle">@if (!empty($d->keterangankinerja)) {{$d->keterangankinerja}} @else - @endif</td>
+                        <td class="text-center align-middle">@if (!empty($d->keterangankinerja)) {!!$d->keterangankinerja!!} @else - @endif</td>
                     </tr>
                     @endforeach
             </tbody>

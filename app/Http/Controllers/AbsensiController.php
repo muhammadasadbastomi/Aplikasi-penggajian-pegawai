@@ -73,6 +73,7 @@ class AbsensiController extends Controller
 
         if ($now == $month) {
             $absensi = Absensi::where('tanggal', $dateNow)->where('pegawai_id', $id)->first();
+            $time = Carbon::now()->format('H:i');
             if (
                 $absensi->hadir == 1
                 || $absensi->izin == 1
@@ -81,6 +82,7 @@ class AbsensiController extends Controller
                 return redirect()->route('adminIndex')->with('warning', 'Anda sudah melakukan absen hari ini');
             } else {
                 $absensi->hadir = 1;
+                $absensi->waktu_absen = $time;
                 $absensi->update();
                 return redirect()->route('adminIndex')->with('success', 'Berhasil absen hari ini, silahkan tunggu verifikasi admin');
             }
@@ -112,10 +114,11 @@ class AbsensiController extends Controller
     {
         $id = Auth::user()->pegawai->id;
         $dateNow = Carbon::now()->format('Y-m-d');
-
+        $time = Carbon::now()->format('H:i');
         $absensi = Absensi::where('tanggal', $dateNow)->where('pegawai_id', $id)->first();
 
         $absensi->izin = 1;
+        $absensi->waktu_absen = $time;
         $absensi->keterangan = $request->keterangan;
 
         $absensi->update();
@@ -147,10 +150,11 @@ class AbsensiController extends Controller
     {
         $id = Auth::user()->pegawai->id;
         $dateNow = Carbon::now()->format('Y-m-d');
-
+        $time = Carbon::now()->format('H:i');
         $absensi = Absensi::where('tanggal', $dateNow)->where('pegawai_id', $id)->first();
 
         $absensi->sakit = 1;
+        $absensi->waktu_absen = $time;
         $absensi->keterangan = $request->keterangan;
 
         $absensi->update();
@@ -225,5 +229,17 @@ class AbsensiController extends Controller
         $pegawai = Pegawai::orderBy('id', 'Desc')->get();
         $pdf = PDF::loadview('laporan.cetak_absensi', compact('absensi', 'pegawai'));
         return $pdf->stream('laporan-absensi-pdf');
+    }
+
+    //show absen
+    public function show($id, $uuid, $periode)
+    {
+        $periode1 = Periode::where('id', $periode)->first();
+        $pegawai = Pegawai::where('id', $id)->first();
+        $start_date = Carbon::now()->subDays(7)->format('Y-m-d');
+        $end_date = Carbon::now()->format('Y-m-d');
+        $data = Absensi::where('pegawai_id', $id)->where('periode_id', $periode)->orderBy('tanggal', 'Desc')->get();
+
+        return view('admin.absensi.detailabsen', compact('data', 'periode1', 'pegawai'));
     }
 }

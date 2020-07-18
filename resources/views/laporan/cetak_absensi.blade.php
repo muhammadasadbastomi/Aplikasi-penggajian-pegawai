@@ -107,15 +107,15 @@
             <thead>
                 <tr role="row">
                     <th>No</th>
-                    <th class="sorting text-center" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Tanggal</th>
-                    <th class="sorting text-center" tabindex="1" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Nama</th>
-                    <th class="sorting text-center" tabindex="2" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Izin</th>
-                    <th class="sorting text-center" tabindex="3" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Sakit</th>
-                    <th class="sorting text-center" tabindex="4" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Alfa</th>
-                    <th class="sorting text-center" tabindex="5" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Hadir</th>
-                    <th class="sorting text-center" tabindex="6" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Keterangan</th>
-                    <th class="sorting text-center" tabindex="7" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Status</th>
-                    {{-- <th></th> --}}
+                    <th class="sorting text-center">Tanggal</th>
+                    <th class="sorting text-center">Nama</th>
+                    <th class="sorting text-center">Waktu Absen</th>
+                    <th class="sorting text-center">Izin</th>
+                    <th class="sorting text-center">Sakit</th>
+                    <th class="sorting text-center">Alfa</th>
+                    <th class="sorting text-center">Hadir</th>
+                    <th class="sorting text-center">Keterangan</th>
+                    <th class="sorting text-center">Status</th>
             </thead>
             <tbody>
                 @foreach ($data as $d)
@@ -128,6 +128,7 @@
                         <td class="text-center">{{$loop->iteration}}</td>
                         <td class="text-center">{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}</td>
                         <td class="text-center">{{$d->pegawai->nama}}</td>
+                        <td class="text-center">@if($d->waktu_absen == !null){{carbon\carbon::parse($d->waktu_absen)->format('H:i')}}@else - @endif</td>
                         <td class="text-center" style="font-family: DejaVu Sans, sans-serif;">
                             @if($d->izin == 1)
                             ✔

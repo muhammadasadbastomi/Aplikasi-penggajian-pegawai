@@ -127,7 +127,7 @@
                                 <b>{{$d->penyelesaian}}</b> / 100
                             </div> @else - @endif
                         </td>
-                        <td class="text-center align-middle">@if (!empty($d->keterangankinerja)) {{$d->keterangankinerja}} @else - @endif</td>
+                        <td class="text-center align-middle">@if (!empty($d->keterangankinerja)) {!!$d->keterangankinerja!!} @else - @endif</td>
                     </tr>
                     @endforeach
             </tbody>

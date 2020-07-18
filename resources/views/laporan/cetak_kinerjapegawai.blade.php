@@ -106,7 +106,6 @@
             <thead>
                 <tr role="row">
                     <th class="text-center align-middle">No</th>
-                    <th class="text-center align-middle">Nama Lengkap</th>
                     <th class="text-center align-middle">Status Sekarang</th>
                     <th class="text-center align-middle">Disiplin</th>
                     <th class="text-center">Ketepatan<br>Waktu</th>
@@ -120,7 +119,6 @@
                 @foreach ($data as $d)
                 <tr>
                     <td class="text-center align-middle">{{$loop->iteration}}</td>
-                    <td class="text-center align-middle">{{$d->pegawai->nama}}</td>
                     <td class="text-center align-middle">{{$d->pegawai->status}}</td>
                     <td class="text-center"><b>{{$d->disiplin}}</b> / 100 </td>
                     <td class="text-center"><b>{{$d->waktu}}</b> / 100 </td>

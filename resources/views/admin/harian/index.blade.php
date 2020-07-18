@@ -27,7 +27,6 @@
                 <button class="btn btn-outline-primary dropdown-toggle btn-sm btn-outline-primary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-print"> </i> Cetak Kinerja
                 </button>
-                </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="{{route('kinerjawaktuCetak',['id' => $periode->uuid])}}" target="#_blank">Berdasarkan Ketepatan Waktu</a>
                     <button class="dropdown-item" data-toggle="modal" data-target="#modalfilterwaktu">Berdasarkan Ketepatan Waktu Pegawai</button>
@@ -58,7 +57,6 @@
                                     <th class="text-center align-middle">Inisiatif</th>
                                     <th class="text-center align-middle">Kegiatan</th>
                                     @if(Auth::user()->role =='admin')
-                                    <th class="text-center align-middle">Detail</th>
                                     <th class="text-center align-middle">Aksi</th>
                                     @endif
                                 </tr>
@@ -73,7 +71,11 @@
                                         @endif
                                         <td class="text-center align-middle">{{$loop->iteration}}</td>
                                         <td class="text-center align-middle">{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}</td>
+                                        @if(Auth::user()->role =='admin')
+                                        <td class="text-center align-middle"><a style="color: black;" href="{{route('DetailKinerja', ['id' => $d->pegawai_id , 'uuid' => $d->uuid , 'periode' => $d->periode_id])}}">{{$d->pegawai->nama}}</a></td>
+                                        @else
                                         <td class="text-center align-middle">{{$d->pegawai->nama}}</td>
+                                        @endif
                                         <td class="text-center align-middle">@if (!empty($d->waktu))
                                             <div class="progress-group">
                                                 <span class="text-right"> <button class="btn btn-noHover btn-sm border-transparent">{{$d->waktu}} / 100</button></span>
@@ -100,9 +102,6 @@
                                         </td>
                                         <td class="text-center align-middle">@if (!empty($d->keterangankinerja)) {!!$d->keterangankinerja!!} @else - @endif</td>
                                         @if(Auth::user()->role =='admin')
-                                        <td class="text-center align-middle">
-                                            <a type="button" href="{{route('DetailKinerja', ['id' => $d->pegawai_id])}}">Lihat Detail</a>
-                                        </td>
                                         <td class="text-center align-middle">
                                             @if($d->tanggal == carbon\carbon::now()->format('Y-m-d'))
                                             <button type="button" data-id="{{$d->uuid}}" data-keterangan="{{$d->keterangankinerja}}" data-waktu="{{$d->waktu}}" data-penyelesaian="{{$d->penyelesaian}}" data-inisiatif="{{$d->inisiatif}}" data-tgl="{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}" data-nama="{{$d->pegawai->nama}}" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-chart-line"></i> Masukkan Kinerja</button>

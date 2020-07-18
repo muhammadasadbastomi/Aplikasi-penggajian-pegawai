@@ -51,45 +51,11 @@ class HarianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    //show kinerja
+    public function show($id, $uuid, $periode)
     {
-        $data = Absensi::where('pegawai_id', $id)->get();
+        $data = Absensi::where('pegawai_id', $id)->where('periode_id', $periode)->orderBy('tanggal', 'Desc')->get();
 
         return view('admin.harian.detail', compact('data'));
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Harian  $harian
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Harian $harian)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Harian  $harian
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Harian $harian)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Harian  $harian
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Harian $harian)
-    {
-        //
     }
 }
