@@ -108,7 +108,7 @@
                     <th class="text-center align-middle">Tanggal</th>
                     <th class="text-center align-middle">Nama Lengkap</th>
                     <th class="text-center">Ketepatan Waktu</th>
-                    <th class="text-center align-middle">Keterangan</th>
+                    <th class="text-center align-middle">Kegiatan</th>
                 </tr>
             </thead>
             <tbody>

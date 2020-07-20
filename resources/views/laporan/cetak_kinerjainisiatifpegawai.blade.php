@@ -108,7 +108,7 @@
                     <th class="text-center align-middle">Tanggal</th>
                     <th class="text-center align-middle">Waktu Absen</th>
                     <th class="text-center">Inisiatif</th>
-                    <th class="text-center align-middle">Keterangan</th>
+                    <th class="text-center align-middle">Kegiatan</th>
                 </tr>
             </thead>
             <tbody>
