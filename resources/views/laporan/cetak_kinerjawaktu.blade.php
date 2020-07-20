@@ -107,6 +107,7 @@
                     <th class="text-center align-middle">No</th>
                     <th class="text-center align-middle">Tanggal</th>
                     <th class="text-center align-middle">Nama Lengkap</th>
+                    <th class="text-center align-middle">Waktu Absen</th>
                     <th class="text-center">Ketepatan Waktu</th>
                     <th class="text-center align-middle">Kegiatan</th>
                 </tr>
@@ -122,6 +123,7 @@
                         <td class="text-center align-middle">{{$loop->iteration}}</td>
                         <td class="text-center align-middle">{{carbon\carbon::parse($d->tanggal)->translatedFormat('l, d F Y')}}</td>
                         <td class="text-center align-middle">{{$d->pegawai->nama}}</td>
+                        <td class="text-center align-middle">@if($d->waktu_absen == !null){{$d->waktu_absen}}@else - @endif</td>
                         <td class="text-center align-middle">@if (!empty($d->waktu))
                             <div class="progress-group">
                                 <b>{{$d->waktu}}</b> / 100
