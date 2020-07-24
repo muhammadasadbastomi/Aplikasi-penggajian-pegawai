@@ -38,14 +38,6 @@ class PeriodeController extends Controller
         $count_days = carbon::parse($request->periode)->daysInMonth;
         $periode = Periode::orderBy('id', 'desc')->first();
 
-        // if (carbon::parse($request->periode)->format('m') < $now) {
-        //     return redirect()->route('periodeIndex')->with('warning', 'Periode Harus Setelah Bulan ' . $month . '');
-
-        // } elseif (carbon::parse($request->periode)->format('m') == $now) {
-        //     return redirect()->route('periodeIndex')->with('warning', 'Periode Bulan ' . $month . ' Sudah Dibuat');
-
-        // } else {
-        //}
         if (isset($periode)) {
 
             if (carbon::parse($request->periode)->format('mY') > $now) {
