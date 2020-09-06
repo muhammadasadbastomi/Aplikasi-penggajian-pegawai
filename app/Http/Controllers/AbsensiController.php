@@ -187,26 +187,36 @@ class AbsensiController extends Controller
 
         // get data by id
         $absensi = absensi::where('uuid', $id)->first();
-        // dd($absensi);
-        if (isset($request->absensi)) {
-            if ($request->absensi == 1) {
-                $absensi->hadir = 1;
-            } elseif ($request->absensi == 2) {
-                $absensi->izin = 1;
-            } elseif ($request->absensi == 3) {
-                $absensi->sakit = 1;
-            } elseif ($request->absensi == 4) {
-                $absensi->alfa = 1;
-            }
-            if (isset($request->keterangan)) {
-                $absensi->keterangan = $request->keterangan;
-            }
+        // dd(Carbon::parse($absensi->tanggal)->format('D'));
+        $hari = Carbon::parse($absensi->tanggal)->format('D');
+        if ($hari == 'Sat') {
+            $absensi->delete();
+            return redirect()->route('absensiIndex', ['id' => $absensi->periode->uuid])->withWarning('Hari ini hari sabtu');
+        } elseif ($hari == 'Sun') {
+            $absensi->delete();
+            return redirect()->route('absensiIndex', ['id' => $absensi->periode->uuid])->withWarning('Hari ini hari minggu');
+        } else {
 
-            $absensi->status = 1;
+            if (isset($request->absensi)) {
+                if ($request->absensi == 1) {
+                    $absensi->hadir = 1;
+                } elseif ($request->absensi == 2) {
+                    $absensi->izin = 1;
+                } elseif ($request->absensi == 3) {
+                    $absensi->sakit = 1;
+                } elseif ($request->absensi == 4) {
+                    $absensi->alfa = 1;
+                }
+                if (isset($request->keterangan)) {
+                    $absensi->keterangan = $request->keterangan;
+                }
+
+                $absensi->status = 1;
+            }
+            $absensi->update();
+
+            return redirect()->route('absensiIndex', ['id' => $absensi->periode->uuid])->with('success', 'Data Berhasil Diubah');
         }
-        $absensi->update();
-
-        return redirect()->route('absensiIndex', ['id' => $absensi->periode->uuid])->with('success', 'Data Berhasil Diubah');
     }
 
     /**

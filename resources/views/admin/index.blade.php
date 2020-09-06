@@ -33,6 +33,9 @@
             <div class="col-lg-12 col-6">
                 <!-- small box -->
                 @if(Auth::user()->role =='pegawai' && $absensi != null)
+                @if(carbon\carbon::now()->format('D') == 'Sat' || carbon\carbon::now()->format('D') == 'Sun')
+                <h1>Hari weekend</h1>
+                @else
                 @if($kinerja == 1)
                 <div class="card-body">
                     <div class="row">
@@ -310,6 +313,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 @endif
 
                 @elseif(Auth::user()->role == 'admin')

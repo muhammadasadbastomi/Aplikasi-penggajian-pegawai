@@ -27,6 +27,7 @@ class CreateAbsensisTable extends Migration
             $table->tinyInteger('hadir')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->date('tanggal');
+            // $table->string('hari');
             $table->time('waktu_absen')->nullable();
             $table->text('keterangan')->nullable();
             $table->text('keterangankinerja')->nullable();
