@@ -15,8 +15,9 @@ class KinerjaController extends Controller
         $count_days = carbon::parse($periode->periode)->daysInMonth;
         $data = Absensi::orderBy('id', 'desc')->where('periode_id', $periode->id)->where('tanggal', $end)->get();
 
-        $data = $data->map(function ($item) use ($count_days) {
+        $data = $data->map(function ($item)  use ($periode) {
 
+            $count_days = Absensi::where('pegawai_id', $item->pegawai_id)->where('periode_id', $periode->id)->count();
             $nilai = $count_days - $item->where('alfa', 1)->where('pegawai_id', $item->pegawai_id)->sum('alfa');
             $persentase1 = ($nilai * 100) / $count_days;
 

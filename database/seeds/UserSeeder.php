@@ -24,44 +24,44 @@ class UserSeeder extends Seeder
             'password' => Hash::make('123456'),
         ]);
 
-        DB::table('users')->insert([
-            'uuid' => Str::random(36),
-            'name' => 'Saiful Andi Irawan',
-            'email' => 'saiful@gmail.com',
-            'role' => 'pegawai',
-            'password' => Hash::make('123456'),
-        ]);
+        // DB::table('users')->insert([
+        //     'uuid' => Str::random(36),
+        //     'name' => 'Saiful Andi Irawan',
+        //     'email' => 'saiful@gmail.com',
+        //     'role' => 'pegawai',
+        //     'password' => Hash::make('123456'),
+        // ]);
 
-        DB::table('users')->insert([
-            'uuid' => Str::random(36),
-            'name' => 'Muhammad Hadrian',
-            'email' => 'hadrian@gmail.com',
-            'role' => 'pegawai',
-            'password' => Hash::make('123456'),
-        ]);
+        // DB::table('users')->insert([
+        //     'uuid' => Str::random(36),
+        //     'name' => 'Muhammad Hadrian',
+        //     'email' => 'hadrian@gmail.com',
+        //     'role' => 'pegawai',
+        //     'password' => Hash::make('123456'),
+        // ]);
 
-        DB::table('users')->insert([
-            'uuid' => Str::random(36),
-            'name' => 'Indah Permata',
-            'email' => 'indah@gmail.com',
-            'role' => 'pegawai',
-            'password' => Hash::make('123456'),
-        ]);
+        // DB::table('users')->insert([
+        //     'uuid' => Str::random(36),
+        //     'name' => 'Indah Permata',
+        //     'email' => 'indah@gmail.com',
+        //     'role' => 'pegawai',
+        //     'password' => Hash::make('123456'),
+        // ]);
 
-        DB::table('users')->insert([
-            'uuid' => Str::random(36),
-            'name' => 'Juwita Kila',
-            'email' => 'juwita@gmail.com',
-            'role' => 'pegawai',
-            'password' => Hash::make('123456'),
-        ]);
+        // DB::table('users')->insert([
+        //     'uuid' => Str::random(36),
+        //     'name' => 'Juwita Kila',
+        //     'email' => 'juwita@gmail.com',
+        //     'role' => 'pegawai',
+        //     'password' => Hash::make('123456'),
+        // ]);
 
-        DB::table('users')->insert([
-            'uuid' => Str::random(36),
-            'name' => 'Fajar Ramadhan',
-            'email' => 'hidayat@gmail.com',
-            'role' => 'pegawai',
-            'password' => Hash::make('123456'),
-        ]);
+        // DB::table('users')->insert([
+        //     'uuid' => Str::random(36),
+        //     'name' => 'Fajar Ramadhan',
+        //     'email' => 'hidayat@gmail.com',
+        //     'role' => 'pegawai',
+        //     'password' => Hash::make('123456'),
+        // ]);
     }
 }
